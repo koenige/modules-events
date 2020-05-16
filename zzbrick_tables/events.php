@@ -67,7 +67,7 @@ $zz['fields'][6]['size'] = 48;
 $zz['fields'][6]['class'] = 'block480a';
 $zz['fields'][6]['list_append_next'] = true;
 $zz['fields'][6]['link'] = [
-	'string1' => $zz_setting['base'].$zz_setting['event_path'].'/',
+	'string1' => $zz_setting['base'].$zz_setting['events_path'].'/',
 	'field1' => 'identifier',
 	'string2' => '/'
 ];
