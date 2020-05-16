@@ -14,3 +14,8 @@
 /* 2020-05-16-3 */	ALTER TABLE `events_categories` ADD INDEX `category_id` (`category_id`);
 /* 2020-05-16-4 */	ALTER TABLE `events_contacts` ADD `sequence` tinyint unsigned NULL AFTER `role_category_id`;
 /* 2020-05-16-5 */	ALTER TABLE `events_media` CHANGE `sequence` `sequence` tinyint unsigned NOT NULL AFTER `medium_id`;
+/* 2020-05-16-6 */	DELETE FROM _relations WHERE `detail_db` = (SELECT DATABASE()) AND `detail_table` = 'events' AND `detail_id_field` = 'event_id' AND `detail_field` = 'place_contact_id';
+/* 2020-05-16-7 */	DELETE FROM _relations WHERE `detail_db` = (SELECT DATABASE()) AND `detail_table` = 'events' AND `detail_id_field` = 'event_id' AND `detail_field` = 'author_person_id';
+/* 2020-05-16-8 */	ALTER TABLE `events` DROP `place_contact_id`, DROP `author_person_id`;
+/* 2020-05-16-9 */	ALTER TABLE `events` ADD INDEX `event_category_id` (`event_category_id`);
+/* 2020-05-16-10 */	ALTER TABLE `events_contacts` ADD UNIQUE `event_id` (`event_id`, `contact_id`, `role_category_id`), ADD INDEX `role_category_id` (`role_category_id`), DROP INDEX `event_id`;

@@ -16,13 +16,11 @@ CREATE TABLE `events` (
   `abstract` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `description` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `registration` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
-  `place_contact_id` int unsigned NOT NULL,
   `event_category_id` int unsigned NOT NULL,
   `date_begin` date NOT NULL,
   `date_end` date DEFAULT NULL,
   `time_begin` time DEFAULT NULL,
   `time_end` time DEFAULT NULL,
-  `author_person_id` int unsigned DEFAULT NULL,
   `created` datetime DEFAULT NULL,
   `direct_link` varchar(255) CHARACTER SET latin1 COLLATE latin1_general_cs DEFAULT NULL,
   `published` enum('yes','no') CHARACTER SET latin1 COLLATE latin1_general_cs NOT NULL DEFAULT 'no',
@@ -33,12 +31,10 @@ CREATE TABLE `events` (
   `main_event_id` int unsigned DEFAULT NULL,
   `last_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`event_id`),
-  UNIQUE KEY `kennung` (`identifier`),
-  KEY `autor_person_id` (`author_person_id`)
+  UNIQUE KEY `identifier` (`identifier`),
+  KEY `event_category_id` (`event_category_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'contacts', 'contact_id', (SELECT DATABASE()), 'events', 'event_id', 'place_contact_id', 'no-delete');
-INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'persons', 'person_id', (SELECT DATABASE()), 'events', 'event_id', 'author_person_id', 'no-delete');
 INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'categories', 'category_id', (SELECT DATABASE()), 'events', 'event_id', 'event_category_id', 'no-delete');
 INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'events', 'event_id', (SELECT DATABASE()), 'events', 'event_id', 'main_event_id', 'no-delete');
 
@@ -66,8 +62,9 @@ CREATE TABLE `events_contacts` (
   `sequence` tinyint unsigned DEFAULT NULL,
   `last_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`event_contact_id`),
-  UNIQUE KEY `event_id` (`event_id`,`contact_id`),
-  KEY `contact_id` (`contact_id`)
+  UNIQUE KEY `event_id` (`event_id`,`contact_id`,`role_category_id`),
+  KEY `contact_id` (`contact_id`),
+  KEY `role_category_id` (`role_category_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'contacts', 'contact_id', (SELECT DATABASE()), 'events_contacts', 'event_contact_id', 'contact_id', 'no-delete');

@@ -72,22 +72,6 @@ $zz['fields'][6]['link'] = [
 	'string2' => '/'
 ];
 
-$zz['fields'][7]['title'] = 'Where?';
-$zz['fields'][7]['prefix'] = wrap_text('in').' ';
-$zz['fields'][7]['field_name'] = 'place_contact_id';
-$zz['fields'][7]['key_field_name'] = 'contact_id';
-$zz['fields'][7]['type'] = 'select';
-$zz['fields'][7]['sql'] = sprintf('SELECT contact_id, contact
-	FROM contacts
-	WHERE contact_category_id = %d
-	ORDER BY contact', wrap_category_id('contact/place'));
-$zz['fields'][7]['display_field'] = 'contact';
-$zz['fields'][7]['character_set'] = 'utf8';
-$zz['fields'][7]['class'] = 'block480';
-$zz['fields'][7]['list_prefix'] = '<p><em>'.wrap_text('in').' ';
-$zz['fields'][7]['list_suffix'] = '</em></p>';
-$zz['fields'][7]['list_append_next'] = true;
-
 $zz['fields'][8]['field_name'] = 'abstract';
 $zz['fields'][8]['type'] = 'memo';
 $zz['fields'][8]['hide_in_list'] = true;
@@ -95,8 +79,32 @@ $zz['fields'][8]['rows'] = 3;
 $zz['fields'][8]['explanation'] = 'Short description of the event (is displayed in the calendar under the date)';
 $zz['fields'][8]['format'] = 'markdown';
 
+$zz['fields'][7] = zzform_include_table('events-contacts');
+$zz['fields'][7]['title'] = 'Place';
+$zz['fields'][7]['table_name'] = 'places';
+$zz['fields'][7]['type'] = 'subtable';
+$zz['fields'][7]['min_records'] = 1;
+$zz['fields'][7]['max_records'] = 5;
+$zz['fields'][7]['sql'] .= sprintf(' WHERE role_category_id = %d', wrap_category_id('roles/location'));
+$zz['fields'][7]['form_display'] = 'lines';
+$zz['fields'][7]['fields'][2]['type'] = 'foreign_key';
+$zz['fields'][7]['fields'][3]['show_title'] = false;
+$zz['fields'][7]['fields'][3]['sql'] = sprintf('SELECT contact_id, contact
+	FROM contacts
+	WHERE contact_category_id = %d
+	ORDER BY contact', wrap_category_id('contact/place'));
+$zz['fields'][7]['fields'][4]['type'] = 'hidden';
+$zz['fields'][7]['fields'][4]['value'] = wrap_category_id('roles/location');
+$zz['fields'][7]['fields'][4]['hide_in_form'] = true;
+$zz['fields'][7]['class'] = 'hidden480';
+$zz['fields'][7]['subselect']['prefix'] = '<p><em>'.wrap_text('in').' ';
+$zz['fields'][7]['subselect']['suffix'] = '</em></p>';
+$zz['fields'][7]['list_append_next'] = true;
+$zz['fields'][7]['subselect']['sql'] .= sprintf(' WHERE role_category_id = %d', wrap_category_id('roles/location'));
+
 $zz['fields'][64] = zzform_include_table('events-contacts');
 $zz['fields'][64]['title'] = 'Organiser';
+$zz['fields'][64]['table_name'] = 'organisers';
 $zz['fields'][64]['type'] = 'subtable';
 $zz['fields'][64]['min_records'] = 1;
 $zz['fields'][64]['max_records'] = 4;
@@ -108,6 +116,9 @@ $zz['fields'][64]['fields'][4]['type'] = 'hidden';
 $zz['fields'][64]['fields'][4]['value'] = wrap_category_id('roles/organiser');
 $zz['fields'][64]['fields'][4]['hide_in_form'] = true;
 $zz['fields'][64]['class'] = 'hidden480';
+$zz['fields'][64]['subselect']['sql'] .= sprintf(' WHERE role_category_id = %d', wrap_category_id('roles/organiser'));
+$zz['fields'][64]['subselect']['prefix'] = '<p>'.wrap_text('Organiser').': ';
+$zz['fields'][64]['subselect']['suffix'] = '</p>';
 
 $zz['fields'][26]['title'] = 'Category';
 $zz['fields'][26]['field_name'] = 'event_category_id';
@@ -134,20 +145,10 @@ $zz['fields'][63]['class'] = 'hidden480';
 $zz['fields'][63]['hide_in_list'] = true;
 
 // group
-$zz['fields'][59] = false;
+$zz['fields'][59] = [];
 
-//$zz['fields'][11]['title'] = 'Autor';
-//$zz['fields'][11]['field_name'] = 'author_person_id';
-//$zz['fields'][11]['type'] = 'select';
-//$zz['fields'][11]['sql'] = 'SELECT person_id, CONCAT(vorname, " ", IFNULL(CONCAT(namenszusatz, " "), ""), nachname) AS person 
-//	, CONCAT("(", identifier, ")") AS identifier
-//	FROM /*_PREFIX_*/personen ';
-//$zz['fields'][11]['sql'].= 'ORDER BY vorname, nachname';
-//$zz['fields'][11]['display_field'] = 'person';
-//$zz['fields'][11]['search'] = 'CONCAT(vorname, " ", IFNULL(CONCAT(namenszusatz, " "), ""), nachname)';
-//$zz['fields'][11]['hide_in_list'] = true;
-//$zz['fields'][11]['default'] = $_SESSION['person'];
-//$zz['fields'][11]['if'][3] = false;
+// author
+$zz['fields'][11] = [];
 
 $zz['fields'][10]['title_tab'] = 'Web';
 $zz['fields'][10]['field_name'] = 'published';

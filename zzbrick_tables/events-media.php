@@ -23,16 +23,13 @@ $zz['fields'][1]['type'] = 'id';
 $zz['fields'][2]['field_name'] = 'event_id';
 $zz['fields'][2]['type'] = 'select';
 $zz['fields'][2]['sql'] = 'SELECT event_id
-	, CONCAT(/*_PREFIX_*/events.event, " (", DATE_FORMAT(/*_PREFIX_*/events.date_begin, "%d.%m.%Y")
-		, IFNULL(CONCAT(", ", contact), ""), ")") AS event 
+		, CONCAT(/*_PREFIX_*/events.event, " (", DATE_FORMAT(/*_PREFIX_*/events.date_begin, "%d.%m.%Y"), ")") AS event 
 	FROM /*_PREFIX_*/events
-	LEFT JOIN /*_PREFIX_*/contacts
-		ON /*_PREFIX_*/events.place_contact_id = /*_PREFIX_*/contacts.contact
 	WHERE ISNULL(main_event_id)
 	ORDER BY date_begin DESC';
 $zz['fields'][2]['display_field'] = 'event';
 $zz['fields'][2]['search'] = 'CONCAT(/*_PREFIX_*/events.event, " (", 
-	DATE_FORMAT(/*_PREFIX_*/events.date_begin, "%d.%m.%Y"), IFNULL(CONCAT(", ", contact), ""), ")")';
+	DATE_FORMAT(/*_PREFIX_*/events.date_begin, "%d.%m.%Y"), ")")';
 
 $zz['fields'][4]['title'] = 'No.';
 $zz['fields'][4]['field_name'] = 'sequence';

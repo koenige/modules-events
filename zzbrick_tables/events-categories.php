@@ -23,16 +23,14 @@ $zz['fields'][1]['type'] = 'id';
 $zz['fields'][2]['field_name'] = 'event_id';
 $zz['fields'][2]['type'] = 'select';
 $zz['fields'][2]['sql'] = 'SELECT event_id
-	, CONCAT(/*_PREFIX_*/events.event, " (", DATE_FORMAT(/*_PREFIX_*/events.date_begin, "%Y-%m-%d")
-		, IFNULL(CONCAT(", ", contact), ""), ")") AS event 
+	, CONCAT(/*_PREFIX_*/events.event
+		, " (", DATE_FORMAT(/*_PREFIX_*/events.date_begin, "%Y-%m-%d"), ")") AS event 
 	FROM /*_PREFIX_*/events
-	LEFT JOIN /*_PREFIX_*/contacts
-		ON /*_PREFIX_*/events.place_contact_id = /*_PREFIX_*/contacts.contact_id
 	WHERE ISNULL(main_event_id)
 	ORDER BY date_begin DESC';
 $zz['fields'][2]['display_field'] = 'event';
 $zz['fields'][2]['search'] = 'CONCAT(/*_PREFIX_*/events.event, " (", 
-	DATE_FORMAT(/*_PREFIX_*/events.date_begin, "%Y-%m-%d"), IFNULL(CONCAT(", ", contact), ""), ")")';
+	DATE_FORMAT(/*_PREFIX_*/events.date_begin, "%Y-%m-%d"), ")")';
 
 $zz['fields'][3]['field_name'] = 'category_id';
 $zz['fields'][3]['type'] = 'select';
@@ -55,7 +53,7 @@ $zz['subselect']['sql'] = 'SELECT event_id, category
 $zz['subselect']['concat_rows'] = ', ';
 
 $zz['sql'] = 'SELECT /*_PREFIX_*/events_categories.*
-		, CONCAT(events.date_begin, IFNULL(CONCAT(" - ", events.date_end), "")) AS event
+		, CONCAT(/*_PREFIX_*/events.event, " (", events.date_begin, IFNULL(CONCAT(" - ", events.date_end), ""), ")") AS event
 		, category
 	FROM /*_PREFIX_*/events_categories
 	LEFT JOIN /*_PREFIX_*/categories USING (category_id)
