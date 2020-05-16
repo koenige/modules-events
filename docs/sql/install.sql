@@ -86,3 +86,5 @@ CREATE TABLE `events_media` (
 
 INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'media ', 'medium_id', (SELECT DATABASE()), 'events_media ', 'event_medium_id', 'medium_id', 'no-delete');
 INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'events ', 'event_id', (SELECT DATABASE()), 'events_media ', 'event_medium_id', 'event_id', 'delete');
+
+INSERT INTO webpages (`title`, `content`, `identifier`, `ending`, `sequence`, `mother_page_id`, `live`, `menu`, `last_update`) VALUES ("iCalendar", "%%% request ics %%%", "/ics*", "none", "30", "1", "yes", NULL, NOW());
