@@ -22,3 +22,5 @@
 /* 2020-05-16-11 */	INSERT INTO webpages (`title`, `content`, `identifier`, `ending`, `sequence`, `mother_page_id`, `live`, `menu`, `last_update`) VALUES ('iCalendar', '%%% request ics * %%%', '/ics*', 'none', 30, (SELECT page_id FROM webpages wp WHERE identifier = '/'), 'yes', NULL, NOW());
 /* 2020-05-16-12 */	INSERT INTO webpages (`title`, `content`, `identifier`, `ending`, `sequence`, `mother_page_id`, `live`, `menu`, `last_update`) VALUES ('Events', '%%% request events %%%', '/events', '/', 20, (SELECT page_id FROM webpages wp WHERE identifier = '/'), 'yes', NULL, NOW());
 /* 2020-05-16-13 */	INSERT INTO webpages (`title`, `content`, `identifier`, `ending`, `sequence`, `mother_page_id`, `live`, `menu`, `last_update`) VALUES ('Events', '%%% request events * %%%', '/events*', '/', 1, (SELECT page_id FROM webpages wp WHERE identifier = '/events'), 'yes', NULL, NOW());
+/* 2020-05-16-14 */	ALTER TABLE `events` ADD `timezone` varchar(5) NOT NULL AFTER `time_end`;
+/* 2020-05-16-15 */	UPDATE `events` SET `timezone` = '+0200';

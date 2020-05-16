@@ -57,6 +57,8 @@ $zz['fields'][55]['suffix'] = ' '.wrap_text('h');
 $zz['fields'][55]['list_prefix'] = ' – ';
 $zz['fields'][55]['list_suffix'] = ' '.wrap_text('h');
 
+$zz['fields'][56]['field_name'] = 'timezone';
+
 $zz['fields'][6]['field_name'] = 'event';
 $zz['fields'][6]['type'] = 'text';
 $zz['fields'][6]['list_prefix'] = '<strong>';
