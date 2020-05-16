@@ -51,6 +51,7 @@ function mod_events_event($params) {
 				WHEN 6 THEN "%s"
 				WHEN 7 THEN "%s" END) AS weekday_end
 			, main_event_id
+			, category_id, category, timezone
 		FROM events
 		LEFT JOIN categories
 			ON events.event_category_id = categories.category_id
@@ -165,6 +166,11 @@ function mod_events_event($params) {
 		WHERE event_id = %d';
 	$sql = sprintf($sql, $event['event_id']);
 	$event['categories'] = wrap_db_fetch($sql, 'category_id');
+	$event['categories'][$event['category_id']] = [
+		'category_id' => $event['category_id'],
+		'category' => $event['category']
+		
+	];
 	$event['categories'] = wrap_translate($event['categories'], 'categories');
 
 	if (!empty($event['cancelled'])) {
