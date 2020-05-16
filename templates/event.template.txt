@@ -28,7 +28,7 @@
 %%% condition endif %%%
 <time datetime='%%% item date_begin %%%%%% item time_begin_iso "T%s" %%%' itemprop="startDate">%%% item weekday_begin %%%%%% item weekday_end "–%s" %%% %%% item duration wrap_date %%%
 %%% condition if time_begin %%%, %%% item time_begin %%%%%% condition endif %%%</time>%%% condition if time_end %%%–<time datetime='%%% item date_end %%%%%% condition unless date_end %%%%%% item date_begin %%%%%% condition endif %%%%%% item time_end_iso "T%s" %%%' itemprop="endDate">%%% item time_end %%%</time>%%% condition endif %%%
-%%% condition if time_begin | time_end %%% %%% text h %%%%%% condition endif %%%
+%%% condition if time_begin | time_end %%% %%% text h %%% %%% item timezone %%%%%% condition endif %%%
  %%% item place "<br><span itemprop='location'>%s</span>" %%%
 %%% item cancelled "</del>" %%%
 </h2>
@@ -66,7 +66,7 @@
 %%% condition endif %%%
 
 %%% condition if direct_link %%%
-<p><a href="%%% item direct_link %%%">%%% text Further information about %%% <strong>%%% item event %%%</strong></a></p>
+<p><a href="%%% item direct_link %%%">%%% text "Further information about <strong>%s</strong>" event %%%</strong></a></p>
 %%% condition endif %%%
 
 %%% condition if registration %%%

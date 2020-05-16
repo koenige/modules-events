@@ -51,8 +51,8 @@ msgid "This event was cancelled."
 msgstr "Diese Veranstaltung fällt aus."
 
 #: templates/event.template.txt
-msgid "Further information about"
-msgstr "Weitere Informationen zu"
+msgid "Further information about <strong>%s</strong>"
+msgstr "Weitere Informationen zu <strong>%s</strong>"
 
 #: templates/event.template.txt
 msgid "Registration"
@@ -89,3 +89,21 @@ msgstr "Kalendereintrag „%s“ herunterladen"
 #: templates/event.template.txt
 msgid "To the entire calendar %s"
 msgstr "Zum gesamten Terminkalender %s"
+
+#: templates/events.template.txt
+msgid "Subscribe to calendar %s"
+msgstr "Terminkalender %s abonnieren"
+
+#: templates/events.template.txt
+msgid "Cancelled:"
+msgstr "Fällt aus:"
+
+#: templates/events.template.txt
+msgid ""
+msgstr ""
+
+#: templates/events.template.txt
+msgid ""
+msgstr ""
+
+
