@@ -19,3 +19,4 @@
 /* 2020-05-16-8 */	ALTER TABLE `events` DROP `place_contact_id`, DROP `author_person_id`;
 /* 2020-05-16-9 */	ALTER TABLE `events` ADD INDEX `event_category_id` (`event_category_id`);
 /* 2020-05-16-10 */	ALTER TABLE `events_contacts` ADD UNIQUE `event_id` (`event_id`, `contact_id`, `role_category_id`), ADD INDEX `role_category_id` (`role_category_id`), DROP INDEX `event_id`;
+/* 2020-05-16-11 */	INSERT INTO webpages (`title`, `content`, `identifier`, `ending`, `sequence`, `mother_page_id`, `live`, `menu`, `last_update`) VALUES ('iCalendar', '%%% request ics * %%%', '/ics*', 'none', 30, (SELECT page_id FROM webpages WHERE identifier = '/'), 'yes', NULL, NOW());
