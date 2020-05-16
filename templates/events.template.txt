@@ -1,0 +1,58 @@
+# events module
+# Calendar overview template
+# 
+# Part of »Zugzwang Project«
+# http://www.zugzwang.org/modules/events
+#
+# @author Gustaf Mossakowski <gustaf@koenige.org>
+# @copyright Copyright © 2014-2017, 2020 Gustaf Mossakowski
+# @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
+# 
+<table class="events js-gallery">
+%%% loop start %%%
+<tr itemscope itemtype="http://schema.org/Event" class="%%% loopposition uneven un %%%even">
+<th>
+%%% item cancelled "<del>" %%%
+<time datetime='%%% item date_begin %%%%%% item time_begin_iso "T%s" %%%' itemprop="startDate">%%% item weekday_begin %%%%%% item weekday_end "–%s" %%% %%% item duration wrap_date %%%
+%%% condition if time_begin %%%<br><em>%%% item time_begin %%%</em>%%% condition endif %%%</time>%%% condition if time_end %%%–<time datetime='%%% item date_end %%%%%% condition unless date_end %%%%%% item date_begin %%%%%% condition endif %%%%%% item time_end_iso "T%s" %%%' itemprop="endDate"><em>%%% item time_end %%%</em></time>%%% condition endif %%%
+%%% condition if time_begin | time_end %%%<em> %%% text h %%% %%% item timezone %%%</em>%%% condition endif %%%
+%%% item cancelled "</del>" %%%
+</th>
+<td>
+%%% condition if cancelled %%%
+%%% text Cancelled: %%% <del>
+%%% condition endif %%%
+%%% condition if images %%%
+<p class="newsimg">
+%%% loop images 1 %%%
+%%% condition if filecategory_links %%%
+<a href="%%% setting files_path %%%/%%% item filename %%%.800.%%% item thumb_extension %%%?v=%%% item version %%%" title="%%% item title strip_tags %%% %%% item source strip_tags %%%" data-title="%%% item title wrap_html_escape %%%%%% item source wrap_html_escape " (%s)" %%%" class="js-img">
+%%% condition else %%%
+<a href="%%% setting files_path %%%/%%% item filename %%%.%%% item extension %%%?v=%%% item version %%%" title="%%% item title strip_tags %%% %%% item source strip_tags %%%" data-title="%%% item title wrap_html_escape %%%%%% item source wrap_html_escape " (%s)" %%%" class="js-img">
+%%% condition endif %%%
+<img src="%%% setting files_path %%%/%%% item filename %%%.80.%%% item thumb_extension %%%?v=%%% item version %%%" alt="%%% item title wrap_html_escape %%%"></a>
+%%% loop end %%%
+</p>
+%%% condition endif %%%
+
+<strong itemprop="name">%%% condition unless cancelled %%%<a href="%%% setting base %%%%%% setting events_path %%%/%%% item identifier %%%/">%%% condition endif %%%%%% item event %%%%%% condition unless cancelled %%%</a>%%% condition endif %%%</strong> 
+%%% condition if categories %%%
+ – 
+%%% loop categories %%%
+%%% loopposition middle ", " %%%%%% loopposition last " & " %%%
+%%% item category %%%
+%%% loop end %%%
+%%% condition endif %%%
+%%% condition if place %%%
+<span itemprop='location'> %%% condition if reise %%%nach%%% condition else %%%in%%% condition endif %%% %%% item place %%%</span>
+%%% condition endif %%%
+%%% condition unless cancelled %%% (<a href="%%% setting events_ics_path %%%/%%% item identifier %%%.ics" title="%%% text Enter event in your own calendar (ICS) %%%">ICS</a>)%%% condition endif %%%
+
+<div itemprop="description">
+%%% item abstract markdown %%%
+</div>
+%%% item cancelled "</del>" %%%
+</td></tr>
+%%% loop end %%%
+</table>
+<p class="noprint"><a href="webcal://%%% setting hostname %%%%%% setting events_ics_path %%%/%%% setting site %%%.ics">%%% text "Subscribe to calendar %s" cal_title %%%</a></p>
