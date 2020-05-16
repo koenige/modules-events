@@ -1,0 +1,126 @@
+# events module
+# template for single event
+# 
+# Part of »Zugzwang Project«
+# http://www.zugzwang.org/modules/events
+#
+# @author Gustaf Mossakowski <gustaf@koenige.org>
+# @copyright Copyright © 2014-2020 Gustaf Mossakowski
+# @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
+# 
+%%% condition if not_found %%%
+<h1>%%% text Event not found %%%</h1>
+
+<p>%%% text Unfortunately we could not find an event at this URL. %%%
+<a href="%%% setting base %%%%%% setting events_url %%%/">%%% text Please take a look at our calendar. %%%</a></p>
+
+%%% condition else %%%
+<div itemscope itemtype="http://schema.org/Event" class="event js-gallery">
+
+<h1 itemprop="name">%%% item event %%%</h1>
+<h2>
+%%% item cancelled "<del>" %%%
+%%% condition if categories %%%
+%%% loop categories %%%
+%%% loopposition middle ", " %%%%%% loopposition last " & " %%%
+%%% item category %%%
+%%% loop end %%%,
+%%% condition endif %%%
+<time datetime='%%% item date_begin %%%%%% item time_begin_iso "T%s" %%%' itemprop="startDate">%%% item weekday_begin %%%%%% item weekday_end "–%s" %%% %%% item duration wrap_date %%%
+%%% condition if time_begin %%%, %%% item time_begin %%%%%% condition endif %%%</time>%%% condition if time_end %%%–<time datetime='%%% item date_end %%%%%% condition unless date_end %%%%%% item date_begin %%%%%% condition endif %%%%%% item time_end_iso "T%s" %%%' itemprop="endDate">%%% item time_end %%%</time>%%% condition endif %%%
+%%% condition if time_begin | time_end %%% %%% text h %%%%%% condition endif %%%
+ %%% item place "<br><span itemprop='location'>%s</span>" %%%
+%%% item cancelled "</del>" %%%
+</h2>
+
+%%% condition if cancelled %%%
+<p class="error">%%% text This event was cancelled. %%%</p>
+%%% condition else %%%
+
+%%% item map %%%
+
+<div itemprop="description">
+%%% condition if images %%%
+<div class="image right"><figure>
+%%% loop images 1 %%%
+<a href="%%% setting files_path %%%/%%% item filename %%%%%% condition if filecategory_links %%%.%%% setting events_big_image_size %%%.%%% item thumb_extension %%%%%% condition else %%%.%%% item extension %%%%%% condition endif %%%?v=%%% item version %%%" class="js-img" title="%%% item title strip_tags %%% %%% item source strip_tags %%%" data-title="%%% item title wrap_html_escape %%% %%% item source wrap_html_escape "<br>%s" %%%"><img src="/files/%%% item filename %%%.%%% item events_image_size %%%.%%% item thumb_extension %%%?v=%%% item version %%%" alt="%%% item title wrap_html_escape %%%"></a>
+<figcaption>%%% item title %%% %%% item source "<br><small>%s</small>" %%%</figcaption>
+%%% loop end %%%
+</figure>
+</div>
+%%% condition endif %%%
+%%% item abstract markdown "<div class='abstract-termin'>%s</div>" %%%
+%%% item description markdown %%%
+%%% item timetable %%%
+
+%%% condition if organisers %%%
+<p>Veranstalter: 
+%%% loop organisers %%%
+%%% condition if identifier %%%
+<a href="%%% item identifier %%%">%%% condition endif %%%
+%%% item contact %%%
+%%% condition if identifier %%%
+</a>%%% condition endif %%%%%% loopposition first|middle ", " %%%
+%%% loop end %%%
+</p>
+%%% condition endif %%%
+
+%%% condition if direct_link %%%
+<p><a href="%%% item direct_link %%%">%%% text Further information about %%% <strong>%%% item event %%%</strong></a></p>
+%%% condition endif %%%
+
+%%% condition if registration %%%
+<h2>%%% text Registration %%%</h2>
+%%% item registration markdown %%%
+%%% condition endif %%%
+
+%%% condition if events %%%
+<h2>%%% text Supporting Event %%%</h2>
+<ul class="main_events">
+%%% loop events %%%
+<li><span class="date">%%% item duration wrap_date %%%</span>%%% item time_begin " %s" %%%%%% item time_end "–%s" %%%
+%%% condition if time_begin | time_end %%% %%% text h %%%%%% condition endif %%%: <a href="%%% setting events_url %%%/%%% item identifier %%%/">%%% item event %%%</a></li>
+%%% loop end %%%
+</ul>
+%%% condition endif %%%
+
+%%% item links %%%
+</div>
+
+%%% condition if articles %%%
+<h2>%%% text News %%%</h2>
+<ul>
+%%% loop articles %%%
+<li><a href="../../../%%% item identifier %%%/">%%% item title %%%</a></li>
+%%% loop end %%%
+</ul>
+%%% condition endif %%%
+
+%%% condition if books %%%
+<h2>%%% text Books %%%</h2>
+<ul>
+%%% loop books %%%
+<li>%%% text Book presentation %%%: <a href="%%% setting news_books_path %%%/%%% item identifier %%%/">%%% item title %%%</a></li>
+%%% loop end %%%
+</ul>
+%%% condition endif %%%
+
+%%% condition if images %%%
+<p class="newsgallery">
+%%% loop images 2- %%%
+<a href="%%% setting files_path %%%/%%% item filename %%%.%%% setting events_big_image_size %%%.%%% item thumb_extension %%%?v=%%% item version %%%" title="%%% item title wrap_html_escape %%%%%% item source wrap_html_escape " (%s)" %%%" data-title="%%% item title %%%%%% item source wrap_html_escape " (%s)" %%%" class="js-img%%% loopposition uneven " first" %%%"><img src="/files/%%% item filename %%%.%%% setting events_image_size %%%.%%% item thumb_extension %%%?v=%%% item version %%%" alt="%%% text Image %%% %%% item title %%%"></a>
+%%% loop end %%%
+</p>
+%%% condition endif %%%
+%%% condition endif %%%
+
+
+<div class="noprint">
+<hr>
+%%% condition unless cancelled %%%
+<p><a href="%%% setting events_ics_path %%%/%%% item identifier %%%.ics" title="%%% text Enter event in your own calendar (ICS) %%%">%%% text "Download calendar entry “%s”" event %%%</a></p>
+%%% condition endif %%%
+<p><a href="%%% setting events_path %%%/%%% item year %%%/">%%% text "To the entire calendar %s" year %%%</a></p>
+</div>
+</div>
+%%% condition endif %%%

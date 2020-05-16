@@ -29,3 +29,63 @@ msgstr "Veranstalter"
 #: zzbrick_request/ics.php
 msgid "CANCELLED"
 msgstr "AUSGEFALLEN"
+
+#: templates/event.template.txt
+msgid "Event not found"
+msgstr "Veranstaltung nicht gefunden"
+
+#: templates/event.template.txt
+msgid "Unfortunately we could not find an event at this URL."
+msgstr "Unter dieser Adresse konnten wir leider keine Veranstaltung finden."
+
+#: templates/event.template.txt
+msgid "Please take a look at our calendar."
+msgstr "Bitte werfen Sie einen Blick in unseren Kalender."
+
+#: templates/event.template.txt
+msgid "h"
+msgstr "Uhr"
+
+#: templates/event.template.txt
+msgid "This event was cancelled."
+msgstr "Diese Veranstaltung fällt aus."
+
+#: templates/event.template.txt
+msgid "Further information about"
+msgstr "Weitere Informationen zu"
+
+#: templates/event.template.txt
+msgid "Registration"
+msgstr "Anmeldung"
+
+#: templates/event.template.txt
+msgid "Supporting Event"
+msgstr "Rahmenveranstaltung"
+
+#: templates/event.template.txt
+msgid "News"
+msgstr "Nachrichten"
+
+#: templates/event.template.txt
+msgid "Books"
+msgstr "Bücher"
+
+#: templates/event.template.txt
+msgid "Book presentation"
+msgstr "Buchvorstellung"
+
+#: templates/event.template.txt
+msgid "Image"
+msgstr "Bild"
+
+#: templates/event.template.txt
+msgid "Enter event in your own calendar (ICS)"
+msgstr "Termin in eigenen Kalender eintragen (ICS)"
+
+#: templates/event.template.txt
+msgid "Download calendar entry “%s”"
+msgstr "Kalendereintrag „%s“ herunterladen"
+
+#: templates/event.template.txt
+msgid "To the entire calendar %s"
+msgstr "Zum gesamten Terminkalender %s"
