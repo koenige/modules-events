@@ -31,7 +31,7 @@ function mod_events_date_check($ops) {
 				$changes['validation_fields'][$index] = [
 					'date_end' => [
 						'class' => 'error',
-						'explanation' => wrap_text('An event must end after the start.')
+						'explanation' => wrap_text('An event can only end after the start.')
 					]
 				];
 			}

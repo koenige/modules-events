@@ -98,12 +98,8 @@ msgstr "Terminkalender %s abonnieren"
 msgid "Cancelled:"
 msgstr "Fällt aus:"
 
-#: templates/events.template.txt
-msgid ""
-msgstr ""
-
-#: templates/events.template.txt
-msgid ""
-msgstr ""
+#: events/_functions.inc.php
+msgid "An event can only end after the start."
+msgstr "Eine Veranstaltung kann erst nach Beginn enden."
 
 
