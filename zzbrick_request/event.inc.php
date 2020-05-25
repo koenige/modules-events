@@ -60,10 +60,10 @@ function mod_events_event($params) {
 		AND %s
 	';
 	$sql = sprintf($sql
-		, wrap_text('Su'), wrap_text('Mo'), wrap_text('Tu'), wrap_text('We') 
-		, wrap_text('Th'), wrap_text('Fr'), wrap_text('Sa')
-		, wrap_text('Su'), wrap_text('Mo'), wrap_text('Tu'), wrap_text('We') 
-		, wrap_text('Th'), wrap_text('Fr'), wrap_text('Sa')
+		, wrap_text('Sun'), wrap_text('Mon'), wrap_text('Tue'), wrap_text('Wed') 
+		, wrap_text('Thu'), wrap_text('Fri'), wrap_text('Sat')
+		, wrap_text('Sun'), wrap_text('Mon'), wrap_text('Tue'), wrap_text('Wed') 
+		, wrap_text('Thu'), wrap_text('Fri'), wrap_text('Sat')
 		, wrap_category_id('events')
 		, $params[0], wrap_db_escape($params[1])
 		, $published
@@ -216,8 +216,8 @@ function mod_events_event_timetable($event_id) {
 		AND main_event_id = %d
 		ORDER BY sequence, date_begin, time_begin, time_end, sequence, identifier';
 	$sql = sprintf($sql
-		, wrap_text('Su'), wrap_text('Mo'), wrap_text('Tu'), wrap_text('We') 
-		, wrap_text('Th'), wrap_text('Fr'), wrap_text('Sa')
+		, wrap_text('Sun'), wrap_text('Mon'), wrap_text('Tue'), wrap_text('Wed') 
+		, wrap_text('Thu'), wrap_text('Fri'), wrap_text('Sat')
 		, $event_id
 	);
 	$events = wrap_db_fetch($sql, ['date_begin', 'event_id'], 'list date_begin hours');

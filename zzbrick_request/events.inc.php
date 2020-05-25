@@ -106,10 +106,10 @@ function mod_events_events($params, $settings) {
 		%s
 	';
 	$sql = sprintf($sql
-		, wrap_text('Su'), wrap_text('Mo'), wrap_text('Tu'), wrap_text('We') 
-		, wrap_text('Th'), wrap_text('Fr'), wrap_text('Sa')
-		, wrap_text('Su'), wrap_text('Mo'), wrap_text('Tu'), wrap_text('We') 
-		, wrap_text('Th'), wrap_text('Fr'), wrap_text('Sa')
+		, wrap_text('Sun'), wrap_text('Mon'), wrap_text('Tue'), wrap_text('Wed') 
+		, wrap_text('Thu'), wrap_text('Fri'), wrap_text('Sat')
+		, wrap_text('Sun'), wrap_text('Mon'), wrap_text('Tue'), wrap_text('Wed') 
+		, wrap_text('Thu'), wrap_text('Fri'), wrap_text('Sat')
 		, $published
 		, wrap_category_id('events')
 		, $condition
