@@ -15,7 +15,7 @@
 %%% item cancelled "<del>" %%%
 <time datetime='%%% item date_begin %%%%%% item time_begin_iso "T%s" %%%' itemprop="startDate">%%% item weekday_begin %%%%%% item weekday_end "–%s" %%% %%% item duration wrap_date %%%
 %%% condition if time_begin %%%<br><em>%%% item time_begin %%%</em>%%% condition endif %%%</time>%%% condition if time_end %%%–<time datetime='%%% item date_end %%%%%% condition unless date_end %%%%%% item date_begin %%%%%% condition endif %%%%%% item time_end_iso "T%s" %%%' itemprop="endDate"><em>%%% item time_end %%%</em></time>%%% condition endif %%%
-%%% condition if time_begin | time_end %%%<em> %%% text h %%% %%% item timezone %%%</em>%%% condition endif %%%
+%%% condition if time_begin | time_end %%%<em> %%% text h %%% %%% item timezone "UTC%s" %%%</em>%%% condition endif %%%
 %%% item cancelled "</del>" %%%
 </th>
 <td>
@@ -30,7 +30,7 @@
 %%% condition else %%%
 <a href="%%% setting files_path %%%/%%% item filename %%%.%%% item extension %%%?v=%%% item version %%%" title="%%% item title strip_tags %%% %%% item source strip_tags %%%" data-title="%%% item title wrap_html_escape %%%%%% item source wrap_html_escape " (%s)" %%%" class="js-img">
 %%% condition endif %%%
-<img src="%%% setting files_path %%%/%%% item filename %%%.80.%%% item thumb_extension %%%?v=%%% item version %%%" alt="%%% item title wrap_html_escape %%%"></a>
+<img src="%%% setting files_path %%%/%%% item filename %%%.%%% setting events_list_image_size %%%.%%% item thumb_extension %%%?v=%%% item version %%%" alt="%%% item title wrap_html_escape %%%"></a>
 %%% loop end %%%
 </p>
 %%% condition endif %%%
