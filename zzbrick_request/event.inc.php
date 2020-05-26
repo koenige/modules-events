@@ -112,20 +112,20 @@ function mod_events_event($params) {
 		unset ($event['timetable']);
 	}
 
-	$event['places'] = [];
-/*	
-	$sql = 'SELECT place_id, place, sequence, latitude, longitude
-		FROM places
-		LEFT JOIN events_places USING (place_id)
-		WHERE event_id = %d
-		ORDER BY sequence';
-	$sql = sprintf($sql, $event['event_id']);
-	$event['places'] = wrap_db_fetch($sql, 'place_id');
-	if ($event['places']) {
-		$event['map'] = wrap_template('places-geojson', $event['places']);
-		$event['map'] .= wrap_template('leaflet');
-	}
-*/
+	$sql = 'SELECT event_contact_id, contact, category AS role
+			, SUBSTRING_INDEX(path, "/", -1) AS path
+			, identification AS website
+	    FROM events_contacts
+	    LEFT JOIN contacts USING (contact_id)
+	    LEFT JOIN contactdetails
+	    	ON contactdetails.contact_id = contacts.contact_id
+	    	AND contactdetails.provider_category_id = %d
+	    LEFT JOIN categories
+	        ON events_contacts.role_category_id = categories.category_id
+	    WHERE event_id = %d
+	    ORDER BY events_contacts.sequence';
+	$sql = sprintf($sql, wrap_category_id('provider/website'), $event['event_id']);
+	$event += wrap_db_fetch($sql, ['path', 'event_contact_id']);
 
 	$media = wrap_get_media($event['event_id'], 'events', 'event');
 	if (!empty($media['links'])) {
@@ -177,9 +177,10 @@ function mod_events_event($params) {
 		$page['status'] = 404;
 	}
 	$page['text'] = wrap_template('event', $event);
-	if ($event['places']) {
-		$page['head'] .= wrap_template('leaflet-head');
-	}
+// @todo check for latitude, longitude in $event['location']
+//	if ($event['places']) {
+//		$page['head'] .= wrap_template('leaflet-head');
+//	}
 	$page['title'] = $event['event'].', '.wrap_date($event['duration']);
 	$page['breadcrumbs'][] = '<a href="'.$zz_setting['events_path'].'/'.$event['year'].'/">'.$event['year'].'</a>';
 	$page['breadcrumbs'][] = $event['event'];
