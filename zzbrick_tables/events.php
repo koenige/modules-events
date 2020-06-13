@@ -38,6 +38,8 @@ $zz['fields'][5]['title'] = 'End';
 $zz['fields'][5]['field_name'] = 'date_end';
 $zz['fields'][5]['type'] = 'date';
 $zz['fields'][5]['list_append_next'] = true;
+$zz['fields'][5]['validate']['>='] = ['date_begin'];
+$zz['fields'][5]['validate_msg']['>='] = wrap_text('An event can only end after the start.');
 
 $zz['fields'][54]['title'] = 'Time Begin';
 $zz['fields'][54]['title_append'] = 'Time';

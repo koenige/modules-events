@@ -26,14 +26,6 @@ function mod_events_date_check($ops) {
 			if (empty($ops['record_new'][$index]['date_end'])) continue;
 			if ($ops['record_new'][$index]['date_end'] === $ops['record_new'][$index]['date_begin']) {
 				$changes['record_replace'][$index]['date_end'] = '';
-			} elseif ($ops['record_new'][$index]['date_end'] < $ops['record_new'][$index]['date_begin']) {
-				$changes['no_validation'] = true;
-				$changes['validation_fields'][$index] = [
-					'date_end' => [
-						'class' => 'error',
-						'explanation' => wrap_text('An event can only end after the start.')
-					]
-				];
 			}
 		}
 	}
