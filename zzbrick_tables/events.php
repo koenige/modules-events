@@ -73,6 +73,8 @@ $zz['fields'][6]['link'] = [
 	'field1' => 'identifier',
 	'string2' => '/'
 ];
+$zz['fields'][6]['typo_cleanup'] = true;
+
 
 $zz['fields'][8]['field_name'] = 'abstract';
 $zz['fields'][8]['type'] = 'memo';
@@ -80,6 +82,7 @@ $zz['fields'][8]['hide_in_list'] = true;
 $zz['fields'][8]['rows'] = 3;
 $zz['fields'][8]['explanation'] = 'Short description of the event (is displayed in the calendar under the date)';
 $zz['fields'][8]['format'] = 'markdown';
+$zz['fields'][8]['typo_cleanup'] = true;
 
 $zz['fields'][7] = zzform_include_table('events-contacts');
 $zz['fields'][7]['title'] = 'Place';
@@ -93,8 +96,8 @@ $zz['fields'][7]['fields'][2]['type'] = 'foreign_key';
 $zz['fields'][7]['fields'][3]['show_title'] = false;
 $zz['fields'][7]['fields'][3]['sql'] = sprintf('SELECT contact_id, contact
 	FROM contacts
-	WHERE contact_category_id = %d
-	ORDER BY contact', wrap_category_id('contact/place'));
+	WHERE contact_category_id IN (%d, %d)
+	ORDER BY contact', wrap_category_id('contact/place'), wrap_category_id('contact/platform'));
 $zz['fields'][7]['fields'][4]['type'] = 'hidden';
 $zz['fields'][7]['fields'][4]['value'] = wrap_category_id('roles/location');
 $zz['fields'][7]['fields'][4]['hide_in_form'] = true;
@@ -217,6 +220,7 @@ $zz['fields'][14]['type'] = 'memo';
 $zz['fields'][14]['hide_in_list'] = true;
 $zz['fields'][14]['rows'] = 20;
 $zz['fields'][14]['format'] = 'markdown';
+$zz['fields'][14]['typo_cleanup'] = true;
 
 $zz['fields'][17]['title'] = 'Registration';
 $zz['fields'][17]['title_desc'] = '(optional)<br>';
@@ -225,6 +229,7 @@ $zz['fields'][17]['type'] = 'memo';
 $zz['fields'][17]['hide_in_list'] = true;
 $zz['fields'][17]['rows'] = 5;
 $zz['fields'][17]['format'] = 'markdown';
+$zz['fields'][17]['typo_cleanup'] = true;
 
 $zz['fields'][57] = [];
 
