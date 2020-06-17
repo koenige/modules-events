@@ -18,8 +18,7 @@
 <div itemscope itemtype="http://schema.org/Event" class="event js-gallery">
 
 <h1 itemprop="name">%%% item event %%%</h1>
-<h2>
-%%% item cancelled "<del>" %%%
+<h2>%%% item cancelled "<del>" %%%
 %%% condition if categories %%%
 %%% loop categories %%%
 %%% loopposition middle ", " %%%%%% loopposition last " & " %%%
@@ -28,10 +27,10 @@
 %%% condition endif %%%
 <time datetime='%%% item date_begin %%%%%% item time_begin_iso "T%s" %%%' itemprop="startDate">%%% item weekday_begin %%%%%% item weekday_end "–%s" %%% %%% item duration wrap_date %%%
 %%% condition if time_begin %%%, %%% item time_begin %%%%%% condition endif %%%</time>%%% condition if time_end %%%–<time datetime='%%% item date_end %%%%%% condition unless date_end %%%%%% item date_begin %%%%%% condition endif %%%%%% item time_end_iso "T%s" %%%' itemprop="endDate">%%% item time_end %%%</time>%%% condition endif %%%
-%%% condition if time_begin | time_end %%% %%% text h %%% %%% item timezone "UTC%s" %%%%%% condition endif %%%
+%%% condition if time_begin | time_end %%% %%% text h %%% %%% item timezone "UTC<span class="timezone">%s</span>" %%%%%% condition endif %%%
 %%% condition if location %%%<br>
 %%% loop location %%%
-<span itemprop='location'>%%% condition if website %%%<a href="%%% item website %%%">%%% condition endif %%%%%% item contact %%%%%% item website </a> %%%</span>
+<span itemprop='location'>%%% condition if website %%%<a href="%%% item website %%%">%%% condition endif %%%%%% item contact %%%%%% item website </a> %%%%%% condition if platform %%% <span class="location_note">%%% text (Link will be announced to participants) %%%</span>%%% condition endif %%%</span>
 %%% loopposition first|middle ", " %%%
 %%% loop end %%%
 %%% condition endif %%%
@@ -48,7 +47,7 @@
 %%% condition if images %%%
 <div class="image right"><figure>
 %%% loop images 1 %%%
-<a href="%%% setting files_path %%%/%%% item filename %%%%%% condition if filecategory_links %%%.%%% setting events_big_image_size %%%.%%% item thumb_extension %%%%%% condition else %%%.%%% item extension %%%%%% condition endif %%%?v=%%% item version %%%" class="js-img" title="%%% item title strip_tags %%% %%% item source strip_tags %%%" data-title="%%% item title wrap_html_escape %%% %%% item source wrap_html_escape "<br>%s" %%%"><img src="/files/%%% item filename %%%.%%% setting events_image_size %%%.%%% item thumb_extension %%%?v=%%% item version %%%" alt="%%% item title wrap_html_escape %%%"></a>
+<a href="%%% setting files_path %%%/%%% item filename %%%%%% condition if filecategory_links %%%.%%% setting events_big_image_size %%%.%%% item thumb_extension %%%%%% condition else %%%.%%% item extension %%%%%% condition endif %%%?v=%%% item version %%%" class="js-img" title="%%% item title strip_tags %%% %%% item source strip_tags %%%" data-title="%%% item title wrap_html_escape %%% %%% item source wrap_html_escape "<br>%s" %%%"><img src="/files/%%% item filename %%%.%%% setting events_image_size %%%.%%% item thumb_extension %%%?v=%%% item version %%%" srcset="/files/%%% item filename %%%.%%% setting events_image_size %%%.%%% item thumb_extension %%%?v=%%% item version %%% 1x, /files/%%% item filename %%%.%%% setting events_image_size_x2 %%%.%%% item thumb_extension %%%?v=%%% item version %%% 2x" alt="%%% item title wrap_html_escape %%%"></a>
 <figcaption>%%% item title %%% %%% item source "<br><small>%s</small>" %%%</figcaption>
 %%% loop end %%%
 </figure>
