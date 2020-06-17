@@ -112,9 +112,10 @@ function mod_events_event($params) {
 		unset ($event['timetable']);
 	}
 
-	$sql = 'SELECT event_contact_id, contact, category AS role
-			, SUBSTRING_INDEX(path, "/", -1) AS path
+	$sql = 'SELECT event_contact_id, contact, categories.category AS role
+			, SUBSTRING_INDEX(categories.path, "/", -1) AS path
 			, identification AS website
+			, SUBSTRING_INDEX(contact_categories.path, "/", -1) AS contact_path
 	    FROM events_contacts
 	    LEFT JOIN contacts USING (contact_id)
 	    LEFT JOIN contactdetails
@@ -122,10 +123,19 @@ function mod_events_event($params) {
 	    	AND contactdetails.provider_category_id = %d
 	    LEFT JOIN categories
 	        ON events_contacts.role_category_id = categories.category_id
+	    LEFT JOIN categories contact_categories
+	    	ON contact_categories.category_id = contacts.contact_category_id
 	    WHERE event_id = %d
 	    ORDER BY events_contacts.sequence';
 	$sql = sprintf($sql, wrap_category_id('provider/website'), $event['event_id']);
 	$event += wrap_db_fetch($sql, ['path', 'event_contact_id']);
+	foreach ($event as $field => $values) {
+		if (!is_array($values)) continue;
+		foreach ($values as $index => $value) {
+			if (empty($value['contact_path'])) continue;
+			$event[$field][$index][$value['contact_path']] = true;	
+		}
+	}
 
 	$media = wrap_get_media($event['event_id'], 'events', 'event');
 	if (!empty($media['links'])) {
