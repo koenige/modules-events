@@ -22,13 +22,109 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 1.8.12\n"
 
-#: zzbrick_request/ics.php
+#: zzbrick_request/ics.php zzbrick_tables/events.php
 msgid "Organiser"
 msgstr "Veranstalter"
 
 #: zzbrick_request/ics.php
 msgid "CANCELLED"
 msgstr "AUSGEFALLEN"
+
+#: zzbrick_tables/events.php
+msgid "Events"
+msgstr "Veranstaltungen"
+
+#: zzbrick_tables/events.php
+msgid "If the exact date has not yet been set, the day and or month can be omitted here – then only the month is displayed! Leave the end empty if necessary."
+msgstr "Wenn der genaue Termin noch nicht feststeht, kann hier Tag und oder Monat weggelassen werden – dann wird nur der Monat angezeigt! Ende ggf. leer lassen."
+
+#: zzbrick_tables/events.php
+msgid "Timezone"
+msgstr "Zeitzone"
+
+#: zzbrick_tables/events.php
+msgid "Format: -0100 or +0630 etc."
+msgstr "Format: -0100 oder +0630 etc."
+
+#: zzbrick_tables/events.php
+msgid "(cancelled)"
+msgstr "(fällt aus)"
+
+#: zzbrick_tables/events.php
+msgid "Short description of the event (is displayed in the calendar under the date)"
+msgstr "Kurze Beschreibung der Veranstaltung (erscheint im Terminkalender direkt unterhalb des Termins)"
+
+#: zzbrick_tables/events.php
+msgid "Begin"
+msgstr "Beginn"
+
+#: zzbrick_tables/events.php
+msgid "Time Begin"
+msgstr "Uhrzeit Beginn"
+
+#: zzbrick_tables/events.php
+msgid "Time"
+msgstr "Uhrzeit"
+
+#: zzbrick_tables/events.php
+msgid "End"
+msgstr "Ende"
+
+#: zzbrick_tables/events.php
+msgid "Time End"
+msgstr "Uhrzeit Ende"
+
+#: zzbrick_tables/events.php
+msgid "Takes place?"
+msgstr "Findet statt?"
+
+#: zzbrick_tables/events.php
+msgid "Better not delete cancelled appointments, but mark them so that it is clearly visible that they’re cancelled."
+msgstr "Ausfallende Termine besser nicht löschen, sondern markieren, so daß klar ersichtlich ist, daß der Termin ausfällt."
+
+#: zzbrick_tables/events.php
+msgid "News?"
+msgstr "Nachricht?"
+
+#: zzbrick_tables/events.php
+msgid "Should the event appear in the news?"
+msgstr "Soll der Termin in den Nachrichten erscheinen?"
+
+#: zzbrick_tables/events.php
+msgid "Sorting if no time was specified."
+msgstr "Sortierung falls keine Uhrzeit angegeben wurde."
+
+#: zzbrick_tables/events.php
+msgid "Direct Link"
+msgstr "Direktlink"
+
+#: zzbrick_tables/events.php
+msgid "Only if the full description of the event is on another website."
+msgstr "Nur, falls die genaue Beschreibung des Termins auf einer anderen Website steht."
+
+#: zzbrick_tables/events.php
+msgid "Main Event"
+msgstr "Hauptveranstaltung"
+
+#: zzbrick_tables/events.php
+msgid "Following?"
+msgstr "Anschließend?"
+
+#: zzbrick_tables/events.php
+msgid "Tags"
+msgstr "Tags"
+
+#: zzbrick_tables/events.php
+msgid "Tag"
+msgstr "Tag"
+
+#: zzbrick_tables/events.php
+msgid "Identifier"
+msgstr "Kennung"
+
+#: zzbrick_tables/events.php
+msgid "Created"
+msgstr "Erstellt"
 
 #: templates/event.template.txt
 msgid "Event not found"
@@ -42,7 +138,7 @@ msgstr "Unter dieser Adresse konnten wir leider keine Veranstaltung finden."
 msgid "Please take a look at our calendar."
 msgstr "Bitte werfen Sie einen Blick in unseren Kalender."
 
-#: templates/event.template.txt
+#: templates/event.template.txt zzbrick_tables/events.php
 msgid "h"
 msgstr "Uhr"
 
@@ -54,7 +150,7 @@ msgstr "Diese Veranstaltung fällt aus."
 msgid "Further information about <strong>%s</strong>"
 msgstr "Weitere Informationen zu <strong>%s</strong>"
 
-#: templates/event.template.txt
+#: templates/event.template.txt zzbrick_tables/events.php
 msgid "Registration"
 msgstr "Anmeldung"
 
@@ -106,37 +202,30 @@ msgstr "(Link wird den Teilnehmerinnen und Teilnehmern mitgeteilt)"
 msgid "An event can only end after the start."
 msgstr "Eine Veranstaltung kann erst nach Beginn enden."
 
-#: zzbrick_request/event.inc.php
-#: zzbrick_request/events.inc.php
+#: zzbrick_request/event.inc.php zzbrick_request/events.inc.php
 msgid "Sun"
 msgstr "So"
 
-#: zzbrick_request/event.inc.php
-#: zzbrick_request/events.inc.php
+#: zzbrick_request/event.inc.php zzbrick_request/events.inc.php
 msgid "Mon"
 msgstr "Mo"
 
-#: zzbrick_request/event.inc.php
-#: zzbrick_request/events.inc.php
+#: zzbrick_request/event.inc.php zzbrick_request/events.inc.php
 msgid "Tue"
 msgstr "Di"
 
-#: zzbrick_request/event.inc.php
-#: zzbrick_request/events.inc.php
+#: zzbrick_request/event.inc.php zzbrick_request/events.inc.php
 msgid "Wed"
 msgstr "Mi"
 
-#: zzbrick_request/event.inc.php
-#: zzbrick_request/events.inc.php
+#: zzbrick_request/event.inc.php zzbrick_request/events.inc.php
 msgid "Thu"
 msgstr "Do"
 
-#: zzbrick_request/event.inc.php
-#: zzbrick_request/events.inc.php
+#: zzbrick_request/event.inc.php zzbrick_request/events.inc.php
 msgid "Fri"
 msgstr "Fr"
 
-#: zzbrick_request/event.inc.php
-#: zzbrick_request/events.inc.php
+#: zzbrick_request/event.inc.php zzbrick_request/events.inc.php
 msgid "Sat"
 msgstr "Sa"
