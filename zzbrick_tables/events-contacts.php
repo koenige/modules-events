@@ -22,15 +22,16 @@ $zz['fields'][1]['type'] = 'id';
 
 $zz['fields'][2]['field_name'] = 'event_id';
 $zz['fields'][2]['type'] = 'select';
-$zz['fields'][2]['sql'] = 'SELECT event_id
-	, CONCAT(/*_PREFIX_*/events.event, " (", DATE_FORMAT(/*_PREFIX_*/events.date_begin, "%d.%m.%Y")
+$zz['fields'][2]['sql'] = sprintf('SELECT event_id
+	, CONCAT(/*_PREFIX_*/events.event, " (", DATE_FORMAT(/*_PREFIX_*/events.date_begin, "%s")
 		, ")") AS event 
 	FROM /*_PREFIX_*/events
 	WHERE ISNULL(main_event_id)
-	ORDER BY date_begin DESC';
+	ORDER BY date_begin DESC', wrap_placeholder('mysql_date_format'));
+$zz['fields'][2]['sql_character_set'][1] = 'utf8';
 $zz['fields'][2]['display_field'] = 'event';
-$zz['fields'][2]['search'] = 'CONCAT(/*_PREFIX_*/events.event, " (", 
-	DATE_FORMAT(/*_PREFIX_*/events.date_begin, "%d.%m.%Y"), ")")';
+$zz['fields'][2]['search'] = sprintf('CONCAT(/*_PREFIX_*/events.event, " (", 
+	DATE_FORMAT(/*_PREFIX_*/events.date_begin, "%s"), ")")', wrap_placeholder('mysql_date_format'));
 
 $zz['fields'][5]['title'] = 'No.';
 $zz['fields'][5]['field_name'] = 'sequence';
@@ -70,8 +71,8 @@ $zz['subselect']['sql'] = 'SELECT event_id, IFNULL(contact_short, contact) AS co
 ';
 $zz['subselect']['concat_rows'] = ', ';
 
-$zz['sql'] = 'SELECT /*_PREFIX_*/events_contacts.*
-		, CONCAT(/*_PREFIX_*/events.event, " (", events.date_begin, IFNULL(CONCAT(" - ", events.date_end), ""), ")") AS event
+$zz['sql'] = sprintf('SELECT /*_PREFIX_*/events_contacts.*
+		, CONCAT(/*_PREFIX_*/events.event, " (", DATE_FORMAT(events.date_begin, "%s"), IFNULL(CONCAT("–", DATE_FORMAT(events.date_end, "%s")), ""), ")") AS event
 		, contact
 		, category
 	FROM /*_PREFIX_*/events_contacts
@@ -80,5 +81,8 @@ $zz['sql'] = 'SELECT /*_PREFIX_*/events_contacts.*
 		ON /*_PREFIX_*/categories.category_id = /*_PREFIX_*/events_contacts.role_category_id
 	LEFT JOIN /*_PREFIX_*/events
 		ON /*_PREFIX_*/events_contacts.event_id = /*_PREFIX_*/events.event_id
-';
+'
+	, wrap_placeholder('mysql_date_format')
+	, wrap_placeholder('mysql_date_format')
+);
 $zz['sqlorder'] = ' ORDER BY date_begin, contact';
