@@ -57,6 +57,7 @@ function mod_events_ics($params) {
       non-inclusive end of the event.
 	*/
 
+	// @todo translate country name
 	$sql = 'SELECT events.event_id
 			, DATE_FORMAT(IFNULL(events.date_begin, events.date_end), "%%Y%%m%%d") AS date_begin
 			, DATE_FORMAT(events.time_begin, "T%%H%%i%%s") AS time_begin
@@ -74,10 +75,23 @@ function mod_events_ics($params) {
 			, category, parameters as category_parameters
 			, events.main_event_id
 			, IF (events.takes_place = "yes", 1, NULL) AS takes_place
-			, (SELECT GROUP_CONCAT(contact SEPARATOR ", ") FROM events_contacts	
+			, IFNULL((SELECT GROUP_CONCAT(CONCAT(
+					contact, "\n", IFNULL(CONCAT(address, "\n"), ""), IFNULL(CONCAT(postcode, " "), ""), IF(place != contact, CONCAT(place, "\n"), ""), country
+				) SEPARATOR ", ") FROM events_contacts	
 				LEFT JOIN contacts USING (contact_id)
+				LEFT JOIN addresses USING (contact_id)
+				LEFT JOIN countries USING (country_id)
 				WHERE events_contacts.event_id = events.event_id
-				AND events_contacts.role_category_id = %d) AS places
+				AND events_contacts.role_category_id = %d), 
+				(SELECT GROUP_CONCAT(CONCAT(
+					contact, "\n", IFNULL(CONCAT(address, "\n"), ""), IFNULL(CONCAT(postcode, " "), ""), IF(place != contact, CONCAT(place, "\n"), ""), country
+				) SEPARATOR ", ") FROM events_contacts	
+				LEFT JOIN contacts USING (contact_id)
+				LEFT JOIN addresses USING (contact_id)
+				LEFT JOIN countries USING (country_id)
+				WHERE events_contacts.event_id = events.main_event_id
+				AND events_contacts.role_category_id = %d)
+			) AS places
 		FROM events
 		LEFT JOIN events main_events
 			ON events.main_event_id = main_events.event_id
@@ -89,6 +103,7 @@ function mod_events_ics($params) {
 		ORDER BY IFNULL(events.date_begin, events.date_end), events.time_begin, events.date_end, events.time_end, events.sequence
 	';
 	$sql = sprintf($sql
+		, wrap_category_id('roles/location')
 		, wrap_category_id('roles/location')
 		, $where_condition
 	);
