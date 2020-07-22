@@ -128,7 +128,7 @@ $zz['fields'][64]['title'] = 'Organiser';
 $zz['fields'][64]['table_name'] = 'organisers';
 $zz['fields'][64]['type'] = 'subtable';
 $zz['fields'][64]['min_records'] = 1;
-$zz['fields'][64]['max_records'] = 4;
+$zz['fields'][64]['max_records'] = 10;
 $zz['fields'][64]['sql'] .= sprintf(' WHERE role_category_id = %d', wrap_category_id('roles/organiser'));
 $zz['fields'][64]['form_display'] = 'lines';
 $zz['fields'][64]['fields'][2]['type'] = 'foreign_key';
@@ -158,10 +158,10 @@ $zz['fields'][26]['display_field'] = 'category';
 $zz['fields'][26]['character_set'] = 'utf8';
 $zz['fields'][26]['key_field_name'] = 'category_id';
 $zz['fields'][26]['show_hierarchy'] = 'main_category_id';
-$zz['fields'][26]['show_hierarchy_subtree'] = wrap_category_id('events');
+$zz['fields'][26]['show_hierarchy_subtree'] = wrap_category_id('event');
 $zz['fields'][26]['hide_in_list'] = true;
 $zz['fields'][26]['add_details'] = 'categories';
-$zz['fields'][26]['add_details'] = sprintf('categories?filter[maincategory]=%d', wrap_category_id('events'));
+$zz['fields'][26]['add_details'] = sprintf('categories?filter[maincategory]=%d', wrap_category_id('event'));
 
 if (wrap_get_setting('events_tags')) {
 	$zz['fields'][63] = zzform_include_table('events-categories');
