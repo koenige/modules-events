@@ -1,0 +1,235 @@
+# events module
+# Translations template
+#
+# Part of »Zugzwang Project«
+# http://www.zugzwang.org/modules/events
+#
+# @author Gustaf Mossakowski <gustaf@koenige.org>
+# @copyright Copyright © 2020 Gustaf Mossakowski
+# @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Zugzwang Project -- events module\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: Gustaf Mossakowski <gustaf@koenige.org>\n"
+"Language-Team: \n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.8.12\n"
+
+#: zzbrick_request/ics.php zzbrick_tables/events.php
+msgid "Organiser"
+msgstr ""
+
+#: zzbrick_request/ics.php
+msgid "CANCELLED"
+msgstr ""
+
+#: zzbrick_tables/events.php
+msgid "Events"
+msgstr ""
+
+#: zzbrick_tables/events.php
+msgid "If the exact date has not yet been set, the day and or month can be omitted here – then only the month is displayed! Leave the end empty if necessary."
+msgstr ""
+
+#: zzbrick_tables/events.php
+msgid "Timezone"
+msgstr ""
+
+#: zzbrick_tables/events.php
+msgid "Format: -0100 or +0630 etc."
+msgstr ""
+
+#: zzbrick_tables/events.php
+msgid "(cancelled)"
+msgstr ""
+
+#: zzbrick_tables/events.php
+msgid "Short description of the event (is displayed in the calendar under the date)"
+msgstr ""
+
+#: zzbrick_tables/events.php
+msgid "Begin"
+msgstr ""
+
+#: zzbrick_tables/events.php
+msgid "Time Begin"
+msgstr ""
+
+#: zzbrick_tables/events.php
+msgid "Time"
+msgstr ""
+
+#: zzbrick_tables/events.php
+msgid "End"
+msgstr ""
+
+#: zzbrick_tables/events.php
+msgid "Time End"
+msgstr ""
+
+#: zzbrick_tables/events.php
+msgid "Takes place?"
+msgstr ""
+
+#: zzbrick_tables/events.php
+msgid "Better not delete cancelled appointments, but mark them so that it is clearly visible that they’re cancelled."
+msgstr ""
+
+#: zzbrick_tables/events.php
+msgid "News?"
+msgstr ""
+
+#: zzbrick_tables/events.php
+msgid "Should the event appear in the news?"
+msgstr ""
+
+#: zzbrick_tables/events.php
+msgid "Sorting if no time was specified."
+msgstr ""
+
+#: zzbrick_tables/events.php
+msgid "Direct Link"
+msgstr ""
+
+#: zzbrick_tables/events.php
+msgid "Only if the full description of the event is on another website."
+msgstr ""
+
+#: zzbrick_tables/events.php
+msgid "Main Event"
+msgstr ""
+
+#: zzbrick_tables/events.php
+msgid "Following?"
+msgstr ""
+
+#: zzbrick_tables/events.php
+msgid "Tags"
+msgstr ""
+
+#: zzbrick_tables/events.php
+msgid "Tag"
+msgstr ""
+
+#: zzbrick_tables/events.php
+msgid "Identifier"
+msgstr ""
+
+#: zzbrick_tables/events.php
+msgid "Created"
+msgstr ""
+
+#: templates/event.template.txt
+msgid "Event not found"
+msgstr ""
+
+#: templates/event.template.txt
+msgid "Unfortunately we could not find an event at this URL."
+msgstr ""
+
+#: templates/event.template.txt
+msgid "Please take a look at our calendar."
+msgstr ""
+
+#: templates/event.template.txt zzbrick_tables/events.php
+msgid "h"
+msgstr ""
+
+#: templates/event.template.txt
+msgid "h_prefix"
+msgstr ""
+
+#: templates/event.template.txt
+msgid "This event was cancelled."
+msgstr ""
+
+#: templates/event.template.txt
+msgid "Further information about <strong>%s</strong>"
+msgstr ""
+
+#: templates/event.template.txt zzbrick_tables/events.php
+msgid "Registration"
+msgstr ""
+
+#: templates/event.template.txt
+msgid "Supporting Event"
+msgstr ""
+
+#: templates/event.template.txt
+msgid "News"
+msgstr ""
+
+#: templates/event.template.txt
+msgid "Books"
+msgstr ""
+
+#: templates/event.template.txt
+msgid "Book presentation"
+msgstr ""
+
+#: templates/event.template.txt
+msgid "Image"
+msgstr ""
+
+#: templates/event.template.txt
+msgid "Enter event in your own calendar (ICS)"
+msgstr ""
+
+#: templates/event.template.txt
+msgid "Download calendar entry “%s”"
+msgstr ""
+
+#: templates/event.template.txt
+msgid "To the entire calendar %s"
+msgstr ""
+
+#: templates/events.template.txt
+msgid "Subscribe to calendar %s"
+msgstr ""
+
+#: templates/events.template.txt
+msgid "Cancelled:"
+msgstr ""
+
+#: templates/events.template.txt
+msgid "(Link will be announced to participants)"
+msgstr ""
+
+#: events/_functions.inc.php
+msgid "An event can only end after the start."
+msgstr ""
+
+#: zzbrick_request/event.inc.php zzbrick_request/events.inc.php
+msgid "Sun"
+msgstr ""
+
+#: zzbrick_request/event.inc.php zzbrick_request/events.inc.php
+msgid "Mon"
+msgstr ""
+
+#: zzbrick_request/event.inc.php zzbrick_request/events.inc.php
+msgid "Tue"
+msgstr ""
+
+#: zzbrick_request/event.inc.php zzbrick_request/events.inc.php
+msgid "Wed"
+msgstr ""
+
+#: zzbrick_request/event.inc.php zzbrick_request/events.inc.php
+msgid "Thu"
+msgstr ""
+
+#: zzbrick_request/event.inc.php zzbrick_request/events.inc.php
+msgid "Fri"
+msgstr ""
+
+#: zzbrick_request/event.inc.php zzbrick_request/events.inc.php
+msgid "Sat"
+msgstr ""
