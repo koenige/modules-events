@@ -35,8 +35,13 @@ msgid "Events"
 msgstr "Veranstaltungen"
 
 #: zzbrick_tables/events.php
-msgid "If the exact date has not yet been set, the day and or month can be omitted here – then only the month is displayed! Leave the end empty if necessary."
-msgstr "Wenn der genaue Termin noch nicht feststeht, kann hier Tag und oder Monat weggelassen werden – dann wird nur der Monat angezeigt! Ende ggf. leer lassen."
+msgid ""
+"If the exact date has not yet been set, the day and or month can be omitted "
+"here – then only the month is displayed! Leave the end empty if necessary."
+msgstr ""
+"Wenn der genaue Termin noch nicht feststeht, kann hier Tag und oder Monat "
+"weggelassen werden – dann wird nur der Monat angezeigt! Ende ggf. leer "
+"lassen."
 
 #: zzbrick_tables/events.php
 msgid "Timezone"
@@ -51,8 +56,11 @@ msgid "(cancelled)"
 msgstr "(fällt aus)"
 
 #: zzbrick_tables/events.php
-msgid "Short description of the event (is displayed in the calendar under the date)"
-msgstr "Kurze Beschreibung der Veranstaltung (erscheint im Terminkalender direkt unterhalb des Termins)"
+msgid ""
+"Short description of the event (is displayed in the calendar under the date)"
+msgstr ""
+"Kurze Beschreibung der Veranstaltung (erscheint im Terminkalender direkt "
+"unterhalb des Termins)"
 
 #: zzbrick_tables/events.php
 msgid "Begin"
@@ -79,8 +87,12 @@ msgid "Takes place?"
 msgstr "Findet statt?"
 
 #: zzbrick_tables/events.php
-msgid "Better not delete cancelled appointments, but mark them so that it is clearly visible that they’re cancelled."
-msgstr "Ausfallende Termine besser nicht löschen, sondern markieren, so daß klar ersichtlich ist, daß der Termin ausfällt."
+msgid ""
+"Better not delete cancelled appointments, but mark them so that it is "
+"clearly visible that they’re cancelled."
+msgstr ""
+"Ausfallende Termine besser nicht löschen, sondern markieren, so daß klar "
+"ersichtlich ist, daß der Termin ausfällt."
 
 #: zzbrick_tables/events.php
 msgid "News?"
@@ -100,7 +112,9 @@ msgstr "Direktlink"
 
 #: zzbrick_tables/events.php
 msgid "Only if the full description of the event is on another website."
-msgstr "Nur, falls die genaue Beschreibung des Termins auf einer anderen Website steht."
+msgstr ""
+"Nur, falls die genaue Beschreibung des Termins auf einer anderen Website "
+"steht."
 
 #: zzbrick_tables/events.php
 msgid "Main Event"
@@ -141,6 +155,10 @@ msgstr "Bitte werfen Sie einen Blick in unseren Kalender."
 #: templates/event.template.txt zzbrick_tables/events.php
 msgid "h"
 msgstr "Uhr"
+
+#: templates/event.template.txt
+msgid "h_prefix"
+msgstr " "
 
 #: templates/event.template.txt
 msgid "This event was cancelled."

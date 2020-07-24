@@ -146,7 +146,7 @@ msgstr ""
 
 #: templates/event.template.txt zzbrick_tables/events.php
 msgid "h"
-msgstr "&nbsp;."
+msgstr " "
 
 #: templates/event.template.txt
 msgid "h_prefix"
