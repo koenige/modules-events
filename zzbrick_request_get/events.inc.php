@@ -160,6 +160,5 @@ function mod_events_get_events($data, $id_field_name = '', $lang_field_name = ''
 		else
 			$data[$id] = array_merge($events[$lang][$id], $line);
 	}
-	if (count($langs) > 1) $data['multilang'] = true;
 	return $data;
 }	
