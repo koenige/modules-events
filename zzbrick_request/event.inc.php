@@ -25,58 +25,26 @@ function mod_events_event($params) {
 		$published = 'events.published = "yes"';
 	}
 	
-	$sql = 'SELECT event_id, identifier
-			, event, abstract, events.description, date_begin, date_end
-			, IF(date_begin >= CURDATE(), registration, NULL) AS registration
-			, direct_link
-			, CONCAT(date_begin, IFNULL(CONCAT("/", date_end), "")) AS duration
-			, TIME_FORMAT(time_begin, "%%H.%%i") AS time_begin
-			, time_begin AS time_begin_iso
-			, TIME_FORMAT(time_end, "%%H.%%i") AS time_end
-			, time_end AS time_end_iso
-			, IF(takes_place = "yes", NULL, 1) AS cancelled
-			, YEAR(date_begin) AS year
-			, CONCAT(CASE DAYOFWEEK(date_begin) WHEN 1 THEN "%s"
-				WHEN 2 THEN "%s"
-				WHEN 3 THEN "%s"
-				WHEN 4 THEN "%s"
-				WHEN 5 THEN "%s"
-				WHEN 6 THEN "%s"
-				WHEN 7 THEN "%s" END) AS weekday_begin
-			, CONCAT(CASE DAYOFWEEK(date_end) WHEN 1 THEN "%s"
-				WHEN 2 THEN "%s"
-				WHEN 3 THEN "%s"
-				WHEN 4 THEN "%s"
-				WHEN 5 THEN "%s"
-				WHEN 6 THEN "%s"
-				WHEN 7 THEN "%s" END) AS weekday_end
-			, main_event_id
-			, category_id, category, timezone
-		FROM events
-		LEFT JOIN categories
-			ON events.event_category_id = categories.category_id
-		WHERE categories.main_category_id = %d
-		AND identifier = "%d/%s"
-		AND %s
-	';
+	$sql = 'SELECT event_id
+	    FROM events
+	    WHERE identifier = "%d/%s"
+	    AND %s';
 	$sql = sprintf($sql
-		, wrap_text('Sun'), wrap_text('Mon'), wrap_text('Tue'), wrap_text('Wed') 
-		, wrap_text('Thu'), wrap_text('Fri'), wrap_text('Sat')
-		, wrap_text('Sun'), wrap_text('Mon'), wrap_text('Tue'), wrap_text('Wed') 
-		, wrap_text('Thu'), wrap_text('Fri'), wrap_text('Sat')
-		, wrap_category_id('events')
 		, $params[0], wrap_db_escape($params[1])
 		, $published
 	);
-	$event = wrap_db_fetch($sql);
-	$event = wrap_translate($event, 'events');
-
-	if (!$event) {
+	$event = wrap_db_fetch($sql, 'event_id');
+	
+	if (count($event) !== 1) {
 		$event['not_found'] = true;
 		$page['text'] = wrap_template('event', $event);
 		$page['status'] = 404;
 		return $page;
 	}
+
+	require_once __DIR__.'/../zzbrick_request_get/events.inc.php';
+	$event = mod_events_get_events($event);
+	$event = reset($event);
 	
 	if ($event['main_event_id']) {
 		$sql = 'SELECT event_id, event, identifier
@@ -112,23 +80,6 @@ function mod_events_event($params) {
 		unset ($event['timetable']);
 	}
 
-	$sql = 'SELECT event_contact_id, contact, categories.category AS role
-			, SUBSTRING_INDEX(categories.path, "/", -1) AS path
-			, identification AS website
-			, SUBSTRING_INDEX(contact_categories.path, "/", -1) AS contact_path
-	    FROM events_contacts
-	    LEFT JOIN contacts USING (contact_id)
-	    LEFT JOIN contactdetails
-	    	ON contactdetails.contact_id = contacts.contact_id
-	    	AND contactdetails.provider_category_id = %d
-	    LEFT JOIN categories
-	        ON events_contacts.role_category_id = categories.category_id
-	    LEFT JOIN categories contact_categories
-	    	ON contact_categories.category_id = contacts.contact_category_id
-	    WHERE event_id = %d
-	    ORDER BY events_contacts.sequence';
-	$sql = sprintf($sql, wrap_category_id('provider/website'), $event['event_id']);
-	$event += wrap_db_fetch($sql, ['path', 'event_contact_id']);
 	foreach ($event as $field => $values) {
 		if (!is_array($values)) continue;
 		foreach ($values as $index => $value) {
@@ -137,17 +88,15 @@ function mod_events_event($params) {
 		}
 	}
 
-	$media = wrap_get_media($event['event_id'], 'events', 'event');
-	if (!empty($media['links'])) {
-		$event['links'] = wrap_template('filelinks', $media['links']);
+	if (!empty($event['links'])) {
+		$event['links'] = wrap_template('filelinks', $event['links']);
 	}
-	if (!empty($media['images'])) {
+	if (!empty($event['images'])) {
 		$lightbox = true;
 	}
-	brick_request_links($event['description'], $media, 'sequence');
+	brick_request_links($event['description'], $event, 'sequence');
 	$page['head'] = '';
 	if ($lightbox) {
-		$event['images'] = $media['images'];
 		$page['extra']['magnific_popup'] = true;
 	}
 
@@ -170,18 +119,11 @@ function mod_events_event($params) {
 		unset($event['articles'][$index]);
 	}
 	
-	$sql = 'SELECT category_id, category
-		FROM events_categories
-		LEFT JOIN categories USING (category_id)
-		WHERE event_id = %d';
-	$sql = sprintf($sql, $event['event_id']);
-	$event['categories'] = wrap_db_fetch($sql, 'category_id');
 	$event['categories'][$event['category_id']] = [
 		'category_id' => $event['category_id'],
 		'category' => $event['category']
 		
 	];
-	$event['categories'] = wrap_translate($event['categories'], 'categories');
 
 	if (!empty($event['cancelled'])) {
 		$page['status'] = 404;
