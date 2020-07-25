@@ -45,10 +45,17 @@ function mod_events_get_events($data, $id_field_name = '', $lang_field_name = ''
 		$langs[] = $zz_setting['lang'];
 	}
 	
-	$sql = 'SELECT events.*
+	$sql = 'SELECT event_id, identifier
+			, event, abstract, events.description, date_begin, date_end
+			, IF(date_begin >= CURDATE(), registration, NULL) AS registration
+			, direct_link
 			, CONCAT(date_begin, IFNULL(CONCAT("/", date_end), "")) AS duration
 			, TIME_FORMAT(time_begin, "%%H.%%i") AS time_begin
 			, TIME_FORMAT(time_end, "%%H.%%i") AS time_end
+			, time_begin AS time_begin_iso
+			, time_end AS time_end_iso
+			, IF(takes_place = "yes", NULL, 1) AS cancelled
+			, YEAR(IFNULL(date_begin, date_end)) AS year
 			, CONCAT(CASE DAYOFWEEK(date_begin) WHEN 1 THEN "%s"
 				WHEN 2 THEN "%s"
 				WHEN 3 THEN "%s"
@@ -64,13 +71,13 @@ function mod_events_get_events($data, $id_field_name = '', $lang_field_name = ''
 				WHEN 6 THEN "%s"
 				WHEN 7 THEN "%s" END) AS weekday_end
 			, IF(events.published = "yes", 1, NULL) AS published
-			, e_categories.category AS category
 			, timezone
+			, main_event_id
+			, category_id, category
 		FROM events
-		LEFT JOIN events_categories USING (event_id)
 		LEFT JOIN events_media USING (event_id)
-		LEFT JOIN categories e_categories
-			ON events.event_category_id = e_categories.category_id
+		LEFT JOIN categories
+			ON events.event_category_id = categories.category_id
 		WHERE events.event_id IN (%s)
 		ORDER BY FIELD(events.event_id, %s)';
 	$sql = sprintf($sql
@@ -84,6 +91,7 @@ function mod_events_get_events($data, $id_field_name = '', $lang_field_name = ''
 	$eventdata = wrap_db_fetch($sql, 'event_id');
 	foreach ($langs as $lang) {
 		$events[$lang] = wrap_translate($eventdata, 'events', '', true, $lang);
+		$events[$lang] = wrap_translate($events[$lang], 'categories', 'event_id', true, $lang);
 	}
 
 	// media
@@ -117,8 +125,9 @@ function mod_events_get_events($data, $id_field_name = '', $lang_field_name = ''
 	}
 
 	// places
-	$sql = 'SELECT event_id, event_contact_id, contact, contact_id, category_id, category
-			, SUBSTRING_INDEX(path, "/", -1) AS path
+	$sql = 'SELECT event_id, event_contact_id, contact, contact_id
+			, categories.category_id, categories.category
+			, SUBSTRING_INDEX(categories.path, "/", -1) AS path
 			, IF(address != contact, address, "") AS address
 			, postcode
 			, IF(place != contact, place, "") AS place
@@ -126,12 +135,15 @@ function mod_events_get_events($data, $id_field_name = '', $lang_field_name = ''
 			, (SELECT identification FROM contactdetails cd
 				WHERE cd.contact_id = contacts.contact_id
 				AND cd.provider_category_id = %d) AS website
+			, SUBSTRING_INDEX(contact_categories.path, "/", -1) AS contact_path
 		FROM events_contacts
 		LEFT JOIN contacts USING (contact_id)
 		LEFT JOIN categories
 			ON events_contacts.role_category_id = categories.category_id
 		LEFT JOIN addresses USING (contact_id)
 		LEFT JOIN countries USING (country_id)
+	    LEFT JOIN categories contact_categories
+	    	ON contact_categories.category_id = contacts.contact_category_id
 		WHERE event_id IN (%d)
 		ORDER BY events_contacts.sequence, contact';
 	$sql = sprintf($sql
