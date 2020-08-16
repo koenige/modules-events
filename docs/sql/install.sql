@@ -80,7 +80,7 @@ CREATE TABLE `events_media` (
   `sequence` tinyint unsigned NOT NULL,
   `last_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`event_medium_id`),
-  UNIQUE KEY `termin_id` (`event_id`,`medium_id`),
+  UNIQUE KEY `event_medium` (`event_id`,`medium_id`),
   KEY `medium_id` (`medium_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
