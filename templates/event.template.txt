@@ -83,7 +83,7 @@
 <ul class="main_events">
 %%% loop events %%%
 <li><span class="date">%%% item duration wrap_date %%%</span>%%% item time_begin " %s" %%%%%% item time_end "–%s" %%%
-%%% condition if time_begin | time_end %%% %%% text h %%%%%% condition endif %%%: <a href="%%% setting events_url %%%/%%% item identifier %%%/">%%% item event %%%</a></li>
+%%% condition if time_begin | time_end %%% %%% text h %%%%%% condition endif %%%: <a href="%%% setting events_path %%%/%%% item identifier %%%/">%%% item event %%%</a></li>
 %%% loop end %%%
 </ul>
 %%% condition endif %%%
