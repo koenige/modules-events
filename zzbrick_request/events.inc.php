@@ -100,7 +100,7 @@ function mod_events_events($params, $settings) {
 		LEFT JOIN categories
 			ON categories.category_id = events.event_category_id
 		WHERE %s
-		AND categories.main_category_id = %d
+		AND event_category_id = %d
 		%s
 		ORDER BY events.date_begin %s
 		%s
@@ -111,7 +111,7 @@ function mod_events_events($params, $settings) {
 		, wrap_text('Sun'), wrap_text('Mon'), wrap_text('Tue'), wrap_text('Wed') 
 		, wrap_text('Thu'), wrap_text('Fri'), wrap_text('Sat')
 		, $published
-		, wrap_category_id('events')
+		, wrap_category_id('event/event')
 		, $condition
 		, $current ? 'ASC' : 'DESC'
 		, $limit ? sprintf(' LIMIT %d', $limit) : ''

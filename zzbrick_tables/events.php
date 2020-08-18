@@ -160,22 +160,24 @@ $zz['fields'][26]['key_field_name'] = 'category_id';
 $zz['fields'][26]['show_hierarchy'] = 'main_category_id';
 $zz['fields'][26]['show_hierarchy_subtree'] = wrap_category_id('event');
 $zz['fields'][26]['hide_in_list'] = true;
-$zz['fields'][26]['add_details'] = 'categories';
+$zz['fields'][26]['hide_in_form'] = true;
 $zz['fields'][26]['add_details'] = sprintf('categories?filter[maincategory]=%d', wrap_category_id('event'));
+// activate only for timetable
+// @todo move to events-categories
+$zz['fields'][26]['type'] = 'hidden';
+$zz['fields'][26]['type_detail'] = 'select';
+$zz['fields'][26]['value'] = wrap_category_id('event/event');
 
-if (wrap_get_setting('events_tags')) {
-	$zz['fields'][63] = zzform_include_table('events-categories');
-	$zz['fields'][63]['title'] = 'Tags';
-	$zz['fields'][63]['title_button'] = 'Tag';
-	$zz['fields'][63]['type'] = 'subtable';
-	$zz['fields'][63]['min_records'] = 1;
-	$zz['fields'][63]['max_records'] = 4;
-	$zz['fields'][63]['form_display'] = 'lines';
-	$zz['fields'][63]['fields'][2]['type'] = 'foreign_key';
-	$zz['fields'][63]['fields'][3]['show_title'] = false;
-	$zz['fields'][63]['class'] = 'hidden480';
-	$zz['fields'][63]['hide_in_list'] = true;
-}
+$zz['fields'][63] = zzform_include_table('events-categories');
+$zz['fields'][63]['title'] = 'Category';
+$zz['fields'][63]['type'] = 'subtable';
+$zz['fields'][63]['min_records'] = 1;
+$zz['fields'][63]['max_records'] = 4;
+$zz['fields'][63]['form_display'] = 'lines';
+$zz['fields'][63]['fields'][2]['type'] = 'foreign_key';
+$zz['fields'][63]['fields'][3]['show_title'] = false;
+$zz['fields'][63]['class'] = 'hidden480';
+$zz['fields'][63]['hide_in_list'] = true;
 
 // group
 $zz['fields'][59] = [];
