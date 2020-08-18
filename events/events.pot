@@ -233,3 +233,15 @@ msgstr ""
 #: zzbrick_request/event.inc.php zzbrick_request/events.inc.php
 msgid "Sat"
 msgstr ""
+
+#: templates/timetable.template.txt
+msgid "Schedule (subject to change)"
+msgstr ""
+
+#: templates/timetable-programme.template.txt
+msgid "Events in the supporting program"
+msgstr ""
+
+#: templates/timetable-programme.template.txt
+msgid "cancelled!"
+msgstr ""

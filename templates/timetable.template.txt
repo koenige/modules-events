@@ -1,0 +1,38 @@
+# events module
+# template for timetable
+# 
+# Part of »Zugzwang Project«
+# http://www.zugzwang.org/modules/events
+#
+# @author Gustaf Mossakowski <gustaf@koenige.org>
+# @copyright Copyright © 2015-2018, 2020 Gustaf Mossakowski
+# @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
+# 
+<h2 id="timetable">%%% text Schedule (subject to change) %%%</h2>
+<table class="timetable">
+%%% loop start %%%
+<tr><th colspan="2"><h3>%%% item weekday %%% %%% item date_begin wrap_date %%%</h3></th></tr>
+%%% loop hours %%%
+<tr><th class="time">
+%%% condition if following %%%
+%%% text anschließend %%%
+%%% condition elseif time_begin | time_end %%%
+%%% condition if time_begin %%%%%% item time_begin "%s" %%%&nbsp;%%% text h %%%%%% condition endif %%%
+%%% condition if time_end %%%<wbr>–%%% item time_end "%s" %%%&nbsp;%%% text h %%%%%% condition endif %%%
+%%% condition else %%%
+–
+%%% condition endif %%%
+</th>
+<td>
+%%% condition if images %%%
+<p class="tt_image js-gallery">
+%%% loop images 1 %%%
+<a href="%%% setting files_path %%%/%%% item filename %%%.%%% item extension %%%?v=%%% item version %%%" class="js-img" data-title="%%% item title wrap_html_escape %%% %%% item source wrap_html_escape "<br>%s" %%%" title="%%% item title strip_tags %%% %%% item source strip_tags %%%"><img src="%%% setting files_path %%%/%%% item filename %%%.%%% setting events_timetable_image_size %%%.%%% item thumb_extension %%%?v=%%% item version %%%" alt="%%% item title wrap_html_escape %%%"></a>
+%%% loop end %%%
+</p>
+%%% condition endif %%%
+%%% item event markdown %%%
+%%% item description markdown %%%</td></tr>
+%%% loop end %%%
+%%% loop end %%%
+</table>

@@ -1,0 +1,39 @@
+# events module
+# template for timetable, supporting program
+# 
+# Part of »Zugzwang Project«
+# http://www.zugzwang.org/modules/events
+#
+# @author Gustaf Mossakowski <gustaf@koenige.org>
+# @copyright Copyright © 2015-2018, 2020 Gustaf Mossakowski
+# @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
+# 
+<h2 id="timetable">%%% text Events in the supporting program %%%</h2>
+<table class="timetable">
+%%% loop start %%%
+<tr><th colspan="2"><h3>%%% item weekday %%% %%% item date_begin wrap_date %%%</h3></th></tr>
+%%% loop hours %%%
+<tr><th class="time">
+%%% condition if time_begin | time_end %%%
+%%% condition if time_begin %%%%%% item time_begin "%s" %%%&nbsp;%%% text h %%%%%% condition endif %%%
+%%% condition if time_end %%%<wbr>–%%% item time_end "%s" %%%&nbsp;%%% text h %%%%%% condition endif %%%
+%%% condition else %%%
+–
+%%% condition endif %%%
+</th>
+<td>
+%%% condition if cancelled %%%
+<del>
+%%% condition else %%%
+<a href="%%% setting events_path %%%/%%% item identifier %%%/">
+%%% condition endif %%%
+%%% item event %%%
+%%% condition if cancelled %%%
+</del> – %%% text cancelled! %%%
+%%% condition else %%%
+</a>
+%%% condition endif %%%
+</td></tr>
+%%% loop end %%%
+%%% loop end %%%
+</table>
