@@ -25,12 +25,9 @@
 %%% condition if images %%%
 <p class="newsimg">
 %%% loop images 1 %%%
-%%% condition if filecategory_links %%%
-<a href="%%% setting files_path %%%/%%% item filename %%%.800.%%% item thumb_extension %%%?v=%%% item version %%%" title="%%% item title strip_tags %%% %%% item source strip_tags %%%" data-title="%%% item title wrap_html_escape %%%%%% item source wrap_html_escape " (%s)" %%%" class="js-img">
-%%% condition else %%%
-<a href="%%% setting files_path %%%/%%% item filename %%%.%%% item extension %%%?v=%%% item version %%%" title="%%% item title strip_tags %%% %%% item source strip_tags %%%" data-title="%%% item title wrap_html_escape %%%%%% item source wrap_html_escape " (%s)" %%%" class="js-img">
-%%% condition endif %%%
-<img src="%%% setting files_path %%%/%%% item filename %%%.%%% setting events_list_image_size %%%.%%% item thumb_extension %%%?v=%%% item version %%%" alt="%%% item title wrap_html_escape %%%"></a>
+%%% condition unless cancelled %%%<a href="%%% setting base %%%%%% setting events_path %%%/%%% item identifier %%%/">%%% condition endif %%%
+<img src="%%% setting files_path %%%/%%% item filename %%%.%%% setting events_list_image_size %%%.%%% item thumb_extension %%%?v=%%% item version %%%" alt="%%% item title wrap_html_escape %%%">
+%%% condition unless cancelled %%%</a>%%% condition endif %%%
 %%% loop end %%%
 </p>
 %%% condition endif %%%
