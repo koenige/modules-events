@@ -103,6 +103,7 @@ function mod_events_event($params) {
 	$sql = 'SELECT article_id, title
 			, identifier
 			, GROUP_CONCAT(category SEPARATOR ", ") AS categories
+			, date
 		FROM articles
 		LEFT JOIN articles_events USING (article_id)
 		LEFT JOIN articles_categories USING (article_id)

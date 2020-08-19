@@ -47,7 +47,7 @@
 %%% condition if images %%%
 <div class="image right"><figure>
 %%% loop images 1 %%%
-<a href="%%% setting files_path %%%/%%% item filename %%%%%% condition if filecategory_links %%%.%%% setting events_big_image_size %%%.%%% item thumb_extension %%%%%% condition else %%%.%%% item extension %%%%%% condition endif %%%?v=%%% item version %%%" class="js-img" title="%%% item title strip_tags %%% %%% item source strip_tags %%%" data-title="%%% item title wrap_html_escape %%% %%% item source wrap_html_escape "<br>%s" %%%"><img src="/files/%%% item filename %%%.%%% setting events_image_size %%%.%%% item thumb_extension %%%?v=%%% item version %%%" srcset="/files/%%% item filename %%%.%%% setting events_image_size %%%.%%% item thumb_extension %%%?v=%%% item version %%% 1x, /files/%%% item filename %%%.%%% setting events_image_size_x2 %%%.%%% item thumb_extension %%%?v=%%% item version %%% 2x" alt="%%% item title wrap_html_escape %%%"></a>
+<a href="%%% setting files_path %%%/%%% item filename %%%%%% condition if filecategory_links %%%.%%% setting events_big_image_size %%%.%%% item thumb_extension %%%%%% condition else %%%.%%% item extension %%%%%% condition endif %%%?v=%%% item version %%%" class="js-img" title="%%% item title strip_tags %%% %%% item source strip_tags %%%" data-title="%%% item title wrap_html_escape %%% %%% item source wrap_html_escape "<br>%s" %%%"><img src="%%% setting files_path %%%/%%% item filename %%%.%%% setting events_image_size %%%.%%% item thumb_extension %%%?v=%%% item version %%%" srcset="%%% setting files_path %%%/%%% item filename %%%.%%% setting events_image_size %%%.%%% item thumb_extension %%%?v=%%% item version %%% 1x, %%% setting files_path %%%/%%% item filename %%%.%%% setting events_image_size_x2 %%%.%%% item thumb_extension %%%?v=%%% item version %%% 2x" alt="%%% item title wrap_html_escape %%%"></a>
 <figcaption>%%% item title %%% %%% item source "<br><small>%s</small>" %%%</figcaption>
 %%% loop end %%%
 </figure>
@@ -95,7 +95,7 @@
 <h2>%%% text News %%%</h2>
 <ul>
 %%% loop articles %%%
-<li><a href="../../../%%% item identifier %%%/">%%% item title %%%</a></li>
+<li>%%% item date wrap_date %%%: <a href="../../../%%% item identifier %%%/">%%% item title %%%</a></li>
 %%% loop end %%%
 </ul>
 %%% condition endif %%%
@@ -112,7 +112,7 @@
 %%% condition if images %%%
 <p class="newsgallery">
 %%% loop images 2- %%%
-<a href="%%% setting files_path %%%/%%% item filename %%%.%%% setting events_big_image_size %%%.%%% item thumb_extension %%%?v=%%% item version %%%" title="%%% item title wrap_html_escape %%%%%% item source wrap_html_escape " (%s)" %%%" data-title="%%% item title %%%%%% item source wrap_html_escape " (%s)" %%%" class="js-img%%% loopposition uneven " first" %%%"><img src="/files/%%% item filename %%%.%%% setting events_image_size %%%.%%% item thumb_extension %%%?v=%%% item version %%%" alt="%%% text Image %%% %%% item title %%%"></a>
+<a href="%%% setting files_path %%%/%%% item filename %%%.%%% setting events_big_image_size %%%.%%% item thumb_extension %%%?v=%%% item version %%%" title="%%% item title wrap_html_escape %%%%%% item source wrap_html_escape " (%s)" %%%" data-title="%%% item title %%%%%% item source wrap_html_escape " (%s)" %%%" class="js-img%%% loopposition uneven " first" %%%"><img src="%%% setting files_path %%%/%%% item filename %%%.%%% setting events_image_size %%%.%%% item thumb_extension %%%?v=%%% item version %%%" alt="%%% text Image %%% %%% item title %%%"></a>
 %%% loop end %%%
 </p>
 %%% condition endif %%%
