@@ -143,10 +143,6 @@ function mod_events_events($params, $settings) {
 				if ($subcategory['category'] === 'Reise') $events[$event_id]['reise'] = true;
 			}
 		}
-		foreach (array_keys($events) as $event_id) {
-			if (!is_numeric($event_id)) continue;
-			$events[$event_id]['categories'][]['category'] = $events[$event_id]['category'];
-		}
 
 	} else {
 		$media = [];
