@@ -160,5 +160,7 @@ function mod_events_events($params, $settings) {
 	$template = $box ? 'eventbox' : 'events';
 	$template = 'events';
 	$page['text'] = wrap_template($template, $events);
+	if (in_array('magnificpopup', $zz_setting['modules']))
+		$page['extra']['magnific_popup'] = true;
 	return $page;
 }
