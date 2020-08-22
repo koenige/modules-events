@@ -95,7 +95,7 @@
 <h2>%%% text News %%%</h2>
 <ul>
 %%% loop articles %%%
-<li>%%% item date wrap_date %%%: <a href="../../../%%% item identifier %%%/">%%% item title %%%</a></li>
+<li>%%% item date wrap_date %%%: <a href="%%% setting news_url %%%/%%% item identifier %%%/">%%% item title %%%</a></li>
 %%% loop end %%%
 </ul>
 %%% condition endif %%%
