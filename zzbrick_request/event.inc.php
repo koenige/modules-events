@@ -142,6 +142,12 @@ function mod_events_event($params) {
  * @return array
  */
 function mod_events_event_timetable($event_id) {
+	global $zz_setting;
+	if ($zz_setting['local_access'] OR !empty($_SESSION['logged_in']))
+		$published = '(published = "yes" OR published = "no")';
+	else
+		$published = 'published = "yes"';
+
 	$sql = 'SELECT event_id, event, description, date_begin, date_end
 			, CONCAT(date_begin, IFNULL(CONCAT("/", date_end), "")) AS duration
 			, TIME_FORMAT(time_begin, "%%H.%%i") AS time_begin
@@ -160,12 +166,13 @@ function mod_events_event_timetable($event_id) {
 			, event_category_id
 			, identifier
 		FROM events
-		WHERE published = "yes"
+		WHERE %s
 		AND main_event_id = %d
 		ORDER BY sequence, date_begin, time_begin, time_end, sequence, identifier';
 	$sql = sprintf($sql
 		, wrap_text('Sun'), wrap_text('Mon'), wrap_text('Tue'), wrap_text('Wed') 
 		, wrap_text('Thu'), wrap_text('Fri'), wrap_text('Sat')
+		, $published
 		, $event_id
 	);
 	$events = wrap_db_fetch($sql, ['date_begin', 'event_id'], 'list date_begin hours');
