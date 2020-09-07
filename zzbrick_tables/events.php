@@ -103,7 +103,8 @@ $zz['fields'][7]['table_name'] = 'places';
 $zz['fields'][7]['type'] = 'subtable';
 $zz['fields'][7]['min_records'] = 1;
 $zz['fields'][7]['max_records'] = 5;
-$zz['fields'][7]['sql'] .= sprintf(' WHERE role_category_id = %d', wrap_category_id('roles/location'));
+$zz['fields'][7]['sql'] .= sprintf(' WHERE role_category_id = %d
+	ORDER BY sequence, contact', wrap_category_id('roles/location'));
 $zz['fields'][7]['form_display'] = 'lines';
 $zz['fields'][7]['fields'][2]['type'] = 'foreign_key';
 $zz['fields'][7]['fields'][3]['show_title'] = false;
@@ -129,7 +130,8 @@ $zz['fields'][64]['table_name'] = 'organisers';
 $zz['fields'][64]['type'] = 'subtable';
 $zz['fields'][64]['min_records'] = 1;
 $zz['fields'][64]['max_records'] = 10;
-$zz['fields'][64]['sql'] .= sprintf(' WHERE role_category_id = %d', wrap_category_id('roles/organiser'));
+$zz['fields'][64]['sql'] .= sprintf(' WHERE role_category_id = %d
+	ORDER BY sequence, contact', wrap_category_id('roles/organiser'));
 $zz['fields'][64]['form_display'] = 'lines';
 $zz['fields'][64]['fields'][2]['type'] = 'foreign_key';
 $zz['fields'][64]['fields'][3]['show_title'] = false;
@@ -226,6 +228,7 @@ $zz['fields'][25]['auto_value'] = 'increment';
 $zz['fields'][25]['hide_in_list'] = true;
 $zz['fields'][25]['hide_in_list_if_empty'] = true;
 $zz['fields'][25]['hide_in_form'] = true;
+$zz['fields'][25]['dont_copy'] = true;
 $zz['fields'][25]['explanation'] = 'Sorting if no time was specified.';
 
 $zz['fields'][62] = zzform_include_table('events-media');
