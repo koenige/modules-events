@@ -102,7 +102,7 @@ $zz['fields'][7]['title'] = 'Place';
 $zz['fields'][7]['table_name'] = 'places';
 $zz['fields'][7]['type'] = 'subtable';
 $zz['fields'][7]['min_records'] = 1;
-$zz['fields'][7]['max_records'] = 5;
+$zz['fields'][7]['max_records'] = 20;
 $zz['fields'][7]['sql'] .= sprintf(' WHERE role_category_id = %d
 	ORDER BY sequence, contact', wrap_category_id('roles/location'));
 $zz['fields'][7]['form_display'] = 'lines';
