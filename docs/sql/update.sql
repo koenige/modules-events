@@ -25,3 +25,4 @@
 /* 2020-05-16-14 */	ALTER TABLE `events` ADD `timezone` varchar(5) NOT NULL AFTER `time_end`;
 /* 2020-05-16-15 */	UPDATE `events` SET `timezone` = '+0200';
 /* 2020-07-15-1 */	ALTER TABLE `events` CHANGE `timezone` `timezone` varchar(5) COLLATE 'utf8mb4_unicode_ci' NULL AFTER `time_end`;
+/* 2020-09-09-1 */	ALTER TABLE `events_contacts` CHANGE `role_category_id` `role_category_id` int unsigned NOT NULL AFTER `contact_id`, CHANGE `sequence` `sequence` tinyint unsigned NOT NULL AFTER `role_category_id`;
