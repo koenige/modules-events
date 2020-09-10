@@ -164,14 +164,15 @@ function mod_events_event_timetable($event_id) {
 				WHEN 6 THEN "%s"
 				WHEN 7 THEN "%s" END) AS weekday
 			, event_category_id
-			, identifier
+			, IF(event_category_id = %d, identifier, NULL) AS identifier
 		FROM events
 		WHERE %s
 		AND main_event_id = %d
-		ORDER BY sequence, date_begin, time_begin, time_end, sequence, identifier';
+		ORDER BY sequence, date_begin, time_begin, time_end, identifier';
 	$sql = sprintf($sql
 		, wrap_text('Sun'), wrap_text('Mon'), wrap_text('Tue'), wrap_text('Wed') 
 		, wrap_text('Thu'), wrap_text('Fri'), wrap_text('Sat')
+		, wrap_category_id('event/event')
 		, $published
 		, $event_id
 	);
