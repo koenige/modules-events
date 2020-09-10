@@ -216,6 +216,10 @@ msgstr "Fällt aus:"
 msgid "(Link will be announced to participants)"
 msgstr "(Link wird den Teilnehmerinnen und Teilnehmern mitgeteilt)"
 
+#: templates/events.template.txt
+msgid "following"
+msgstr "anschließend"
+
 #: events/_functions.inc.php
 msgid "An event can only end after the start."
 msgstr "Eine Veranstaltung kann erst nach Beginn enden."

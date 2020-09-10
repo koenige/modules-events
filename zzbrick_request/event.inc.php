@@ -60,17 +60,16 @@ function mod_events_event($params) {
 	$lightbox = false;
 	$event['timetable'] = mod_events_event_timetable($event['event_id']);
 	if ($event['timetable']) {
-		$template = 'timetable';
 		foreach ($event['timetable'] as $day => $timetable) {
 			foreach ($timetable['hours'] as $timetable_event_id => $single_event) {
 				if ($single_event['event_category_id'] === wrap_category_id('event/event')) {
-					$template = 'timetable-programme';
+					$event['timetable']['programme'] = true;
 				}
 				if (empty($single_event['images'])) continue;
 				$lightbox = true;
 			}
 		}
-		$event['timetable'] = wrap_template($template, $event['timetable']);
+		$event['timetable'] = wrap_template('timetable', $event['timetable']);
 	} else {
 		$event['timetable'] = '';
 	}

@@ -7,15 +7,19 @@
 # @author Gustaf Mossakowski <gustaf@koenige.org>
 # @copyright Copyright © 2015-2018, 2020 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
-# 
+#
+%%% condition if programme %%%
+<h2 id="timetable">%%% text Events in the supporting program %%%</h2>
+%%% condition else %%%
 <h2 id="timetable">%%% text Schedule (subject to change) %%%</h2>
+%%% condition endif %%%
 <table class="timetable">
 %%% loop start %%%
 <tr><th colspan="2"><h3>%%% item weekday %%% %%% item date_begin wrap_date %%%</h3></th></tr>
 %%% loop hours %%%
 <tr><th class="time">
 %%% condition if following %%%
-%%% text anschließend %%%
+%%% text following %%%
 %%% condition elseif time_begin | time_end %%%
 %%% condition if time_begin %%%%%% item time_begin "%s" %%%&nbsp;%%% text h %%%%%% condition endif %%%
 %%% condition if time_end %%%<wbr>–%%% item time_end "%s" %%%&nbsp;%%% text h %%%%%% condition endif %%%
@@ -24,6 +28,7 @@
 %%% condition endif %%%
 </th>
 <td>
+%%% condition unless identifier %%%
 %%% condition if images %%%
 <p class="tt_image js-gallery">
 %%% loop images 1 %%%
@@ -31,8 +36,21 @@
 %%% loop end %%%
 </p>
 %%% condition endif %%%
+%%% condition endif %%%
+%%% condition if cancelled %%%
+<del>
+%%% condition elseif identifier %%%
+<a href="%%% setting events_path %%%/%%% item identifier %%%/">
+%%% condition endif %%%
 %%% item event markdown %%%
-%%% item description markdown %%%</td></tr>
+%%% condition if cancelled %%%
+</del> – %%% text cancelled! %%%
+%%% condition elseif identifier %%%
+</a>
+%%% condition endif %%%
+%%% condition unless identifier %%%
+%%% item description markdown %%%
+%%% condition endif %%%</td></tr>
 %%% loop end %%%
 %%% loop end %%%
 </table>

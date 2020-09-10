@@ -202,6 +202,10 @@ msgstr ""
 msgid "(Link will be announced to participants)"
 msgstr ""
 
+#: templates/events.template.txt
+msgid "following"
+msgstr ""
+
 #: events/_functions.inc.php
 msgid "An event can only end after the start."
 msgstr ""
