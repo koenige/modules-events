@@ -110,7 +110,7 @@ function mod_events_event($params) {
 		WHERE published = "yes"
 		AND event_id = %d
 		GROUP BY article_id
-		ORDER BY title';
+		ORDER BY date DESC, title';
 	$sql = sprintf($sql, $event['event_id']);
 	$event['articles'] = wrap_db_fetch($sql, 'article_id');
 	foreach ($event['articles'] as $index => $article) {
