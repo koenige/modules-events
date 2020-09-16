@@ -342,11 +342,12 @@ $zz['filter'][2]['identifier'] = 'category';
 $zz['filter'][2]['type'] = 'list';
 $zz['filter'][2]['where'] = '/*_PREFIX_*/events_categories.category_id';
 
-$zz['filter'][3]['sql'] = 'SELECT DISTINCT contact_id
+$zz['filter'][3]['sql'] = sprintf('SELECT DISTINCT contact_id
 		, IFNULL(contact_short, contact) AS contact
 	FROM events_contacts
 	LEFT JOIN contacts USING (contact_id)
-	ORDER BY contact';
+	WHERE events_contacts.role_category_id = %d
+	ORDER BY contact', wrap_category_id('roles/organiser'));
 $zz['filter'][3]['title'] = wrap_text('Organiser');
 $zz['filter'][3]['identifier'] = 'organiser';
 $zz['filter'][3]['type'] = 'list';
