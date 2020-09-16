@@ -200,5 +200,10 @@ function mod_events_event_timetable($event_id) {
 	}
 
 	$events = array_values($events);
+	$events['images'] = [];
+	foreach ($events_media as $event_id => $event_media) {
+		if (empty($event_media['images'])) continue;
+		$events['images'] += $event_media['images'];
+	}
 	return $events;
 }
