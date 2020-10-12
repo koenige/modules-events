@@ -91,6 +91,16 @@
 %%% item links %%%
 </div>
 
+%%% condition if hashtag %%%
+<h2>%%% text Hashtag %%% #%%% item hashtag %%%</h2>
+
+<ul>
+<li><a href="https://twitter.com/hashtag/%%% item hashtag %%%">#%%% item hashtag %%% @twitter</a></li>
+<li><a href="https://www.instagram.com/explore/tags/%%% item hashtag %%%">#%%% item hashtag %%% @instagram</a></li>
+</ul>
+
+%%% condition endif %%%
+
 %%% condition if articles %%%
 <h2>%%% text News %%%</h2>
 <ul>
