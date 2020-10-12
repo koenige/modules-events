@@ -248,6 +248,10 @@ $zz['fields'][16]['type'] = 'url';
 $zz['fields'][16]['hide_in_list'] = true;
 $zz['fields'][16]['explanation'] = 'Only if the full description of the event is on another website.';
 
+$zz['fields'][18]['field_name'] = 'hashtag';
+$zz['fields'][18]['prefix'] = '#';
+$zz['fields'][18]['hide_in_list'] = true;
+
 $zz['fields'][14]['title'] = 'Description';
 $zz['fields'][14]['title_desc'] = '(optional)<br>';
 $zz['fields'][14]['field_name'] = 'description';

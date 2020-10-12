@@ -73,7 +73,7 @@ function mod_events_get_events($data, $id_field_name = '', $lang_field_name = ''
 			, IF(events.published = "yes", 1, NULL) AS published
 			, timezone
 			, main_event_id
-			, category_id, category
+			, category_id, category, hashtag
 		FROM events
 		LEFT JOIN events_media USING (event_id)
 		LEFT JOIN categories
