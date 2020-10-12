@@ -75,7 +75,6 @@ function mod_events_get_events($data, $id_field_name = '', $lang_field_name = ''
 			, main_event_id
 			, category_id, category, hashtag
 		FROM events
-		LEFT JOIN events_media USING (event_id)
 		LEFT JOIN categories
 			ON events.event_category_id = categories.category_id
 		WHERE events.event_id IN (%s)
