@@ -127,6 +127,17 @@ function mod_events_event($params) {
 //	if ($event['places']) {
 //		$page['head'] .= wrap_template('leaflet-head');
 //	}
+	$page['meta'] = [
+		0 => ['property' => 'og:url', 'content' => $zz_setting['host_base'].$zz_setting['request_uri']],
+		1 => ['property' => 'og:type', 'content' => 'website'],
+		2 => ['property' => 'og:title', 'content' => wrap_html_escape(strip_tags($event['event']))],
+		3 => ['property' => 'og:description', 'content' => wrap_html_escape(trim(strip_tags(markdown($event['abstract']))))]
+	];
+	if (!empty($event['images'])) {
+		$main_img = reset($event['images']);
+		$page['meta'][] 
+			= ['property' => 'og:image', 'content' => $zz_setting['host_base'].$zz_setting['files_path'].'/'.$main_img['filename'].'.'.wrap_get_setting('news_og_image_size').'.'.$main_img['thumb_extension'].'?v='.$main_img['version']];
+	}
 	$page['title'] = $event['event'].', '.wrap_date($event['duration']);
 	$page['breadcrumbs'][] = '<a href="'.$zz_setting['events_path'].'/'.$event['year'].'/">'.$event['year'].'</a>';
 	$page['breadcrumbs'][] = $event['event'];
