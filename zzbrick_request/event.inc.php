@@ -129,7 +129,7 @@ function mod_events_event($params) {
 //	}
 	$page['meta'] = [
 		0 => ['property' => 'og:url', 'content' => $zz_setting['host_base'].$zz_setting['request_uri']],
-		1 => ['property' => 'og:type', 'content' => 'website'],
+		1 => ['property' => 'og:type', 'content' => 'article'],
 		2 => ['property' => 'og:title', 'content' => wrap_html_escape(strip_tags($event['event']))],
 		3 => ['property' => 'og:description', 'content' => wrap_html_escape(trim(strip_tags(markdown($event['abstract']))))]
 	];
