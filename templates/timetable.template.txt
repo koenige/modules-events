@@ -37,6 +37,9 @@
 </p>
 %%% condition endif %%%
 %%% condition endif %%%
+%%% loop categories %%%
+%%% item category %%%%%% loopposition first|middle "," %%% 
+%%% loop end %%%
 %%% condition if cancelled %%%
 <del>
 %%% condition elseif identifier %%%

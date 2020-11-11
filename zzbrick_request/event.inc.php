@@ -169,10 +169,17 @@ function mod_events_event_timetable($event_id) {
 		}
 	}
 	$events_media = wrap_get_media($timetable_ids, 'events', 'event');
+
+	// get categories
+	$categories = mod_events_get_event_categories($timetable_ids);
 	
-	// save media
+	// save media, categories
 	foreach ($events as $day => $timetable) {
 		foreach ($timetable['hours'] as $timetable_event_id => $single_event) {
+			if (array_key_exists($timetable_event_id, $categories)) {
+				$events[$day]['hours'][$timetable_event_id]['categories']
+					= $categories[$timetable_event_id];
+			}
 			if (!array_key_exists($timetable_event_id, $events_media)) continue;
 			if (empty($events_media[$timetable_event_id]['images'])) continue;
 			$events[$day]['hours'][$timetable_event_id]['images']
