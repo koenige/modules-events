@@ -35,7 +35,7 @@ function mod_events_event($params) {
 		, wrap_category_id('event/event')
 		, $published
 	);
-	$event = wrap_db_fetch($sql, 'event_id');
+	$event = wrap_db_fetch($sql);
 	
 	if (count($event) !== 1) {
 		$event['not_found'] = true;
@@ -44,9 +44,8 @@ function mod_events_event($params) {
 		return $page;
 	}
 
-	require_once __DIR__.'/../zzbrick_request_get/events.inc.php';
-	$event = mod_events_get_events($event);
-	$event = reset($event);
+	require_once __DIR__.'/../zzbrick_request_get/event.inc.php';
+	$event = mod_events_get_event($event['event_id']);
 	
 	if ($event['main_event_id']) {
 		$sql = 'SELECT event_id, event, identifier
