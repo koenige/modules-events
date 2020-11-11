@@ -28,9 +28,11 @@ function mod_events_event($params) {
 	$sql = 'SELECT event_id
 	    FROM events
 	    WHERE identifier = "%d/%s"
+	    AND event_category_id = %d
 	    AND %s';
 	$sql = sprintf($sql
 		, $params[0], wrap_db_escape($params[1])
+		, wrap_category_id('event/event')
 		, $published
 	);
 	$event = wrap_db_fetch($sql, 'event_id');
@@ -48,9 +50,9 @@ function mod_events_event($params) {
 	
 	if ($event['main_event_id']) {
 		$sql = 'SELECT event_id, event, identifier
-			, CONCAT(date_begin, IFNULL(CONCAT("/", date_end), "")) AS duration
-			, TIME_FORMAT(time_begin, "%%H.%%i") AS time_begin
-			, TIME_FORMAT(time_end, "%%H.%%i") AS time_end
+				, CONCAT(date_begin, IFNULL(CONCAT("/", date_end), "")) AS duration
+				, TIME_FORMAT(time_begin, "%%H.%%i") AS time_begin
+				, TIME_FORMAT(time_end, "%%H.%%i") AS time_end
 			FROM events
 			WHERE event_id = %d';
 		$sql = sprintf($sql, $event['main_event_id']);
