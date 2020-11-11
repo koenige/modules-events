@@ -38,13 +38,7 @@ function mod_events_get_event($event_id) {
 		$event['events'] = wrap_translate($event['events'], 'events');
 
 		// categories
-		$sql = 'SELECT event_id, category_id, category
-			FROM events_categories
-			LEFT JOIN categories USING (category_id)
-			WHERE event_id IN (%d)';
-		$sql = sprintf($sql, implode(',', array_keys($event['events'])));
-		$categories = wrap_db_fetch($sql, ['event_id', 'category_id']);
-		$categories = wrap_translate($categories, 'categories');
+		$categories = mod_events_get_event_categories(array_keys($event['events']));
 		foreach ($categories as $main_event_id => $event_categories) {
 			$event['events'][$main_event_id]['categories'] = $event_categories;
 		}
@@ -75,4 +69,21 @@ function mod_events_get_event($event_id) {
 	}
 
 	return $event;
+}
+
+/**
+ * get categories for a list of event IDs
+ *
+ * @param array $event_ds
+ * @return array
+ */
+function mod_events_get_event_categories($event_ids) {
+	$sql = 'SELECT event_id, category_id, category
+		FROM events_categories
+		LEFT JOIN categories USING (category_id)
+		WHERE event_id IN (%d)';
+	$sql = sprintf($sql, implode(',', $event_ids));
+	$categories = wrap_db_fetch($sql, ['event_id', 'category_id']);
+	$categories = wrap_translate($categories, 'categories');
+	return $categories;
 }
