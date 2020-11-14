@@ -30,7 +30,7 @@
 %%% condition if time_begin | time_end %%% %%% text h %%% %%% item timezone "UTC<span class="timezone">%s</span>" %%%%%% condition endif %%%
 %%% condition if location %%%<br>
 %%% loop location %%%
-<span itemprop='location'>%%% condition if website %%%<a href="%%% item website %%%">%%% condition endif %%%%%% item contact %%%%%% item website </a> %%%%%% condition if platform %%% <span class="location_note">%%% text (Link will be announced to participants) %%%</span>%%% condition endif %%%</span>
+<span itemprop='location'>%%% condition if website %%%<a href="%%% item website %%%">%%% condition endif %%%%%% item contact %%%%%% item website </a> %%%%%% condition if show_direct_link %%%: <a href="%%% item direct_link %%%">%%% item direct_link %%%</a>%%% condition elseif platform %%% <span class="location_note">%%% text (Link will be announced to participants) %%%</span>%%% condition endif %%%</span>
 %%% loopposition first|middle ", " %%%
 %%% loop end %%%
 %%% condition endif %%%

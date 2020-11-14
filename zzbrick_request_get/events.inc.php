@@ -135,6 +135,7 @@ function mod_events_get_events($data, $id_field_name = '', $lang_field_name = ''
 				WHERE cd.contact_id = contacts.contact_id
 				AND cd.provider_category_id = %d) AS website
 			, SUBSTRING_INDEX(contact_categories.path, "/", -1) AS contact_path
+			, contacts.parameters
 		FROM events_contacts
 		LEFT JOIN contacts USING (contact_id)
 		LEFT JOIN categories
@@ -150,6 +151,11 @@ function mod_events_get_events($data, $id_field_name = '', $lang_field_name = ''
 		, implode(',', $ids)
 	);
 	$contactdata = wrap_db_fetch($sql, 'event_contact_id');
+	foreach ($contactdata as $event_contact_id => $contact) {
+		if (!$contact['parameters']) continue;
+		parse_str($contact['parameters'], $parameters);
+		$contactdata[$event_contact_id] += $parameters;
+	}
 	foreach ($langs as $lang) {
 		$contacts[$lang] = wrap_translate($contactdata, 'contacts', 'contact_id', true, $lang);
 		$contacts[$lang] = wrap_translate($contacts[$lang], 'countries', 'country_id', true, $lang);
@@ -157,6 +163,8 @@ function mod_events_get_events($data, $id_field_name = '', $lang_field_name = ''
 	}
 	foreach ($contacts as $lang => $contacts_per_lang) {
 		foreach ($contacts_per_lang as $event_contact_id => $contact) {
+			if (!empty($contact['show_direct_link']))
+				$contact['direct_link'] = $events[$lang][$contact['event_id']]['direct_link'];
 			$events[$lang][$contact['event_id']][$contact['path']][$event_contact_id] = $contact;
 		}
 	}
