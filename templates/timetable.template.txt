@@ -21,7 +21,7 @@
 %%% condition if following %%%
 %%% text following %%%
 %%% condition elseif time_begin | time_end %%%
-%%% condition if time_begin %%%%%% item time_begin "%s" %%%&nbsp;%%% text h %%%%%% condition endif %%%
+%%% condition if time_begin %%%%%% text h_prefix %%% %%% item time_begin "%s" %%%&nbsp;%%% text h %%%%%% condition endif %%%
 %%% condition if time_end %%%<wbr>–%%% item time_end "%s" %%%&nbsp;%%% text h %%%%%% condition endif %%%
 %%% condition else %%%
 –
