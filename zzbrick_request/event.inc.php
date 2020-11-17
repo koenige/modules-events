@@ -157,21 +157,22 @@ function mod_events_event_timetable($event_id) {
 		, $event_id
 	);
 	$events = wrap_db_fetch($sql, ['date_begin', 'event_id'], 'list date_begin hours');
-	if (!$events) return [];
+	$events_db = wrap_db_fetch($sql, 'event_id');
+	$events_db = wrap_translate($events_db, 'events');
+	if (!$events_db) return [];
 
 	// get media, set weekday
-	$timetable_ids = [];
-	foreach ($events as $day => $timetable) {
-		$first = reset($timetable['hours']);
-		$events[$day]['weekday'] = $first['weekday'];
-		foreach (array_keys($timetable['hours']) as $timetable_event_id) {
-			$timetable_ids[] = $timetable_event_id;
-		}
+	$events = [];
+	foreach ($events_db as $event_id => $event) {
+		$day = $event['date_begin'];
+		$events[$day]['date_begin'] = $day;
+		$events[$day]['weekday'] = $event['weekday'];
+		$events[$day]['hours'][] = $event;
 	}
-	$events_media = wrap_get_media($timetable_ids, 'events', 'event');
+	$events_media = wrap_get_media(array_keys($events_db), 'events', 'event');
 
 	// get categories
-	$categories = mod_events_get_event_categories($timetable_ids);
+	$categories = mod_events_get_event_categories(array_keys($events_db));
 	
 	// save media, categories
 	foreach ($events as $day => $timetable) {
