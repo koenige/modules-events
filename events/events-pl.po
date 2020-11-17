@@ -90,7 +90,7 @@ msgstr ""
 
 #: zzbrick_tables/events.php
 msgid "News?"
-msgstr ""
+msgstr "Aktualności?"
 
 #: zzbrick_tables/events.php
 msgid "Should the event appear in the news?"
@@ -126,7 +126,7 @@ msgstr ""
 
 #: zzbrick_tables/events.php
 msgid "Identifier"
-msgstr ""
+msgstr "Identyfikator"
 
 #: zzbrick_tables/events.php
 msgid "Created"
@@ -134,7 +134,7 @@ msgstr ""
 
 #: templates/event.template.txt
 msgid "Event not found"
-msgstr ""
+msgstr "Nie znaleziono wydarzenia"
 
 #: templates/event.template.txt
 msgid "Unfortunately we could not find an event at this URL."
@@ -154,31 +154,31 @@ msgstr "godz."
 
 #: templates/event.template.txt
 msgid "This event was cancelled."
-msgstr ""
+msgstr "Wydarzenie zostało anulowane."
 
 #: templates/event.template.txt
 msgid "Further information about <strong>%s</strong>"
-msgstr ""
+msgstr "Więcej informacji na temat <strong>%s</strong>"
 
 #: templates/event.template.txt zzbrick_tables/events.php
 msgid "Registration"
-msgstr ""
+msgstr "Rejstracja"
 
 #: templates/event.template.txt
 msgid "Supporting Event"
-msgstr ""
+msgstr "Wydarzenie wspierające"
 
 #: templates/event.template.txt
 msgid "News"
-msgstr ""
+msgstr "Aktualności"
 
 #: templates/event.template.txt
 msgid "Books"
-msgstr ""
+msgstr "Książki"
 
 #: templates/event.template.txt
 msgid "Book presentation"
-msgstr ""
+msgstr "Prezentacja książki"
 
 #: templates/event.template.txt
 msgid "Image"
@@ -202,11 +202,15 @@ msgstr ""
 
 #: templates/events.template.txt
 msgid "Cancelled:"
-msgstr ""
+msgstr "Anulowane:"
 
 #: templates/events.template.txt
 msgid "(Link will be announced to participants)"
 msgstr ""
+
+#: templates/events.template.txt
+msgid "following"
+msgstr "następnie"
 
 #: events/_functions.inc.php
 msgid "An event can only end after the start."
@@ -239,3 +243,15 @@ msgstr "Pt"
 #: zzbrick_request/event.inc.php zzbrick_request/events.inc.php
 msgid "Sat"
 msgstr "Sob"
+
+#: templates/timetable.template.txt
+msgid "Schedule (subject to change)"
+msgstr "Harmonogram (może ulec zmianie)"
+
+#: templates/timetable-programme.template.txt
+msgid "Events in the supporting program"
+msgstr ""
+
+#: templates/timetable-programme.template.txt
+msgid "cancelled!"
+msgstr ""
