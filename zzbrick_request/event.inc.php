@@ -48,7 +48,7 @@ function mod_events_event($params) {
 	$event = mod_events_get_event($event['event_id']);
 	
 	$lightbox = false;
-	$event['timetable'] = mod_events_event_timetable($event['event_id']);
+	$event['timetable'] = mod_events_get_event_timetable($event['event_id']);
 	if ($event['timetable']) {
 		foreach ($event['timetable'] as $day => $timetable) {
 			foreach ($timetable['hours'] as $timetable_event_id => $single_event) {
@@ -113,86 +113,4 @@ function mod_events_event($params) {
 	$page['breadcrumbs'][] = $event['event'];
 	$page['dont_show_h1'] = true;
 	return $page;
-}
-
-/**
- * get a timetable for an event
- *
- * @param int $event_id
- * @return array
- */
-function mod_events_event_timetable($event_id) {
-	global $zz_setting;
-	if ($zz_setting['local_access'] OR !empty($_SESSION['logged_in']))
-		$published = '(published = "yes" OR published = "no")';
-	else
-		$published = 'published = "yes"';
-
-	$sql = 'SELECT event_id, event, description, date_begin, date_end
-			, CONCAT(date_begin, IFNULL(CONCAT("/", date_end), "")) AS duration
-			, TIME_FORMAT(time_begin, "%%H.%%i") AS time_begin
-			, time_begin AS time_begin_iso
-			, TIME_FORMAT(time_end, "%%H.%%i") AS time_end
-			, time_end AS time_end_iso
-			, IF(following = "yes", 1, NULL) AS following
-			, IF(takes_place = "yes", NULL, 1) AS cancelled
-			, CONCAT(CASE DAYOFWEEK(date_begin) WHEN 1 THEN "%s"
-				WHEN 2 THEN "%s"
-				WHEN 3 THEN "%s"
-				WHEN 4 THEN "%s"
-				WHEN 5 THEN "%s"
-				WHEN 6 THEN "%s"
-				WHEN 7 THEN "%s" END) AS weekday
-			, event_category_id
-			, IF(event_category_id = %d, identifier, NULL) AS identifier
-		FROM events
-		WHERE %s
-		AND main_event_id = %d
-		ORDER BY sequence, date_begin, time_begin, time_end, identifier';
-	$sql = sprintf($sql
-		, wrap_text('Sun'), wrap_text('Mon'), wrap_text('Tue'), wrap_text('Wed') 
-		, wrap_text('Thu'), wrap_text('Fri'), wrap_text('Sat')
-		, wrap_category_id('event/event')
-		, $published
-		, $event_id
-	);
-	$events = wrap_db_fetch($sql, ['date_begin', 'event_id'], 'list date_begin hours');
-	$events_db = wrap_db_fetch($sql, 'event_id');
-	$events_db = wrap_translate($events_db, 'events');
-	if (!$events_db) return [];
-
-	// get media, set weekday
-	$events = [];
-	foreach ($events_db as $event_id => $event) {
-		$day = $event['date_begin'];
-		$events[$day]['date_begin'] = $day;
-		$events[$day]['weekday'] = $event['weekday'];
-		$events[$day]['hours'][] = $event;
-	}
-	$events_media = wrap_get_media(array_keys($events_db), 'events', 'event');
-
-	// get categories
-	$categories = mod_events_get_event_categories(array_keys($events_db));
-	
-	// save media, categories
-	foreach ($events as $day => $timetable) {
-		foreach ($timetable['hours'] as $timetable_event_id => $single_event) {
-			if (array_key_exists($timetable_event_id, $categories)) {
-				$events[$day]['hours'][$timetable_event_id]['categories']
-					= $categories[$timetable_event_id];
-			}
-			if (!array_key_exists($timetable_event_id, $events_media)) continue;
-			if (empty($events_media[$timetable_event_id]['images'])) continue;
-			$events[$day]['hours'][$timetable_event_id]['images']
-					= $events_media[$timetable_event_id]['images'];
-		}
-	}
-
-	$events = array_values($events);
-	$events['images'] = [];
-	foreach ($events_media as $event_id => $event_media) {
-		if (empty($event_media['images'])) continue;
-		$events['images'] += $event_media['images'];
-	}
-	return $events;
 }
