@@ -363,3 +363,5 @@ $zz['filter'][4]['type'] = 'list';
 $zz['filter'][4]['where'] = 'published';
 $zz['filter'][4]['selection']['yes'] = wrap_text('yes');
 $zz['filter'][4]['selection']['no'] = wrap_text('no');
+
+$zz_conf['copy'] = true;
