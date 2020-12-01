@@ -23,28 +23,11 @@
  * @return array
  */
 function mod_events_get_events($data, $id_field_name = '', $lang_field_name = '') {
-	global $zz_setting;
 	if (!$data) return $data;
-	
-	// ID in line or key?
-	if ($id_field_name) {
-		foreach ($data as $id => $line) {
-			$ids[$id] = $line[$id_field_name];
-		}
-	} else {
-		$ids = array_keys($data);
-	}
-	
-	// different language(s) from standard language?
-	if ($lang_field_name) {
-		foreach ($data as $id => $line) {
-			$languages[$id] = $line[$lang_field_name];
-			$langs[$line[$lang_field_name]] = $line[$lang_field_name];
-		}
-	} else {
-		$langs[] = $zz_setting['lang'];
-	}
-	
+
+	$ids = wrap_data_ids($data, $id_field_name);
+	$langs = wrap_data_langs($data, $id_field_name);
+
 	$sql = 'SELECT event_id, identifier
 			, event, abstract, events.description, date_begin, date_end
 			, IF(date_begin >= CURDATE(), registration, NULL) AS registration
@@ -94,17 +77,7 @@ function mod_events_get_events($data, $id_field_name = '', $lang_field_name = ''
 	}
 
 	// media
-	$mediadata = wrap_get_media(array_unique($ids), 'events', 'event');
-	foreach ($langs as $lang) {
-		$media[$lang] = wrap_translate($mediadata, 'media', 'medium_id', true, $lang);
-	}
-	foreach ($media as $lang => $media_per_lang) {
-		foreach ($media_per_lang as $event_id => $event_media) {
-			foreach ($langs as $lang) {
-				$events[$lang][$event_id] += $event_media;
-			}
-		}
-	}
+	$events = wrap_data_media($events, $ids, $langs, 'events', 'event');
 
 	// categories
 	$sql = 'SELECT event_category_id, event_id, category_id, category
@@ -168,16 +141,93 @@ function mod_events_get_events($data, $id_field_name = '', $lang_field_name = ''
 			$events[$lang][$contact['event_id']][$contact['path']][$event_contact_id] = $contact;
 		}
 	}
-	
+
+	$data = wrap_data_merge($data, $events, $id_field_name, $lang_field_name);
+	return $data;
+}	
+
+/**
+ * get list of IDs from data
+ * either data is indexed by ID or there is a separate ID field name
+ *
+ * @param array $data
+ * @param string $id_field_name
+ * @return array
+ */
+function wrap_data_ids($data, $id_field_name = '') {
+	if (!$id_field_name) return array_keys($data);
+
+	foreach ($data as $id => $line) {
+		$ids[$id] = $line[$id_field_name];
+	}
+	return $ids;
+}
+
+/**
+ * get list of language codes from data
+ * either use standard language code from settings
+ * or use a separate language field name
+ *
+ * @param array $data
+ * @param string $lang_field_name
+ * @return array
+ */
+function wrap_data_langs($data, $lang_field_name = '') {
+	global $zz_setting;
+	if (!$lang_field_name) return [$zz_setting['lang']];
+
+	foreach ($data as $id => $line) {
+		$langs[$line[$lang_field_name]] = $line[$lang_field_name];
+	}
+	return $langs;
+}	
+
+/**
+ * get media for data
+ *
+ * @param array $data
+ * @param array $ids
+ * @param array $langs
+ * @param string $table
+ * @param string $id_field
+ * @return array
+ */
+function wrap_data_media($data, $ids, $langs, $table, $id_field) {
+	$mediadata = wrap_get_media(array_unique($ids), $table, $id_field);
+	foreach ($langs as $lang) {
+		$media[$lang] = wrap_translate($mediadata, 'media', 'medium_id', true, $lang);
+	}
+	foreach ($media as $lang => $media_per_lang) {
+		foreach ($media_per_lang as $line_id => $line_media) {
+			foreach ($langs as $lang) {
+				$data[$lang][$line_id] += $line_media;
+			}
+		}
+	}
+	return $data;
+}
+
+/**
+ * merge language specific data to existing $data array
+ *
+ * @param array $data
+ * @param array $new_data
+ * @param string $id_field_name
+ * @param string $lang_field_name
+ * @return array
+ */
+function wrap_data_merge($data, $new_data, $id_field_name = '', $lang_field_name = '') {
+	global $zz_setting;
+
 	foreach ($data as $id => $line) {
 		if ($lang_field_name)
 			$lang = $line[$lang_field_name];
 		else
 			$lang = $zz_setting['lang'];
 		if ($id_field_name)
-			$data[$id] = array_merge($events[$lang][$line[$id_field_name]], $line);
+			$data[$id] = array_merge($new_data[$lang][$line[$id_field_name]], $line);
 		else
-			$data[$id] = array_merge($events[$lang][$id], $line);
+			$data[$id] = array_merge($new_data[$lang][$id], $line);
 	}
 	return $data;
-}	
+}
