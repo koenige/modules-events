@@ -20,9 +20,8 @@
  * @return array
  */
 function mod_events_get_event($event_id) {
-	require_once __DIR__.'/../zzbrick_request_get/events.inc.php';
-
-	$event = mod_events_get_events([$event_id => ['event_id' => $event_id]]);
+	require_once __DIR__.'/eventdata.inc.php';
+	$event = mod_events_get_eventdata([$event_id => ['event_id' => $event_id]]);
 	$event = reset($event);
 
 	// main event?

@@ -23,7 +23,7 @@
  * @param string $lang_field_name (optional, if not current language shall be used)
  * @return array
  */
-function mod_events_get_events($data, $settings = [], $id_field_name = '', $lang_field_name = '') {
+function mod_events_get_eventdata($data, $settings = [], $id_field_name = '', $lang_field_name = '') {
 	if (!$data) return $data;
 	global $zz_setting;
 	require_once $zz_setting['core'].'/data.inc.php';
