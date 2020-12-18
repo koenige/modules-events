@@ -242,6 +242,10 @@ msgstr ""
 msgid "Schedule (subject to change)"
 msgstr ""
 
+#: templates/timetable.template.txt
+msgid "Schedule"
+msgstr ""
+
 #: templates/timetable-programme.template.txt
 msgid "Events in the supporting program"
 msgstr ""

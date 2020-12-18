@@ -256,6 +256,10 @@ msgstr "Sa"
 msgid "Schedule (subject to change)"
 msgstr "Zeitplan (Änderungen vorbehalten)"
 
+#: templates/timetable.template.txt
+msgid "Schedule"
+msgstr "Zeitplan"
+
 #: templates/timetable-programme.template.txt
 msgid "Events in the supporting program"
 msgstr "Veranstaltungen im Rahmenprogramm"
