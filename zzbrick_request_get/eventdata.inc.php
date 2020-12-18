@@ -60,6 +60,7 @@ function mod_events_get_eventdata($data, $settings = [], $id_field_name = '', $l
 			, timezone
 			, main_event_id
 			, category_id, category, hashtag
+			, IF(CURDATE() > IFNULL(date_end, date_begin), 1, NULL) AS past_event
 		FROM events
 		LEFT JOIN categories
 			ON events.event_category_id = categories.category_id

@@ -11,7 +11,11 @@
 %%% condition if programme %%%
 <h2 id="timetable">%%% text Events in the supporting program %%%</h2>
 %%% condition else %%%
+%%% condition if past_event %%%
+<h2 id="timetable">%%% text Schedule %%%</h2>
+%%% condition else %%%
 <h2 id="timetable">%%% text Schedule (subject to change) %%%</h2>
+%%% condition endif %%%
 %%% condition endif %%%
 <table class="timetable">
 %%% loop start %%%
