@@ -29,7 +29,7 @@ function mod_events_get_eventdata($data, $settings = [], $id_field_name = '', $l
 	require_once $zz_setting['core'].'/data.inc.php';
 
 	$ids = wrap_data_ids($data, $id_field_name);
-	$langs = wrap_data_langs($data, $id_field_name);
+	$langs = wrap_data_langs($data, $lang_field_name);
 
 	$sql = 'SELECT event_id, identifier
 			, event, abstract, events.description, date_begin, date_end
