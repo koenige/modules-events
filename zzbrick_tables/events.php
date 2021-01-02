@@ -8,7 +8,7 @@
  * http://www.zugzwang.org/modules/events
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2005-2020 Gustaf Mossakowski
+ * @copyright Copyright © 2005-2021 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -324,8 +324,8 @@ $zz['sqlorder'] = ' ORDER BY date_begin DESC, IFNULL(time_begin, time_end) DESC,
 $zz['conditions'][1]['scope'] = 'record';
 $zz['conditions'][1]['where'] = 'takes_place = "no"';
 
-$zz['hooks']['before_insert'][] = 'mod_events_date_check';
-$zz['hooks']['before_update'][] = 'mod_events_date_check';
+$zz['hooks']['before_insert'][] = 'mf_events_date_check';
+$zz['hooks']['before_update'][] = 'mf_events_date_check';
 
 $zz['filter'][1]['sql'] = 'SELECT DISTINCT YEAR(date_begin) AS year_idf
 		, YEAR(date_begin) AS year

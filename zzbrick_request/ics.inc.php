@@ -8,7 +8,7 @@
  * http://www.zugzwang.org/modules/events
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2009, 2014-2020 Gustaf Mossakowski
+ * @copyright Copyright © 2009, 2014-2021 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -110,7 +110,7 @@ function mod_events_ics($params) {
 	$events = wrap_db_fetch($sql, 'event_id');
 	if (!$events) return false;
 
-	$events = mod_events_event_organisers($events);
+	$events = mf_events_event_organisers($events);
 
 	require_once $zz_setting['lib'].'/icalcreator/autoload.php';
 

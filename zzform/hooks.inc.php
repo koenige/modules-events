@@ -8,7 +8,7 @@
  * http://www.zugzwang.org/modules/events
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2020 Gustaf Mossakowski
+ * @copyright Copyright © 2020-2021 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -19,7 +19,7 @@
  * @param array $ops
  * @return array
  */
-function mod_events_date_check($ops) {
+function mf_events_date_check($ops) {
 	$changes = [];
 	foreach ($ops['planned'] as $index => $table) {
 		if ($table['table'] === 'events') {

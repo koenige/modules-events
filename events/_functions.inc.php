@@ -8,7 +8,7 @@
  * http://www.zugzwang.org/modules/events
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2020 Gustaf Mossakowski
+ * @copyright Copyright © 2020-2021 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -19,7 +19,7 @@
  * @param array $events, index on event_id
  * @return array $events with 'organiser'
  */
-function mod_events_event_organisers($events) {
+function mf_events_event_organisers($events) {
 	$sql = 'SELECT contact_id, event_id, contact
 			, IF(published = "yes", identifier, NULL) AS identifier
 		FROM events_contacts
