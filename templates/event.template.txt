@@ -5,14 +5,14 @@
 # http://www.zugzwang.org/modules/events
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2014-2020 Gustaf Mossakowski
+# @copyright Copyright © 2014-2021 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 # 
 %%% condition if not_found %%%
 <h1>%%% text Event not found %%%</h1>
 
-<p>%%% text Unfortunately we could not find an event at this URL. %%%
-<a href="%%% setting base %%%%%% setting events_url %%%/">%%% text Please take a look at our calendar. %%%</a></p>
+<p>%%% text Unfortunately we could not find an event under this URL. %%%
+<a href="%%% setting base %%%%%% setting events_path %%%/">%%% text Please take a look at our calendar. %%%</a></p>
 
 %%% condition else %%%
 <div itemscope itemtype="http://schema.org/Event" class="event js-gallery">

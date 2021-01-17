@@ -5,7 +5,7 @@
 # http://www.zugzwang.org/modules/events
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2020 Gustaf Mossakowski
+# @copyright Copyright © 2020-2021 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
 msgid ""
@@ -145,7 +145,7 @@ msgid "Event not found"
 msgstr "Veranstaltung nicht gefunden"
 
 #: templates/event.template.txt
-msgid "Unfortunately we could not find an event at this URL."
+msgid "Unfortunately we could not find an event under this URL."
 msgstr "Unter dieser Adresse konnten wir leider keine Veranstaltung finden."
 
 #: templates/event.template.txt
