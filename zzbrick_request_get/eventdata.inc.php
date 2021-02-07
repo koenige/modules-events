@@ -8,7 +8,7 @@
  * http://www.zugzwang.org/modules/events
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2020 Gustaf Mossakowski
+ * @copyright Copyright © 2020-2021 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -87,7 +87,7 @@ function mod_events_get_eventdata($data, $settings = [], $id_field_name = '', $l
 	$sql = 'SELECT event_category_id, event_id, category_id, category
 		FROM events_categories
 		LEFT JOIN categories USING (category_id)
-		WHERE event_id = %d
+		WHERE event_id IN (%s)
 		ORDER by categories.sequence, category';
 	$sql = sprintf($sql, implode(',', $ids));
 	$categorydata = wrap_db_fetch($sql, 'event_category_id');
@@ -121,7 +121,7 @@ function mod_events_get_eventdata($data, $settings = [], $id_field_name = '', $l
 		LEFT JOIN countries USING (country_id)
 	    LEFT JOIN categories contact_categories
 	    	ON contact_categories.category_id = contacts.contact_category_id
-		WHERE event_id IN (%d)
+		WHERE event_id IN (%s)
 		ORDER BY events_contacts.sequence, contact';
 	$sql = sprintf($sql
 		, wrap_category_id('provider/website')
