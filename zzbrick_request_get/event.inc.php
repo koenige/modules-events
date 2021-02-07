@@ -8,7 +8,7 @@
  * http://www.zugzwang.org/modules/events
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2020 Gustaf Mossakowski
+ * @copyright Copyright © 2020-2021 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -96,9 +96,10 @@ function mod_events_get_event_categories($event_ids) {
  * get a timetable for an event
  *
  * @param int $event_id
+ * @param string $lang (optional)
  * @return array
  */
-function mod_events_get_event_timetable($event_id) {
+function mod_events_get_event_timetable($event_id, $lang = false) {
 	global $zz_setting;
 	if ($zz_setting['local_access'] OR !empty($_SESSION['logged_in']))
 		$published = '(published = "yes" OR published = "no")';
@@ -113,13 +114,7 @@ function mod_events_get_event_timetable($event_id) {
 			, time_end AS time_end_iso
 			, IF(following = "yes", 1, NULL) AS following
 			, IF(takes_place = "yes", NULL, 1) AS cancelled
-			, CONCAT(CASE DAYOFWEEK(date_begin) WHEN 1 THEN "%s"
-				WHEN 2 THEN "%s"
-				WHEN 3 THEN "%s"
-				WHEN 4 THEN "%s"
-				WHEN 5 THEN "%s"
-				WHEN 6 THEN "%s"
-				WHEN 7 THEN "%s" END) AS weekday
+			, DAYOFWEEK(date_begin) AS weekday
 			, event_category_id
 			, IF(event_category_id = %d, identifier, NULL) AS identifier
 		FROM events
@@ -127,8 +122,6 @@ function mod_events_get_event_timetable($event_id) {
 		AND main_event_id = %d
 		ORDER BY sequence, date_begin, time_begin, time_end, identifier';
 	$sql = sprintf($sql
-		, wrap_text('Sun'), wrap_text('Mon'), wrap_text('Tue'), wrap_text('Wed') 
-		, wrap_text('Thu'), wrap_text('Fri'), wrap_text('Sat')
 		, wrap_category_id('event/event')
 		, $published
 		, $event_id
@@ -136,6 +129,7 @@ function mod_events_get_event_timetable($event_id) {
 	$events = wrap_db_fetch($sql, ['date_begin', 'event_id'], 'list date_begin hours');
 	$events_db = wrap_db_fetch($sql, 'event_id');
 	$events_db = wrap_translate($events_db, 'events');
+	$events_db = wrap_weekdays($events_db, ['weekday'], $lang);
 	if (!$events_db) return [];
 
 	// get media, set weekday
@@ -144,7 +138,7 @@ function mod_events_get_event_timetable($event_id) {
 		$day = $event['date_begin'];
 		$events[$day]['date_begin'] = $day;
 		$events[$day]['weekday'] = $event['weekday'];
-		$events[$day]['hours'][] = $event;
+		$events[$day]['hours'][$event_id] = $event;
 	}
 	$events_media = wrap_get_media(array_keys($events_db), 'events', 'event');
 
