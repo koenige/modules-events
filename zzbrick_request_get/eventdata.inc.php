@@ -42,20 +42,8 @@ function mod_events_get_eventdata($data, $settings = [], $id_field_name = '', $l
 			, time_end AS time_end_iso
 			, IF(takes_place = "yes", NULL, 1) AS cancelled
 			, YEAR(IFNULL(date_begin, date_end)) AS year
-			, CONCAT(CASE DAYOFWEEK(date_begin) WHEN 1 THEN "%s"
-				WHEN 2 THEN "%s"
-				WHEN 3 THEN "%s"
-				WHEN 4 THEN "%s"
-				WHEN 5 THEN "%s"
-				WHEN 6 THEN "%s"
-				WHEN 7 THEN "%s" END) AS weekday_begin
-			, CONCAT(CASE DAYOFWEEK(date_end) WHEN 1 THEN "%s"
-				WHEN 2 THEN "%s"
-				WHEN 3 THEN "%s"
-				WHEN 4 THEN "%s"
-				WHEN 5 THEN "%s"
-				WHEN 6 THEN "%s"
-				WHEN 7 THEN "%s" END) AS weekday_end
+			, DAYOFWEEK(date_begin) AS weekday_begin
+			, DAYOFWEEK(date_end) AS weekday_end
 			, IF(events.published = "yes", 1, NULL) AS published
 			, timezone
 			, main_event_id
@@ -67,17 +55,16 @@ function mod_events_get_eventdata($data, $settings = [], $id_field_name = '', $l
 		WHERE events.event_id IN (%s)
 		ORDER BY FIELD(events.event_id, %s)';
 	$sql = sprintf($sql
-		, wrap_text('Sun'), wrap_text('Mon'), wrap_text('Tue'), wrap_text('Wed')
-		, wrap_text('Thu'), wrap_text('Fri'), wrap_text('Sat')
-		, wrap_text('Sun'), wrap_text('Mon'), wrap_text('Tue'), wrap_text('Wed')
-		, wrap_text('Thu'), wrap_text('Fri'), wrap_text('Sat')
 		, implode(',', $ids), implode(',', $ids)
 	);
-	// @todo get correct translation for weekdays
 	$eventdata = wrap_db_fetch($sql, 'event_id');
 	foreach ($langs as $lang) {
 		$events[$lang] = wrap_translate($eventdata, 'events', '', true, $lang);
 		$events[$lang] = wrap_translate($events[$lang], 'categories', 'event_id', true, $lang);
+		$events[$lang] = wrap_weekdays($events[$lang], ['weekday_begin', 'weekday_end'], $lang);
+		foreach (array_keys($events[$lang]) as $event_id) {
+			$events[$lang][$event_id][$lang] = true;
+		}
 	}
 
 	// media
