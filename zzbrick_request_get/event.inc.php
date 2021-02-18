@@ -57,6 +57,8 @@ function mod_events_get_event($event_id) {
 		LEFT JOIN categories USING (category_id)
 		WHERE published = "yes"
 		AND event_id = %d
+		AND date <= CURDATE()
+		AND (ISNULL(date_to) OR date_to >= CURDATE())
 		GROUP BY article_id
 		ORDER BY date DESC, title';
 	$sql = sprintf($sql, $event['event_id']);
