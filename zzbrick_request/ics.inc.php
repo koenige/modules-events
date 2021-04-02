@@ -207,6 +207,8 @@ function mod_events_ics($params) {
 		$e->setDtstamp(str_replace(' ', 'T', $timestamp).'Z');
 	}
 
+	$v->vtimezonePopulate();
+
 	$page['text'] = $v->createCalendar();
 	$page['content_type'] = 'ics';
 	return $page;
