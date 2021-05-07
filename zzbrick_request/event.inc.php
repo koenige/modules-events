@@ -2,13 +2,13 @@
 
 /**
  * events module
- * Table definition for 'events'
+ * output of a single event
  *
  * Part of »Zugzwang Project«
- * http://www.zugzwang.org/modules/events
+ * https://www.zugzwang.org/modules/events
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2014-2020 Gustaf Mossakowski
+ * @copyright Copyright © 2014-2021 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -51,6 +51,7 @@ function mod_events_event($params) {
 	$event['timetable'] = mod_events_get_event_timetable($event['event_id']);
 	if ($event['timetable']) {
 		foreach ($event['timetable'] as $day => $timetable) {
+			if (!is_numeric($day)) continue; // images
 			foreach ($timetable['hours'] as $timetable_event_id => $single_event) {
 				if ($single_event['event_category_id'] === wrap_category_id('event/event')) {
 					$event['timetable']['programme'] = true;
