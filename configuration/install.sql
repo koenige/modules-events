@@ -1,13 +1,15 @@
 /**
- * Zugzwang Project
- * SQL for installation of events module
+ * events module
+ * SQL for installation
  *
- * http://www.zugzwang.org/modules/events
+ * Part of »Zugzwang Project«
+ * https://www.zugzwang.org/modules/events
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2020 Gustaf Mossakowski
+ * @copyright Copyright © 2020-2021 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
+
 
 CREATE TABLE `events` (
   `event_id` int unsigned NOT NULL AUTO_INCREMENT,
@@ -41,7 +43,8 @@ INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`
 INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'events', 'event_id', (SELECT DATABASE()), 'events', 'event_id', 'main_event_id', 'no-delete');
 
 INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Events', NULL, NULL, 'events', NULL, NULL, NOW());
-INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Place', NULL, (SELECT category_id FROM categories WHERE identifier = 'contact'), 'contact/place', NULL, NULL, NOW());
+INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Place', NULL, (SELECT category_id FROM categories c WHERE path = 'contact'), 'contact/place', NULL, NULL, NOW());
+
 
 CREATE TABLE `events_categories` (
   `event_category_id` int unsigned NOT NULL AUTO_INCREMENT,
@@ -55,6 +58,7 @@ CREATE TABLE `events_categories` (
 
 INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'categories', 'category_id', (SELECT DATABASE()), 'events_categories', 'event_category_id', 'category_id', 'no-delete');
 INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'events', 'event_id', (SELECT DATABASE()), 'events_categories', 'event_category_id', 'event_id', 'delete');
+
 
 CREATE TABLE `events_contacts` (
   `event_contact_id` int unsigned NOT NULL AUTO_INCREMENT,
@@ -74,6 +78,7 @@ INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`
 INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'categories ', 'category_id', (SELECT DATABASE()), 'events_contacts ', 'event_contact_id', 'role_category_id', 'no-delete');
 
 INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Roles', NULL, NULL, 'roles', NULL, NULL, NOW());
+
 
 CREATE TABLE `events_media` (
   `event_medium_id` int unsigned NOT NULL AUTO_INCREMENT,
