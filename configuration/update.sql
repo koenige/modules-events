@@ -1,8 +1,9 @@
 /**
- * Zugzwang Project
- * SQL updates for events module
+ * events module
+ * SQL updates 
  *
- * http://www.zugzwang.org/modules/events
+ * Part of »Zugzwang Project«
+ * https://www.zugzwang.org/modules/events
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
  * @copyright Copyright © 2020 Gustaf Mossakowski
