@@ -42,6 +42,10 @@ CREATE TABLE `events` (
 INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'categories', 'category_id', (SELECT DATABASE()), 'events', 'event_id', 'event_category_id', 'no-delete');
 INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'events', 'event_id', (SELECT DATABASE()), 'events', 'event_id', 'main_event_id', 'no-delete');
 
+INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Event', NULL, NULL, 'event', NULL, NULL, NOW());
+INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Event', NULL, (SELECT category_id FROM categories c WHERE path = 'event'), 'event/event', NULL, NULL, NOW());
+INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Deadline', NULL, (SELECT category_id FROM categories c WHERE path = 'event'), 'event/deadline', NULL, NULL, NOW());
+INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Program item', NULL, (SELECT category_id FROM categories c WHERE path = 'event'), 'event/program-item', '&alias=event/item', NULL, NOW());
 INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Events', NULL, NULL, 'events', NULL, NULL, NOW());
 INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Place', NULL, (SELECT category_id FROM categories c WHERE path = 'contact'), 'contact/place', NULL, NULL, NOW());
 
@@ -78,6 +82,9 @@ INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`
 INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'categories ', 'category_id', (SELECT DATABASE()), 'events_contacts ', 'event_contact_id', 'role_category_id', 'no-delete');
 
 INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Roles', NULL, NULL, 'roles', NULL, NULL, NOW());
+INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Author', NULL, (SELECT category_id FROM categories c WHERE path = 'roles'), 'roles/author', NULL, NULL, NOW());
+INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Location', NULL, (SELECT category_id FROM categories c WHERE path = 'roles'), 'roles/location', NULL, NULL, NOW());
+INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Organiser', NULL, (SELECT category_id FROM categories c WHERE path = 'roles'), 'roles/organiser', NULL, NULL, NOW());
 
 
 CREATE TABLE `events_media` (
