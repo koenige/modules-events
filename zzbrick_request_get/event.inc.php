@@ -116,8 +116,8 @@ function mod_events_get_event_timetable($event_id, $lang = false) {
 			, time_end AS time_end_iso
 			, IF(following = "yes", 1, NULL) AS following
 			, IF(takes_place = "yes", NULL, 1) AS cancelled
-			, DAYOFWEEK(date_begin) AS weekday
-			, event_category_id
+			, DAYOFWEEK(date_begin) AS weekday_begin
+			, event_category_id AS category_id
 			, IF(event_category_id = %d, identifier, NULL) AS identifier
 		FROM events
 		WHERE %s
@@ -128,18 +128,19 @@ function mod_events_get_event_timetable($event_id, $lang = false) {
 		, $published
 		, $event_id
 	);
-	$events = wrap_db_fetch($sql, ['date_begin', 'event_id'], 'list date_begin hours');
 	$events_db = wrap_db_fetch($sql, 'event_id');
 	$events_db = wrap_translate($events_db, 'events');
-	$events_db = wrap_weekdays($events_db, ['weekday'], $lang);
+	$events_db = wrap_weekdays($events_db, ['weekday_begin'], $lang);
 	if (!$events_db) return [];
+
+//	$events_db = mod_events_get_eventdata($events_db);
 
 	// get media, set weekday
 	$events = [];
 	foreach ($events_db as $event_id => $event) {
 		$day = $event['date_begin'];
 		$events[$day]['date_begin'] = $day;
-		$events[$day]['weekday'] = $event['weekday'];
+		$events[$day]['weekday_begin'] = $event['weekday_begin'];
 		$events[$day]['hours'][$event_id] = $event;
 	}
 	$events_media = wrap_get_media(array_keys($events_db), 'events', 'event');

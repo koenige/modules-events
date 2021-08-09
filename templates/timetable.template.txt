@@ -2,10 +2,10 @@
 # template for timetable
 # 
 # Part of »Zugzwang Project«
-# http://www.zugzwang.org/modules/events
+# https://www.zugzwang.org/modules/events
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2015-2018, 2020 Gustaf Mossakowski
+# @copyright Copyright © 2015-2018, 2020-2021 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
 %%% condition if programme %%%
@@ -19,7 +19,7 @@
 %%% condition endif %%%
 <table class="timetable">
 %%% loop start %%%
-<tr><th colspan="2"><h3>%%% item weekday %%% %%% item date_begin wrap_date %%%</h3></th></tr>
+<tr><th colspan="2"><h3>%%% item weekday_begin %%% %%% item date_begin wrap_date %%%</h3></th></tr>
 %%% loop hours %%%
 <tr><th class="time">
 %%% condition if following %%%
