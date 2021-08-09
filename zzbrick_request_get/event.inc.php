@@ -108,32 +108,13 @@ function mod_events_get_event_timetable($event_id, $lang = false) {
 	else
 		$published = 'published = "yes"';
 
-	$sql = 'SELECT event_id, event, description, date_begin, date_end
-			, CONCAT(date_begin, IFNULL(CONCAT("/", date_end), "")) AS duration
-			, TIME_FORMAT(time_begin, "%%H.%%i") AS time_begin
-			, time_begin AS time_begin_iso
-			, TIME_FORMAT(time_end, "%%H.%%i") AS time_end
-			, time_end AS time_end_iso
-			, IF(following = "yes", 1, NULL) AS following
-			, IF(takes_place = "yes", NULL, 1) AS cancelled
-			, DAYOFWEEK(date_begin) AS weekday_begin
-			, event_category_id AS category_id
-			, IF(event_category_id = %d, identifier, NULL) AS identifier
-		FROM events
+	$sql = 'SELECT event_id FROM events
 		WHERE %s
 		AND main_event_id = %d
 		ORDER BY sequence, date_begin, time_begin, time_end, identifier';
-	$sql = sprintf($sql
-		, wrap_category_id('event/event')
-		, $published
-		, $event_id
-	);
+	$sql = sprintf($sql, $published, $event_id);
 	$events_db = wrap_db_fetch($sql, 'event_id');
-	$events_db = wrap_translate($events_db, 'events');
-	$events_db = wrap_weekdays($events_db, ['weekday_begin'], $lang);
-	if (!$events_db) return [];
-
-//	$events_db = mod_events_get_eventdata($events_db);
+	$events_db = mod_events_get_eventdata($events_db);
 
 	// get media, set weekday
 	$events = [];
@@ -143,30 +124,12 @@ function mod_events_get_event_timetable($event_id, $lang = false) {
 		$events[$day]['weekday_begin'] = $event['weekday_begin'];
 		$events[$day]['hours'][$event_id] = $event;
 	}
-	$events_media = wrap_get_media(array_keys($events_db), 'events', 'event');
-
-	// get categories
-	$categories = mod_events_get_event_categories(array_keys($events_db));
-	
-	// save media, categories
-	foreach ($events as $day => $timetable) {
-		foreach ($timetable['hours'] as $timetable_event_id => $single_event) {
-			if (array_key_exists($timetable_event_id, $categories)) {
-				$events[$day]['hours'][$timetable_event_id]['categories']
-					= $categories[$timetable_event_id];
-			}
-			if (!array_key_exists($timetable_event_id, $events_media)) continue;
-			if (empty($events_media[$timetable_event_id]['images'])) continue;
-			$events[$day]['hours'][$timetable_event_id]['images']
-					= $events_media[$timetable_event_id]['images'];
-		}
-	}
 
 	$events = array_values($events);
 	$events['images'] = [];
-	foreach ($events_media as $event_id => $event_media) {
-		if (empty($event_media['images'])) continue;
-		$events['images'] += $event_media['images'];
+	foreach ($events_db as $event_id => $event) {
+		if (empty($event['images'])) continue;
+		$events['images'] += $event['images'];
 	}
 	return $events;
 }
