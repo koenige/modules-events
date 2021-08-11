@@ -114,6 +114,7 @@ function mod_events_get_event_timetable($event_id, $lang = false) {
 		ORDER BY sequence, date_begin, time_begin, time_end, identifier';
 	$sql = sprintf($sql, $published, $event_id);
 	$events_db = wrap_db_fetch($sql, 'event_id');
+	if (!$events_db) return [];
 	$events_db = mod_events_get_eventdata($events_db);
 
 	// get media, set weekday
