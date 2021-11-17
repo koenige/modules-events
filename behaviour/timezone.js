@@ -3,7 +3,7 @@
  * JavaScript to display time and date for an event in local timezone
  *
  * Part of »Zugzwang Project«
- * http://www.zugzwang.org/modules/events
+ * https://www.zugzwang.org/modules/events
  *
  * @copyright Copyright © 2020 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0

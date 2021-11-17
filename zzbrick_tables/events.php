@@ -5,7 +5,7 @@
  * Table definition for 'events'
  *
  * Part of »Zugzwang Project«
- * http://www.zugzwang.org/modules/events
+ * https://www.zugzwang.org/modules/events
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
  * @copyright Copyright © 2005-2021 Gustaf Mossakowski

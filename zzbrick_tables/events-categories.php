@@ -5,7 +5,7 @@
  * Table definition for 'events/categories'
  *
  * Part of »Zugzwang Project«
- * http://www.zugzwang.org/modules/events
+ * https://www.zugzwang.org/modules/events
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
  * @copyright Copyright © 2014, 2018, 2020 Gustaf Mossakowski

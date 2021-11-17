@@ -5,7 +5,7 @@
  * Database hooks for zzform
  *
  * Part of »Zugzwang Project«
- * http://www.zugzwang.org/modules/events
+ * https://www.zugzwang.org/modules/events
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
  * @copyright Copyright © 2020-2021 Gustaf Mossakowski
