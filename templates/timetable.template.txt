@@ -57,6 +57,9 @@
 %%% condition endif %%%
 %%% condition unless identifier %%%
 %%% item description markdown %%%
+%%% loop veranstaltungsort %%%
+<p><em>%%% item contact %%%, %%% item postcode %%% %%% item place %%% %%% item description %%%</em></p>
+%%% loop end %%%
 %%% condition endif %%%</td></tr>
 %%% loop end %%%
 %%% loop end %%%
