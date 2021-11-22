@@ -80,7 +80,8 @@ function mod_events_ics($params) {
 				) SEPARATOR ", ") FROM events_contacts	
 				LEFT JOIN contacts USING (contact_id)
 				LEFT JOIN addresses USING (contact_id)
-				LEFT JOIN countries USING (country_id)
+				LEFT JOIN countries
+					ON addresses.country_id = countries.country_id
 				WHERE events_contacts.event_id = events.event_id
 				AND events_contacts.role_category_id = %d), 
 				(SELECT GROUP_CONCAT(CONCAT(
@@ -88,7 +89,8 @@ function mod_events_ics($params) {
 				) SEPARATOR ", ") FROM events_contacts	
 				LEFT JOIN contacts USING (contact_id)
 				LEFT JOIN addresses USING (contact_id)
-				LEFT JOIN countries USING (country_id)
+				LEFT JOIN countries
+					ON addresses.country_id = countries.country_id
 				WHERE events_contacts.event_id = events.main_event_id
 				AND events_contacts.role_category_id = %d)
 			) AS places
