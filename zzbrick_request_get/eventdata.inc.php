@@ -97,7 +97,7 @@ function mod_events_get_eventdata($data, $settings = [], $id_field_name = '', $l
 			, IF(address != contact, address, "") AS address
 			, postcode
 			, IF(place != contact, place, "") AS place
-			, country, country_id, contacts.description
+			, country, countries.country_id, contacts.description
 			, (SELECT identification FROM contactdetails cd
 				WHERE cd.contact_id = contacts.contact_id
 				AND cd.provider_category_id = %d) AS website
@@ -108,7 +108,8 @@ function mod_events_get_eventdata($data, $settings = [], $id_field_name = '', $l
 		LEFT JOIN categories
 			ON events_contacts.role_category_id = categories.category_id
 		LEFT JOIN addresses USING (contact_id)
-		LEFT JOIN countries USING (country_id)
+		LEFT JOIN countries
+			ON addresses.country_id = countries.country_id
 	    LEFT JOIN categories contact_categories
 	    	ON contact_categories.category_id = contacts.contact_category_id
 		WHERE event_id IN (%s)
