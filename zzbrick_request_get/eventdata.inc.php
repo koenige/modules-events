@@ -72,8 +72,26 @@ function mod_events_get_eventdata($data, $settings = [], $id_field_name = '', $l
 
 	// media
 	$events = wrap_data_media($events, $ids, $langs, 'events', 'event');
-
+	
 	// categories
+	$events = mod_events_get_eventdata_categories($events, $ids, $langs);
+
+	// places
+	$events = mod_events_get_eventdata_places($events, $ids, $langs);
+
+	$data = wrap_data_merge($data, $events, $id_field_name, $lang_field_name);
+	return $data;
+}	
+
+/**
+ * get categories per event
+ *
+ * @param array $events
+ * @param array $ids
+ * @param array $langs
+ * @return array
+ */
+function mod_events_get_eventdata_categories($events, $ids, $langs) {
 	$sql = 'SELECT event_category_id, event_id, category_id, category
 		FROM events_categories
 		LEFT JOIN categories USING (category_id)
@@ -89,8 +107,18 @@ function mod_events_get_eventdata($data, $settings = [], $id_field_name = '', $l
 			$events[$lang][$category['event_id']]['categories'][$event_category_id] = $category; 
 		}
 	}
+	return $events;
+}
 
-	// places
+/**
+ * get places per event
+ *
+ * @param array $events
+ * @param array $ids
+ * @param array $langs
+ * @return array
+ */
+function mod_events_get_eventdata_places($events, $ids, $langs) {
 	$sql = 'SELECT event_id, event_contact_id, contact, contact_id
 			, categories.category_id, categories.category
 			, SUBSTRING_INDEX(categories.path, "/", -1) AS path
@@ -136,7 +164,5 @@ function mod_events_get_eventdata($data, $settings = [], $id_field_name = '', $l
 			$events[$lang][$contact['event_id']][$contact['path']][$event_contact_id] = $contact;
 		}
 	}
-
-	$data = wrap_data_merge($data, $events, $id_field_name, $lang_field_name);
-	return $data;
-}	
+	return $events;
+}
