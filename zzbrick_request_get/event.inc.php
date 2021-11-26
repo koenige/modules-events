@@ -26,21 +26,7 @@ function mod_events_get_event($event_id) {
 
 	// main event?
 	if ($event['main_event_id']) {
-		$sql = 'SELECT event_id, event, identifier
-				, CONCAT(date_begin, IFNULL(CONCAT("/", date_end), "")) AS duration
-				, TIME_FORMAT(time_begin, "%%H.%%i") AS time_begin
-				, TIME_FORMAT(time_end, "%%H.%%i") AS time_end
-			FROM events
-			WHERE event_id = %d';
-		$sql = sprintf($sql, $event['main_event_id']);
-		$event['events'] = wrap_db_fetch($sql, 'event_id');
-		$event['events'] = wrap_translate($event['events'], 'events');
-
-		// categories
-		$categories = mod_events_get_event_categories(array_keys($event['events']));
-		foreach ($categories as $main_event_id => $event_categories) {
-			$event['events'][$main_event_id]['categories'] = $event_categories;
-		}
+		$event['events'] = mod_events_get_eventdata([$event['main_event_id'] => ['event_id' => $event['main_event_id']]]);
 	}
 
 	// articles?
@@ -70,28 +56,6 @@ function mod_events_get_event($event_id) {
 	}
 
 	return $event;
-}
-
-/**
- * get categories for a list of event IDs
- *
- * @param array $event_ds
- * @return array
- */
-function mod_events_get_event_categories($event_ids) {
-	$sql = 'SELECT event_category_id, event_id, category_id, category
-		FROM events_categories
-		LEFT JOIN categories USING (category_id)
-		WHERE event_id IN (%d)';
-	$sql = sprintf($sql, implode(',', $event_ids));
-	$data = wrap_db_fetch($sql, 'event_category_id');
-	$data = wrap_translate($data, 'categories', 'category_id');
-	$categories = [];
-	foreach ($data as $line) {
-		unset($line['event_category_id']);
-		$categories[$line['event_id']][$line['category_id']] = $line;
-	}
-	return $categories;
 }
 
 /**
