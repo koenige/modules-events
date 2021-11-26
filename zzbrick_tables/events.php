@@ -264,6 +264,7 @@ $zz['fields'][14]['typo_cleanup'] = true;
 $zz['fields'][17]['title'] = 'Registration';
 $zz['fields'][17]['title_desc'] = '(optional)<br>';
 $zz['fields'][17]['field_name'] = 'registration';
+$zz['fields'][17]['explanation'] = 'Registration information; will be hidden after the end of the event.';
 $zz['fields'][17]['type'] = 'memo';
 $zz['fields'][17]['hide_in_list'] = true;
 $zz['fields'][17]['rows'] = 5;

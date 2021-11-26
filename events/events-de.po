@@ -140,6 +140,12 @@ msgstr "Kennung"
 msgid "Created"
 msgstr "Erstellt"
 
+#: zzbrick_tables/events.php
+msgid ""
+"Registration information; will be hidden after the end of the event."
+msgstr ""
+"Informationen zur Anmeldung; werden nach Ende der Veranstaltung ausgeblendet."
+
 #: templates/event.template.txt
 msgid "Event not found"
 msgstr "Veranstaltung nicht gefunden"

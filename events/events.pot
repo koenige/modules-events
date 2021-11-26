@@ -126,6 +126,10 @@ msgstr ""
 msgid "Created"
 msgstr ""
 
+#: zzbrick_tables/events.php
+msgid "Registration information; will be hidden after the end of the event."
+msgstr ""
+
 #: templates/event.template.txt
 msgid "Event not found"
 msgstr ""
