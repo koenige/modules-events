@@ -98,9 +98,9 @@ function mod_events_get_eventdata_categories($events, $ids, $langs) {
 		WHERE event_id IN (%s)
 		ORDER by categories.sequence, category';
 	$sql = sprintf($sql, implode(',', $ids));
-	$categorydata = wrap_db_fetch($sql, 'event_category_id');
+	$data = wrap_db_fetch($sql, 'event_category_id');
 	foreach ($langs as $lang) {
-		$categories[$lang] = wrap_translate($categorydata, 'categories', 'category_id', true, $lang);
+		$categories[$lang] = wrap_translate($data, 'categories', 'category_id', true, $lang);
 	}
 	foreach ($categories as $lang => $categories_per_lang) {
 		foreach ($categories_per_lang as $event_category_id => $category) {
@@ -146,14 +146,14 @@ function mod_events_get_eventdata_places($events, $ids, $langs) {
 		, wrap_category_id('provider/website')
 		, implode(',', $ids)
 	);
-	$contactdata = wrap_db_fetch($sql, 'event_contact_id');
-	foreach ($contactdata as $event_contact_id => $contact) {
+	$data = wrap_db_fetch($sql, 'event_contact_id');
+	foreach ($$data as $event_contact_id => $contact) {
 		if (!$contact['parameters']) continue;
 		parse_str($contact['parameters'], $parameters);
-		$contactdata[$event_contact_id] += $parameters;
+		$data[$event_contact_id] += $parameters;
 	}
 	foreach ($langs as $lang) {
-		$contacts[$lang] = wrap_translate($contactdata, 'contacts', 'contact_id', true, $lang);
+		$contacts[$lang] = wrap_translate($data, 'contacts', 'contact_id', true, $lang);
 		$contacts[$lang] = wrap_translate($contacts[$lang], 'countries', 'country_id', true, $lang);
 		$contacts[$lang] = wrap_translate($contacts[$lang], 'categories', 'category_id', true, $lang);
 	}
