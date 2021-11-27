@@ -33,6 +33,7 @@ function mod_events_get_eventdata($data, $settings = [], $id_field_name = '', $l
 
 	$sql = 'SELECT event_id
 			, IF(event_category_id = %d, identifier, NULL) AS identifier
+			, identifier AS uid
 			, event, abstract, events.description, date_begin, date_end
 			, IF(date_begin >= CURDATE(), registration, NULL) AS registration
 			, direct_link
@@ -131,6 +132,7 @@ function mod_events_get_eventdata_places($events, $ids, $langs) {
 				AND cd.provider_category_id = %d) AS website
 			, SUBSTRING_INDEX(contact_categories.path, "/", -1) AS contact_path
 			, contacts.parameters
+			, categories.parameters AS category_parameters
 		FROM events_contacts
 		LEFT JOIN contacts USING (contact_id)
 		LEFT JOIN categories
@@ -159,9 +161,19 @@ function mod_events_get_eventdata_places($events, $ids, $langs) {
 	}
 	foreach ($contacts as $lang => $contacts_per_lang) {
 		foreach ($contacts_per_lang as $event_contact_id => $contact) {
+			$path = $contact['path'];
+			if ($contact['category_parameters']) {
+				parse_str($contact['category_parameters'], $params);
+				if (!empty($params['alias'])) {
+					if (!strpos($params['alias'], '/'))
+						$path = $params['alias'];
+					else
+						$path = substr($params['alias'], strrpos($params['alias'], '/') + 1);
+				}
+			}
 			if (!empty($contact['show_direct_link']))
 				$contact['direct_link'] = $events[$lang][$contact['event_id']]['direct_link'];
-			$events[$lang][$contact['event_id']][$contact['path']][$event_contact_id] = $contact;
+			$events[$lang][$contact['event_id']][$path][$event_contact_id] = $contact;
 		}
 	}
 	return $events;
