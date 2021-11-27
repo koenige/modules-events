@@ -93,6 +93,15 @@ function mod_events_ics($params) {
 
 	foreach ($events as $event) {
 		$e = $v->newVevent();
+		// inherit from main_event
+		if (!empty($event['main_event_id'])) {
+			$inherits = ['organiser', 'location'];
+			foreach ($inherits as $inherit) {
+				if (!empty($event[$inherit])) continue;
+				if (empty($events[$event['main_event_id']][$inherit])) continue;
+				$event[$inherit] = $events[$event['main_event_id']][$inherit];
+			}
+		}
 		// hour
 		if (empty($event['main_event_id']) AND count($events) > 1) {
 			unset($event['hour']); // don't show start and end date if timetable is present
@@ -190,16 +199,16 @@ function mod_events_ics($params) {
 			foreach ($event['location'] as $location) {
 				$locations[] = $location['contact']
 					.(!empty($location['address']) ? "\n".$location['address'] : '')
-					.(!empty($location['postcode']) ? "\n".$location['postcode']." " : '')
 					.(($location['place'] AND $location['place'] !== $location['contact'])
-						? (empty($location['postcode']) ? "\n": '').$location['place'] : ''
+						? "\n".(!empty($location['postcode']) ? $location['postcode']." " : '').$location['place']
+						: ''
 					)
 					.(!empty($location['country']) ? "\n".$location['country'] : '');
 			}
 			$e->setLocation(implode(', ', $locations));
 		}
 		
-		$e->setUid($event['identifier'].'@'.$zz_setting['site']);
+		$e->setUid($event['uid'].'@'.$zz_setting['site']);
 		$timestamp = gmdate('Ymd His', strtotime($event['timestamp']));
 		$e->setDtstamp(str_replace(' ', 'T', $timestamp).'Z');
 	}
