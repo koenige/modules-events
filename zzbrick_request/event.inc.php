@@ -60,6 +60,7 @@ function mod_events_event($params) {
 				$lightbox = true;
 			}
 		}
+		if (!empty($event['past_event'])) $event['timetable']['past_event'] = true;
 		$event['timetable'] = wrap_template('timetable', $event['timetable']);
 	} else {
 		$event['timetable'] = '';
@@ -68,6 +69,20 @@ function mod_events_event($params) {
 	if (strstr($event['description'], '%%% timetable %%%')) {
 		$event['description'] = str_replace('%%% timetable %%%', $event['timetable'], $event['description']);
 		unset ($event['timetable']);
+	}
+
+	if (wrap_get_setting('events_leaflet_map')) {
+		$event['places'] = [];
+		foreach ($event['location'] as $event_contact_id => $location) {
+			if (empty($location['latitude'])) continue;
+			if (empty($location['longitude'])) continue;
+			$event['places'][$event_contact_id] = $location;
+		}
+		if ($event['places']) {
+			$event['map'] = wrap_template('places-geojson', $event['places']);
+			$event['map'] .= wrap_template('leaflet');
+			$page['head'] = wrap_template('leaflet-head');
+		}
 	}
 
 	foreach ($event as $field => $values) {
@@ -84,20 +99,15 @@ function mod_events_event($params) {
 	if (!empty($event['images'])) {
 		$lightbox = true;
 	}
-	brick_request_links($event['description'], $event, 'sequence');
-	$page['head'] = '';
 	if ($lightbox) {
 		$page['extra']['magnific_popup'] = true;
 	}
+	brick_request_links($event['description'], $event, 'sequence');
 	
 	if (!empty($event['cancelled'])) {
 		$page['status'] = 404;
 	}
 	$page['text'] = wrap_template('event', $event);
-// @todo check for latitude, longitude in $event['location']
-//	if ($event['places']) {
-//		$page['head'] .= wrap_template('leaflet-head');
-//	}
 	$page['meta'] = [
 		0 => ['property' => 'og:url', 'content' => $zz_setting['host_base'].$zz_setting['request_uri']],
 		1 => ['property' => 'og:type', 'content' => 'article'],
