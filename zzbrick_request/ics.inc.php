@@ -57,67 +57,34 @@ function mod_events_ics($params) {
       non-inclusive end of the event.
 	*/
 
-	// @todo translate country name
 	$sql = 'SELECT events.event_id
 			, DATE_FORMAT(IFNULL(events.date_begin, events.date_end), "%%Y%%m%%d") AS date_begin
 			, DATE_FORMAT(events.time_begin, "T%%H%%i%%s") AS time_begin
 			, DATE_FORMAT(IFNULL(events.date_end, events.date_begin), "%%Y%%m%%d") AS date_end
 			, DATE_FORMAT(events.time_end, "T%%H%%i%%s") AS time_end
 			, DATE_FORMAT(DATE_SUB(CONCAT(IFNULL(events.date_end, events.date_begin), " ", IFNULL(events.time_end, "00:00:00")), INTERVAL 1 HOUR), "%%Y%%m%%dT%%H%%i%%s") AS date_end_minus_1h
-			, DATE_FORMAT(events.date_begin, "%%Y") AS year
 			, DATE_FORMAT(IFNULL(events.date_end, events.date_begin), "%%Y") AS end_year
 			, DATE_FORMAT(IFNULL(DATE_ADD(events.date_end, INTERVAL 1 DAY), events.date_begin), "%%Y%%m%%d") AS dt_date_end
 			, events.last_update AS timestamp
-			, events.event AS title
-			, CONCAT(IFNULL(events.abstract, ""), " ", IFNULL(events.description, "")) AS description
-			, IFNULL(events.direct_link, IFNULL(main_events.identifier, events.identifier)) AS url
-			, events.identifier
-			, category, parameters as category_parameters
-			, events.main_event_id
-			, IF (events.takes_place = "yes", 1, NULL) AS takes_place
-			, IFNULL((SELECT GROUP_CONCAT(CONCAT(
-					contact, "\n", IFNULL(CONCAT(address, "\n"), ""), IFNULL(CONCAT(postcode, " "), ""), IF(place != contact, CONCAT(place, "\n"), ""), country
-				) SEPARATOR ", ") FROM events_contacts	
-				LEFT JOIN contacts USING (contact_id)
-				LEFT JOIN addresses USING (contact_id)
-				LEFT JOIN countries
-					ON addresses.country_id = countries.country_id
-				WHERE events_contacts.event_id = events.event_id
-				AND events_contacts.role_category_id = %d), 
-				(SELECT GROUP_CONCAT(CONCAT(
-					contact, "\n", IFNULL(CONCAT(address, "\n"), ""), IFNULL(CONCAT(postcode, " "), ""), IF(place != contact, CONCAT(place, "\n"), ""), country
-				) SEPARATOR ", ") FROM events_contacts	
-				LEFT JOIN contacts USING (contact_id)
-				LEFT JOIN addresses USING (contact_id)
-				LEFT JOIN countries
-					ON addresses.country_id = countries.country_id
-				WHERE events_contacts.event_id = events.main_event_id
-				AND events_contacts.role_category_id = %d)
-			) AS places
 		FROM events
 		LEFT JOIN events main_events
 			ON events.main_event_id = main_events.event_id
-		LEFT JOIN events_categories
-			ON events.event_id = events_categories.event_id
-		LEFT JOIN categories USING (category_id)
 		WHERE events.published = "yes"
 		%s
 		ORDER BY IFNULL(events.date_begin, events.date_end), events.time_begin, events.date_end, events.time_end, events.sequence
 	';
-	$sql = sprintf($sql
-		, wrap_category_id('roles/location')
-		, wrap_category_id('roles/location')
-		, $where_condition
-	);
+
+	$sql = sprintf($sql, $where_condition);
 	$events = wrap_db_fetch($sql, 'event_id');
 	if (!$events) return false;
-
-	$events = mf_events_event_organisers($events);
-
+	require_once __DIR__.'/../zzbrick_request_get/eventdata.inc.php';
+	$events = mod_events_get_eventdata($events);
+	
 	require_once $zz_setting['lib'].'/icalcreator/autoload.php';
 
 	$tz = $zz_setting['timezone'];
 	$v = Vcalendar::factory([Vcalendar::UNIQUE_ID => $zz_setting['hostname']]);
+	$v->setUid($zz_setting['hostname']);
 	$v->setMethod(Vcalendar::PUBLISH);
 	$v->setXprop(Vcalendar::X_WR_CALNAME, $zz_setting['events_ics_calname']);
 	$v->setXprop(Vcalendar::X_WR_CALDESC, $zz_setting['events_ics_caldesc']);
@@ -125,29 +92,44 @@ function mod_events_ics($params) {
 	$v->setConfig(Vcalendar::LANGUAGE, $zz_setting['lang']);
 
 	foreach ($events as $event) {
+		$e = $v->newVevent();
+		// hour
 		if (empty($event['main_event_id']) AND count($events) > 1) {
 			unset($event['hour']); // don't show start and end date if timetable is present
 		}
-		parse_str($event['category_parameters'], $properties);
-		if (!empty($event['organisers'])) {
+		// description
+		if (!empty($event['abstract']))
+			$event['description'] = sprintf('%s %s', $event['abstract'], $event['description']);
+		if (!empty($event['organiser'])) {
 			$event['description'] .= "\r\n\r\n".wrap_text('Organiser').": ";
 			$i = 0;
-			foreach ($event['organisers'] as $organiser) {
+			foreach ($event['organiser'] as $organiser) {
 				$event['description'] .= $organiser['contact'];
 				$i++;
-				if ($i < count($event['organisers'])) {
+				if ($i < count($event['organiser'])) {
 					$event['description'] .= ', ';
 				}
 			}
 		}
-		$e = $v->newVevent();
+		// categories
+		$categories = [];
+		$properties = [];
+		if (!empty($event['categories'])) foreach ($event['categories'] as $category) {
+			$categories[] = $category['category'];
+			if (!empty($category['parameters'])) {
+				parse_str($category['parameters'], $category_properties);
+				$properties += $category_properties;
+			}
+		}
+		$event['category'] = implode(',', $categories);
+		
 		if (!empty($properties['prefix_title']) AND $event['category']) {
-			$event['title'] = $event['category'].': '.$event['title'];
+			$event['event'] = $event['category'].': '.$event['event'];
 		}
-		if (!$event['takes_place']) {
-			$event['title'] = wrap_text('CANCELLED').': '.$event['title'];
+		if ($event['cancelled']) {
+			$event['event'] = wrap_text('CANCELLED').': '.$event['event'];
 		}
-		$e->setSummary($event['title']);
+		$e->setSummary($event['event']);
 		$e->setCategories($event['category']);
 
 		if ($event['date_begin'] AND $event['date_end'] AND $event['date_begin'] !== $event['date_end']) {
@@ -202,8 +184,21 @@ function mod_events_ics($params) {
 				new DateTime($event['dt_date_end']), ['VALUE' => 'DATE']
 			);
 		}
-		$e->setDescription(strip_tags(markdown($event['description'])));
-		$e->setLocation($event['places']);
+		$e->setDescription(trim(strip_tags(markdown($event['description']))));
+		if (!empty($event['location'])) {
+			$locations = [];
+			foreach ($event['location'] as $location) {
+				$locations[] = $location['contact']
+					.(!empty($location['address']) ? "\n".$location['address'] : '')
+					.(!empty($location['postcode']) ? "\n".$location['postcode']." " : '')
+					.(($location['place'] AND $location['place'] !== $location['contact'])
+						? (empty($location['postcode']) ? "\n": '').$location['place'] : ''
+					)
+					.(!empty($location['country']) ? "\n".$location['country'] : '');
+			}
+			$e->setLocation(implode(', ', $locations));
+		}
+		
 		$e->setUid($event['identifier'].'@'.$zz_setting['site']);
 		$timestamp = gmdate('Ymd His', strtotime($event['timestamp']));
 		$e->setDtstamp(str_replace(' ', 'T', $timestamp).'Z');
