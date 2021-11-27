@@ -147,7 +147,7 @@ function mod_events_get_eventdata_places($events, $ids, $langs) {
 		, implode(',', $ids)
 	);
 	$data = wrap_db_fetch($sql, 'event_contact_id');
-	foreach ($$data as $event_contact_id => $contact) {
+	foreach ($data as $event_contact_id => $contact) {
 		if (!$contact['parameters']) continue;
 		parse_str($contact['parameters'], $parameters);
 		$data[$event_contact_id] += $parameters;
