@@ -92,7 +92,7 @@ function mod_events_get_eventdata($data, $settings = [], $id_field_name = '', $l
  * @return array
  */
 function mod_events_get_eventdata_categories($events, $ids, $langs) {
-	$sql = 'SELECT event_category_id, event_id, category_id, category
+	$sql = 'SELECT event_category_id, event_id, category_id, category, parameters
 		FROM events_categories
 		LEFT JOIN categories USING (category_id)
 		WHERE event_id IN (%s)
