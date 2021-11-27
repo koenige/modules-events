@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/events
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2014-2018, 2020 Gustaf Mossakowski
+ * @copyright Copyright © 2014-2018, 2020-2021 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -36,6 +36,7 @@ function mod_events_events($params, $settings) {
 	$current = false;
 	$box = false;
 	$condition = '';
+	$join = '';
 	if (empty($params)) {
 		$condition = 'AND date_begin >= CURDATE()';
 		$current = true;
@@ -51,6 +52,7 @@ function mod_events_events($params, $settings) {
 		$sql = sprintf($sql, wrap_db_escape($params[0]));
 		$contact_id = wrap_db_fetch($sql, '', 'single value');
 		if (!$contact_id) return false;
+		$join = 'LEFT JOIN events_contacts USING (event_id)';
 		$condition = sprintf(' AND contact_id = %d', $contact_id);
 	} elseif (count($params) > 2)  {
 		return false;
@@ -70,35 +72,10 @@ function mod_events_events($params, $settings) {
 		$published = 'events.published = "yes"';
 	}
 	
-	$sql = 'SELECT DISTINCT event_id, identifier
-			, event, abstract, events.description, date_begin, date_end
-			, CONCAT(date_begin, IFNULL(CONCAT("/", date_end), "")) AS duration
-			, TIME_FORMAT(time_begin, "%%H.%%i") AS time_begin
-			, time_begin AS time_begin_iso
-			, TIME_FORMAT(time_end, "%%H.%%i") AS time_end
-			, time_end AS time_end_iso
+	$sql = 'SELECT event_id
 			, IF(date_begin >= CURDATE() OR date_end >= CURDATE(), "Aktuelle Termine", "Vergangene Termine") AS terminstatus
-			, IF(takes_place = "yes", NULL, 1) AS cancelled
-			, (CASE DAYOFWEEK(date_begin) WHEN 1 THEN "%s"
-				WHEN 2 THEN "%s"
-				WHEN 3 THEN "%s"
-				WHEN 4 THEN "%s"
-				WHEN 5 THEN "%s"
-				WHEN 6 THEN "%s"
-				WHEN 7 THEN "%s" END) AS weekday_begin
-			, (CASE DAYOFWEEK(date_end) WHEN 1 THEN "%s"
-				WHEN 2 THEN "%s"
-				WHEN 3 THEN "%s"
-				WHEN 4 THEN "%s"
-				WHEN 5 THEN "%s"
-				WHEN 6 THEN "%s"
-				WHEN 7 THEN "%s" END) AS weekday_end
-			, category
-			, timezone
-		FROM events
-		LEFT JOIN events_contacts USING (event_id)
-		LEFT JOIN categories
-			ON categories.category_id = events.event_category_id
+	    FROM events
+	    %s
 		WHERE %s
 		AND event_category_id = %d
 		%s
@@ -106,10 +83,7 @@ function mod_events_events($params, $settings) {
 		%s
 	';
 	$sql = sprintf($sql
-		, wrap_text('Sun'), wrap_text('Mon'), wrap_text('Tue'), wrap_text('Wed') 
-		, wrap_text('Thu'), wrap_text('Fri'), wrap_text('Sat')
-		, wrap_text('Sun'), wrap_text('Mon'), wrap_text('Tue'), wrap_text('Wed') 
-		, wrap_text('Thu'), wrap_text('Fri'), wrap_text('Sat')
+		, $join
 		, $published
 		, wrap_category_id('event/event')
 		, $condition
@@ -117,46 +91,24 @@ function mod_events_events($params, $settings) {
 		, $limit ? sprintf(' LIMIT %d', $limit) : ''
 	);
 	$events = wrap_db_fetch($sql, 'event_id');
+	
+	require_once __DIR__.'/../zzbrick_request_get/eventdata.inc.php';
+	$events = mod_events_get_eventdata($events);
 
-	$images = false;
-	if ($events) {
-		$media = wrap_get_media(array_keys($events), 'events', 'event');
-		foreach ($media as $event_id => $files) {
-			if (!empty($files['links'])) {
-				$events[$event_id]['links'] = $files['links'];
-			}
-			if (!empty($files['images'])) {
-				$events[$event_id]['images'] = $files['images'];
-				$images = true;
-			}
-		}
-
-		$sql = 'SELECT event_id, category_id, category
-			FROM events_categories
-			LEFT JOIN categories USING (category_id)
-			WHERE event_id IN (%s)';
-		$sql = sprintf($sql, implode(',', array_keys($events)));
-		$categories = wrap_db_fetch($sql, ['event_id', 'category_id']);
-		foreach ($categories as $event_id => $event_category) {
-			$events[$event_id]['categories'] = $event_category;
-			foreach ($event_category as $subcategory) {
-				if ($subcategory['category'] === 'Reise') $events[$event_id]['reise'] = true;
-			}
-		}
-
-	} else {
-		$media = [];
+	if (!$events) {
 		$events['no_events'] = true;
-	}
-	if ($images) {
-		$page['extra']['magnific_popup'] = true;
+	} else {
+		foreach ($events as $event_id => $event) {
+			if (empty($event['images'])) continue;
+			if (in_array('magnificpopup', $zz_setting['modules']))
+				$page['extra']['magnific_popup'] = true;
+			break;
+		}
 	}
 
 	$events['cal_title'] = '';
 	$template = $box ? 'eventbox' : 'events';
 	$template = 'events';
 	$page['text'] = wrap_template($template, $events);
-	if (in_array('magnificpopup', $zz_setting['modules']))
-		$page['extra']['magnific_popup'] = true;
 	return $page;
 }
