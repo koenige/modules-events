@@ -133,6 +133,7 @@ function mod_events_get_eventdata_places($events, $ids, $langs) {
 			, SUBSTRING_INDEX(contact_categories.path, "/", -1) AS contact_path
 			, contacts.parameters
 			, categories.parameters AS category_parameters
+			, latitude, longitude
 		FROM events_contacts
 		LEFT JOIN contacts USING (contact_id)
 		LEFT JOIN categories
