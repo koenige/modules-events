@@ -53,7 +53,7 @@ function mod_events_event($params) {
 		foreach ($event['timetable'] as $day => $timetable) {
 			if (!is_numeric($day)) continue; // images
 			foreach ($timetable['hours'] as $timetable_event_id => $single_event) {
-				if ($single_event['event_category_id'] === wrap_category_id('event/event')) {
+				if ($single_event['category_id'] === wrap_category_id('event/event')) {
 					$event['timetable']['programme'] = true;
 				}
 				if (empty($single_event['images'])) continue;
@@ -66,12 +66,13 @@ function mod_events_event($params) {
 		$event['timetable'] = '';
 	}
 
-	if (strstr($event['description'], '%%% timetable %%%')) {
-		$event['description'] = str_replace('%%% timetable %%%', $event['timetable'], $event['description']);
+	$timetable_placeholder = '%%% '.wrap_get_setting('events_timetable_placeholder').' %%%';
+	if (strstr($event['description'], $timetable_placeholder)) {
+		$event['description'] = str_replace($timetable_placeholder, $event['timetable'], $event['description']);
 		unset ($event['timetable']);
 	}
-
-	if (wrap_get_setting('events_leaflet_map')) {
+	
+	if (wrap_get_setting('events_leaflet_map') AND !empty($event['location'])) {
 		$event['places'] = [];
 		foreach ($event['location'] as $event_contact_id => $location) {
 			if (empty($location['latitude'])) continue;
