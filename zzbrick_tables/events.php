@@ -88,6 +88,7 @@ $zz['fields'][6]['link'] = [
 	'string2' => '/'
 ];
 $zz['fields'][6]['typo_cleanup'] = true;
+$zz['fields'][6]['typo_remove_double_spaces'] = true;
 
 $zz['fields'][8]['field_name'] = 'abstract';
 $zz['fields'][8]['type'] = 'memo';
