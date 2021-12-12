@@ -34,7 +34,6 @@ function mod_events_events($params, $settings) {
 	$limit = false;
 	$year = false;
 	$current = false;
-	$box = false;
 	$condition = '';
 	$join = '';
 	if (empty($params)) {
@@ -63,7 +62,6 @@ function mod_events_events($params, $settings) {
 		$condition = ' AND (date_begin >= CURDATE() OR date_end >= CURDATE())
 		AND takes_place = "yes"';
 		$current = true;
-		$box = true;
 	}
 
 	if ($zz_setting['local_access']) {
@@ -107,8 +105,7 @@ function mod_events_events($params, $settings) {
 	}
 
 	$events['cal_title'] = '';
-	$template = $box ? 'eventbox' : 'events';
-	$template = 'events';
+	$template = !empty($settings['template']) ? $settings['template'] : 'events';
 	$page['text'] = wrap_template($template, $events);
 	return $page;
 }
