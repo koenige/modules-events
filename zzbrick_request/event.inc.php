@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/events
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2014-2021 Gustaf Mossakowski
+ * @copyright Copyright © 2014-2022 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -106,7 +106,7 @@ function mod_events_event($params) {
 	brick_request_links($event['description'], $event, 'sequence');
 	
 	if (!empty($event['cancelled'])) {
-		$page['status'] = 404;
+		$page['status'] = 410;
 	}
 	$page['text'] = wrap_template('event', $event);
 	$page['meta'] = [
