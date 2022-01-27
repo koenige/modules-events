@@ -67,7 +67,7 @@ function mod_events_event($params) {
 	}
 
 	$timetable_placeholder = '%%% '.wrap_get_setting('events_timetable_placeholder').' %%%';
-	if (strstr($event['description'], $timetable_placeholder)) {
+	if ($event['description'] AND strstr($event['description'], $timetable_placeholder)) {
 		$event['description'] = str_replace($timetable_placeholder, $event['timetable'], $event['description']);
 		unset ($event['timetable']);
 	}
