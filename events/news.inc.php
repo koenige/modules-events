@@ -26,7 +26,8 @@ function mf_events_in_news($type = 'all') {
 			, DATE_FORMAT(created, "%%Y-%%m-%%d") AS date
 			, DATE_FORMAT(created, "%%H:%%i") AS time
 			, identifier, abstract, event AS title
-			, direct_link, direct_link AS link
+			, direct_link
+			, IFNULL(direct_link, CONCAT("%s/", identifier, "/")) AS link
 			, CONCAT(date_begin, IFNULL(CONCAT("/", date_end), "")) AS duration
 			, DATE_FORMAT(events.last_update, "%%a, %%d %%b %%Y %%H:%%i:%%s") AS pubDate
 			, CONCAT("%s/", identifier, "/") AS guid
@@ -34,7 +35,7 @@ function mf_events_in_news($type = 'all') {
 		WHERE IF(ISNULL(date_end), date_begin >= CURDATE(), date_end >= CURDATE())
 		AND published = "yes"
 		AND ISNULL(main_event_id)';
-	$sql = sprintf($sql, $zz_setting['events_path']);
+	$sql = sprintf($sql, $zz_setting['events_path'], $zz_setting['events_path']);
 	
 	switch ($type) {
 	case 'all':
