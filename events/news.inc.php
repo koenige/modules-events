@@ -81,11 +81,20 @@ function mf_events_in_news_sort($articles, $events) {
 	$sort_dates = [];
 	$sort_times = [];
 	$sort_identifiers = [];
-	foreach ($articles as $article) {
+	$extra_indices = [];
+	foreach ($articles as $index => $article) {
+		if (!is_int($index)) {
+			$extra_indices[$index] = $article;
+			unset($articles[$index]);
+			continue;
+		}
 		$sort_dates[] = $article['date'];
 		$sort_times[] = $article['time'];
 		$sort_identifiers[] = $article['identifier'];
 	}
 	array_multisort($sort_dates, SORT_DESC, $sort_times, SORT_DESC, $sort_identifiers, SORT_ASC, $articles);
+	foreach ($extra_indices as $index => $value) {
+		$articles[$index] = $value;
+	}
 	return $articles;
 }
