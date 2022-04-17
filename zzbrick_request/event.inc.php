@@ -15,15 +15,9 @@
 
 function mod_events_event($params) {
 	global $zz_setting;
-
 	if (count($params) !== 2) return false;
 
-	if ($zz_setting['local_access'] OR !empty($_SESSION['logged_in'])) {
-		$published = '(events.published = "yes" OR events.published = "no")';
-		$zz_setting['cache'] = false;
-	} else {
-		$published = 'events.published = "yes"';
-	}
+	$published = empty($_SESSION['logged_in']) ? 'events.published = "yes"' : '';
 	
 	$sql = 'SELECT event_id
 	    FROM events
