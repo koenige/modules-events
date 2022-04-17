@@ -6,7 +6,7 @@
  * https://www.zugzwang.org/modules/events
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2020 Gustaf Mossakowski
+ * @copyright Copyright © 2020, 2022 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -28,3 +28,4 @@
 /* 2020-07-15-1 */	ALTER TABLE `events` CHANGE `timezone` `timezone` varchar(5) COLLATE 'utf8mb4_unicode_ci' NULL AFTER `time_end`;
 /* 2020-09-09-1 */	ALTER TABLE `events_contacts` CHANGE `role_category_id` `role_category_id` int unsigned NOT NULL AFTER `contact_id`, CHANGE `sequence` `sequence` tinyint unsigned NOT NULL AFTER `role_category_id`;
 /* 2020-10-08-1 */	ALTER TABLE `events` ADD `hashtag` varchar(40) COLLATE 'utf8mb4_unicode_ci' NULL AFTER `registration`;
+/* 2022-04-17-1 */	ALTER TABLE `events` ADD `event_year` year NULL AFTER `date_end`;

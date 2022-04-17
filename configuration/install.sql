@@ -6,7 +6,7 @@
  * https://www.zugzwang.org/modules/events
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2020-2021 Gustaf Mossakowski
+ * @copyright Copyright © 2020-2022 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -22,6 +22,7 @@ CREATE TABLE `events` (
   `event_category_id` int unsigned NOT NULL,
   `date_begin` date NOT NULL,
   `date_end` date DEFAULT NULL,
+  `event_year` year DEFAULT NULL,
   `time_begin` time DEFAULT NULL,
   `time_end` time DEFAULT NULL,
   `timezone` varchar(5) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,

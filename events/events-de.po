@@ -5,7 +5,7 @@
 # https://www.zugzwang.org/modules/events
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2020-2021 Gustaf Mossakowski
+# @copyright Copyright © 2020-2022 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
 msgid ""
@@ -141,10 +141,17 @@ msgid "Created"
 msgstr "Erstellt"
 
 #: zzbrick_tables/events.php
-msgid ""
-"Registration information; will be hidden after the end of the event."
+msgid "Registration information; will be hidden after the end of the event."
 msgstr ""
 "Informationen zur Anmeldung; werden nach Ende der Veranstaltung ausgeblendet."
+
+#: zzbrick_tables/events.php
+msgid "Year"
+msgstr "Jahr"
+
+#: zzbrick_tables/events.php
+msgid "If different from the time of the event"
+msgstr "Falls abweichend vom Zeitpunkt des Veranstaltung"
 
 #: templates/event.template.txt
 msgid "Event not found"

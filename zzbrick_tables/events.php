@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/events
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2005-2021 Gustaf Mossakowski
+ * @copyright Copyright © 2005-2022 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -70,6 +70,15 @@ if (wrap_get_setting('events_timezone')) {
 	$zz['fields'][56]['hide_in_list'] = true;
 } elseif (wrap_get_setting('events_timezone_default')) {
 	$zz['fields'][56]['default'] = wrap_get_setting('events_timezone_default');
+}
+
+$zz['fields'][53]['title'] = 'Year';
+$zz['fields'][53]['field_name'] = 'event_year';
+$zz['fields'][53]['explanation'] = 'If different from the time of the event';
+$zz['fields'][53]['hide_in_list'] = true;
+$zz['fields'][53]['hide_in_form'] = true;
+if (wrap_access('events_event_year')) {
+	$zz['fields'][53]['hide_in_form'] = false;
 }
 
 $zz['fields'][6]['separator_before'] = true;
