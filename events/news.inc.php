@@ -27,6 +27,7 @@ function mf_events_in_news($type = 'all') {
 			, DATE_FORMAT(created, "%%H:%%i") AS time
 			, identifier, abstract, event AS title
 			, direct_link
+			, abstract AS text
 			, IFNULL(direct_link, CONCAT("%s/", identifier, "/")) AS link
 			, CONCAT(date_begin, IFNULL(CONCAT("/", date_end), "")) AS duration
 			, DATE_FORMAT(events.last_update, "%%a, %%d %%b %%Y %%H:%%i:%%s") AS pubDate
