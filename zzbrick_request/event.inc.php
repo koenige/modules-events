@@ -17,13 +17,13 @@ function mod_events_event($params) {
 	global $zz_setting;
 	if (count($params) !== 2) return false;
 
-	$published = empty($_SESSION['logged_in']) ? 'events.published = "yes"' : '';
+	$published = empty($_SESSION['logged_in']) ? 'AND events.published = "yes"' : '';
 	
 	$sql = 'SELECT event_id
 	    FROM events
 	    WHERE identifier = "%d/%s"
 	    AND event_category_id = %d
-	    AND %s';
+	    %s';
 	$sql = sprintf($sql
 		, $params[0], wrap_db_escape($params[1])
 		, wrap_category_id('event/event')
