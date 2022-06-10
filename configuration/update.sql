@@ -34,3 +34,7 @@
 /* 2022-06-10-3 */	INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'categories ', 'category_id', (SELECT DATABASE()), 'eventtexts', 'eventtext_id', 'eventtext_category_id', 'no-delete');
 /* 2022-06-10-4 */	INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'events ', 'event_id', (SELECT DATABASE()), 'eventtexts', 'eventtext_id', 'event_id', 'delete');
 /* 2022-06-10-5 */	INSERT INTO categories (`category`, `category_short`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ("Event Texts", NULL, NULL, NULL, "event-texts", "&alias=event-texts", NULL, NOW());
+/* 2022-06-10-6 */	ALTER TABLE `events_categories` ADD UNIQUE `event_id_category_id` (`event_id`, `category_id`), DROP INDEX `date_id_category_id`;
+/* 2022-06-10-7 */	ALTER TABLE `events_categories` CHANGE `last_update` `last_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `type_category_id`;
+/* 2022-06-10-8 */	ALTER TABLE `events_contacts` CHANGE `last_update` `last_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `sequence`;
+/* 2022-06-10-9 */	ALTER TABLE `eventtexts` CHANGE `last_update` `last_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `eventtext_category_id`;

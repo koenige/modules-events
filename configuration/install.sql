@@ -57,9 +57,9 @@ CREATE TABLE `events_categories` (
   `event_category_id` int unsigned NOT NULL AUTO_INCREMENT,
   `event_id` int unsigned NOT NULL,
   `category_id` int unsigned NOT NULL,
-  `last_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `last_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`event_category_id`),
-  UNIQUE KEY `date_id_category_id` (`event_id`,`category_id`),
+  UNIQUE KEY `event_id_category_id` (`event_id`,`category_id`),
   KEY `category_id` (`category_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -74,7 +74,7 @@ CREATE TABLE `events_contacts` (
   `contact_id` int unsigned NOT NULL,
   `role_category_id` int unsigned NOT NULL,
   `sequence` tinyint unsigned NOT NULL,
-  `last_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `last_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`event_contact_id`),
   UNIQUE KEY `event_id` (`event_id`,`contact_id`,`role_category_id`),
   KEY `contact_id` (`contact_id`),
@@ -117,7 +117,7 @@ CREATE TABLE `eventtexts` (
   `event_id` int unsigned NOT NULL,
   `eventtext` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `eventtext_category_id` int unsigned NOT NULL,
-  `last_update` timestamp NOT NULL,
+  `last_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`eventtext_id`),
   UNIQUE KEY `event_id` (`event_id`,`eventtext_category_id`),
   KEY `eventtext_category_id` (`eventtext_category_id`)
