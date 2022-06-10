@@ -6,7 +6,7 @@
  * https://www.zugzwang.org/modules/events
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2020, 2022 Gustaf Mossakowski
+ * @copyright Copyright © 2020-2022 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -38,3 +38,7 @@
 /* 2022-06-10-7 */	ALTER TABLE `events_categories` CHANGE `last_update` `last_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `type_category_id`;
 /* 2022-06-10-8 */	ALTER TABLE `events_contacts` CHANGE `last_update` `last_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `sequence`;
 /* 2022-06-10-9 */	ALTER TABLE `eventtexts` CHANGE `last_update` `last_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `eventtext_category_id`;
+/* 2022-06-10-10 */	ALTER TABLE `events_categories` ADD `type_category_id` int unsigned NOT NULL AFTER `category_id`;
+/* 2022-06-10-11 */	ALTER TABLE `events_categories` ADD INDEX `type_category_id` (`type_category_id`);
+/* 2022-06-10-12 */	INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'categories', 'category_id', (SELECT DATABASE()), 'events_categories', 'event_category_id', 'type_category_id', 'no-delete');
+/* 2022-06-10-13 */	UPDATE `events_categories` SET `type_category_id` = (SELECT `category_id` FROM `categories` WHERE `path` = 'events' OR `parameters` LIKE '%&alias=events%');
