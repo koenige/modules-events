@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/events
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2020-2021 Gustaf Mossakowski
+ * @copyright Copyright © 2020-2022 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -93,11 +93,17 @@ function mod_events_get_eventdata($data, $settings = [], $id_field_name = '', $l
  * @return array
  */
 function mod_events_get_eventdata_categories($events, $ids, $langs) {
-	$sql = 'SELECT event_category_id, event_id, category_id, category, parameters
+	$sql = 'SELECT event_category_id, event_id
+			, categories.category_id, categories.category
+			, categories.parameters
+			, types.path AS type_path, types.category AS type_category
+			, types.parameters AS type_parameters
 		FROM events_categories
 		LEFT JOIN categories USING (category_id)
+		LEFT JOIN categories types
+			ON events_categories.type_category_id = types.category_id
 		WHERE event_id IN (%s)
-		ORDER by categories.sequence, category';
+		ORDER by categories.sequence, categories.category';
 	$sql = sprintf($sql, implode(',', $ids));
 	$data = wrap_db_fetch($sql, 'event_category_id');
 	foreach ($langs as $lang) {
@@ -105,7 +111,13 @@ function mod_events_get_eventdata_categories($events, $ids, $langs) {
 	}
 	foreach ($categories as $lang => $categories_per_lang) {
 		foreach ($categories_per_lang as $event_category_id => $category) {
-			$events[$lang][$category['event_id']]['categories'][$event_category_id] = $category; 
+			if ($category['type_parameters']) {
+				parse_str($category['type_parameters'], $category['type_parameters']);
+			}
+			$type_path = !empty($category['type_parameters']['alias'])
+				? $category['type_parameters']['alias'] : $category['type_path'];
+			if ($type_path === 'events') $type_path = 'categories';
+			$events[$lang][$category['event_id']][$type_path][$event_category_id] = $category; 
 		}
 	}
 	return $events;
