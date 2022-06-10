@@ -109,3 +109,21 @@ INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`
 INSERT INTO webpages (`title`, `content`, `identifier`, `ending`, `sequence`, `mother_page_id`, `live`, `menu`, `last_update`) VALUES ("iCalendar", "%%% request ics %%%", "/ics*", "none", "30", "1", "yes", NULL, NOW());
 INSERT INTO webpages (`title`, `content`, `identifier`, `ending`, `sequence`, `mother_page_id`, `live`, `menu`, `last_update`) VALUES ('Events', '%%% request events %%%', '/events', '/', 20, (SELECT page_id FROM webpages wp WHERE identifier = '/'), 'yes', NULL, NOW());
 INSERT INTO webpages (`title`, `content`, `identifier`, `ending`, `sequence`, `mother_page_id`, `live`, `menu`, `last_update`) VALUES ('Events', '%%% request events * %%%', '/events*', '/', 1, (SELECT page_id FROM webpages wp WHERE identifier = '/events'), 'yes', NULL, NOW());
+
+
+-- eventtexts --
+CREATE TABLE `eventtexts` (
+  `eventtext_id` int unsigned NOT NULL AUTO_INCREMENT,
+  `event_id` int unsigned NOT NULL,
+  `eventtext` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `eventtext_category_id` int unsigned NOT NULL,
+  `last_update` timestamp NOT NULL,
+  PRIMARY KEY (`eventtext_id`),
+  UNIQUE KEY `event_id` (`event_id`,`eventtext_category_id`),
+  KEY `eventtext_category_id` (`eventtext_category_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'categories ', 'category_id', (SELECT DATABASE()), 'eventtexts', 'eventtext_id', 'eventtext_category_id', 'no-delete');
+INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'events ', 'event_id', (SELECT DATABASE()), 'eventtexts', 'eventtext_id', 'event_id', 'delete');
+
+INSERT INTO categories (`category`, `category_short`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ("Event Texts", NULL, NULL, NULL, "event-texts", "&alias=event-texts", NULL, NOW());
