@@ -11,27 +11,28 @@
  */
 
 
+-- events --
 CREATE TABLE `events` (
   `event_id` int unsigned NOT NULL AUTO_INCREMENT,
   `event` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `identifier` varchar(63) CHARACTER SET latin1 COLLATE latin1_general_cs NOT NULL,
+  `identifier` varchar(63) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
   `abstract` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `description` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `registration` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `hashtag` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `event_category_id` int unsigned NOT NULL,
-  `date_begin` date NOT NULL,
+  `date_begin` date DEFAULT NULL,
   `date_end` date DEFAULT NULL,
   `event_year` year DEFAULT NULL,
   `time_begin` time DEFAULT NULL,
   `time_end` time DEFAULT NULL,
-  `timezone` varchar(5) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `timezone` varchar(5) CHARACTER SET latin1 COLLATE latin1_general_ci DEFAULT NULL,
   `created` datetime DEFAULT NULL,
-  `direct_link` varchar(255) CHARACTER SET latin1 COLLATE latin1_general_cs DEFAULT NULL,
-  `published` enum('yes','no') CHARACTER SET latin1 COLLATE latin1_general_cs NOT NULL DEFAULT 'no',
-  `takes_place` enum('yes','no') CHARACTER SET latin1 COLLATE latin1_general_cs NOT NULL DEFAULT 'yes',
-  `show_in_news` enum('yes','no') CHARACTER SET latin1 COLLATE latin1_general_cs NOT NULL DEFAULT 'no',
-  `following` enum('yes','no') CHARACTER SET latin1 COLLATE latin1_general_cs NOT NULL DEFAULT 'no',
+  `direct_link` varchar(255) CHARACTER SET latin1 COLLATE latin1_general_ci DEFAULT NULL,
+  `published` enum('yes','no') CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL DEFAULT 'no',
+  `takes_place` enum('yes','no') CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL DEFAULT 'yes',
+  `show_in_news` enum('yes','no') CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL DEFAULT 'no',
+  `following` enum('yes','no') CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL DEFAULT 'no',
   `sequence` tinyint unsigned DEFAULT NULL,
   `main_event_id` int unsigned DEFAULT NULL,
   `last_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -51,6 +52,7 @@ INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `
 INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Place', NULL, (SELECT category_id FROM categories c WHERE path = 'contact'), 'contact/place', NULL, NULL, NOW());
 
 
+-- events_categories --
 CREATE TABLE `events_categories` (
   `event_category_id` int unsigned NOT NULL AUTO_INCREMENT,
   `event_id` int unsigned NOT NULL,
@@ -65,6 +67,7 @@ INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`
 INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'events', 'event_id', (SELECT DATABASE()), 'events_categories', 'event_category_id', 'event_id', 'delete');
 
 
+-- events_contacts --
 CREATE TABLE `events_contacts` (
   `event_contact_id` int unsigned NOT NULL AUTO_INCREMENT,
   `event_id` int unsigned NOT NULL,
@@ -88,6 +91,7 @@ INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `
 INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Organiser', NULL, (SELECT category_id FROM categories c WHERE path = 'roles'), 'roles/organiser', NULL, NULL, NOW());
 
 
+-- events_media --
 CREATE TABLE `events_media` (
   `event_medium_id` int unsigned NOT NULL AUTO_INCREMENT,
   `event_id` int unsigned NOT NULL,
