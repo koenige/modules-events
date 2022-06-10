@@ -85,4 +85,4 @@ $zz['sql'] = sprintf('SELECT /*_PREFIX_*/events_contacts.*
 	, wrap_placeholder('mysql_date_format')
 	, wrap_placeholder('mysql_date_format')
 );
-$zz['sqlorder'] = ' ORDER BY date_begin, time_begin DESC, events.identifier, contact';
+$zz['sqlorder'] = ' ORDER BY IFNULL(date_begin, date_end), time_begin DESC, events.identifier, contact';
