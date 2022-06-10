@@ -23,15 +23,16 @@ $zz['fields'][1]['type'] = 'id';
 $zz['fields'][2]['field_name'] = 'event_id';
 $zz['fields'][2]['type'] = 'select';
 $zz['fields'][2]['sql'] = sprintf('SELECT event_id
-		, CONCAT(event, " (", DATE_FORMAT(date_begin, "%s"), ")") AS event
+		, event
+		, CONCAT(IFNULL(events.date_begin, ""), IFNULL(CONCAT("/", events.date_end), "")) AS duration
 		, identifier
 	FROM /*_PREFIX_*/events
 	WHERE ISNULL(main_event_id)
-	ORDER BY date_begin DESC', wrap_placeholder('mysql_date_format'));
-$zz['fields'][2]['sql_character_set'][1] = 'utf8';
+	ORDER BY identifier DESC', wrap_placeholder('mysql_date_format'));
+$zz['fields'][2]['sql_format'][2] = 'wrap_date';
 $zz['fields'][2]['display_field'] = 'event';
 $zz['fields'][2]['search'] = sprintf('CONCAT(/*_PREFIX_*/events.event, " (", 
-	DATE_FORMAT(/*_PREFIX_*/events.date_begin, "%s"), ")")', wrap_placeholder('mysql_date_format'));
+	DATE_FORMAT(IFNULL(/*_PREFIX_*/events.date_begin, /*_PREFIX_*/events.date_end), "%s"), ")")', wrap_placeholder('mysql_date_format'));
 
 $zz['fields'][5]['title'] = 'No.';
 $zz['fields'][5]['field_name'] = 'sequence';
@@ -72,7 +73,7 @@ $zz['subselect']['sql'] = 'SELECT event_id, IFNULL(contact_short, contact) AS co
 $zz['subselect']['concat_rows'] = ', ';
 
 $zz['sql'] = sprintf('SELECT /*_PREFIX_*/events_contacts.*
-		, CONCAT(/*_PREFIX_*/events.event, " (", IFNULL(DATE_FORMAT(events.date_begin, "%s"), ""), IFNULL(CONCAT("–", DATE_FORMAT(events.date_end, "%s")), ""), ")") AS event
+		, CONCAT(event, " (", IFNULL(DATE_FORMAT(date_begin, "%s"), ""), IFNULL(CONCAT("–", DATE_FORMAT(date_end, "%s")), ""), ")") AS event
 		, contact
 		, category
 	FROM /*_PREFIX_*/events_contacts
@@ -85,4 +86,4 @@ $zz['sql'] = sprintf('SELECT /*_PREFIX_*/events_contacts.*
 	, wrap_placeholder('mysql_date_format')
 	, wrap_placeholder('mysql_date_format')
 );
-$zz['sqlorder'] = ' ORDER BY IFNULL(date_begin, date_end), time_begin DESC, events.identifier, contact';
+$zz['sqlorder'] = ' ORDER BY IFNULL(date_begin, date_end) DESC, time_begin DESC, events.identifier, contact';

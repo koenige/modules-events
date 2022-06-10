@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/events
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2014, 2018, 2020 Gustaf Mossakowski
+ * @copyright Copyright © 2014, 2018, 2020, 2022 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -23,16 +23,16 @@ $zz['fields'][1]['type'] = 'id';
 $zz['fields'][2]['field_name'] = 'event_id';
 $zz['fields'][2]['type'] = 'select';
 $zz['fields'][2]['sql'] = sprintf('SELECT event_id
-	, CONCAT(/*_PREFIX_*/events.event
-		, " (", DATE_FORMAT(/*_PREFIX_*/events.date_begin, "%s"), ")") AS event 
+		, event
+		, CONCAT(IFNULL(events.date_begin, ""), IFNULL(CONCAT("/", events.date_end), "")) AS duration
+		, identifier
 	FROM /*_PREFIX_*/events
 	WHERE ISNULL(main_event_id)
-	ORDER BY date_begin DESC'
-	, wrap_placeholder('mysql_date_format'));
+	ORDER BY identifier DESC', wrap_placeholder('mysql_date_format'));
+$zz['fields'][2]['sql_format'][2] = 'wrap_date';
 $zz['fields'][2]['display_field'] = 'event';
 $zz['fields'][2]['search'] = sprintf('CONCAT(/*_PREFIX_*/events.event, " (", 
-	DATE_FORMAT(/*_PREFIX_*/events.date_begin, "%s"), ")")'
-	, wrap_placeholder('mysql_date_format'));
+	DATE_FORMAT(IFNULL(/*_PREFIX_*/events.date_begin, /*_PREFIX_*/events.date_end), "%s"), ")")', wrap_placeholder('mysql_date_format'));
 
 $zz['fields'][3]['field_name'] = 'category_id';
 $zz['fields'][3]['type'] = 'select';
@@ -55,14 +55,15 @@ $zz['subselect']['sql'] = 'SELECT event_id, category
 $zz['subselect']['concat_rows'] = ', ';
 
 $zz['sql'] = sprintf('SELECT /*_PREFIX_*/events_categories.*
-		, CONCAT(/*_PREFIX_*/events.event, " (", DATE_FORMAT(events.date_begin, "%s"), IFNULL(CONCAT("–", DATE_FORMAT(events.date_end, "%s")), ""), ")") AS event
-		, category
+		, CONCAT(event, " (", IFNULL(DATE_FORMAT(date_begin, "%s"), ""), IFNULL(CONCAT("–", DATE_FORMAT(date_end, "%s")), ""), ")") AS event
+		, /*_PREFIX_*/categories.category
 	FROM /*_PREFIX_*/events_categories
 	LEFT JOIN /*_PREFIX_*/categories USING (category_id)
-	LEFT JOIN /*_PREFIX_*/events
-		ON /*_PREFIX_*/events_categories.event_id = /*_PREFIX_*/events.event_id
+	LEFT JOIN /*_PREFIX_*/events USING (event_id)
+	LEFT JOIN /*_PREFIX_*/categories main_categories
+		ON /*_PREFIX_*/categories.main_category_id = main_categories.category_id
 '
 	, wrap_placeholder('mysql_date_format')
 	, wrap_placeholder('mysql_date_format')
 );
-$zz['sqlorder'] = ' ORDER BY date_begin, category';
+$zz['sqlorder'] = ' ORDER BY IFNULL(date_begin, date_end) DESC, time_begin DESC, events.identifier, category';
