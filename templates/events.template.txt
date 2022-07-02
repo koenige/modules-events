@@ -5,9 +5,12 @@
 # https://www.zugzwang.org/modules/events
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2014-2017, 2020 Gustaf Mossakowski
+# @copyright Copyright © 2014-2017, 2020, 2022 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 # 
+%%% condition if no_events %%%
+%%% text We have no events from this year. %%%
+%%% condition else %%%
 <table class="events js-gallery">
 %%% loop start %%%
 <tr itemscope itemtype="http://schema.org/Event" class="%%% loopposition uneven un %%%even">
@@ -53,3 +56,4 @@
 %%% loop end %%%
 </table>
 <p class="noprint"><a href="webcal://%%% setting hostname %%%%%% setting events_ics_path %%%/%%% setting site %%%.ics">%%% text "Subscribe to calendar %s" cal_title %%%</a></p>
+%%% condition endif %%%

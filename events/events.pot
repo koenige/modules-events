@@ -203,6 +203,10 @@ msgid "To the entire calendar %s"
 msgstr ""
 
 #: templates/events.template.txt
+msgid "We have no events from this year."
+msgstr ""
+
+#: templates/events.template.txt
 msgid "Subscribe to calendar %s"
 msgstr ""
 
