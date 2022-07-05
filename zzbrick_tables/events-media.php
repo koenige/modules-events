@@ -66,7 +66,7 @@ $zz['fields'][3]['sql'] = sprintf('SELECT /*_PREFIX_*/media.medium_id, folders.t
 	LEFT JOIN /*_PREFIX_*/media folders
 		ON /*_PREFIX_*/media.main_medium_id = folders.medium_id
 	WHERE /*_PREFIX_*/media.filetype_id != %d
-	ORDER BY folders.title, /*_PREFIX_*/media.title', wrap_filetype_id('folder'));
+	ORDER BY folders.title, /*_PREFIX_*/media.filename', wrap_filetype_id('folder'));
 $zz['fields'][3]['sql_character_set'][1] = 'utf8';
 $zz['fields'][3]['sql_character_set'][2] = 'utf8';
 $zz['fields'][3]['id_field_name'] = '/*_PREFIX_*/media.medium_id';
@@ -103,8 +103,7 @@ $zz['sql'] = sprintf('SELECT /*_PREFIX_*/events_media.*
 	LEFT JOIN /*_PREFIX_*/media USING (medium_id)
 	LEFT JOIN /*_PREFIX_*/filetypes AS t_mime 
 		ON /*_PREFIX_*/media.thumb_filetype_id = t_mime.filetype_id
-	LEFT JOIN /*_PREFIX_*/events
-		ON /*_PREFIX_*/events_media.event_id = /*_PREFIX_*/events.event_id
+	LEFT JOIN /*_PREFIX_*/events USING (event_id)
 '
 	, wrap_placeholder('mysql_date_format')
 	, wrap_placeholder('mysql_date_format')
