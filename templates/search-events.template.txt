@@ -1,0 +1,22 @@
+# events module
+# HTML template for search
+#
+# Part of »Zugzwang Project«
+# https://www.zugzwang.org/modules/events
+#
+# @author Gustaf Mossakowski <gustaf@koenige.org>
+# @copyright Copyright © 2020, 2022 Gustaf Mossakowski
+#
+<h3>%%% text Events %%%</h3>
+
+%%% condition if events %%%
+<ul>
+%%% loop events %%%
+<li>%%% condition if images %%%<a href="%%% setting events_path %%%/%%% item identifier %%%/"><img src="%%% setting files_path %%%/%%% loop images 1 %%%%%% item filename %%%.%%% setting search_image_size %%%.%%% item thumb_extension %%%?v=%%% item version %%%%%% loop end %%%"></a>%%% condition else %%%<span class="no-img"></span>%%% condition endif %%% %%% item duration wrap_date %%% %%% item category %%%<br><a href="%%% setting events_path %%%/%%% item identifier %%%/">%%% item event %%%</a></li>
+%%% loop end %%%
+</ul>
+
+%%% condition else %%%
+<p>%%% text No events were found matching your search. %%%</p>
+
+%%% condition endif %%%

@@ -237,6 +237,10 @@ msgstr "(Link wird den Teilnehmerinnen und Teilnehmern mitgeteilt)"
 msgid "following"
 msgstr "anschließend"
 
+#: templates/search-events.template.txt
+msgid "No events were found matching your search."
+msgstr "Es wurden keine Veranstaltungen gefunden, die Ihrer Suche entsprechen."
+
 #: events/_functions.inc.php
 msgid "An event can only end after the start."
 msgstr "Eine Veranstaltung kann erst nach Beginn enden."

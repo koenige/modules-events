@@ -222,6 +222,10 @@ msgstr ""
 msgid "following"
 msgstr ""
 
+#: templates/search-events.template.txt
+msgid "No events were found matching your search."
+msgstr ""
+
 #: events/_functions.inc.php
 msgid "An event can only end after the start."
 msgstr ""
