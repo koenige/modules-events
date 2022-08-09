@@ -77,7 +77,7 @@ $zz['fields'][53]['field_name'] = 'event_year';
 $zz['fields'][53]['explanation'] = 'If different from the time of the event';
 $zz['fields'][53]['hide_in_list'] = true;
 $zz['fields'][53]['hide_in_form'] = true;
-if (wrap_access('events_event_year')) {
+if (wrap_access('events_event_year') AND wrap_get_setting('events_event_year')) {
 	$zz['fields'][53]['hide_in_form'] = false;
 }
 
