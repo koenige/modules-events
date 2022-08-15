@@ -13,7 +13,7 @@
  */
 
 
-$zz['title'] = 'Events/Media';
+$zz['title'] = 'Media of an Event';
 $zz['table'] = '/*_PREFIX_*/events_media';
 
 $zz['fields'][1]['title'] = 'ID';

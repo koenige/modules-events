@@ -153,6 +153,18 @@ msgstr "Jahr"
 msgid "If different from the time of the event"
 msgstr "Falls abweichend vom Zeitpunkt des Veranstaltung"
 
+#: zzbrick_tables/events-categories.php
+msgid "Categories of Events"
+msgstr "Kategorien von Veranstaltungen"
+
+#: zzbrick_tables/events-contacts.php
+msgid "Contacts of an Event"
+msgstr "Kontakte einer Veranstaltung"
+
+#: zzbrick_tables/events-media.php
+msgid "Media of an Event"
+msgstr "Medien einer Veranstaltung"
+
 #: templates/event.template.txt
 msgid "Event not found"
 msgstr "Veranstaltung nicht gefunden"

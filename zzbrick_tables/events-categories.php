@@ -13,7 +13,7 @@
  */
 
 
-$zz['title'] = 'Events/Categories';
+$zz['title'] = 'Categories of Events';
 $zz['table'] = '/*_PREFIX_*/events_categories';
 
 $zz['fields'][1]['title'] = 'ID';

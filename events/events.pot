@@ -138,6 +138,18 @@ msgstr ""
 msgid "If different from the time of the event"
 msgstr ""
 
+#: zzbrick_tables/events-categories.php
+msgid "Categories of Events"
+msgstr ""
+
+#: zzbrick_tables/events-contacts.php
+msgid "Contacts of an Event"
+msgstr ""
+
+#: zzbrick_tables/events-media.php
+msgid "Media of an Event"
+msgstr ""
+
 #: templates/event.template.txt
 msgid "Event not found"
 msgstr ""
