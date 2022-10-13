@@ -88,6 +88,8 @@ $zz['fields'][6]['list_prefix'] = '<strong>';
 $zz['fields'][6]['list_suffix'] = '</strong>';
 $zz['fields'][6]['if'][1]['list_prefix'] = '<del>';
 $zz['fields'][6]['if'][1]['list_suffix'] = '</del> '.wrap_text('(cancelled)');
+$zz['fields'][6]['if'][2]['list_prefix'] = '<del>';
+$zz['fields'][6]['if'][2]['list_suffix'] = '</del>';
 $zz['fields'][6]['size'] = 48;
 $zz['fields'][6]['class'] = 'block480a';
 $zz['fields'][6]['list_append_next'] = true;
@@ -211,6 +213,7 @@ $zz['fields'][10]['type'] = 'select';
 $zz['fields'][10]['enum'] = ['yes', 'no'];
 $zz['fields'][10]['default'] = 'yes';
 $zz['fields'][10]['class'] = 'hidden480';
+$zz['fields'][10]['hide_in_list'] = true;
 
 if (wrap_get_setting('events_show_in_news')) {
 	$zz['fields'][23]['title_tab'] = 'N?';
@@ -334,6 +337,9 @@ $zz['sqlorder'] = ' ORDER BY date_begin DESC, IFNULL(time_begin, time_end) DESC,
 
 $zz['conditions'][1]['scope'] = 'record';
 $zz['conditions'][1]['where'] = 'takes_place = "no"';
+
+$zz['conditions'][2]['scope'] = 'record';
+$zz['conditions'][2]['where'] = 'published = "no"';
 
 $zz['hooks']['before_insert'][] = 'mf_events_date_check';
 $zz['hooks']['before_update'][] = 'mf_events_date_check';
