@@ -118,5 +118,7 @@ function mod_events_event($params) {
 	$page['breadcrumbs'][] = '<a href="'.$zz_setting['events_path'].'/'.$event['year'].'/">'.$event['year'].'</a>';
 	$page['breadcrumbs'][] = $event['event'];
 	$page['dont_show_h1'] = true;
+	if (!$event['published'])
+		$page['extra']['body_attributes'] = ' class="unpublished"';
 	return $page;
 }
