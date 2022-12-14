@@ -140,6 +140,6 @@
 %%% condition endif %%%
 
 %%% condition unless events_timezone %%%
-<script type="text/javascript" src="%%% setting behaviour_path %%%/moments/moment-with-locales.min.js"></script>
-<script type="text/javascript" src="%%% setting behaviour_path %%%/events/timezone.js"></script>
+<script src="%%% setting behaviour_path %%%/moments/moment-with-locales.min.js"></script>
+<script src="%%% setting behaviour_path %%%/events/timezone.js"></script>
 %%% condition endif %%%
