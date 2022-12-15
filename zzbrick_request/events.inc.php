@@ -37,7 +37,7 @@ function mod_events_events($params, $settings) {
 	$condition = '';
 	$join = '';
 	if (empty($params)) {
-		$condition = 'AND date_begin >= CURDATE()';
+		$condition = 'AND (date_begin >= CURDATE() OR date_end >= CURDATE())';
 		$current = true;
 	} elseif (is_numeric($params[0])) {
 		$year = $params[0];
