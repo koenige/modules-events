@@ -118,12 +118,14 @@ INSERT INTO webpages (`title`, `content`, `identifier`, `ending`, `sequence`, `m
 CREATE TABLE `eventtexts` (
   `eventtext_id` int unsigned NOT NULL AUTO_INCREMENT,
   `event_id` int unsigned NOT NULL,
-  `eventtext` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `eventtext` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `eventtext_category_id` int unsigned NOT NULL,
+  `published` enum('yes','no') CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL DEFAULT 'yes',
   `last_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`eventtext_id`),
   UNIQUE KEY `event_id` (`event_id`,`eventtext_category_id`),
-  KEY `eventtext_category_id` (`eventtext_category_id`)
+  KEY `eventtext_category_id` (`eventtext_category_id`),
+  KEY `published` (`published`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'categories ', 'category_id', (SELECT DATABASE()), 'eventtexts', 'eventtext_id', 'eventtext_category_id', 'no-delete');

@@ -42,3 +42,5 @@
 /* 2022-06-10-11 */	ALTER TABLE `events_categories` CHANGE `last_update` `last_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `type_category_id`;
 /* 2022-06-10-12 */	INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'categories', 'category_id', (SELECT DATABASE()), 'events_categories', 'event_category_id', 'type_category_id', 'no-delete');
 /* 2022-06-10-13 */	UPDATE `events_categories` SET `type_category_id` = (SELECT `category_id` FROM `categories` WHERE `path` = 'events' OR `parameters` LIKE '%&alias=events%');
+/* 2022-12-26-1 */	ALTER TABLE `eventtexts` ADD `published` enum('yes','no') COLLATE 'latin1_general_ci' NOT NULL DEFAULT 'yes' AFTER `eventtext_category_id`;
+/* 2022-12-26-2 */	ALTER TABLE `eventtexts` ADD INDEX `published` (`published`);

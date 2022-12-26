@@ -23,16 +23,16 @@ $zz['fields'][1]['type'] = 'id';
 $zz['fields'][2]['field_name'] = 'event_id';
 $zz['fields'][2]['type'] = 'select';
 $zz['fields'][2]['sql'] = sprintf('SELECT event_id
-		, CONCAT(/*_PREFIX_*/events.event, " (", DATE_FORMAT(/*_PREFIX_*/events.date_begin, "%s"), ")") AS event 
+		, CONCAT(/*_PREFIX_*/events.event, " (", DATE_FORMAT(/*_PREFIX_*/events.date_begin, "%s"), ")") AS event
+		, identifier
 	FROM /*_PREFIX_*/events
 	WHERE ISNULL(main_event_id)
 	ORDER BY date_begin DESC', wrap_placeholder('mysql_date_format'));
-$zz['fields'][2]['display_field'] = 'event';
+$zz['fields'][2]['display_field'] = 'identifier';
 $zz['fields'][2]['search'] = sprintf('CONCAT(/*_PREFIX_*/events.event, " (", 
 	DATE_FORMAT(/*_PREFIX_*/events.date_begin, "%s"), ")")', wrap_placeholder('mysql_date_format'));
 
-$zz['fields'][3]['field_name'] = 'eventtext';
-
+$zz['fields'][4]['title'] = 'Category';
 $zz['fields'][4]['field_name'] = 'eventtext_category_id';
 $zz['fields'][4]['type'] = 'select';
 $zz['fields'][4]['sql'] = 'SELECT category_id, category, main_category_id
@@ -42,7 +42,19 @@ $zz['fields'][4]['show_hierarchy'] = 'main_category_id';
 $zz['fields'][4]['id_field_name'] = 'category_id';
 $zz['fields'][4]['show_hierarchy_subtree'] = wrap_category_id('event-texts');
 $zz['fields'][4]['display_field'] = 'category';
-$zz['fields'][4]['hide_in_list'] = true;
+
+$zz['fields'][3]['title'] = 'Text';
+$zz['fields'][3]['field_name'] = 'eventtext';
+$zz['fields'][3]['type'] = 'memo';
+$zz['fields'][3]['format'] = 'markdown';
+$zz['fields'][3]['if'][1]['list_prefix'] = '<del>';
+$zz['fields'][3]['if'][1]['list_suffix'] = '</del>';
+
+$zz['fields'][5]['field_name'] = 'published';
+$zz['fields'][5]['type'] = 'select';
+$zz['fields'][5]['enum'] = ['yes', 'no'];
+$zz['fields'][5]['default'] = 'yes';
+$zz['fields'][5]['hide_in_list'] = true;
 
 $zz['fields'][99]['field_name'] = 'last_update';
 $zz['fields'][99]['type'] = 'timestamp';
@@ -58,3 +70,6 @@ $zz['sql'] = 'SELECT /*_PREFIX_*/eventtexts.*
 ';
 
 $zz['sqlorder'] = ' ORDER BY date_begin DESC, IFNULL(time_begin, time_end) DESC, sequence DESC, identifier DESC';
+
+$zz['conditions'][1]['scope'] = 'record';
+$zz['conditions'][1]['where'] = '/*_PREFIX_*/eventtexts.published = "no"';
