@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/events
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2022 Gustaf Mossakowski
+ * @copyright Copyright © 2022-2023 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -31,6 +31,8 @@ $zz['fields'][2]['sql'] = sprintf('SELECT event_id
 $zz['fields'][2]['display_field'] = 'identifier';
 $zz['fields'][2]['search'] = sprintf('CONCAT(/*_PREFIX_*/events.event, " (", 
 	DATE_FORMAT(/*_PREFIX_*/events.date_begin, "%s"), ")")', wrap_placeholder('mysql_date_format'));
+$zz['fields'][2]['if']['where']['hide_in_list'] = true;
+$zz['fields'][2]['if']['where']['hide_in_form'] = true;
 
 $zz['fields'][4]['title'] = 'Category';
 $zz['fields'][4]['field_name'] = 'eventtext_category_id';
