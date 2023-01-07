@@ -37,7 +37,7 @@ $zz['fields'][2]['if']['where']['hide_in_form'] = true;
 $zz['fields'][4]['title'] = 'Category';
 $zz['fields'][4]['field_name'] = 'eventtext_category_id';
 $zz['fields'][4]['type'] = 'select';
-$zz['fields'][4]['sql'] = 'SELECT category_id, category, main_category_id
+$zz['fields'][4]['sql'] = 'SELECT category_id, category, description, main_category_id
 	FROM categories
 	ORDER BY sequence';
 $zz['fields'][4]['show_hierarchy'] = 'main_category_id';
