@@ -5,7 +5,7 @@
 # https://www.zugzwang.org/modules/events
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2020-2022 Gustaf Mossakowski
+# @copyright Copyright © 2020-2023 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
 msgid ""
@@ -28,6 +28,18 @@ msgstr ""
 
 #: zzbrick_request/ics.php
 msgid "CANCELLED"
+msgstr ""
+
+#: zzbrick_tables/eventmenus.php
+msgid "Event Menus"
+msgstr ""
+
+#: zzbrick_tables/eventmenus.php
+msgid "Menu"
+msgstr ""
+
+#: zzbrick_tables/eventmenus.php
+msgid "Path"
 msgstr ""
 
 #: zzbrick_tables/events.php

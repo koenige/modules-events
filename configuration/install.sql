@@ -6,7 +6,7 @@
  * https://www.zugzwang.org/modules/events
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2020-2022 Gustaf Mossakowski
+ * @copyright Copyright © 2020-2023 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -112,6 +112,22 @@ INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`
 INSERT INTO webpages (`title`, `content`, `identifier`, `ending`, `sequence`, `mother_page_id`, `live`, `menu`, `last_update`) VALUES ("iCalendar", "%%% request ics %%%", "/ics*", "none", "30", "1", "yes", NULL, NOW());
 INSERT INTO webpages (`title`, `content`, `identifier`, `ending`, `sequence`, `mother_page_id`, `live`, `menu`, `last_update`) VALUES ('Events', '%%% request events %%%', '/events', '/', 20, (SELECT page_id FROM webpages wp WHERE identifier = '/'), 'yes', NULL, NOW());
 INSERT INTO webpages (`title`, `content`, `identifier`, `ending`, `sequence`, `mother_page_id`, `live`, `menu`, `last_update`) VALUES ('Events', '%%% request events * %%%', '/events*', '/', 1, (SELECT page_id FROM webpages wp WHERE identifier = '/events'), 'yes', NULL, NOW());
+
+
+-- eventmenus --
+CREATE TABLE `eventmenus` (
+  `eventmenu_id` int unsigned NOT NULL AUTO_INCREMENT,
+  `event_id` int unsigned NOT NULL,
+  `menu` varchar(63) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `path` varchar(63) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sequence` tinyint unsigned NOT NULL,
+  `parameters` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `last_update` timestamp NOT NULL,
+  PRIMARY KEY (`eventmenu_id`),
+  UNIQUE KEY `event_id_path` (`event_id`,`path`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'events ', 'event_id', (SELECT DATABASE()), 'eventmenus', 'eventmenu_id', 'event_id', 'delete');
 
 
 -- eventtexts --

@@ -6,7 +6,7 @@
  * https://www.zugzwang.org/modules/events
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2020-2022 Gustaf Mossakowski
+ * @copyright Copyright © 2020-2023 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -44,3 +44,5 @@
 /* 2022-06-10-13 */	UPDATE `events_categories` SET `type_category_id` = (SELECT `category_id` FROM `categories` WHERE `path` = 'events' OR `parameters` LIKE '%&alias=events%');
 /* 2022-12-26-1 */	ALTER TABLE `eventtexts` ADD `published` enum('yes','no') COLLATE 'latin1_general_ci' NOT NULL DEFAULT 'yes' AFTER `eventtext_category_id`;
 /* 2022-12-26-2 */	ALTER TABLE `eventtexts` ADD INDEX `published` (`published`);
+/* 2023-01-08-1 */	CREATE TABLE `eventmenus` (`eventmenu_id` int unsigned NOT NULL AUTO_INCREMENT, `event_id` int unsigned NOT NULL, `menu` varchar(63) COLLATE utf8mb4_unicode_ci NOT NULL, `path` varchar(63) COLLATE utf8mb4_unicode_ci NOT NULL, `sequence` tinyint unsigned NOT NULL, `parameters` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL, `last_update` timestamp NOT NULL, PRIMARY KEY (`eventmenu_id`), UNIQUE KEY `event_id_path` (`event_id`,`path`)) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/* 2023-01-08-2 */	INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'events ', 'event_id', (SELECT DATABASE()), 'eventmenus', 'eventmenu_id', 'event_id', 'delete');
