@@ -49,6 +49,7 @@ $zz['fields'][3]['title'] = 'Text';
 $zz['fields'][3]['field_name'] = 'eventtext';
 $zz['fields'][3]['type'] = 'memo';
 $zz['fields'][3]['format'] = 'markdown';
+$zz['fields'][3]['list_format'] = 'markdown';
 $zz['fields'][3]['if'][1]['list_prefix'] = '<del>';
 $zz['fields'][3]['if'][1]['list_suffix'] = '</del>';
 
