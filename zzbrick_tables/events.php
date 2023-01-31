@@ -63,6 +63,7 @@ $zz['fields'][56]['title_tab'] = 'TZ';
 $zz['fields'][56]['field_name'] = 'timezone';
 $zz['fields'][56]['explanation'] = 'Format: -0100 or +0630 etc.';
 $zz['fields'][56]['pattern'] = '^[+-][0-9]{4}$';
+$zz['fields'][56]['hide_in_list_if_empty'] = true;
 if (wrap_get_setting('events_timezone')) {
 	$zz['fields'][56]['type'] = 'hidden';
 	$zz['fields'][56]['value'] = wrap_get_setting('events_timezone');
