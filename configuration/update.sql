@@ -46,3 +46,7 @@
 /* 2022-12-26-2 */	ALTER TABLE `eventtexts` ADD INDEX `published` (`published`);
 /* 2023-01-08-1 */	CREATE TABLE `eventmenus` (`eventmenu_id` int unsigned NOT NULL AUTO_INCREMENT, `event_id` int unsigned NOT NULL, `menu` varchar(63) COLLATE utf8mb4_unicode_ci NOT NULL, `path` varchar(63) COLLATE utf8mb4_unicode_ci NOT NULL, `sequence` tinyint unsigned NOT NULL, `parameters` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL, `last_update` timestamp NOT NULL, PRIMARY KEY (`eventmenu_id`), UNIQUE KEY `event_id_path` (`event_id`,`path`)) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /* 2023-01-08-2 */	INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'events ', 'event_id', (SELECT DATABASE()), 'eventmenus', 'eventmenu_id', 'event_id', 'delete');
+/* 2023-01-31-1 */	ALTER TABLE `events` ADD `website_id` int unsigned NOT NULL AFTER `main_event_id`;
+/* 2023-01-31-2 */	UPDATE `events` SET `website_id` = 1 WHERE `website_id` = 0;
+/* 2023-01-31-3 */	ALTER TABLE `events` ADD UNIQUE `identifier_website_id` (`identifier`, `website_id`), DROP INDEX `identifier`;
+/* 2023-01-31-4 */	INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'websites', 'website_id', (SELECT DATABASE()), 'events', 'event_id', 'website_id', 'no-delete');

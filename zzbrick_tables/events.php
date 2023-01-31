@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/events
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2005-2022 Gustaf Mossakowski
+ * @copyright Copyright © 2005-2023 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -318,6 +318,8 @@ $zz['fields'][21]['default'] = date('Y-m-d H:i:s');
 $zz['fields'][21]['hide_in_list'] = true;
 $zz['fields'][21]['dont_copy'] = true;
 
+$zz['fields'][22] = []; // website_id
+
 $zz['fields'][99]['field_name'] = 'last_update';
 $zz['fields'][99]['type'] = 'timestamp';
 $zz['fields'][99]['hide_in_list'] = true;
@@ -382,3 +384,48 @@ $zz['filter'][4]['selection']['yes'] = wrap_text('yes');
 $zz['filter'][4]['selection']['no'] = wrap_text('no');
 
 $zz_conf['copy'] = true;
+
+if (!empty($zz_setting['multiple_websites'])) {
+	$zz['fields'][22]['field_name'] = 'website_id';
+	$zz['fields'][22]['type'] = 'write_once';
+	$zz['fields'][22]['type_detail'] = 'select';
+	$zz['fields'][22]['sql'] = 'SELECT website_id, domain
+		FROM /*_PREFIX_*/websites
+		ORDER BY domain';
+	if (!empty($zz_setting['website_id_default']))
+		$zz['fields'][22]['default'] = $zz_setting['website_id_default'];
+	$zz['fields'][22]['display_field'] = 'domain';
+	$zz['fields'][22]['exclude_from_search'] = true;
+	$zz['fields'][22]['if']['where']['hide_in_list'] = true;
+	if (!empty($_GET['filter']['website'])) {
+		$zz['fields'][22]['hide_in_list'] = true;
+		$zz['fields'][22]['hide_in_form'] = true;
+		$zz['fields'][22]['type'] = 'hidden';
+		$zz['fields'][22]['value'] = $_GET['filter']['website'];
+	}
+
+	$zz['sql'] = 'SELECT DISTINCT /*_PREFIX_*/events.*
+			, DATE_FORMAT(time_begin, "%H:%i") AS time_begin
+			, DATE_FORMAT(time_end, "%H:%i") AS time_end
+			, /*_PREFIX_*/categories.category
+			, /*_PREFIX_*/websites.domain
+		FROM /*_PREFIX_*/events
+		LEFT JOIN /*_PREFIX_*/events_categories USING (event_id)
+		LEFT JOIN /*_PREFIX_*/events_contacts USING (event_id)
+		LEFT JOIN /*_PREFIX_*/categories
+			ON /*_PREFIX_*/events.event_category_id = /*_PREFIX_*/categories.category_id
+		LEFT JOIN /*_PREFIX_*/websites USING (website_id) 
+	';
+
+	if (empty($zz['where']['website_id']) AND empty($_GET['where']['website_id'])) {
+		$zz['filter'][1]['sql'] = 'SELECT website_id, domain
+			FROM /*_PREFIX_*/websites
+			WHERE website_id != 1
+			ORDER BY domain';
+		$zz['filter'][1]['title'] = 'Website';
+		$zz['filter'][1]['identifier'] = 'website';
+		$zz['filter'][1]['type'] = 'list';
+		$zz['filter'][1]['field_name'] = 'website_id';
+		$zz['filter'][1]['where'] = '/*_PREFIX_*/webpages.website_id';
+	}
+}
