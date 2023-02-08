@@ -429,4 +429,7 @@ if (!empty($zz_setting['multiple_websites'])) {
 		$zz['filter'][1]['field_name'] = 'website_id';
 		$zz['filter'][1]['where'] = '/*_PREFIX_*/webpages.website_id';
 	}
+
+	$zz['subtitle']['website_id']['sql'] = $zz['fields'][22]['sql'];
+	$zz['subtitle']['website_id']['var'] = ['domain'];
 }
