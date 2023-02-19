@@ -165,6 +165,10 @@ msgstr "Jahr"
 msgid "If different from the time of the event"
 msgstr "Falls abweichend vom Zeitpunkt des Veranstaltung"
 
+#: zzbrick_tables/events.php
+msgid "Abstract"
+msgstr "Kurzfassung"
+
 #: zzbrick_tables/eventtexts.php
 msgid "Event Texts"
 msgstr "Veranstaltungstexte"

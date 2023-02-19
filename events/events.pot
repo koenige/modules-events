@@ -150,6 +150,10 @@ msgstr ""
 msgid "If different from the time of the event"
 msgstr ""
 
+#: zzbrick_tables/events.php
+msgid "Abstract"
+msgstr ""
+
 #: zzbrick_tables/eventtexts.php
 msgid "Event Texts"
 msgstr ""
