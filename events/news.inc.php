@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/events
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2022 Gustaf Mossakowski
+ * @copyright Copyright © 2022-2023 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -20,8 +20,6 @@
  * @return array
  */
 function mf_events_in_news($type = 'all') {
-	global $zz_setting;
-
 	$sql = 'SELECT event_id
 			, DATE_FORMAT(created, "%%Y-%%m-%%d") AS date
 			, DATE_FORMAT(created, "%%H:%%i") AS time
@@ -36,7 +34,7 @@ function mf_events_in_news($type = 'all') {
 		WHERE IF(ISNULL(date_end), date_begin >= CURDATE(), date_end >= CURDATE())
 		AND published = "yes"
 		AND ISNULL(main_event_id)';
-	$sql = sprintf($sql, $zz_setting['events_path'], $zz_setting['events_path']);
+	$sql = sprintf($sql, wrap_setting('events_path'), wrap_setting('events_path'));
 	
 	switch ($type) {
 	case 'all':

@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/events
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2009, 2014-2021 Gustaf Mossakowski
+ * @copyright Copyright © 2009, 2014-2021, 2023 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -25,15 +25,12 @@ use Kigkonsult\Icalcreator\Vtimezone;
  * @return array
  */
 function mod_events_ics($params) {
-	global $zz_setting;
-	global $zz_conf;
-
 	if (count($params) === 1) {
 		if (substr($params[0], -4) !== '.ics') return false;
 		$page['headers']['filename'] = $params[0];
 		$params[0] = substr($params[0], 0, -4);
 		switch ($params[0]) {
-		case $zz_setting['site']:
+		case wrap_setting('site'):
 			$where_condition = '';
 			break;
 		default:
@@ -80,16 +77,16 @@ function mod_events_ics($params) {
 	require_once __DIR__.'/../zzbrick_request_get/eventdata.inc.php';
 	$events = mod_events_get_eventdata($events);
 	
-	require_once $zz_setting['lib'].'/icalcreator/autoload.php';
+	require_once wrap_setting('lib').'/icalcreator/autoload.php';
 
-	$tz = $zz_setting['timezone'];
-	$v = Vcalendar::factory([Vcalendar::UNIQUE_ID => $zz_setting['hostname']]);
-	$v->setUid($zz_setting['hostname']);
+	$tz = wrap_setting('timezone');
+	$v = Vcalendar::factory([Vcalendar::UNIQUE_ID => wrap_setting('hostname')]);
+	$v->setUid(wrap_setting('hostname'));
 	$v->setMethod(Vcalendar::PUBLISH);
-	$v->setXprop(Vcalendar::X_WR_CALNAME, $zz_setting['events_ics_calname']);
-	$v->setXprop(Vcalendar::X_WR_CALDESC, $zz_setting['events_ics_caldesc']);
+	$v->setXprop(Vcalendar::X_WR_CALNAME, wrap_setting('events_ics_calname'));
+	$v->setXprop(Vcalendar::X_WR_CALDESC, wrap_setting('events_ics_caldesc'));
 	$v->setXprop(Vcalendar::X_WR_TIMEZONE, $tz);
-	$v->setConfig(Vcalendar::LANGUAGE, $zz_setting['lang']);
+	$v->setConfig(Vcalendar::LANGUAGE, wrap_setting('lang'));
 
 	foreach ($events as $event) {
 		$e = $v->newVevent();
@@ -208,7 +205,7 @@ function mod_events_ics($params) {
 			$e->setLocation(implode(', ', $locations));
 		}
 		
-		$e->setUid($event['uid'].'@'.$zz_setting['site']);
+		$e->setUid($event['uid'].'@'.wrap_setting('site'));
 		$timestamp = gmdate('Ymd His', strtotime($event['timestamp']));
 		$e->setDtstamp(str_replace(' ', 'T', $timestamp).'Z');
 	}

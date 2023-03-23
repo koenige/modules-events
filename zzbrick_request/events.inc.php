@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/events
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2014-2018, 2020-2022 Gustaf Mossakowski
+ * @copyright Copyright © 2014-2018, 2020-2023 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -26,8 +26,6 @@
  * @return array
  */
 function mod_events_events($params, $settings) {
-	global $zz_setting;
-
 	if (count($params) === 2)
 		return brick_format('%%% request event '.implode(' ', $params).' %%%');
 
@@ -64,7 +62,7 @@ function mod_events_events($params, $settings) {
 		$current = true;
 	}
 
-	if ($zz_setting['local_access']) {
+	if (wrap_setting('local_access')) {
 		$published = '(events.published = "yes" OR events.published = "no")';
 	} else {
 		$published = 'events.published = "yes"';
@@ -99,7 +97,7 @@ function mod_events_events($params, $settings) {
 	} else {
 		foreach ($events as $event_id => $event) {
 			if (empty($event['images'])) continue;
-			if (in_array('magnificpopup', $zz_setting['modules']))
+			if (in_array('magnificpopup', wrap_setting('modules')))
 				$page['extra']['magnific_popup'] = true;
 			break;
 		}

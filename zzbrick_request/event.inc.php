@@ -8,13 +8,12 @@
  * https://www.zugzwang.org/modules/events
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2014-2022 Gustaf Mossakowski
+ * @copyright Copyright © 2014-2023 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
 
 function mod_events_event($params) {
-	global $zz_setting;
 	if (count($params) !== 2) return false;
 
 	$published = empty($_SESSION['logged_in']) ? 'AND events.published = "yes"' : '';
@@ -60,13 +59,13 @@ function mod_events_event($params) {
 		$event['timetable'] = '';
 	}
 
-	$timetable_placeholder = '%%% '.wrap_get_setting('events_timetable_placeholder').' %%%';
+	$timetable_placeholder = '%%% '.wrap_setting('events_timetable_placeholder').' %%%';
 	if ($event['description'] AND strstr($event['description'], $timetable_placeholder)) {
 		$event['description'] = str_replace($timetable_placeholder, $event['timetable'], $event['description']);
 		unset ($event['timetable']);
 	}
 	
-	if (wrap_get_setting('events_leaflet_map') AND !empty($event['location'])) {
+	if (wrap_setting('events_leaflet_map') AND !empty($event['location'])) {
 		$event['places'] = [];
 		foreach ($event['location'] as $event_contact_id => $location) {
 			if (empty($location['latitude'])) continue;
@@ -104,7 +103,7 @@ function mod_events_event($params) {
 	}
 	$page['text'] = wrap_template('event', $event);
 	$page['meta'] = [
-		0 => ['property' => 'og:url', 'content' => $zz_setting['host_base'].$zz_setting['request_uri']],
+		0 => ['property' => 'og:url', 'content' => wrap_setting('host_base').wrap_setting('request_uri')],
 		1 => ['property' => 'og:type', 'content' => 'article'],
 		2 => ['property' => 'og:title', 'content' => wrap_html_escape(strip_tags($event['event']))],
 		3 => ['property' => 'og:description', 'content' => wrap_html_escape(trim(strip_tags(markdown($event['abstract']))))]
@@ -112,10 +111,10 @@ function mod_events_event($params) {
 	if (!empty($event['images'])) {
 		$main_img = reset($event['images']);
 		$page['meta'][] 
-			= ['property' => 'og:image', 'content' => $zz_setting['host_base'].$zz_setting['files_path'].'/'.$main_img['filename'].'.'.wrap_get_setting('news_og_image_size').'.'.$main_img['thumb_extension'].'?v='.$main_img['version']];
+			= ['property' => 'og:image', 'content' => wrap_setting('host_base').wrap_setting('files_path').'/'.$main_img['filename'].'.'.wrap_setting('events_og_image_size').'.'.$main_img['thumb_extension'].'?v='.$main_img['version']];
 	}
 	$page['title'] = $event['event'].', '.wrap_date($event['duration']);
-	$page['breadcrumbs'][] = '<a href="'.$zz_setting['events_path'].'/'.$event['year'].'/">'.$event['year'].'</a>';
+	$page['breadcrumbs'][] = '<a href="'.wrap_setting('events_path').'/'.$event['year'].'/">'.$event['year'].'</a>';
 	$page['breadcrumbs'][] = $event['event'];
 	$page['dont_show_h1'] = true;
 	if (!$event['published'])

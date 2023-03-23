@@ -64,13 +64,13 @@ $zz['fields'][56]['field_name'] = 'timezone';
 $zz['fields'][56]['explanation'] = 'Format: -0100 or +0630 etc.';
 $zz['fields'][56]['pattern'] = '^[+-][0-9]{4}$';
 $zz['fields'][56]['hide_in_list_if_empty'] = true;
-if (wrap_get_setting('events_timezone')) {
+if (wrap_setting('events_timezone')) {
 	$zz['fields'][56]['type'] = 'hidden';
-	$zz['fields'][56]['value'] = wrap_get_setting('events_timezone');
+	$zz['fields'][56]['value'] = wrap_setting('events_timezone');
 	$zz['fields'][56]['hide_in_form'] = true;
 	$zz['fields'][56]['hide_in_list'] = true;
-} elseif (wrap_get_setting('events_timezone_default')) {
-	$zz['fields'][56]['default'] = wrap_get_setting('events_timezone_default');
+} elseif (wrap_setting('events_timezone_default')) {
+	$zz['fields'][56]['default'] = wrap_setting('events_timezone_default');
 }
 
 $zz['fields'][53]['title'] = 'Year';
@@ -78,7 +78,7 @@ $zz['fields'][53]['field_name'] = 'event_year';
 $zz['fields'][53]['explanation'] = 'If different from the time of the event';
 $zz['fields'][53]['hide_in_list'] = true;
 $zz['fields'][53]['hide_in_form'] = true;
-if (wrap_access('events_event_year') AND wrap_get_setting('events_event_year')) {
+if (wrap_access('events_event_year') AND wrap_setting('events_event_year')) {
 	$zz['fields'][53]['hide_in_form'] = false;
 }
 
@@ -95,7 +95,7 @@ $zz['fields'][6]['size'] = 48;
 $zz['fields'][6]['class'] = 'block480a';
 $zz['fields'][6]['list_append_next'] = true;
 $zz['fields'][6]['link'] = [
-	'string1' => $zz_setting['base'].$zz_setting['events_path'].'/',
+	'string1' => wrap_setting('base').wrap_setting('events_path').'/',
 	'field1' => 'identifier',
 	'string2' => '/'
 ];
@@ -216,7 +216,7 @@ $zz['fields'][10]['default'] = 'yes';
 $zz['fields'][10]['class'] = 'hidden480';
 $zz['fields'][10]['hide_in_list'] = true;
 
-if (wrap_get_setting('events_show_in_news')) {
+if (wrap_setting('events_show_in_news')) {
 	$zz['fields'][23]['title_tab'] = 'N?';
 	$zz['fields'][23]['title'] = 'News?';
 	$zz['fields'][23]['explanation'] = 'Should the event appear in the news?';
@@ -386,15 +386,14 @@ $zz['filter'][4]['selection']['no'] = wrap_text('no');
 
 $zz_conf['copy'] = true;
 
-if (!empty($zz_setting['multiple_websites'])) {
+if (wrap_setting('multiple_websites')) {
 	$zz['fields'][22]['field_name'] = 'website_id';
 	$zz['fields'][22]['type'] = 'write_once';
 	$zz['fields'][22]['type_detail'] = 'select';
 	$zz['fields'][22]['sql'] = 'SELECT website_id, domain
 		FROM /*_PREFIX_*/websites
 		ORDER BY domain';
-	if (!empty($zz_setting['website_id_default']))
-		$zz['fields'][22]['default'] = $zz_setting['website_id_default'];
+	$zz['fields'][22]['default'] = wrap_setting('website_id_default');
 	$zz['fields'][22]['display_field'] = 'domain';
 	$zz['fields'][22]['exclude_from_search'] = true;
 	$zz['fields'][22]['if']['where']['hide_in_list'] = true;
