@@ -77,7 +77,7 @@ function mod_events_ics($params) {
 	require_once __DIR__.'/../zzbrick_request_get/eventdata.inc.php';
 	$events = mod_events_get_eventdata($events);
 	
-	require_once wrap_setting('lib').'/icalcreator/autoload.php';
+	wrap_lib('icalcreator');
 
 	$tz = wrap_setting('timezone');
 	$v = Vcalendar::factory([Vcalendar::UNIQUE_ID => wrap_setting('hostname')]);
