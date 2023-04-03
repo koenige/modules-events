@@ -35,7 +35,7 @@ CREATE TABLE `events` (
   `following` enum('yes','no') CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL DEFAULT 'no',
   `sequence` tinyint unsigned DEFAULT NULL,
   `main_event_id` int unsigned DEFAULT NULL,
-  `website_id` int unsigned NOT NULL,
+  `website_id` int unsigned NOT NULL DEFAULT '1',
   `last_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`event_id`),
   UNIQUE KEY `identifier_website_id` (`identifier`,`website_id`),

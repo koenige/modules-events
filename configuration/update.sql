@@ -50,3 +50,4 @@
 /* 2023-01-31-2 */	UPDATE `events` SET `website_id` = 1 WHERE `website_id` = 0;
 /* 2023-01-31-3 */	ALTER TABLE `events` ADD UNIQUE `identifier_website_id` (`identifier`, `website_id`), DROP INDEX `identifier`;
 /* 2023-01-31-4 */	INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'websites', 'website_id', (SELECT DATABASE()), 'events', 'event_id', 'website_id', 'no-delete');
+/* 2023-04-03-1 */	ALTER TABLE `events` CHANGE `website_id` `website_id` int unsigned NOT NULL DEFAULT '1' AFTER `main_event_id`;
