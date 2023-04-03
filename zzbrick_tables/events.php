@@ -306,8 +306,10 @@ $zz['fields'][9]['hide_in_list'] = true;
 $zz['fields'][2]['field_name'] = 'identifier';
 $zz['fields'][2]['type'] = 'identifier';
 $zz['fields'][2]['fields'] = [
-	'date_begin{0,4}','event', 'identifier'
+	'event_year', 'date_begin{0,4}', 'date_end{0,4}', 'event', 'identifier'
 ];
+$zz['fields'][2]['conf_identifier']['ignore_this_if']['date_begin{0,4}'] = 'event_year';
+$zz['fields'][2]['conf_identifier']['ignore_this_if']['date_end{0,4}'] = 'date_begin{0,4}';
 $zz['fields'][2]['conf_identifier']['concat'] = ['/', '-', '/'];
 $zz['fields'][2]['conf_identifier']['exists'] = '-';
 $zz['fields'][2]['hide_in_list'] = true;
