@@ -15,7 +15,7 @@
 
 if (empty($brick['data']['event_id'])) wrap_quit(404);
 
-$zz = zzform_include_table('eventmenus');
+$zz = zzform_include('eventmenus');
 
 $zz['where']['event_id'] = $brick['data']['event_id'];
 

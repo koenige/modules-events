@@ -13,6 +13,6 @@
  */
 
 
-$zz = zzform_include_table('eventtexts');
+$zz = zzform_include('eventtexts');
 
 $zz['where']['event_id'] = $brick['data']['event_id'];

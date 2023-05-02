@@ -110,7 +110,7 @@ $zz['fields'][8]['explanation'] = 'Short description of the event (is displayed 
 $zz['fields'][8]['format'] = 'markdown';
 $zz['fields'][8]['typo_cleanup'] = true;
 
-$zz['fields'][7] = zzform_include_table('events-contacts');
+$zz['fields'][7] = zzform_include('events-contacts');
 $zz['fields'][7]['title'] = 'Place';
 $zz['fields'][7]['table_name'] = 'places';
 $zz['fields'][7]['type'] = 'subtable';
@@ -137,7 +137,7 @@ $zz['fields'][7]['subselect']['suffix'] = '</em></p>';
 $zz['fields'][7]['list_append_next'] = true;
 $zz['fields'][7]['subselect']['sql'] .= sprintf(' WHERE role_category_id = %d', wrap_category_id('roles/location'));
 
-$zz['fields'][61] = zzform_include_table('events-contacts');
+$zz['fields'][61] = zzform_include('events-contacts');
 $zz['fields'][61]['title'] = 'Organiser';
 $zz['fields'][61]['table_name'] = 'organisers';
 $zz['fields'][61]['type'] = 'subtable';
@@ -183,7 +183,7 @@ $zz['fields'][26]['type'] = 'hidden';
 $zz['fields'][26]['type_detail'] = 'select';
 $zz['fields'][26]['value'] = wrap_category_id('event/event');
 
-$zz['fields'][24] = zzform_include_table('events-categories');
+$zz['fields'][24] = zzform_include('events-categories');
 $zz['fields'][24]['title'] = 'Category';
 $zz['fields'][24]['type'] = 'subtable';
 $zz['fields'][24]['min_records'] = 1;
@@ -245,7 +245,7 @@ $zz['fields'][25]['hide_in_form'] = true;
 $zz['fields'][25]['dont_copy'] = true;
 $zz['fields'][25]['explanation'] = 'Sorting if no time was specified.';
 
-$zz['fields'][62] = zzform_include_table('events-media');
+$zz['fields'][62] = zzform_include('events-media');
 $zz['fields'][62]['title'] = 'Media';
 $zz['fields'][62]['type'] = 'subtable';
 $zz['fields'][62]['min_records'] = 1;
