@@ -23,8 +23,14 @@ function mod_events_placeholder_event($brick) {
 			, CONCAT("main_event_id:", events.main_event_id) AS main_event_rights
 			, CONCAT(IFNULL(date_begin, ""), IFNULL(CONCAT("/", date_end), "")) AS duration
 			, IF(events.published = "yes", 1, NULL) AS published
+			, IFNULL((SELECT MAX(timetable.date_begin) FROM events timetable
+				WHERE timetable.main_event_id = events.event_id), date_begin) AS timetable_max
 	    FROM events
 	    WHERE identifier = "%s"';
+	if (in_array('activities', wrap_setting('modules'))) {
+		$sql = wrap_edit_sql($sql, 'SELECT', 'forms.form_id');
+		$sql = wrap_edit_sql($sql, 'JOIN', 'LEFT JOIN forms USING (event_id)');
+	}
 	$sql = sprintf($sql, wrap_db_escape($brick['parameter']));
 	$event = wrap_db_fetch($sql);
 	if (!$event AND empty($brick['local_settings']['not_found']))
