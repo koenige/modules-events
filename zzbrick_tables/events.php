@@ -303,6 +303,14 @@ $zz['fields'][9]['sql'] = 'SELECT event_id, event, main_event_id, identifier
 	ORDER BY identifier';
 $zz['fields'][9]['hide_in_list'] = true;
 
+if (wrap_access('events_parameters')) {
+	$zz['fields'][28]['title'] = 'Parameters';
+	$zz['fields'][28]['field_name'] = 'parameters';
+	$zz['fields'][28]['search'] = 'events.parameters';
+	$zz['fields'][28]['type'] = 'parameter';
+	$zz['fields'][28]['hide_in_list'] = true;
+}
+
 $zz['fields'][2]['field_name'] = 'identifier';
 $zz['fields'][2]['type'] = 'identifier';
 $zz['fields'][2]['fields'] = [
