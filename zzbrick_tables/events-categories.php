@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/events
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2014, 2018, 2020-2022 Gustaf Mossakowski
+ * @copyright Copyright © 2014, 2018, 2020-2023 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -51,6 +51,11 @@ $zz['fields'][4]['value'] = wrap_category_id('events');
 $zz['fields'][4]['hide_in_form'] = true;
 $zz['fields'][4]['hide_in_list'] = true;
 $zz['fields'][4]['exclude_from_search'] = true;
+
+if (wrap_setting('events_category_properties')) {
+	$zz['fields'][5]['field_name'] = 'property';
+	$zz['fields'][5]['typo_cleanup'] = true;
+}
 
 $zz['fields'][99]['field_name'] = 'last_update';
 $zz['fields'][99]['type'] = 'timestamp';
