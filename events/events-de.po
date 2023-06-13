@@ -22,6 +22,22 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 1.8.12\n"
 
+#: zzbrick_forms/projects.php
+msgid "Projects"
+msgstr "Projekte"
+
+#: zzbrick_forms/projects.php
+msgid "Project"
+msgstr "Projekt"
+
+#: zzbrick_forms/projects.php
+msgid "Period"
+msgstr "Zeitraum"
+
+#: zzbrick_forms/projects.php
+msgid "Main Project"
+msgstr "Hauptprojekt"
+
 #: zzbrick_request/ics.php zzbrick_tables/events.php
 msgid "Organiser"
 msgstr "Veranstalter"
