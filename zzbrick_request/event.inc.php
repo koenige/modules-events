@@ -115,7 +115,7 @@ function mod_events_event($params) {
 	}
 	$page['title'] = $event['event'].', '.wrap_date($event['duration']);
 	$page['breadcrumbs'][] = '<a href="'.wrap_setting('events_path').'/'.$event['year'].'/">'.$event['year'].'</a>';
-	$page['breadcrumbs'][] = $event['event'];
+	$page['breadcrumbs'][]['title'] = $event['event'];
 	$page['dont_show_h1'] = true;
 	if (!$event['published'])
 		$page['extra']['body_attributes'] = ' class="unpublished"';
