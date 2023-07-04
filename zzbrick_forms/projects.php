@@ -301,7 +301,7 @@ $zz['filter'][4]['where'] = 'published';
 $zz['filter'][4]['selection']['yes'] = wrap_text('yes');
 $zz['filter'][4]['selection']['no'] = wrap_text('no');
 
-$zz_conf['copy'] = true;
+$zz['record']['copy'] = true;
 
 if (wrap_setting('multiple_websites')) {
 	$zz['fields'][22]['field_name'] = 'website_id';
