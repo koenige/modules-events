@@ -218,7 +218,7 @@ $zz['fields'][9]['sql'] = 'SELECT event_id, event, main_event_id, identifier
 	FROM events
 	ORDER BY identifier';
 $zz['fields'][9]['hide_in_list'] = true;
-$zz['fields'][9]['show_hierarchy'] = true;
+$zz['fields'][9]['show_hierarchy'] = 'main_event_id';
 $zz['fields'][9]['show_hierarchy_same_table'] = true;
 
 $zz['fields'][2]['field_name'] = 'identifier';
