@@ -72,7 +72,15 @@ $zz['sql'] = 'SELECT /*_PREFIX_*/eventtexts.*
 		ON /*_PREFIX_*/eventtexts.eventtext_category_id = /*_PREFIX_*/categories.category_id
 ';
 
-$zz['sqlorder'] = ' ORDER BY date_begin DESC, IFNULL(time_begin, time_end) DESC, sequence DESC, identifier DESC';
+$zz['sqlorder'] = ' ORDER BY date_begin DESC, IFNULL(time_begin, time_end) DESC, /*_PREFIX_*/events.sequence DESC, identifier DESC';
 
 $zz['conditions'][1]['scope'] = 'record';
 $zz['conditions'][1]['where'] = '/*_PREFIX_*/eventtexts.published = "no"';
+
+$zz['subtitle']['event_id']['sql'] = 'SELECT event
+	, CONCAT(date_begin, IFNULL(CONCAT("/", date_end), "")) AS duration
+	FROM /*_PREFIX_*/events';
+$zz['subtitle']['event_id']['var'] = ['event', 'duration'];
+$zz['subtitle']['event_id']['format'][1] = 'wrap_date';
+$zz['subtitle']['event_id']['link'] = '../';
+$zz['subtitle']['event_id']['link_no_append'] = true;
