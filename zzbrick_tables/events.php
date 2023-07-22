@@ -294,13 +294,12 @@ $zz['fields'][14]['separator'] = true;
 $zz['fields'][9]['title'] = 'Main Event';
 $zz['fields'][9]['field_name'] = 'main_event_id';
 $zz['fields'][9]['type'] = 'select';
-$zz['fields'][9]['sql'] = 'SELECT event_id, begin, event
+$zz['fields'][9]['sql'] = 'SELECT event_id
+		, CONCAT(IFNULL(events.date_begin, ""), IFNULL(CONCAT("/", events.date_end), "")) AS duration
+		, event, identifier, main_event_id
 	FROM events
-	ORDER BY begin DESC';
-$zz['fields'][9]['key_field_name'] = 'event_id'; // für subtitle!
-$zz['fields'][9]['sql'] = 'SELECT event_id, event, main_event_id, identifier
-	FROM events
-	ORDER BY identifier';
+	ORDER BY date_begin DESC, identifier';
+$zz['fields'][9]['key_field_name'] = 'event_id'; // for subtitle!
 $zz['fields'][9]['hide_in_list'] = true;
 
 if (wrap_access('events_parameters')) {
@@ -336,8 +335,8 @@ $zz['fields'][99]['type'] = 'timestamp';
 $zz['fields'][99]['hide_in_list'] = true;
 
 $zz['sql'] = 'SELECT DISTINCT /*_PREFIX_*/events.*
-	, DATE_FORMAT(time_begin, "%H:%i") AS time_begin
-	, DATE_FORMAT(time_end, "%H:%i") AS time_end
+	, DATE_FORMAT(/*_PREFIX_*/events.time_begin, "%H:%i") AS time_begin
+	, DATE_FORMAT(/*_PREFIX_*/events.time_end, "%H:%i") AS time_end
 	, /*_PREFIX_*/categories.category
 	FROM /*_PREFIX_*/events
 	LEFT JOIN /*_PREFIX_*/events_categories USING (event_id)
@@ -346,13 +345,13 @@ $zz['sql'] = 'SELECT DISTINCT /*_PREFIX_*/events.*
 		ON /*_PREFIX_*/events.event_category_id = /*_PREFIX_*/categories.category_id
 ';
 
-$zz['sqlorder'] = ' ORDER BY date_begin DESC, IFNULL(time_begin, time_end) DESC, sequence DESC, identifier DESC';
+$zz['sqlorder'] = ' ORDER BY /*_PREFIX_*/events.date_begin DESC, IFNULL(/*_PREFIX_*/events.time_begin, /*_PREFIX_*/events.time_end) DESC, /*_PREFIX_*/events.sequence DESC, /*_PREFIX_*/events.identifier DESC';
 
 $zz['conditions'][1]['scope'] = 'record';
-$zz['conditions'][1]['where'] = 'takes_place = "no"';
+$zz['conditions'][1]['where'] = '/*_PREFIX_*/events.takes_place = "no"';
 
 $zz['conditions'][2]['scope'] = 'record';
-$zz['conditions'][2]['where'] = 'published = "no"';
+$zz['conditions'][2]['where'] = '/*_PREFIX_*/events.published = "no"';
 
 $zz['hooks']['before_insert'][] = 'mf_events_date_check';
 $zz['hooks']['before_update'][] = 'mf_events_date_check';
@@ -364,7 +363,7 @@ $zz['filter'][1]['sql'] = 'SELECT DISTINCT YEAR(date_begin) AS year_idf
 $zz['filter'][1]['title'] = wrap_text('Year');
 $zz['filter'][1]['identifier'] = 'year';
 $zz['filter'][1]['type'] = 'list';
-$zz['filter'][1]['where'] = 'YEAR(date_begin)';
+$zz['filter'][1]['where'] = 'YEAR(/*_PREFIX_*/events.date_begin)';
 
 $zz['filter'][2]['sql'] = 'SELECT DISTINCT category_id
 		, category
@@ -390,11 +389,17 @@ $zz['filter'][3]['where'] = '/*_PREFIX_*/events_contacts.contact_id';
 $zz['filter'][4]['title'] = wrap_text('Published');
 $zz['filter'][4]['identifier'] = 'published';
 $zz['filter'][4]['type'] = 'list';
-$zz['filter'][4]['where'] = 'published';
+$zz['filter'][4]['where'] = '/*_PREFIX_*/events.published';
 $zz['filter'][4]['selection']['yes'] = wrap_text('yes');
 $zz['filter'][4]['selection']['no'] = wrap_text('no');
 
 $zz['record']['copy'] = true;
+
+$zz['subtitle']['main_event_id']['sql'] = $zz['fields'][9]['sql'];
+$zz['subtitle']['main_event_id']['var'] = ['event', 'duration'];
+$zz['subtitle']['main_event_id']['format'][1] = 'wrap_date';
+$zz['subtitle']['main_event_id']['link'] = '../';
+$zz['subtitle']['main_event_id']['link_no_append'] = true;
 
 if (wrap_setting('multiple_websites')) {
 	$zz['fields'][22]['field_name'] = 'website_id';
@@ -415,8 +420,8 @@ if (wrap_setting('multiple_websites')) {
 	}
 
 	$zz['sql'] = 'SELECT DISTINCT /*_PREFIX_*/events.*
-			, DATE_FORMAT(time_begin, "%H:%i") AS time_begin
-			, DATE_FORMAT(time_end, "%H:%i") AS time_end
+			, DATE_FORMAT(/*_PREFIX_*/events.time_begin, "%H:%i") AS time_begin
+			, DATE_FORMAT(/*_PREFIX_*/events.time_end, "%H:%i") AS time_end
 			, /*_PREFIX_*/categories.category
 			, /*_PREFIX_*/websites.domain
 		FROM /*_PREFIX_*/events
