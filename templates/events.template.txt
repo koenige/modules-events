@@ -5,7 +5,7 @@
 # https://www.zugzwang.org/modules/events
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2014-2017, 2020, 2022 Gustaf Mossakowski
+# @copyright Copyright © 2014-2017, 2020, 2022-2023 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 # 
 %%% condition if no_events %%%
@@ -35,15 +35,15 @@
 </p>
 %%% condition endif %%%
 
-<strong itemprop="name">%%% condition unless cancelled %%%<a href="%%% setting base %%%%%% setting events_path %%%/%%% item identifier %%%/">%%% condition endif %%%%%% item event %%%%%% condition unless cancelled %%%</a>%%% condition endif %%%</strong> 
-%%% condition if categories %%%
- – 
+<strong itemprop="name">%%% condition unless cancelled %%%<a href="%%% setting base %%%%%% setting events_path %%%/%%% item identifier %%%/">%%% condition endif %%%%%% item event %%%%%% condition unless cancelled %%%</a>%%% condition endif %%%</strong>%%% condition if categories %%%, 
 %%% loop categories %%%
 %%% loopposition middle ", " %%%%%% loopposition last " & " %%%
 %%% item category %%%
 %%% loop end %%%
 %%% condition endif %%%
-%%% condition if place %%%
+%%% condition if location %%%
+<span itemprop='location'> %%% text in %%% %%% loop location %%%%%% item place "%s, " %%% %%% item contact %%%%%% loop end %%%</span>
+%%% condition elseif place %%%
 <span itemprop='location'> %%% condition if reise %%%nach%%% condition else %%%in%%% condition endif %%% %%% item place %%%</span>
 %%% condition endif %%%
 %%% condition unless cancelled %%% (<a href="%%% setting events_ics_path %%%/%%% item identifier %%%.ics" title="%%% text Enter event in your own calendar (ICS) %%%">ICS</a>)%%% condition endif %%%
