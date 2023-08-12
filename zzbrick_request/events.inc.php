@@ -30,7 +30,6 @@ function mod_events_events($params, $settings) {
 		return brick_format('%%% request event '.implode(' ', $params).' %%%');
 
 	$limit = false;
-	$year = false;
 	$current = false;
 	$condition = '';
 	$join = '';
@@ -55,7 +54,7 @@ function mod_events_events($params, $settings) {
 		return false;
 	} else {
 		// current
-		$limit = isset($settings['limit']) ? $settings['limit'] : 3;
+		$limit = $settings['limit'] ?? 3;
 		$page['dont_show_h1'] = true;
 		$condition = ' AND (date_begin >= CURDATE() OR date_end >= CURDATE())
 		AND takes_place = "yes"';
@@ -83,7 +82,7 @@ function mod_events_events($params, $settings) {
 		, $published
 		, wrap_category_id('event/event')
 		, $condition
-		, $current ? 'ASC' : 'DESC'
+		, $settings['sort'] ?? ($current ? 'ASC' : 'DESC')
 		, $limit ? sprintf(' LIMIT %d', $limit) : ''
 	);
 	$events = wrap_db_fetch($sql, 'event_id');
@@ -105,7 +104,7 @@ function mod_events_events($params, $settings) {
 	}
 
 	$events['cal_title'] = '';
-	$template = !empty($settings['template']) ? $settings['template'] : 'events';
+	$template = $settings['template'] ?? 'events';
 	$page['text'] = wrap_template($template, $events);
 	return $page;
 }
