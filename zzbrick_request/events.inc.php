@@ -67,6 +67,9 @@ function mod_events_events($params, $settings) {
 		$published = 'events.published = "yes"';
 	}
 	
+	$sort = $settings['sort'] ?? NULL;
+	if (!in_array($sort, ['ASC', 'DESC'])) $sort = NULL;
+	
 	$sql = 'SELECT event_id
 			, IF(date_begin >= CURDATE() OR date_end >= CURDATE(), "Aktuelle Termine", "Vergangene Termine") AS terminstatus
 	    FROM events
@@ -82,7 +85,7 @@ function mod_events_events($params, $settings) {
 		, $published
 		, wrap_category_id('event/event')
 		, $condition
-		, $settings['sort'] ?? ($current ? 'ASC' : 'DESC')
+		, $sort ?? ($current ? 'ASC' : 'DESC')
 		, $limit ? sprintf(' LIMIT %d', $limit) : ''
 	);
 	$events = wrap_db_fetch($sql, 'event_id');
