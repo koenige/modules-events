@@ -18,7 +18,7 @@
 <td colspan="2"><h2>%%% item month_iso wrap_date %%%</h2></td>
 </tr>
 %%% condition endif %%%
-<tr itemscope itemtype="http://schema.org/Event" class="%%% loopposition uneven un %%%even">
+<tr itemscope itemtype="http://schema.org/Event" class="%%% loopposition uneven un %%%even%%% condition unless published %%% unpublished%%% condition endif %%%%%% condition if change_week %%% section_week%%% condition endif %%%">
 <th>
 %%% item cancelled "<del>" %%%
 <time datetime='%%% item date_begin %%%%%% item time_begin_iso "T%s" %%%' itemprop="startDate">%%% condition unless change_duration %%%<span class="identical_duration">%%% condition endif %%%<span class="weekday">%%% item weekday_begin %%%%%% item weekday_end "–%s" %%%</span> %%% item duration wrap_date %%%%%% condition unless change_duration %%%</span>%%% condition endif %%%
@@ -47,7 +47,7 @@
 %%% loop end %%%
 %%% condition endif %%%
 %%% condition if location %%%
- %%% text in %%% <span itemprop='location'>%%% loop location %%%%%% item place "%s, " %%% %%% item contact %%%%%% item address ", %s" %%%%%% condition unless own_country %%%%%% item country " (%s)" %%%%%% condition endif %%%%%% loop end %%%</span>
+ %%% text in %%% <span itemprop='location'>%%% loop location %%%%%% item place "%s, " %%% %%% item contact %%%%%% item address ", %s" %%%%%% condition unless own_country %%%%%% item country " (%s)" %%%%%% condition endif %%%%%% loopposition first|middle ", " %%%%%% loop end %%%</span>
 %%% condition elseif place %%%
 <span itemprop='location'> %%% condition if reise %%%nach%%% condition else %%%in%%% condition endif %%% %%% item place %%%</span>
 %%% condition endif %%%

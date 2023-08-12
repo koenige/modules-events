@@ -45,6 +45,7 @@ function mod_events_get_eventdata($data, $settings = [], $id_field_name = '', $l
 			, YEAR(IFNULL(date_begin, date_end)) AS year
 			, MONTH(IFNULL(date_begin, date_end)) AS month
 			, DATE_FORMAT(IFNULL(date_begin, date_end), "%%Y-%%m-00") AS month_iso
+			, WEEK(IFNULL(date_begin, date_end), 1) AS week
 			, DAYOFWEEK(date_begin) AS weekday_begin
 			, DAYOFWEEK(date_end) AS weekday_end
 			, IF(events.published = "yes", 1, NULL) AS published
@@ -85,7 +86,7 @@ function mod_events_get_eventdata($data, $settings = [], $id_field_name = '', $l
 	
 	// mark equal fields
 	$last_line = [];
-	$fields = ['year', 'month_iso', 'duration'];
+	$fields = ['year', 'month_iso', 'duration', 'week'];
 	foreach ($fields as $field)
 		$last_line[$field] = NULL;
 	foreach ($data as $event_id => $line) {

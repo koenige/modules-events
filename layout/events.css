@@ -26,6 +26,20 @@
 .events .weekday
 				{ font-weight: normal; }
 
+body.unpublished::before,
+.events tr.unpublished th:first-child::before
+				{ content: " %%% text PREVIEW %%% "; background: #C00; color: white; 
+				transform: rotate(-45deg); font-weight: bold; z-index: 1000; 
+				opacity: .8; }
+events.unpublished::before
+				{ position: fixed; left: -4em; top: 2em; 
+				padding: .75em 6em .65em 5em;  font-size: 1.4em; }
+.events tr.unpublished th
+				{ position: relative; overflow: hidden; }
+.events tr.unpublished th:first-child::before
+				{ position: absolute; padding: .5em 4em; left: -4em; top: 1.5em; }
+
+
 @media screen and (max-width: 640px) {
 	.events th, .events td
 					{ display: block; padding: 0; }
