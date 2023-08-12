@@ -12,8 +12,9 @@
 
 
 /* events.template.txt */
+.events			{ border-collapse: collapse; }
 .events th		{ text-align: right; vertical-align: top; padding: 0 .5rem .25rem 0; }
-.events td		{ text-align: left; vertical-align: top; padding: 0 0 .5rem .25rem; }
+.events td		{ text-align: left; vertical-align: top; padding: 0 0 .25rem .5rem; }
 .events th em	{ font-style: normal; font-weight: normal; }
 .events p, .events ul, .events li
 				{ margin: 0; padding: 0; }
