@@ -78,9 +78,8 @@ $zz['fields'][53]['field_name'] = 'event_year';
 $zz['fields'][53]['explanation'] = 'If different from the time of the event';
 $zz['fields'][53]['hide_in_list'] = true;
 $zz['fields'][53]['hide_in_form'] = true;
-if (wrap_access('events_event_year') AND wrap_setting('events_event_year')) {
+if (wrap_access('events_event_year') AND wrap_setting('events_event_year'))
 	$zz['fields'][53]['hide_in_form'] = false;
-}
 
 $zz['fields'][6]['separator_before'] = true;
 $zz['fields'][6]['field_name'] = 'event';
@@ -95,9 +94,8 @@ $zz['fields'][6]['size'] = 48;
 $zz['fields'][6]['class'] = 'block480a';
 $zz['fields'][6]['list_append_next'] = true;
 $zz['fields'][6]['link'] = [
-	'string1' => wrap_setting('base').wrap_setting('events_path').'/',
-	'field1' => 'identifier',
-	'string2' => '/'
+	'area' => 'events_event',
+	'fields' => 'identifier'
 ];
 $zz['fields'][6]['typo_cleanup'] = true;
 $zz['fields'][6]['typo_remove_double_spaces'] = true;

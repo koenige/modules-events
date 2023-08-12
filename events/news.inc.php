@@ -26,16 +26,19 @@ function mf_events_in_news($type = 'all') {
 			, identifier, abstract, event AS title
 			, direct_link
 			, abstract AS text
-			, IFNULL(direct_link, CONCAT("%s/", identifier, "/")) AS link
+			, IFNULL(direct_link, CONCAT("%s")) AS link
 			, CONCAT(date_begin, IFNULL(CONCAT("/", date_end), "")) AS duration
 			, DATE_FORMAT(events.last_update, "%%a, %%d %%b %%Y %%H:%%i:%%s") AS pubDate
-			, CONCAT("%s/", identifier, "/") AS guid
+			, CONCAT("%s") AS guid
 		FROM events
 		WHERE IF(ISNULL(date_end), date_begin >= CURDATE(), date_end >= CURDATE())
 		AND published = "yes"
 		AND ISNULL(main_event_id)';
-	$sql = sprintf($sql, wrap_setting('events_path'), wrap_setting('events_path'));
-	
+	$sql = sprintf($sql
+		, wrap_path('events_event', '", identifier, "')
+		, wrap_path('events_event', '", identifier, "')
+	);
+
 	switch ($type) {
 	case 'all':
 		$sql .= 'AND show_in_news = "yes"

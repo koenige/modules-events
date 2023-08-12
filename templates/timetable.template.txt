@@ -47,7 +47,7 @@
 %%% condition if cancelled %%%
 <del>
 %%% condition elseif identifier %%%
-<a href="%%% setting events_path %%%/%%% item identifier %%%/">
+<a href="%%% path events_event identifier %%%">
 %%% condition endif %%%
 %%% item event markdown %%%
 %%% condition if cancelled %%%

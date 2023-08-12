@@ -83,7 +83,7 @@
 <ul class="main_events">
 %%% loop events %%%
 <li><span class="date">%%% item duration wrap_date %%%</span>%%% item time_begin " %s" %%%%%% item time_end "–%s" %%%
-%%% condition if time_begin | time_end %%% %%% text h %%%%%% condition endif %%%: <a href="%%% setting events_path %%%/%%% item identifier %%%/">%%% item event %%%</a></li>
+%%% condition if time_begin | time_end %%% %%% text h %%%%%% condition endif %%%: <a href="%%% path events_event identifier %%%">%%% item event %%%</a></li>
 %%% loop end %%%
 </ul>
 %%% condition endif %%%
@@ -134,7 +134,7 @@
 %%% condition unless cancelled %%%
 <p><a href="%%% path events_ics identifier %%%.ics" title="%%% text Enter event in your own calendar (ICS) %%%">%%% text "Download calendar entry “%s”" event %%%</a></p>
 %%% condition endif %%%
-<p><a href="%%% setting events_path %%%/%%% item year %%%/">%%% text "To the entire calendar %s" year %%%</a></p>
+<p><a href="%%% path events_event year %%%">%%% text "To the entire calendar %s" year %%%</a></p>
 </div>
 </div>
 %%% condition endif %%%
