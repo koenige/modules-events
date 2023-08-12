@@ -89,6 +89,13 @@ function mod_events_get_eventdata($data, $settings = [], $id_field_name = '', $l
 	foreach ($fields as $field)
 		$last_line[$field] = NULL;
 	foreach ($data as $event_id => $line) {
+		if (!empty($line['location'])) {
+			foreach ($line['location'] as $contact_id => $contact) {
+				if (!$contact['country_id']) continue;
+				if ($contact['country_id'].'' !== wrap_setting('own_country_id').'') continue;
+				$data[$event_id]['location'][$contact_id]['own_country'] = true;
+			}
+		}
 		foreach ($fields as $field) {
 			if ($line[$field] !== $last_line[$field])
 				$data[$event_id]['change_'.$field] = true;

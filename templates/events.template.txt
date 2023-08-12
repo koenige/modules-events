@@ -47,7 +47,7 @@
 %%% loop end %%%
 %%% condition endif %%%
 %%% condition if location %%%
- %%% text in %%% <span itemprop='location'>%%% loop location %%%%%% item place "%s, " %%% %%% item contact %%%%%% loop end %%%</span>
+ %%% text in %%% <span itemprop='location'>%%% loop location %%%%%% item place "%s, " %%% %%% item contact %%%%%% item address ", %s" %%%%%% condition unless own_country %%%%%% item country " (%s)" %%%%%% condition endif %%%%%% loop end %%%</span>
 %%% condition elseif place %%%
 <span itemprop='location'> %%% condition if reise %%%nach%%% condition else %%%in%%% condition endif %%% %%% item place %%%</span>
 %%% condition endif %%%
