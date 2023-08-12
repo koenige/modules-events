@@ -42,11 +42,11 @@
 %%% loop end %%%
 %%% condition endif %%%
 %%% condition if location %%%
-<span itemprop='location'> %%% text in %%% %%% loop location %%%%%% item place "%s, " %%% %%% item contact %%%%%% loop end %%%</span>
+ %%% text in %%% <span itemprop='location'>%%% loop location %%%%%% item place "%s, " %%% %%% item contact %%%%%% loop end %%%</span>
 %%% condition elseif place %%%
 <span itemprop='location'> %%% condition if reise %%%nach%%% condition else %%%in%%% condition endif %%% %%% item place %%%</span>
 %%% condition endif %%%
-%%% condition unless cancelled %%% (<a href="%%% path events_ics identifier %%%.ics" title="%%% text Enter event in your own calendar (ICS) %%%">ICS</a>)%%% condition endif %%%
+%%% condition unless cancelled %%% <span class="ics">(<a href="%%% path events_ics identifier %%%.ics" title="%%% text Enter event in your own calendar (ICS) %%%">ICS</a>)</span>%%% condition endif %%%
 
 <div itemprop="description">
 %%% item abstract markdown %%%

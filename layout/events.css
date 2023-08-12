@@ -17,3 +17,5 @@
 .events p, .events ul, .events li
 				{ margin: 0; padding: 0; }
 .events ol		{ margin: 0; padding: 0 0 0 1rem; }
+
+.events .ics	{ font-size: .9rem; }
