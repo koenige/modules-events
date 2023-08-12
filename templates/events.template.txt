@@ -46,7 +46,7 @@
 %%% condition elseif place %%%
 <span itemprop='location'> %%% condition if reise %%%nach%%% condition else %%%in%%% condition endif %%% %%% item place %%%</span>
 %%% condition endif %%%
-%%% condition unless cancelled %%% (<a href="%%% setting events_ics_path %%%/%%% item identifier %%%.ics" title="%%% text Enter event in your own calendar (ICS) %%%">ICS</a>)%%% condition endif %%%
+%%% condition unless cancelled %%% (<a href="%%% path events_ics identifier %%%.ics" title="%%% text Enter event in your own calendar (ICS) %%%">ICS</a>)%%% condition endif %%%
 
 <div itemprop="description">
 %%% item abstract markdown %%%
@@ -55,5 +55,5 @@
 </td></tr>
 %%% loop end %%%
 </table>
-<p class="noprint"><a href="webcal://%%% setting hostname %%%%%% setting events_ics_path %%%/%%% setting site %%%.ics">%%% text "Subscribe to calendar %s" cal_title %%%</a></p>
+<p class="noprint"><a href="webcal://%%% setting hostname %%%%%% path events_ics setting site %%%.ics">%%% text "Subscribe to calendar %s" cal_title %%%</a></p>
 %%% condition endif %%%

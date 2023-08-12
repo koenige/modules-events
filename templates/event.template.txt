@@ -5,7 +5,7 @@
 # https://www.zugzwang.org/modules/events
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2014-2022 Gustaf Mossakowski
+# @copyright Copyright © 2014-2023 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 # 
 %%% condition if not_found %%%
@@ -132,7 +132,7 @@
 <div class="noprint">
 <hr>
 %%% condition unless cancelled %%%
-<p><a href="%%% setting events_ics_path %%%/%%% item identifier %%%.ics" title="%%% text Enter event in your own calendar (ICS) %%%">%%% text "Download calendar entry “%s”" event %%%</a></p>
+<p><a href="%%% path events_ics identifier %%%.ics" title="%%% text Enter event in your own calendar (ICS) %%%">%%% text "Download calendar entry “%s”" event %%%</a></p>
 %%% condition endif %%%
 <p><a href="%%% setting events_path %%%/%%% item year %%%/">%%% text "To the entire calendar %s" year %%%</a></p>
 </div>

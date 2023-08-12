@@ -54,3 +54,4 @@
 /* 2023-06-07-1 */	ALTER TABLE `events` ADD `parameters` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL AFTER `main_event_id`;
 /* 2023-06-12-1 */	ALTER TABLE `events_categories` ADD `property` varchar(255) NULL AFTER `category_id`;
 /* 2023-06-12-2 */	INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Project', NULL, (SELECT category_id FROM categories c WHERE path = 'event'), 'event/project', '&alias=event/project', NULL, NOW());
+/* 2023-08-12-1 */	UPDATE settings SET setting_value = '/ics/%s' WHERE setting_key = 'events_ics_path' AND setting_value = '/ics';
