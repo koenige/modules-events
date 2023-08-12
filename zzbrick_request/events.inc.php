@@ -63,7 +63,7 @@ function mod_events_events($params, $settings) {
 		$current = true;
 	}
 
-	if (wrap_setting('local_access')) {
+	if (!empty($_SESSION['logged_in'])) {
 		$published = '(events.published = "yes" OR events.published = "no")';
 	} else {
 		$published = 'events.published = "yes"';
@@ -79,7 +79,7 @@ function mod_events_events($params, $settings) {
 		WHERE %s
 		AND event_category_id = %d
 		%s
-		ORDER BY events.date_begin %s
+		ORDER BY events.date_begin %s, events.date_end, events.time_begin
 		%s
 	';
 	$sql = sprintf($sql
