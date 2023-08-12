@@ -1,0 +1,19 @@
+/*
+ * Cascading Style Sheets (CSS)
+ * for events module
+ *
+ * Part of »Zugzwang Project«
+ * https://www.zugzwang.org/modules/events
+ *
+ * @author Gustaf Mossakowski <gustaf@koenige.org>
+ * @copyright Copyright © 2023 Gustaf Mossakowski
+ * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
+ */
+
+
+/* events.template.txt */
+.events th		{ text-align: right; vertical-align: top; padding: 0 .5rem .25rem 0; }
+.events td		{ text-align: left; vertical-align: top; padding: 0 0 .5rem .25rem; }
+.events p, .events ul, .events li
+				{ margin: 0; padding: 0; }
+.events ol		{ margin: 0; padding: 0 0 0 1rem; }
