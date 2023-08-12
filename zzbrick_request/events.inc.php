@@ -26,6 +26,7 @@
  * @return array
  */
 function mod_events_events($params, $settings) {
+	global $zz_page;
 	if (count($params) === 2)
 		return brick_format('%%% request event '.implode(' ', $params).' %%%');
 
@@ -41,6 +42,7 @@ function mod_events_events($params, $settings) {
 		if (count($params) > 2) return false;
 		$condition = sprintf('AND (YEAR(date_begin) = %d OR YEAR(date_end) = %d)', $year, $year);
 		$page['breadcrumbs'][]['title'] = $year;
+		$zz_page['db']['title'] .= ' '.$year;
 	} elseif ($params[0] !== 'current') {
 		// Organisation?
 		$sql = 'SELECT contact_id FROM contacts
