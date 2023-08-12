@@ -43,6 +43,8 @@ function mod_events_get_eventdata($data, $settings = [], $id_field_name = '', $l
 			, time_end AS time_end_iso
 			, IF(takes_place = "yes", NULL, 1) AS cancelled
 			, YEAR(IFNULL(date_begin, date_end)) AS year
+			, MONTH(IFNULL(date_begin, date_end)) AS month
+			, DATE_FORMAT(IFNULL(date_begin, date_end), "%%Y-%%m-00") AS month_iso
 			, DAYOFWEEK(date_begin) AS weekday_begin
 			, DAYOFWEEK(date_end) AS weekday_end
 			, IF(events.published = "yes", 1, NULL) AS published
@@ -80,6 +82,19 @@ function mod_events_get_eventdata($data, $settings = [], $id_field_name = '', $l
 	$events = mod_events_get_eventdata_places($events, $ids, $langs);
 
 	$data = wrap_data_merge($data, $events, $id_field_name, $lang_field_name);
+	
+	// mark equal fields
+	$last_line = [];
+	$fields = ['year', 'month_iso', 'duration'];
+	foreach ($fields as $field)
+		$last_line[$field] = NULL;
+	foreach ($data as $event_id => $line) {
+		foreach ($fields as $field) {
+			if ($line[$field] !== $last_line[$field])
+				$data[$event_id]['change_'.$field] = true;
+			$last_line[$field] = $line[$field];
+		}
+	}
 	return $data;
 }	
 

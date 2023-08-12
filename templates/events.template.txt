@@ -13,6 +13,11 @@
 %%% condition else %%%
 <table class="events js-gallery">
 %%% loop start %%%
+%%% condition if change_month_iso %%%
+<tr class="section_month">
+<td colspan="2"><h2>%%% item month_iso wrap_date %%%</h2></td>
+</tr>
+%%% condition endif %%%
 <tr itemscope itemtype="http://schema.org/Event" class="%%% loopposition uneven un %%%even">
 <th>
 %%% item cancelled "<del>" %%%
