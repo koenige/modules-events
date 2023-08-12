@@ -46,7 +46,7 @@
 %%% condition elseif place %%%
 <span itemprop='location'> %%% condition if reise %%%nach%%% condition else %%%in%%% condition endif %%% %%% item place %%%</span>
 %%% condition endif %%%
-%%% condition unless cancelled %%% <span class="ics">(<a href="%%% path events_ics identifier %%%.ics" title="%%% text Enter event in your own calendar (ICS) %%%">ICS</a>)</span>%%% condition endif %%%
+%%% condition unless cancelled %%%%%% condition if lib icalcreator %%% <span class="ics">(<a href="%%% path events_ics identifier %%%.ics" title="%%% text Enter event in your own calendar (ICS) %%%">ICS</a>)</span>%%% condition endif %%%%%% condition endif %%%
 
 <div itemprop="description">
 %%% item abstract markdown %%%
@@ -55,5 +55,7 @@
 </td></tr>
 %%% loop end %%%
 </table>
+%%% condition if lib icalcreator %%%
 <p class="noprint"><a href="webcal://%%% setting hostname %%%%%% path events_ics setting site %%%.ics">%%% text "Subscribe to calendar %s" cal_title %%%</a></p>
+%%% condition endif %%%
 %%% condition endif %%%
