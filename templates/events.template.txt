@@ -21,7 +21,7 @@
 <tr itemscope itemtype="http://schema.org/Event" class="%%% loopposition uneven un %%%even">
 <th>
 %%% item cancelled "<del>" %%%
-<time datetime='%%% item date_begin %%%%%% item time_begin_iso "T%s" %%%' itemprop="startDate">%%% condition unless change_duration %%%<span class="identical_duration">%%% condition endif %%%%%% item weekday_begin %%%%%% item weekday_end "–%s" %%% %%% item duration wrap_date %%%%%% condition unless change_duration %%%</span>%%% condition endif %%%
+<time datetime='%%% item date_begin %%%%%% item time_begin_iso "T%s" %%%' itemprop="startDate">%%% condition unless change_duration %%%<span class="identical_duration">%%% condition endif %%%<span class="weekday">%%% item weekday_begin %%%%%% item weekday_end "–%s" %%%</span> %%% item duration wrap_date %%%%%% condition unless change_duration %%%</span>%%% condition endif %%%
 %%% condition if time_begin %%%%%% condition unless change_duration %%%<span class="identical_duration">%%% condition endif %%%<br>%%% condition unless change_duration %%%</span>%%% condition endif %%%<em>%%% item time_begin %%%</em>%%% condition endif %%%</time>%%% condition if time_end %%%–<time datetime='%%% item date_end %%%%%% condition unless date_end %%%%%% item date_begin %%%%%% condition endif %%%%%% item time_end_iso "T%s" %%%' itemprop="endDate"><em>%%% item time_end %%%</em></time>%%% condition endif %%%
 %%% condition if time_begin | time_end %%%<em> %%% text h %%% %%% item timezone "UTC%s" %%%</em>%%% condition endif %%%
 %%% item cancelled "</del>" %%%

@@ -23,3 +23,11 @@
 .events .ics	{ font-size: .9rem; }
 .events .identical_duration
 				{ display: none; }
+.events .weekday
+				{ font-weight: normal; }
+
+@media screen and (max-width: 640px) {
+	.events th, .events td
+					{ display: block; padding: 0; }
+	.events th		{ text-align: left; padding-top: 1rem; }
+}
