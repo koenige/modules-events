@@ -35,7 +35,6 @@ function mod_events_get_eventdata($data, $settings = [], $id_field_name = '', $l
 			, identifier AS uid
 			, event, abstract, events.description, date_begin, date_end
 			, IF(date_begin >= CURDATE(), registration, NULL) AS registration
-			, direct_link
 			, CONCAT(date_begin, IFNULL(CONCAT("/", date_end), "")) AS duration
 			, TIME_FORMAT(time_begin, "%%H.%%i") AS time_begin
 			, TIME_FORMAT(time_end, "%%H.%%i") AS time_end
@@ -79,9 +78,12 @@ function mod_events_get_eventdata($data, $settings = [], $id_field_name = '', $l
 	// categories
 	$events = mod_events_get_eventdata_categories($events, $ids, $langs);
 
+	// details (links)
+	$events = mod_events_get_eventdata_details($events, $ids, $langs);
+
 	// places
 	$events = mod_events_get_eventdata_places($events, $ids, $langs);
-
+	
 	$data = wrap_data_merge($data, $events, $id_field_name, $lang_field_name);
 	
 	// mark equal fields
@@ -141,6 +143,56 @@ function mod_events_get_eventdata_categories($events, $ids, $langs) {
 			if ($type_path === 'events') $type_path = 'categories';
 			$events[$lang][$category['event_id']][$type_path][$event_category_id] = $category; 
 		}
+	}
+	return $events;
+}
+
+/**
+ * get details per event
+ *
+ * @param array $events
+ * @param array $ids
+ * @param array $langs
+ * @return array
+ */
+function mod_events_get_eventdata_details($events, $ids = [], $langs = []) {
+	if (!$ids) $ids = array_keys($events);
+	
+	$sql = 'SELECT eventdetail_id, event_id
+			, identification, label
+			, categories.category_id, categories.category
+			, categories.parameters
+			, SUBSTRING_INDEX(categories.path, "/", -1) AS path
+		FROM eventdetails
+		LEFT JOIN categories
+			ON eventdetails.detail_category_id = categories.category_id
+		WHERE event_id IN (%s)
+		AND active = "yes"
+		ORDER by categories.sequence, identification';
+	$sql = sprintf($sql, implode(',', $ids));
+	$data = wrap_db_fetch($sql, 'eventdetail_id');
+	foreach ($langs as $lang) {
+		$details[$lang] = wrap_translate($data, 'categories', 'category_id', true, $lang);
+	}
+	if (!$langs) {
+		$details[wrap_setting('lang')] = $data;
+		$events[wrap_setting('lang')] = $events;
+	}
+	
+	foreach ($details as $lang => $details_per_lang) {
+		foreach ($details_per_lang as $eventdetail_id => $detail) {
+			if ($detail['parameters']) {
+				parse_str($detail['parameters'], $detail['parameters']);
+				if (!empty($detail['parameters']['direct_link'])) {
+					$events[$lang][$detail['event_id']]['direct_link'] = $detail['identification'];
+					$events[$lang][$detail['event_id']]['direct_link_label'] = $detail['label'] ?? $detail['category'];
+				}
+			}
+			$events[$lang][$detail['event_id']]['details'][$eventdetail_id] = $detail; 
+		}
+	}
+	if (!$langs) {
+		return $events[wrap_setting('lang')];
 	}
 	return $events;
 }
@@ -207,7 +259,7 @@ function mod_events_get_eventdata_places($events, $ids, $langs) {
 				}
 			}
 			if (!empty($contact['show_direct_link']))
-				$contact['direct_link'] = $events[$lang][$contact['event_id']]['direct_link'];
+				$contact['direct_link'] = $events[$lang][$contact['event_id']]['direct_link'] ?? '';
 			$events[$lang][$contact['event_id']][$path][$event_contact_id] = $contact;
 		}
 	}

@@ -258,11 +258,15 @@ $zz['fields'][62]['fields'][2]['type'] = 'foreign_key';
 $zz['fields'][62]['class'] = 'hidden480';
 $zz['fields'][62]['separator_before'] = true;
 
-$zz['fields'][16]['title'] = 'Direct Link';
-$zz['fields'][16]['field_name'] = 'direct_link';
-$zz['fields'][16]['type'] = 'url';
+$zz['fields'][16] = zzform_include('eventdetails');
+$zz['fields'][16]['title'] = 'Links';
+$zz['fields'][16]['type'] = 'subtable';
 $zz['fields'][16]['hide_in_list'] = true;
-$zz['fields'][16]['explanation'] = 'Only if the full description of the event is on another website.';
+$zz['fields'][16]['min_records'] = 1;
+$zz['fields'][16]['form_display'] = 'horizontal';
+$zz['fields'][16]['fields'][2]['type'] = 'foreign_key';
+$zz['fields'][16]['fields'][6]['hide_in_form'] = true;
+$zz['fields'][16]['sql'] = wrap_edit_sql($zz['fields'][16]['sql'], 'WHERE', 'active = "yes"');
 
 $zz['fields'][18]['field_name'] = 'hashtag';
 $zz['fields'][18]['prefix'] = '#';
@@ -296,11 +300,13 @@ $zz['fields'][14]['separator'] = true;
 $zz['fields'][9]['title'] = 'Main Event';
 $zz['fields'][9]['field_name'] = 'main_event_id';
 $zz['fields'][9]['type'] = 'select';
-$zz['fields'][9]['sql'] = 'SELECT event_id
+$zz['fields'][9]['sql'] = 'SELECT event_id, event
 		, CONCAT(IFNULL(events.date_begin, ""), IFNULL(CONCAT("/", events.date_end), "")) AS duration
-		, event, identifier, main_event_id
-	FROM events
-	ORDER BY date_begin DESC, identifier';
+		, identifier, main_event_id
+	FROM /*_PREFIX_*/events
+	WHERE ISNULL(main_event_id)
+	ORDER BY identifier DESC';
+$zz['fields'][9]['sql_format'][2] = 'wrap_date';
 $zz['fields'][9]['key_field_name'] = 'event_id'; // for subtitle!
 $zz['fields'][9]['hide_in_list'] = true;
 

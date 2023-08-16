@@ -50,6 +50,22 @@ msgstr "Veranstalter"
 msgid "CANCELLED"
 msgstr "AUSGEFALLEN"
 
+#: zzbrick_tables/eventdetails.php
+msgid "Event Details"
+msgstr "Veranstaltungsdetails"
+
+#: zzbrick_tables/eventdetails.php
+msgid "Event"
+msgstr "Veranstaltung"
+
+#: zzbrick_tables/eventdetails.php
+msgid "Identification"
+msgstr "Identifikation"
+
+#: zzbrick_tables/eventdetails.php
+msgid "Label"
+msgstr "Beschriftung"
+
 #: zzbrick_tables/eventmenus.php
 msgid "Event Menus"
 msgstr "Menü für Veranstaltungen"

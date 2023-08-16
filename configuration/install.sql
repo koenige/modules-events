@@ -28,7 +28,6 @@ CREATE TABLE `events` (
   `time_end` time DEFAULT NULL,
   `timezone` varchar(5) CHARACTER SET latin1 COLLATE latin1_general_ci DEFAULT NULL,
   `created` datetime DEFAULT NULL,
-  `direct_link` varchar(255) CHARACTER SET latin1 COLLATE latin1_general_ci DEFAULT NULL,
   `published` enum('yes','no') CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL DEFAULT 'no',
   `takes_place` enum('yes','no') CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL DEFAULT 'yes',
   `show_in_news` enum('yes','no') CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL DEFAULT 'no',
@@ -117,6 +116,32 @@ INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`
 INSERT INTO webpages (`title`, `content`, `identifier`, `ending`, `sequence`, `mother_page_id`, `live`, `menu`, `last_update`) VALUES ("iCalendar", "%%% request ics * %%%", "/ics*", "none", "30", "1", "yes", NULL, NOW());
 INSERT INTO webpages (`title`, `content`, `identifier`, `ending`, `sequence`, `mother_page_id`, `live`, `menu`, `last_update`) VALUES ('Events', '%%% request events %%%', '/events', '/', 20, (SELECT page_id FROM webpages wp WHERE identifier = '/'), 'yes', NULL, NOW());
 INSERT INTO webpages (`title`, `content`, `identifier`, `ending`, `sequence`, `mother_page_id`, `live`, `menu`, `last_update`) VALUES ('Events', '%%% request events * %%%', '/events*', '/', 1, (SELECT page_id FROM webpages wp WHERE identifier = '/events'), 'yes', NULL, NOW());
+
+
+-- eventdetails --
+CREATE TABLE `eventdetails` (
+  `eventdetail_id` int unsigned NOT NULL AUTO_INCREMENT,
+  `event_id` int unsigned NOT NULL,
+  `identification` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `label` varchar(127) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `detail_category_id` int unsigned NOT NULL,
+  `active` enum('yes','no') CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL DEFAULT 'yes',
+  `last_update` timestamp NOT NULL,
+  PRIMARY KEY (`eventdetail_id`),
+  KEY `termin_id` (`event_id`),
+  KEY `detail_category_id` (`detail_category_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'events ', 'event_id', (SELECT DATABASE()), 'eventdetails', 'eventdetail_id', 'event_id', 'delete');
+INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'categories ', 'category_id', (SELECT DATABASE()), 'eventdetails', 'eventdetail_id', 'detail_category_id', 'no-delete');
+
+INSERT INTO categories (`category`, `category_short`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ("Event Details", NULL, NULL, NULL, "event-details", "&alias=event-details", NULL, NOW());
+INSERT INTO categories (`category`, `category_short`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ("Event", NULL, NULL, (SELECT category_id FROM categories c WHERE c.path = "event-details"), "event-details/event", "&alias=event-details/event&direct_link=1", NULL, NOW());
+INSERT INTO categories (`category`, `category_short`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ("Announcement", NULL, NULL, (SELECT category_id FROM categories c WHERE c.path = "event-details"), "event-details/announcement", "&alias=event-details/announcement", NULL, NOW());
+INSERT INTO categories (`category`, `category_short`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ("Organiser", NULL, NULL, (SELECT category_id FROM categories c WHERE c.path = "event-details"), "event-details/organiser", "&alias=event-details/organiser", NULL, NOW());
+INSERT INTO categories (`category`, `category_short`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ("Report", NULL, NULL, (SELECT category_id FROM categories c WHERE c.path = "event-details"), "event-details/report", "&alias=event-details/report", NULL, NOW());
+INSERT INTO categories (`category`, `category_short`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ("Results", NULL, NULL, (SELECT category_id FROM categories c WHERE c.path = "event-details"), "event-details/results", "&alias=event-details/results", NULL, NOW());
+INSERT INTO categories (`category`, `category_short`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ("Registration", NULL, NULL, (SELECT category_id FROM categories c WHERE c.path = "event-details"), "event-details/registration", "&alias=event-details/registration", NULL, NOW());
 
 
 -- eventmenus --

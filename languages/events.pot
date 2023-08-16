@@ -50,6 +50,22 @@ msgstr ""
 msgid "CANCELLED"
 msgstr ""
 
+#: zzbrick_tables/eventdetails.php
+msgid "Event Details"
+msgstr ""
+
+#: zzbrick_tables/eventdetails.php
+msgid "Event"
+msgstr ""
+
+#: zzbrick_tables/eventdetails.php
+msgid "Identification"
+msgstr ""
+
+#: zzbrick_tables/eventdetails.php
+msgid "Label"
+msgstr ""
+
 #: zzbrick_tables/eventmenus.php
 msgid "Event Menus"
 msgstr ""
