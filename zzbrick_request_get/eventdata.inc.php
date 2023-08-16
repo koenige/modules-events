@@ -59,7 +59,7 @@ function mod_events_get_eventdata($data, $settings = [], $id_field_name = '', $l
 		WHERE events.event_id IN (%s)
 		ORDER BY FIELD(events.event_id, %s)';
 	$sql = sprintf($sql
-		, wrap_category_id('event/event')
+		, wrap_category_id('event/'.($settings['category'] ?? 'event'))
 		, implode(',', $ids), implode(',', $ids)
 	);
 	$eventdata = wrap_db_fetch($sql, 'event_id');

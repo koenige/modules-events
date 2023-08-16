@@ -1,0 +1,50 @@
+# events module
+# projects template
+# 
+# Part of »Zugzwang Project«
+# https://www.zugzwang.org/modules/events
+#
+# @author Gustaf Mossakowski <gustaf@koenige.org>
+# @copyright Copyright © 2023 Gustaf Mossakowski
+# @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
+# 
+%%% condition if no_projects %%%
+%%% text We have no projects in this category. %%%
+%%% condition else %%%
+<table class="events js-gallery">
+%%% loop start %%%
+<tr itemscope itemtype="http://schema.org/Event" class="%%% loopposition uneven un %%%even">
+<th>
+<time datetime='%%% item date_begin %%%%%% item time_begin_iso "T%s" %%%' itemprop="startDate">%%% item weekday_begin %%%%%% item weekday_end "–%s" %%% %%% item duration wrap_date %%%
+</time>
+</th>
+<td>
+%%% condition if images %%%
+<p class="newsimg">
+%%% loop images 1 %%%<a href="%%% setting base %%%%%% path events_project identifier %%%">%%% condition endif %%%
+<img src="%%% setting files_path %%%/%%% item filename %%%.%%% setting events_list_image_size %%%.%%% item thumb_extension %%%?v=%%% item version %%%" alt="%%% item title wrap_html_escape %%%">
+</a>
+%%% loop end %%%
+</p>
+%%% condition endif %%%
+
+<strong itemprop="name"><a href="%%% setting base %%%%%% path events_project identifier %%%">%%% item event %%%</a></strong> 
+%%% condition if categories %%%
+ – 
+%%% loop categories %%%
+%%% loopposition middle ", " %%%%%% loopposition last " & " %%%
+%%% item category %%%
+%%% loop end %%%
+%%% condition endif %%%
+%%% condition if location %%%
+ %%% text in %%% <span itemprop='location'>%%% loop location %%%%%% item place "%s, " %%% %%% item contact %%%%%% item address ", %s" %%%%%% condition unless own_country %%%%%% item country " (%s)" %%%%%% condition endif %%%%%% loopposition first|middle ", " %%%%%% loop end %%%</span>
+%%% condition endif %%%
+
+<div itemprop="description">
+%%% item abstract markdown %%%
+</div>
+%%% item cancelled "</del>" %%%
+</td></tr>
+%%% loop end %%%
+</table>
+%%% condition endif %%%

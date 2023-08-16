@@ -26,6 +26,10 @@ msgstr ""
 msgid "PREVIEW"
 msgstr "VORSCHAU"
 
+#: templates/projects.template.txt
+msgid "We have no projects in this category."
+msgstr "Wir haben keine Projekte in dieser Kategorie."
+
 #: zzbrick_forms/projects.php
 msgid "Projects"
 msgstr "Projekte"
