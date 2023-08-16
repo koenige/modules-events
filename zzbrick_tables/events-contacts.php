@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/events
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2012, 2014, 2016, 2018-2022 Gustaf Mossakowski
+ * @copyright Copyright © 2012, 2014, 2016, 2018-2023 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -22,13 +22,12 @@ $zz['fields'][1]['type'] = 'id';
 
 $zz['fields'][2]['field_name'] = 'event_id';
 $zz['fields'][2]['type'] = 'select';
-$zz['fields'][2]['sql'] = sprintf('SELECT event_id
-		, event
+$zz['fields'][2]['sql'] = 'SELECT event_id, event
 		, CONCAT(IFNULL(events.date_begin, ""), IFNULL(CONCAT("/", events.date_end), "")) AS duration
 		, identifier
 	FROM /*_PREFIX_*/events
 	WHERE ISNULL(main_event_id)
-	ORDER BY identifier DESC', wrap_placeholder('mysql_date_format'));
+	ORDER BY identifier DESC';
 $zz['fields'][2]['sql_format'][2] = 'wrap_date';
 $zz['fields'][2]['display_field'] = 'event';
 $zz['fields'][2]['search'] = sprintf('CONCAT(/*_PREFIX_*/events.event, " (", 
