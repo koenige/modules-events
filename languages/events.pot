@@ -26,6 +26,14 @@ msgstr ""
 msgid "PREVIEW"
 msgstr ""
 
+#: templates/project.template.txt
+msgid "Project not found"
+msgstr ""
+
+#: templates/project.template.txt
+msgid "Unfortunately we could not find any project under this URL."
+msgstr ""
+
 #: templates/projects.template.txt
 msgid "We have no projects in this category."
 msgstr ""
