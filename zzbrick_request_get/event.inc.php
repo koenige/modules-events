@@ -25,10 +25,23 @@ function mod_events_get_event($event_id) {
 	$event = reset($event);
 
 	// main event?
-	if ($event['main_event_id']) {
+	if ($event['main_event_id'])
 		$event['events'] = mod_events_get_eventdata([$event['main_event_id'] => ['event_id' => $event['main_event_id']]]);
-	}
 
+	// news?
+	if (in_array('news', wrap_setting('modules')))
+		$event = mod_events_get_event_news($event);
+
+	return $event;
+}
+
+/**
+ * get associated articles and books per event
+ *
+ * @param array $event
+ * @return array
+ */
+function mod_events_get_event_news($event) {
 	// articles?
 	// @todo solve GROUP_CONCAT differently for translations
 	// @todo use entry in categories.parameters to determine if an article
