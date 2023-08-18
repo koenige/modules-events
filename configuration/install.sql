@@ -128,7 +128,7 @@ CREATE TABLE `eventdetails` (
   `active` enum('yes','no') CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL DEFAULT 'yes',
   `last_update` timestamp NOT NULL,
   PRIMARY KEY (`eventdetail_id`),
-  KEY `termin_id` (`event_id`),
+  KEY `event_id` (`event_id`),
   KEY `detail_category_id` (`detail_category_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 

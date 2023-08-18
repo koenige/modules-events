@@ -67,3 +67,4 @@
 /* 2023-08-15-10 */	INSERT INTO eventdetails (event_id, identification, detail_category_id, last_update) SELECT event_id, direct_link, (SELECT category_id FROM categories WHERE parameters LIKE "%&direct_link=1%"), last_update FROM events WHERE NOT ISNULL(direct_link);
 /* 2023-08-15-11 */	INSERT INTO categories (`category`, `category_short`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ("Registration", NULL, NULL, (SELECT category_id FROM categories c WHERE c.path = "event-details"), "event-details/registration", "&alias=event-details/registration", NULL, NOW());
 /* 2023-08-15-12 */	ALTER TABLE `events` DROP `direct_link`;
+/* 2023-08-18-1 */	ALTER TABLE `eventdetails` ADD INDEX `event_id` (`event_id`), DROP INDEX `termin_id`;
