@@ -323,10 +323,10 @@ $zz['fields'][2]['type'] = 'identifier';
 $zz['fields'][2]['fields'] = [
 	'event_year', 'date_begin{0,4}', 'date_end{0,4}', 'event', 'identifier'
 ];
-$zz['fields'][2]['conf_identifier']['ignore_this_if']['date_begin{0,4}'] = 'event_year';
-$zz['fields'][2]['conf_identifier']['ignore_this_if']['date_end{0,4}'] = 'date_begin{0,4}';
-$zz['fields'][2]['conf_identifier']['concat'] = ['/'];
-$zz['fields'][2]['conf_identifier']['exists'] = '-';
+$zz['fields'][2]['identifier']['ignore_this_if']['date_begin{0,4}'] = 'event_year';
+$zz['fields'][2]['identifier']['ignore_this_if']['date_end{0,4}'] = 'date_begin{0,4}';
+$zz['fields'][2]['identifier']['concat'] = ['/'];
+$zz['fields'][2]['identifier']['exists'] = '-';
 $zz['fields'][2]['hide_in_list'] = true;
 
 $zz['fields'][21]['field_name'] = 'created';

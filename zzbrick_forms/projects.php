@@ -226,7 +226,7 @@ $zz['fields'][2]['type'] = 'identifier';
 $zz['fields'][2]['fields'] = [
 	'event', 'identifier'
 ];
-$zz['fields'][2]['conf_identifier']['exists'] = '-';
+$zz['fields'][2]['identifier']['exists'] = '-';
 $zz['fields'][2]['hide_in_list'] = true;
 
 $zz['fields'][21]['field_name'] = 'created';
