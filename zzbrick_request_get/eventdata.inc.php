@@ -122,6 +122,7 @@ function mod_events_get_eventdata_categories($events, $ids, $langs) {
 			, categories.parameters
 			, types.path AS type_path, types.category AS type_category
 			, types.parameters AS type_parameters
+			, property
 		FROM events_categories
 		LEFT JOIN categories USING (category_id)
 		LEFT JOIN categories types
@@ -135,12 +136,15 @@ function mod_events_get_eventdata_categories($events, $ids, $langs) {
 	}
 	foreach ($categories as $lang => $categories_per_lang) {
 		foreach ($categories_per_lang as $event_category_id => $category) {
-			if ($category['type_parameters']) {
+			if ($category['type_parameters'])
 				parse_str($category['type_parameters'], $category['type_parameters']);
-			}
 			$type_path = !empty($category['type_parameters']['alias'])
 				? $category['type_parameters']['alias'] : $category['type_path'];
 			if ($type_path === 'events') $type_path = 'categories';
+			if ($category['parameters']) {
+				parse_str($category['parameters'], $category['parameters']);
+				$category += $category['parameters'];
+			}
 			$events[$lang][$category['event_id']][$type_path][$event_category_id] = $category; 
 		}
 	}
