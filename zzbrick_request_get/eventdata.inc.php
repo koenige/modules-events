@@ -118,8 +118,12 @@ function mod_events_get_eventdata($data, $settings = [], $id_field_name = '', $l
  */
 function mod_events_get_eventdata_categories($events, $ids, $langs) {
 	$sql = 'SELECT event_category_id, event_id
-			, categories.category_id, categories.category
+			, categories.category_id, categories.category, categories.category_short
 			, categories.parameters
+			, categories.main_category_id
+			, main_categories.category AS main_category
+			, main_categories.parameters AS main_parameters
+			, main_categories.path AS main_path
 			, types.path AS type_path, types.category AS type_category
 			, types.parameters AS type_parameters
 			, property
@@ -127,24 +131,37 @@ function mod_events_get_eventdata_categories($events, $ids, $langs) {
 		LEFT JOIN categories USING (category_id)
 		LEFT JOIN categories types
 			ON events_categories.type_category_id = types.category_id
+		LEFT JOIN categories main_categories
+			ON main_categories.category_id = categories.main_category_id
+			AND categories.main_category_id != events_categories.type_category_id
 		WHERE event_id IN (%s)
 		ORDER by categories.sequence, categories.category';
 	$sql = sprintf($sql, implode(',', $ids));
 	$data = wrap_db_fetch($sql, 'event_category_id');
 	foreach ($langs as $lang) {
 		$categories[$lang] = wrap_translate($data, 'categories', 'category_id', true, $lang);
+		$categories[$lang] = wrap_translate($data, ['main_category' => 'categories.category'], 'main_category_id', true, $lang);
 	}
 	foreach ($categories as $lang => $categories_per_lang) {
 		foreach ($categories_per_lang as $event_category_id => $category) {
 			if ($category['type_parameters'])
 				parse_str($category['type_parameters'], $category['type_parameters']);
-			$type_path = !empty($category['type_parameters']['alias'])
-				? $category['type_parameters']['alias'] : $category['type_path'];
-			if ($type_path === 'events') $type_path = 'categories';
 			if ($category['parameters']) {
 				parse_str($category['parameters'], $category['parameters']);
 				$category += $category['parameters'];
 			}
+			if ($category['main_parameters']) {
+				parse_str($category['main_parameters'], $category['main_parameters']);
+				$category += $category['main_parameters'];
+			}
+			if (!empty($category['type_parameters']['use_subtree'])) {
+				$type_path = $category['main_parameters']['alias'] ?? $category['main_path'];
+				if ($type_path AND $pos = strrpos($type_path, '/')) $type_path = substr($type_path, $pos + 1);
+				$events[$lang][$category['event_id']][$type_path.'_category'] = $category['main_category'];
+			} else {
+				$type_path = $category['type_parameters']['alias'] ?? $category['type_path'];
+			}
+			if (in_array($type_path, ['events', 'projects'])) $type_path = 'categories';
 			$events[$lang][$category['event_id']][$type_path][$event_category_id] = $category; 
 		}
 	}
