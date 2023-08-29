@@ -21,7 +21,7 @@
 <td>
 %%% condition if images %%%
 <p class="newsimg">
-%%% loop images 1 %%%<a href="%%% setting base %%%%%% path events_project identifier %%%">%%% condition endif %%%
+%%% loop images 1 %%%<a href="%%% setting base %%%%%% path events_project identifier %%%">
 <img src="%%% setting files_path %%%/%%% item filename %%%.%%% setting events_list_image_size %%%.%%% item thumb_extension %%%?v=%%% item version %%%" alt="%%% item title wrap_html_escape %%%">
 </a>
 %%% loop end %%%
