@@ -54,13 +54,17 @@ msgstr "Zeitraum"
 msgid "Main Project"
 msgstr "Hauptprojekt"
 
-#: zzbrick_request/ics.php zzbrick_tables/events.php
+#: zzbrick_request/ics.inc.php zzbrick_tables/events.php
 msgid "Organiser"
 msgstr "Veranstalter"
 
-#: zzbrick_request/ics.php
+#: zzbrick_request/ics.inc.php
 msgid "CANCELLED"
 msgstr "AUSGEFALLEN"
+
+#: zzbrick_request/projects.inc.php
+msgid "Image %d"
+msgstr "Bild %d"
 
 #: zzbrick_tables/eventdetails.php
 msgid "Event Details"

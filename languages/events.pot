@@ -54,12 +54,16 @@ msgstr ""
 msgid "Main Project"
 msgstr ""
 
-#: zzbrick_request/ics.php zzbrick_tables/events.php
+#: zzbrick_request/ics.inc.php zzbrick_tables/events.php
 msgid "Organiser"
 msgstr ""
 
-#: zzbrick_request/ics.php
+#: zzbrick_request/ics.inc.php
 msgid "CANCELLED"
+msgstr ""
+
+#: zzbrick_request/projects.inc.php
+msgid "Image %d"
 msgstr ""
 
 #: zzbrick_tables/eventdetails.php

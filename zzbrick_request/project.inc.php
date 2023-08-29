@@ -15,7 +15,8 @@
 
 function mod_events_project($params) {
 	$published = empty($_SESSION['logged_in']) ? 'AND events.published = "yes"' : '';
-	
+	$image_no = mod_events_project_image_no($params);
+
 	$sql = 'SELECT event_id
 	    FROM events
 	    WHERE identifier = "%s"
@@ -38,7 +39,18 @@ function mod_events_project($params) {
 	}
 
 	wrap_include_files('zzbrick_request_get/event', 'events');
-	$event = mod_events_get_event($event['event_id']);
+	$event = mod_events_get_event($event['event_id'], ['category' => 'project']);
+	
+	if (wrap_setting('events_project_image_pages')) {
+		if ($image_no AND !$event['images']) return false;
+		$event += mod_events_project_links($event, $image_no);
+		if ($image_no) {
+			foreach ($event['images'] as $medium_id => $medium)
+				if ($image_no.'' !== $medium['sequence'].'') unset($event['images'][$medium_id]);
+			if (!$event['images']) return false;
+		}
+		$page['link'] = wrap_page_links($event, 'events_project');
+	}
 	
 	$lightbox = false;
 
@@ -87,10 +99,63 @@ function mod_events_project($params) {
 		$page['meta'][] 
 			= ['property' => 'og:image', 'content' => wrap_setting('host_base').wrap_setting('files_path').'/'.$main_img['filename'].'.'.wrap_setting('events_og_image_size').'.'.$main_img['thumb_extension'].'?v='.$main_img['version']];
 	}
-	$page['title'] = $event['event'].', '.wrap_date($event['duration']);
+	$page['title'] = $event['event'].', '.wrap_date($event['duration']).($image_no ? ', '.wrap_text('Image %d', ['values' => $image_no]) : '');
 	$page['breadcrumbs'][] = '<a href="'.wrap_path('events_event', $event['year']).'">'.$event['year'].'</a>';
-	$page['breadcrumbs'][]['title'] = $event['event'];
+	if ($image_no) {
+		$page['breadcrumbs'][] = '<a href="../">'.$event['event'].'</a>';
+		$page['breadcrumbs'][]['title'] = $image_no;
+	} else {
+		$page['breadcrumbs'][]['title'] = $event['event'];
+	}
+	
 	if (!$event['published'])
 		$page['extra']['body_attributes'] = ' class="unpublished"';
 	return $page;
+}
+
+/**
+ * get last parameter, check if it is an image number
+ *
+ * @param array $params
+ * @return int
+ */
+function mod_events_project_image_no(&$params) {
+	if (!wrap_setting('events_project_image_pages')) return NULL;
+	if (count($params) === 1) return NULL;
+	if (!is_numeric(end($params))) return NULL;
+	$image_no = array_pop($params);
+	if (intval($image_no).'' !== $image_no.'') return false;
+	$image_no = intval($image_no);
+	if ($image_no === 1) wrap_redirect('../');
+	return $image_no;
+}		
+
+/**
+ * get correct image
+ *
+ * @param array $params
+ * @return int
+ */
+function mod_events_project_links($event, $image_no) {
+	if (!$image_no) {
+		$links['_next_identifier'] = sprintf('%s/%d', $event['identifier'], 2);
+		$links['_next_title'] = 2;
+	} elseif ($image_no === count($event['images'])) {
+		$links['_next_identifier'] = $event['identifier'];
+		$links['_next_title'] = 1;
+	} else {
+		$links['_next_identifier'] = sprintf('%s/%d', $event['identifier'], $image_no + 1);
+		$links['_next_title'] = $image_no + 1;
+	}
+	if (!$image_no) {
+		$links['_prev_identifier'] = sprintf('%s/%d', $event['identifier'], count($event['images']));
+		$links['_prev_title'] = count($event['images']);
+	} elseif ($image_no === 2) {
+		$links['_prev_identifier'] = $event['identifier'];
+		$links['_prev_title'] = 1;
+	} else {
+		$links['_prev_identifier'] = sprintf('%s/%d', $event['identifier'], $image_no - 1);
+		$links['_prev_title'] = $image_no - 1;
+	}
+	return $links;
 }
