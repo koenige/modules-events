@@ -19,14 +19,14 @@
  * @param int $event_id
  * @return array
  */
-function mod_events_get_event($event_id) {
+function mod_events_get_event($event_id, $settings = []) {
 	require_once __DIR__.'/eventdata.inc.php';
-	$event = mod_events_get_eventdata([$event_id => ['event_id' => $event_id]]);
+	$event = mod_events_get_eventdata([$event_id => ['event_id' => $event_id]], $settings);
 	$event = reset($event);
 
 	// main event?
 	if ($event['main_event_id'])
-		$event['events'] = mod_events_get_eventdata([$event['main_event_id'] => ['event_id' => $event['main_event_id']]]);
+		$event['events'] = mod_events_get_eventdata([$event['main_event_id'] => ['event_id' => $event['main_event_id']]], $settings);
 
 	// news?
 	if (in_array('news', wrap_setting('modules')))
