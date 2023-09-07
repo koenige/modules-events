@@ -123,8 +123,7 @@ function mod_events_ics($params) {
 		if (!empty($event['categories'])) foreach ($event['categories'] as $category) {
 			$categories[] = $category['category'];
 			if (!empty($category['parameters'])) {
-				parse_str($category['parameters'], $category_properties);
-				$properties += $category_properties;
+				$properties += $category['parameters'];
 			}
 		}
 		$event['category'] = implode(',', $categories);
