@@ -62,6 +62,7 @@ CREATE TABLE `events_categories` (
   `category_id` int unsigned NOT NULL,
   `property` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `type_category_id` int unsigned NOT NULL,
+  `sequence` tinyint unsigned DEFAULT NULL,
   `last_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`event_category_id`),
   UNIQUE KEY `event_id_category_id` (`event_id`,`category_id`),

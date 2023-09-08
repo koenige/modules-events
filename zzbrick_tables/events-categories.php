@@ -33,6 +33,12 @@ $zz['fields'][2]['display_field'] = 'event';
 $zz['fields'][2]['search'] = sprintf('CONCAT(/*_PREFIX_*/events.event, " (", 
 	DATE_FORMAT(IFNULL(/*_PREFIX_*/events.date_begin, /*_PREFIX_*/events.date_end), "%s"), ")")', wrap_placeholder('mysql_date_format'));
 
+$zz['fields'][4]['title'] = 'No.';
+$zz['fields'][4]['field_name'] = 'sequence';
+$zz['fields'][4]['type'] = 'number';
+$zz['fields'][4]['auto_value'] = 'increment';
+$zz['fields'][4]['def_val_ignore'] = true;
+
 $zz['fields'][3]['field_name'] = 'category_id';
 $zz['fields'][3]['type'] = 'select';
 $zz['fields'][3]['sql'] = 'SELECT category_id, category, description, main_category_id
@@ -43,17 +49,17 @@ $zz['fields'][3]['search'] = '/*_PREFIX_*/categories.category';
 $zz['fields'][3]['show_hierarchy'] = 'main_category_id';
 $zz['fields'][3]['show_hierarchy_subtree'] = wrap_category_id('events');
 
-$zz['fields'][4]['field_name'] = 'type_category_id';
-$zz['fields'][4]['type'] = 'hidden';
-$zz['fields'][4]['type_detail'] = 'select';
-$zz['fields'][4]['value'] = wrap_category_id('events');
-$zz['fields'][4]['hide_in_form'] = true;
-$zz['fields'][4]['hide_in_list'] = true;
-$zz['fields'][4]['exclude_from_search'] = true;
+$zz['fields'][5]['field_name'] = 'type_category_id';
+$zz['fields'][5]['type'] = 'hidden';
+$zz['fields'][5]['type_detail'] = 'select';
+$zz['fields'][5]['value'] = wrap_category_id('events');
+$zz['fields'][5]['hide_in_form'] = true;
+$zz['fields'][5]['hide_in_list'] = true;
+$zz['fields'][5]['exclude_from_search'] = true;
 
 if (wrap_setting('events_category_properties')) {
-	$zz['fields'][5]['field_name'] = 'property';
-	$zz['fields'][5]['typo_cleanup'] = true;
+	$zz['fields'][6]['field_name'] = 'property';
+	$zz['fields'][6]['typo_cleanup'] = true;
 }
 
 $zz['fields'][99]['field_name'] = 'last_update';

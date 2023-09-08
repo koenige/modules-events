@@ -68,3 +68,4 @@
 /* 2023-08-15-11 */	INSERT INTO categories (`category`, `category_short`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ("Registration", NULL, NULL, (SELECT category_id FROM categories c WHERE c.path = "event-details"), "event-details/registration", "&alias=event-details/registration", NULL, NOW());
 /* 2023-08-15-12 */	ALTER TABLE `events` DROP `direct_link`;
 /* 2023-08-18-1 */	ALTER TABLE `eventdetails` ADD INDEX `event_id` (`event_id`), DROP INDEX `termin_id`;
+/* 2023-09-08-1 */	ALTER TABLE `events_categories` ADD `sequence` tinyint unsigned NULL AFTER `type_category_id`;
