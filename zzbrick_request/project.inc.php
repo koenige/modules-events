@@ -41,8 +41,7 @@ function mod_events_project($params) {
 	wrap_include_files('zzbrick_request_get/event', 'events');
 	$event = mod_events_get_event($event['event_id'], ['category' => 'project']);
 	
-	if (wrap_setting('events_project_image_pages')) {
-		if ($image_no AND !$event['images']) return false;
+	if (wrap_setting('events_project_image_pages') AND !empty($event['images'])) {
 		$event += mod_events_project_links($event, $image_no);
 		if ($image_no) {
 			foreach ($event['images'] as $medium_id => $medium)
@@ -50,6 +49,8 @@ function mod_events_project($params) {
 			if (!$event['images']) return false;
 		}
 		$page['link'] = wrap_page_links($event, 'events_project');
+	} elseif ($image_no) {
+		return false;
 	}
 	
 	$lightbox = false;
@@ -134,7 +135,7 @@ function mod_events_project_image_no(&$params) {
  * get correct image
  *
  * @param array $params
- * @return int
+ * @return array
  */
 function mod_events_project_links($event, $image_no) {
 	if (!$image_no) {
