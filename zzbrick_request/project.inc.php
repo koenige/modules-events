@@ -40,6 +40,12 @@ function mod_events_project($params) {
 
 	wrap_include_files('zzbrick_request_get/event', 'events');
 	$event = mod_events_get_event($event['event_id'], ['category' => 'project']);
+	if (!$event) {
+		$event['not_found'] = true;
+		$page['text'] = wrap_template('project', $event);
+		$page['status'] = 404;
+		return $page;
+	}
 	
 	if (wrap_setting('events_project_image_pages') AND !empty($event['images'])) {
 		$event += mod_events_project_links($event, $image_no);

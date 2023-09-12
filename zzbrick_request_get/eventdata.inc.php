@@ -74,6 +74,19 @@ function mod_events_get_eventdata($data, $settings = [], $id_field_name = '', $l
 
 	// media
 	$events = wrap_data_media($events, $ids, $langs, 'events', 'event');
+	// media required?
+	if (!empty($settings['category']) AND $settings['category'] === 'project' AND wrap_setting('events_project_needs_images')) {
+		foreach ($events as $lang => $events_per_lang) {
+			foreach ($events_per_lang as $event_id => $event) {
+				if (!empty($event['images'])) continue;
+				unset($events[$lang][$event_id]);
+				$key = array_search($event_id, $ids);
+				unset($ids[$key]);
+				unset($data[$event_id]);
+			}
+		}
+	}
+	if (!$data) return [];
 	
 	// categories
 	$events = mod_events_get_eventdata_categories($events, $ids, $langs);
