@@ -11,7 +11,7 @@
 %%% condition if no_projects %%%
 %%% text We have no projects in this category. %%%
 %%% condition else %%%
-<table class="events js-gallery">
+<table class="events projects js-gallery">
 %%% loop start %%%
 <tr itemscope itemtype="http://schema.org/Event" class="%%% loopposition uneven un %%%even">
 <th>
@@ -29,6 +29,11 @@
 %%% condition endif %%%
 
 <strong itemprop="name"><a href="%%% setting base %%%%%% path events_project identifier %%%">%%% item event %%%</a></strong> 
+%%% condition if setting events_projects_abstract_first %%%
+<div itemprop="description" class="project_description">
+%%% item abstract markdown %%%
+</div>
+%%% condition endif %%%
 %%% condition if categories %%%
  – 
 %%% loop categories %%%
@@ -40,10 +45,11 @@
  %%% text in %%% <span itemprop='location'>%%% loop location %%%%%% item place "%s, " %%% %%% item contact %%%%%% item address ", %s" %%%%%% condition unless own_country %%%%%% item country " (%s)" %%%%%% condition endif %%%%%% loopposition first|middle ", " %%%%%% loop end %%%</span>
 %%% condition endif %%%
 
-<div itemprop="description">
+%%% condition unless setting events_projects_abstract_first %%%
+<div itemprop="description" class="project_description">
 %%% item abstract markdown %%%
 </div>
-%%% item cancelled "</del>" %%%
+%%% condition endif %%%
 </td></tr>
 %%% loop end %%%
 </table>
