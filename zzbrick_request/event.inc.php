@@ -118,6 +118,6 @@ function mod_events_event($params) {
 	$page['breadcrumbs'][]['title'] = $event['event'];
 	$page['dont_show_h1'] = true;
 	if (!$event['published'])
-		$page['extra']['body_attributes'] = ' class="unpublished"';
+		$page['extra']['class'] = 'unpublished';
 	return $page;
 }

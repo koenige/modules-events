@@ -116,7 +116,7 @@ function mod_events_project($params) {
 	}
 	
 	if (!$event['published'])
-		$page['extra']['body_attributes'] = ' class="unpublished"';
+		$page['extra']['class'] = 'unpublished';
 	return $page;
 }
 
