@@ -113,6 +113,10 @@ foreach ($values['roles'] as $role) {
 	$zz['fields'][$no]['fields'][4]['value'] = $role['category_id'];
 	$zz['fields'][$no]['fields'][4]['hide_in_form'] = true;
 	$zz['fields'][$no]['fields'][5]['type'] = 'sequence';
+	if (!empty($role['parameters']['role'])) {
+		$zz['fields'][$no]['fields'][6]['hide_in_form'] = false;
+		$zz['fields'][$no]['fields'][6]['placeholder'] = true;
+	}
 	$zz['fields'][$no]['class'] = 'hidden480';
 	$zz['fields'][$no]['unless']['export_mode']['subselect']['prefix'] = '<br><em>'.wrap_text($role['category']).'</em>: ';
 	$zz['fields'][$no]['unless']['export_mode']['subselect']['suffix'] = '';

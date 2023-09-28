@@ -69,3 +69,4 @@
 /* 2023-08-15-12 */	ALTER TABLE `events` DROP `direct_link`;
 /* 2023-08-18-1 */	ALTER TABLE `eventdetails` ADD INDEX `event_id` (`event_id`), DROP INDEX `termin_id`;
 /* 2023-09-08-1 */	ALTER TABLE `events_categories` ADD `sequence` tinyint unsigned NULL AFTER `type_category_id`;
+/* 2023-09-28-1 */	ALTER TABLE `events_contacts` ADD `role` varchar(255) NULL AFTER `role_category_id`;

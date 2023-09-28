@@ -61,6 +61,12 @@ $zz['fields'][4]['exclude_from_search'] = true;
 $zz['fields'][4]['def_val_ignore'] = true;
 $zz['fields'][4]['show_hierarchy_subtree'] = wrap_category_id('roles');
 
+$zz['fields'][6]['field_name'] = 'role';
+$zz['fields'][6]['type'] = 'text';
+$zz['fields'][6]['size'] = 18;
+$zz['fields'][6]['hide_in_list_if_empty'] = true;
+$zz['fields'][6]['hide_in_form'] = true;
+
 $zz['fields'][99]['field_name'] = 'last_update';
 $zz['fields'][99]['type'] = 'timestamp';
 $zz['fields'][99]['hide_in_list'] = true;

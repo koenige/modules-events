@@ -254,6 +254,7 @@ function mod_events_get_eventdata_places($events, $ids, $langs) {
 			, contacts.parameters
 			, categories.parameters AS category_parameters
 			, latitude, longitude
+			, role
 		FROM events_contacts
 		LEFT JOIN contacts USING (contact_id)
 		LEFT JOIN categories

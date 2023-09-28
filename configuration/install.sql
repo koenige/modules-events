@@ -81,6 +81,7 @@ CREATE TABLE `events_contacts` (
   `event_id` int unsigned NOT NULL,
   `contact_id` int unsigned NOT NULL,
   `role_category_id` int unsigned NOT NULL,
+  `role` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `sequence` tinyint unsigned NOT NULL,
   `last_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`event_contact_id`),
