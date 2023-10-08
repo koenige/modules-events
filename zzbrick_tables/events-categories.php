@@ -56,6 +56,7 @@ $zz['fields'][5]['value'] = wrap_category_id('events');
 $zz['fields'][5]['hide_in_form'] = true;
 $zz['fields'][5]['hide_in_list'] = true;
 $zz['fields'][5]['exclude_from_search'] = true;
+$zz['fields'][5]['for_action_ignore'] = true;
 
 if (wrap_setting('events_category_properties')) {
 	$zz['fields'][6]['field_name'] = 'property';
