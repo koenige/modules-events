@@ -76,12 +76,14 @@ $zz['fields'][37] = [];
 $zz['fields'][38] = [];
 $zz['fields'][39] = [];
 
-$values['roles_restrict_to'] = 'projects';
-mf_default_categories_restrict($values, 'roles');
+if (in_array('contacts', wrap_setting('modules'))) {
+	$values['roles_restrict_to'] = 'projects';
+	mf_default_categories_restrict($values, 'roles');
 
-$no = 30;
-foreach ($values['roles'] as $role)
-	mf_contacts_contacts_subtable($zz, 'events', $role, $no++);
+	$no = 30;
+	foreach ($values['roles'] as $role)
+		mf_contacts_contacts_subtable($zz, 'events', $role, $no++);
+}
 
 $zz['fields'][26]['title'] = 'Category';
 $zz['fields'][26]['field_name'] = 'event_category_id';
