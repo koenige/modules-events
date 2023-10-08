@@ -39,13 +39,11 @@ $zz['fields'][5]['type'] = 'number';
 $zz['fields'][5]['auto_value'] = 'increment';
 $zz['fields'][5]['def_val_ignore'] = true;
 
-$zz['fields'][3]['title'] = 'Contact';
 $zz['fields'][3]['field_name'] = 'contact_id';
 $zz['fields'][3]['type'] = 'select';
 $zz['fields'][3]['sql'] = 'SELECT contact_id, contact
 	FROM /*_PREFIX_*/contacts
-	ORDER BY contact';
-$zz['fields'][3]['search'] = '/*_PREFIX_*/contacts.contact';
+	ORDER BY identifier';
 $zz['fields'][3]['display_field'] = 'contact';
 
 $zz['fields'][4]['title'] = 'Role';
