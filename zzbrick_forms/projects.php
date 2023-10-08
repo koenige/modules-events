@@ -80,41 +80,8 @@ $values['roles_restrict_to'] = 'projects';
 mf_default_categories_restrict($values, 'roles');
 
 $no = 30;
-foreach ($values['roles'] as $role) {
-	$zz['fields'][$no] = zzform_include('events-contacts');
-	$zz['fields'][$no]['title'] = $role['category'];
-	$zz['fields'][$no]['table_name'] = $zz['fields'][$no]['title'].'_'.$role['category_id'];
-	$zz['fields'][$no]['type'] = 'subtable';
-	$zz['fields'][$no]['min_records'] = $role['parameters']['min_records'] ?? 1;
-	$zz['fields'][$no]['max_records'] = $role['parameters']['max_records'] ?? 20;
-	$zz['fields'][$no]['sql'] .= sprintf(' WHERE role_category_id = %d
-		ORDER BY sequence, contact', $role['category_id']);
-	$zz['fields'][$no]['form_display'] = 'lines';
-	$zz['fields'][$no]['fields'][2]['type'] = 'foreign_key';
-	$zz['fields'][$no]['fields'][3]['show_title'] = false;
-	$zz['fields'][$no]['fields'][3]['sql'] = sprintf('SELECT contact_id, contact
-		FROM contacts
-		LEFT JOIN categories
-			ON contacts.contact_category_id = categories.category_id
-		WHERE categories.parameters LIKE "%%&event_%s=1%%"
-		ORDER BY contact', $role['path']);
-	$zz['fields'][$no]['fields'][3]['add_details'] = $role['parameters']['add_details'] ?? false;
-	$zz['fields'][$no]['fields'][3]['select_dont_force_single_value'] = true;
-	$zz['fields'][$no]['fields'][4]['type'] = 'hidden';
-	$zz['fields'][$no]['fields'][4]['value'] = $role['category_id'];
-	$zz['fields'][$no]['fields'][4]['hide_in_form'] = true;
-	$zz['fields'][$no]['fields'][5]['type'] = 'sequence';
-	if (!empty($role['parameters']['role'])) {
-		$zz['fields'][$no]['fields'][6]['hide_in_form'] = false;
-		$zz['fields'][$no]['fields'][6]['placeholder'] = true;
-	}
-	$zz['fields'][$no]['class'] = 'hidden480';
-	$zz['fields'][$no]['unless']['export_mode']['subselect']['prefix'] = '<br><em>'.wrap_text($role['category']).'</em>: ';
-	$zz['fields'][$no]['unless']['export_mode']['subselect']['suffix'] = '';
-	$zz['fields'][$no]['unless']['export_mode']['list_append_next'] = true;
-	$zz['fields'][$no]['subselect']['sql'] .= sprintf(' WHERE role_category_id = %d', $role['category_id']);
-	$no++;
-}
+foreach ($values['roles'] as $role)
+	mf_contacts_contacts_subtable($zz, 'events', $role, $no++);
 
 $zz['fields'][26]['title'] = 'Category';
 $zz['fields'][26]['field_name'] = 'event_category_id';
