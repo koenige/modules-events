@@ -122,15 +122,15 @@ if ($zz['fields'][50])
 // author
 $zz['fields'][11] = [];
 
-$zz['fields'][62] = zzform_include('events-media');
-$zz['fields'][62]['title'] = 'Media';
-$zz['fields'][62]['type'] = 'subtable';
-$zz['fields'][62]['min_records'] = 1;
-$zz['fields'][62]['max_records'] = wrap_setting('events_media_per_event');
-$zz['fields'][62]['form_display'] = 'horizontal';
-$zz['fields'][62]['sql'] .= ' ORDER BY sequence';
-$zz['fields'][62]['fields'][2]['type'] = 'foreign_key';
-$zz['fields'][62]['class'] = 'hidden480';
+$zz['fields'][80] = zzform_include('events-media');
+$zz['fields'][80]['title'] = 'Media';
+$zz['fields'][80]['type'] = 'subtable';
+$zz['fields'][80]['min_records'] = 1;
+$zz['fields'][80]['max_records'] = wrap_setting('events_media_per_event');
+$zz['fields'][80]['form_display'] = 'horizontal';
+$zz['fields'][80]['sql'] .= ' ORDER BY sequence';
+$zz['fields'][80]['fields'][2]['type'] = 'foreign_key';
+$zz['fields'][80]['class'] = 'hidden480';
 
 $zz['fields'][14]['title'] = 'Description';
 $zz['fields'][14]['title_desc'] = '(optional)<br>';

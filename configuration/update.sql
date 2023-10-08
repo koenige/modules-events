@@ -70,3 +70,5 @@
 /* 2023-08-18-1 */	ALTER TABLE `eventdetails` ADD INDEX `event_id` (`event_id`), DROP INDEX `termin_id`;
 /* 2023-09-08-1 */	ALTER TABLE `events_categories` ADD `sequence` tinyint unsigned NULL AFTER `type_category_id`;
 /* 2023-09-28-1 */	ALTER TABLE `events_contacts` ADD `role` varchar(255) NULL AFTER `role_category_id`;
+/* 2023-10-08-1 */	UPDATE categories SET parameters = REPLACE(parameters, '&event_organiser=1', '&events_organiser=1') WHERE parameters LIKE '%&event_organiser=1%';
+/* 2023-10-08-2 */	UPDATE categories SET parameters = REPLACE(parameters, '&event_place=1', '&events_location=1') WHERE parameters LIKE '%&event_place=1%';

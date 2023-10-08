@@ -116,11 +116,13 @@ $zz['fields'][24]['max_records'] = 4;
 $zz['fields'][24]['form_display'] = 'lines';
 $zz['fields'][24]['fields'][2]['type'] = 'foreign_key';
 $zz['fields'][24]['fields'][3]['show_title'] = false;
+$zz['fields'][24]['fields'][4]['type'] = 'sequence';
 $zz['fields'][24]['class'] = 'hidden480';
 $zz['fields'][24]['list_append_next'] = true;
 $zz['fields'][24]['subselect']['prefix'] = '<em>';
 $zz['fields'][24]['subselect']['suffix'] = '</em>';
 
+// @deprecated
 $zz['fields'][7] = zzform_include('events-contacts');
 $zz['fields'][7]['title'] = 'Place';
 $zz['fields'][7]['table_name'] = 'places';
@@ -136,7 +138,7 @@ $zz['fields'][7]['fields'][3]['sql'] = 'SELECT contact_id, contact
 	FROM contacts
 	LEFT JOIN categories
 		ON contacts.contact_category_id = categories.category_id
-	WHERE categories.parameters LIKE "%&event_place=1%"
+	WHERE categories.parameters LIKE "%&events_location=1%"
 	ORDER BY contact';
 $zz['fields'][7]['fields'][3]['add_details'] = 'places';
 $zz['fields'][7]['fields'][4]['type'] = 'hidden';
@@ -149,6 +151,19 @@ $zz['fields'][7]['subselect']['suffix'] = '</em>';
 $zz['fields'][7]['list_append_next'] = true;
 $zz['fields'][7]['subselect']['sql'] .= sprintf(' WHERE role_category_id = %d', wrap_category_id('roles/location'));
 
+// events-contacts
+$zz['fields'][60] = [];
+$zz['fields'][61] = [];
+$zz['fields'][62] = [];
+$zz['fields'][63] = [];
+$zz['fields'][64] = [];
+$zz['fields'][65] = [];
+$zz['fields'][66] = [];
+$zz['fields'][67] = [];
+$zz['fields'][68] = [];
+$zz['fields'][69] = [];
+
+// @deprecated
 $zz['fields'][61] = zzform_include('events-contacts');
 $zz['fields'][61]['title'] = 'Organiser';
 $zz['fields'][61]['table_name'] = 'organisers';
@@ -164,7 +179,7 @@ $zz['fields'][61]['fields'][3]['sql'] = 'SELECT contact_id, contact
 	FROM contacts
 	LEFT JOIN categories
 		ON contacts.contact_category_id = categories.category_id
-	WHERE categories.parameters LIKE "%&event_organiser=1%"
+	WHERE categories.parameters LIKE "%&events_organiser=1%"
 	ORDER BY contact';
 $zz['fields'][61]['fields'][3]['add_details'] = 'organisers';
 $zz['fields'][61]['fields'][4]['type'] = 'hidden';
@@ -247,23 +262,24 @@ $zz['fields'][25]['hide_in_form'] = true;
 $zz['fields'][25]['dont_copy'] = true;
 $zz['fields'][25]['explanation'] = 'Sorting if no time was specified.';
 
-$zz['fields'][62] = zzform_include('events-media');
-$zz['fields'][62]['title'] = 'Media';
-$zz['fields'][62]['type'] = 'subtable';
-$zz['fields'][62]['min_records'] = 1;
-$zz['fields'][62]['max_records'] = wrap_setting('events_media_per_event');
-$zz['fields'][62]['form_display'] = 'horizontal';
-$zz['fields'][62]['sql'] .= ' ORDER BY sequence';
-$zz['fields'][62]['fields'][2]['type'] = 'foreign_key';
-$zz['fields'][62]['class'] = 'hidden480';
-$zz['fields'][62]['separator_before'] = true;
+$zz['fields'][80] = zzform_include('events-media');
+$zz['fields'][80]['title'] = 'Media';
+$zz['fields'][80]['type'] = 'subtable';
+$zz['fields'][80]['min_records'] = 1;
+$zz['fields'][80]['max_records'] = wrap_setting('events_media_per_event');
+$zz['fields'][80]['form_display'] = 'horizontal';
+$zz['fields'][80]['sql'] .= ' ORDER BY sequence';
+$zz['fields'][80]['fields'][2]['type'] = 'foreign_key';
+$zz['fields'][80]['fields'][4]['type'] = 'sequence';
+$zz['fields'][80]['class'] = 'hidden480';
+$zz['fields'][80]['separator_before'] = true;
 
 $zz['fields'][16] = zzform_include('eventdetails');
 $zz['fields'][16]['title'] = 'Links';
 $zz['fields'][16]['type'] = 'subtable';
 $zz['fields'][16]['hide_in_list'] = true;
 $zz['fields'][16]['min_records'] = 1;
-$zz['fields'][16]['form_display'] = 'horizontal';
+$zz['fields'][16]['form_display'] = 'vertical';
 $zz['fields'][16]['fields'][2]['type'] = 'foreign_key';
 $zz['fields'][16]['fields'][6]['hide_in_form'] = true;
 $zz['fields'][16]['sql'] = wrap_edit_sql($zz['fields'][16]['sql'], 'WHERE', 'active = "yes"');
