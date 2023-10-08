@@ -94,8 +94,8 @@ function mod_events_get_eventdata($data, $settings = [], $id_field_name = '', $l
 	// details (links)
 	$events = mod_events_get_eventdata_details($events, $ids, $langs);
 
-	// places
-	$events = mod_events_get_eventdata_places($events, $ids, $langs);
+	// contacts
+	$events = mod_events_get_eventdata_contacts($events, $ids, $langs);
 	
 	$data = wrap_data_merge($data, $events, $id_field_name, $lang_field_name);
 	
@@ -239,7 +239,7 @@ function mod_events_get_eventdata_details($events, $ids = [], $langs = []) {
  * @param array $langs
  * @return array
  */
-function mod_events_get_eventdata_places($events, $ids, $langs) {
+function mod_events_get_eventdata_contacts($events, $ids, $langs) {
 	$sql = 'SELECT event_id, event_contact_id, contact, contact_id
 			, categories.category_id, categories.category
 			, SUBSTRING_INDEX(categories.path, "/", -1) AS path
@@ -271,7 +271,9 @@ function mod_events_get_eventdata_places($events, $ids, $langs) {
 		, implode(',', $ids)
 	);
 	$data = wrap_db_fetch($sql, 'event_contact_id');
+	$contact_ids = [];
 	foreach ($data as $event_contact_id => $contact) {
+		$contact_ids[] = $contact['contact_id'];
 		if (!$contact['parameters']) continue;
 		parse_str($contact['parameters'], $parameters);
 		$data[$event_contact_id] += $parameters;
@@ -281,6 +283,7 @@ function mod_events_get_eventdata_places($events, $ids, $langs) {
 		$contacts[$lang] = wrap_translate($contacts[$lang], 'countries', 'country_id', true, $lang);
 		$contacts[$lang] = wrap_translate($contacts[$lang], 'categories', 'category_id', true, $lang);
 	}
+	$contacts = wrap_data_media($contacts, $contact_ids, $langs, 'contacts', 'contact', true);
 	foreach ($contacts as $lang => $contacts_per_lang) {
 		foreach ($contacts_per_lang as $event_contact_id => $contact) {
 			$path = $contact['path'];
