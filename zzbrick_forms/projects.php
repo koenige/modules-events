@@ -76,17 +76,8 @@ $zz['fields'][37] = [];
 $zz['fields'][38] = [];
 $zz['fields'][39] = [];
 
-$sql = 'SELECT category_id, category, parameters
-		, SUBSTRING_INDEX(path, "/", -1) AS path
-	FROM categories
-	WHERE main_category_id = %d
-	AND parameters LIKE "%%&projects=1%%"';
-$sql = sprintf($sql, wrap_category_id('roles'));
-$values['roles'] = wrap_db_fetch($sql, 'category_id');
-foreach ($values['roles'] as $category_id => $role) {
-	if ($role['parameters'])
-		parse_str($role['parameters'], $values['roles'][$category_id]['parameters']);
-}
+$values['roles_restrict_to'] = 'projects';
+mf_default_restrict_categories($values, 'roles');
 
 $no = 30;
 foreach ($values['roles'] as $role) {
