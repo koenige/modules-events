@@ -77,7 +77,7 @@ $zz['fields'][38] = [];
 $zz['fields'][39] = [];
 
 $values['roles_restrict_to'] = 'projects';
-mf_default_restrict_categories($values, 'roles');
+mf_default_categories_restrict($values, 'roles');
 
 $no = 30;
 foreach ($values['roles'] as $role) {
@@ -146,7 +146,6 @@ $zz['fields'][57] = [];
 $zz['fields'][58] = [];
 $zz['fields'][59] = [];
 
-wrap_include_files('zzbrick_tables/_subtable_categories', 'default');
 mf_default_categories_subtable($zz, 'events', 'projects', 50);
 if ($zz['fields'][50])
 	$zz['fields'][50]['separator_before'] = true;
