@@ -318,7 +318,7 @@ $zz['fields'][9]['field_name'] = 'main_event_id';
 $zz['fields'][9]['type'] = 'select';
 $zz['fields'][9]['sql'] = 'SELECT event_id, event
 		, CONCAT(IFNULL(events.date_begin, ""), IFNULL(CONCAT("/", events.date_end), "")) AS duration
-		, identifier, main_event_id
+		, identifier
 	FROM /*_PREFIX_*/events
 	WHERE ISNULL(main_event_id)
 	ORDER BY identifier DESC';
