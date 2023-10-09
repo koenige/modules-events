@@ -283,7 +283,8 @@ function mod_events_get_eventdata_contacts($events, $ids, $langs) {
 		$contacts[$lang] = wrap_translate($contacts[$lang], 'countries', 'country_id', true, $lang);
 		$contacts[$lang] = wrap_translate($contacts[$lang], 'categories', 'category_id', true, $lang);
 	}
-	$contacts = wrap_data_media($contacts, $contact_ids, $langs, 'contacts', 'contact', true);
+	if ($contact_ids)
+		$contacts = wrap_data_media($contacts, $contact_ids, $langs, 'contacts', 'contact', true);
 	foreach ($contacts as $lang => $contacts_per_lang) {
 		foreach ($contacts_per_lang as $event_contact_id => $contact) {
 			$path = $contact['path'];
@@ -298,6 +299,10 @@ function mod_events_get_eventdata_contacts($events, $ids, $langs) {
 			}
 			if (!empty($contact['show_direct_link']))
 				$contact['direct_link'] = $events[$lang][$contact['event_id']]['direct_link'] ?? '';
+			if (!empty($contact['images']))
+				$events[$lang][$contact['event_id']][$path.'_has_images'] = true;
+			else
+				$contact['images'] = [0 => []]; // dummy, do not show main image @todo change in zzbrick
 			$events[$lang][$contact['event_id']][$path][$event_contact_id] = $contact;
 		}
 	}
