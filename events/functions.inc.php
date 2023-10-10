@@ -27,7 +27,7 @@ function mf_events_event_organisations($event_id) {
 			, SUBSTRING_INDEX(organisation_types.path, "/", -1) AS type
 			, contacts.identifier
 			, contacts_contacts.contact_id AS place_contact_id
-			, role
+			, contacts_contacts.role
 		FROM events_contacts
 		LEFT JOIN contacts USING (contact_id)
 		LEFT JOIN categories organisation_types
