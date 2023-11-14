@@ -23,7 +23,7 @@ function mf_events_event_organisations($event_id) {
 	$sql = 'SELECT contact_id
 			, contact
 			, SUBSTRING_INDEX(roles.path, "/", -1) AS role_identifier
-			, roles.category AS role
+			, roles.category AS role_category
 			, SUBSTRING_INDEX(organisation_types.path, "/", -1) AS type
 			, contacts.identifier
 			, contacts_contacts.contact_id AS place_contact_id
@@ -45,8 +45,8 @@ function mf_events_event_organisations($event_id) {
 	foreach ($organisations as $contact_id => $org) {
 		$org[$org['type']] = 1;
 		$org += $details[$contact_id] ?? [];
-		$data[$org['role']]['role'] = $org['role'];
-		$data[$org['role']]['organisations'][] = $org;
+		$data[$org['role_category']]['role_category'] = $org['role_category'];
+		$data[$org['role_category']]['organisations'][] = $org;
 		if ($org['place_contact_id']) $contact_ids[] = $org['place_contact_id'];
 	}
 	return array_values($data);
