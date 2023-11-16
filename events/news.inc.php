@@ -28,6 +28,7 @@ function mf_events_in_news($type = 'all') {
 			, CONCAT(date_begin, IFNULL(CONCAT("/", date_end), "")) AS duration
 			, DATE_FORMAT(events.last_update, "%%a, %%d %%b %%Y %%H:%%i:%%s") AS pubDate
 			, CONCAT("%s") AS guid
+			, 1 AS published
 		FROM events
 		WHERE IF(ISNULL(date_end), date_begin >= CURDATE(), date_end >= CURDATE())
 		AND published = "yes"
