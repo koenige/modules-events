@@ -121,6 +121,7 @@ $zz['fields'][24]['class'] = 'hidden480';
 $zz['fields'][24]['list_append_next'] = true;
 $zz['fields'][24]['subselect']['prefix'] = '<em>';
 $zz['fields'][24]['subselect']['suffix'] = '</em>';
+$zz['fields'][24]['sql'] .= ' ORDER BY events_categories.sequence';
 
 // @deprecated
 $zz['fields'][7] = zzform_include('events-contacts');
