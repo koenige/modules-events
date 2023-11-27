@@ -55,6 +55,10 @@ $zz['fields'][5]['path'] = [
 	'webstring1' => '?v=',
 	'webfield1' => 'version'
 ];
+$zz['fields'][5]['path']['extension_missing'] = [
+	'string3' => wrap_setting('media_original_filename_extension'),
+	'extension' => 'extension'
+];
 
 $zz['fields'][3]['title'] = 'Medium';
 $zz['fields'][3]['field_name'] = 'medium_id';
@@ -77,7 +81,9 @@ $zz['fields'][99]['field_name'] = 'last_update';
 $zz['fields'][99]['type'] = 'timestamp';
 $zz['fields'][99]['hide_in_list'] = true;
 
-$zz['subselect']['sql'] = 'SELECT event_id, filename, t_mime.extension, version
+$zz['subselect']['sql'] = 'SELECT event_id, filename, version
+		, t_mime.extension AS thumb_extension
+		, o_mime.extension
 	FROM /*_PREFIX_*/events_media
 	LEFT JOIN /*_PREFIX_*/media USING (medium_id)
 	LEFT JOIN /*_PREFIX_*/filetypes AS o_mime USING (filetype_id)
@@ -86,20 +92,17 @@ $zz['subselect']['sql'] = 'SELECT event_id, filename, t_mime.extension, version
 	WHERE t_mime.mime_content_type = "image"
 	AND /*_PREFIX_*/events_media.sequence = 1
 ';
-$zz['subselect']['concat_fields'] = '';
-$zz['subselect']['field_suffix'][0] = '.'.wrap_setting('media_preview_size').'.';
-$zz['subselect']['field_suffix'][1] = '?v=';
-$zz['subselect']['prefix'] = '<img src="'.wrap_setting('files_path').'/';
-$zz['subselect']['suffix'] = '">';
-$zz['subselect']['dont_mark_search_string'] = true;
+$zz['subselect']['image'] = $zz['fields'][5]['path'];
 
 $zz['sql'] = sprintf('SELECT /*_PREFIX_*/events_media.*
 		, CONCAT(event, " (", IFNULL(DATE_FORMAT(date_begin, "%s"), ""), IFNULL(CONCAT("–", DATE_FORMAT(date_end, "%s")), ""), ")") AS event
 		, CONCAT("[", /*_PREFIX_*/media.medium_id, "] ", /*_PREFIX_*/media.title) AS image
 		, /*_PREFIX_*/media.filename, version
 		, t_mime.extension AS thumb_extension
+		, o_mime.extension AS extension
 	FROM /*_PREFIX_*/events_media
 	LEFT JOIN /*_PREFIX_*/media USING (medium_id)
+	LEFT JOIN /*_PREFIX_*/filetypes AS o_mime USING (filetype_id)
 	LEFT JOIN /*_PREFIX_*/filetypes AS t_mime 
 		ON /*_PREFIX_*/media.thumb_filetype_id = t_mime.filetype_id
 	LEFT JOIN /*_PREFIX_*/events USING (event_id)
