@@ -183,27 +183,6 @@ function mod_events_get_eventdata_categories($events, $ids, $langs) {
 }
 
 /**
- * read menu hierarchy from categories
- *
- * @param array $parameter
- * @param string $path
- * @return string
- */
-function mf_default_categories_menu_hierarchy($parameter, $path) {
-	if (empty($parameter['show_menu_hierarchy'])) return '';
-	if (empty($parameter['show_menu_hierarchy_path_start'])) return $path;
-
-	$path_start = $parameter['show_menu_hierarchy_path_start'] - 1;
-	$path = explode('/', $path);
-	while ($path_start) {
-		array_shift($path);
-		$path_start--;
-		if (!$path) break;
-	}
-	return implode('/', $path);
-}
-
-/**
  * get details per event
  *
  * @param array $events
