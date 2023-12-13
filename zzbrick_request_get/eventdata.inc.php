@@ -134,6 +134,7 @@ function mod_events_get_eventdata_categories($events, $ids, $langs) {
 			, categories.category_id, categories.category, categories.category_short
 			, categories.parameters
 			, categories.main_category_id
+			, categories.path
 			, main_categories.category AS main_category
 			, main_categories.parameters AS main_parameters
 			, main_categories.path AS main_path
@@ -155,17 +156,29 @@ function mod_events_get_eventdata_categories($events, $ids, $langs) {
 		$categories[$lang] = wrap_translate($data, 'categories', 'category_id', true, $lang);
 		$categories[$lang] = wrap_translate($data, ['main_category' => 'categories.category'], 'main_category_id', true, $lang);
 	}
+	$parameter_types = ['parameters', 'main_parameters'];
 	foreach ($categories as $lang => $categories_per_lang) {
 		foreach ($categories_per_lang as $event_category_id => $category) {
 			if ($category['type_parameters'])
 				parse_str($category['type_parameters'], $category['type_parameters']);
-			if ($category['parameters']) {
-				parse_str($category['parameters'], $category['parameters']);
-				$category += $category['parameters'];
-			}
-			if ($category['main_parameters']) {
-				parse_str($category['main_parameters'], $category['main_parameters']);
-				$category += $category['main_parameters'];
+			foreach ($parameter_types as $parameter_type) {
+				if (!$category[$parameter_type]) continue;
+				parse_str($category[$parameter_type], $category[$parameter_type]);
+				$category += $category[$parameter_type];
+				if (!empty($category[$parameter_type]['show_menu_hierarchy'])) {
+					if (!empty($category[$parameter_type]['show_menu_hierarchy_path_start'])) {
+						$path_start = $category[$parameter_type]['show_menu_hierarchy_path_start'] - 1;
+						$path = explode('/', $category['path']);
+						while ($path_start) {
+							array_shift($path);
+							$path_start--;
+							if (!$path) break;
+						}
+						$events[$lang][$category['event_id']]['menu_hierarchy'][] = implode('/', $path);
+					} else {
+						$events[$lang][$category['event_id']]['menu_hierarchy'][] = $category['path'];
+					}
+				}
 			}
 			if (!empty($category['type_parameters']['use_subtree'])) {
 				$type_path = $category['main_parameters']['alias'] ?? $category['main_path'];
