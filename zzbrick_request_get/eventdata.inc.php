@@ -165,20 +165,8 @@ function mod_events_get_eventdata_categories($events, $ids, $langs) {
 				if (!$category[$parameter_type]) continue;
 				parse_str($category[$parameter_type], $category[$parameter_type]);
 				$category += $category[$parameter_type];
-				if (!empty($category[$parameter_type]['show_menu_hierarchy'])) {
-					if (!empty($category[$parameter_type]['show_menu_hierarchy_path_start'])) {
-						$path_start = $category[$parameter_type]['show_menu_hierarchy_path_start'] - 1;
-						$path = explode('/', $category['path']);
-						while ($path_start) {
-							array_shift($path);
-							$path_start--;
-							if (!$path) break;
-						}
-						$events[$lang][$category['event_id']]['menu_hierarchy'][] = implode('/', $path);
-					} else {
-						$events[$lang][$category['event_id']]['menu_hierarchy'][] = $category['path'];
-					}
-				}
+				if ($path = mf_default_categories_menu_hierarchy($category[$parameter_type], $category['path']))
+					$events[$lang][$category['event_id']]['menu_hierarchy'][] = $path;
 			}
 			if (!empty($category['type_parameters']['use_subtree'])) {
 				$type_path = $category['main_parameters']['alias'] ?? $category['main_path'];
@@ -192,6 +180,27 @@ function mod_events_get_eventdata_categories($events, $ids, $langs) {
 		}
 	}
 	return $events;
+}
+
+/**
+ * read menu hierarchy from categories
+ *
+ * @param array $parameter
+ * @param string $path
+ * @return string
+ */
+function mf_default_categories_menu_hierarchy($parameter, $path) {
+	if (empty($parameter['show_menu_hierarchy'])) return '';
+	if (empty($parameter['show_menu_hierarchy_path_start'])) return $path;
+
+	$path_start = $parameter['show_menu_hierarchy_path_start'] - 1;
+	$path = explode('/', $path);
+	while ($path_start) {
+		array_shift($path);
+		$path_start--;
+		if (!$path) break;
+	}
+	return implode('/', $path);
 }
 
 /**
