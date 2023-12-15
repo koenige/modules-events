@@ -28,6 +28,7 @@
 </p>
 %%% condition endif %%%
 
+<div class="projecttext">
 <strong itemprop="name"><a href="%%% setting base %%%%%% path events_project identifier %%%">%%% item event %%%</a></strong> 
 %%% condition if setting events_projects_abstract_first %%%
 <div itemprop="description" class="project_description">
@@ -50,6 +51,7 @@
 %%% item abstract markdown %%%
 </div>
 %%% condition endif %%%
+</div>
 </td></tr>
 %%% loop end %%%
 </table>
