@@ -119,7 +119,8 @@ function mod_events_project($params) {
 		$page['extra']['class'] = 'unpublished';
 	if (!empty($event['menu_hierarchy']))
 		$page['extra']['menu_hierarchy'] = wrap_menu_hierarchy('events_projects', $event['menu_hierarchy'], 'category');
-	
+	$page['data'] = $event;
+
 	return $page;
 }
 
