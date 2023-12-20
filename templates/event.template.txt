@@ -88,8 +88,15 @@
 </ul>
 %%% condition endif %%%
 
-%%% condition if links %%%
+%%% condition if links | details %%%
 <h2>%%% text Further Information %%%</h2>
+%%% condition if details %%%
+<ul>
+%%% loop details %%%
+<li><a href="%%% item identification %%%">%%% item label %%%</a></li>
+%%% loop end %%%
+</ul>
+%%% condition endif %%%
 %%% item links %%%
 %%% condition endif %%%
 </div>
