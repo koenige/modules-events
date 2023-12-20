@@ -97,7 +97,7 @@ function mod_events_events($params, $settings) {
 
 	if (!$events) {
 		$events['no_events'] = true;
-		$page['status'] = 404;
+		if (empty($params) OR $params[0] !== 'current') $page['status'] = 404;
 	} else {
 		foreach ($events as $event_id => $event) {
 			if (empty($event['images'])) continue;
