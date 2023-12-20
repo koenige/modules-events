@@ -21,15 +21,79 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 1.8.12\n"
+"X-Generator: Poedit 3.4.1\n"
 
-#: zzbrick_request/ics.php zzbrick_tables/events.php
+#: layout/events.css
+msgid "PREVIEW"
+msgstr ""
+
+#: templates/project.template.txt
+msgid "Project not found"
+msgstr ""
+
+#: templates/project.template.txt
+msgid "Unfortunately we could not find any project under this URL."
+msgstr ""
+
+#: templates/projects.template.txt
+msgid "We have no projects in this category."
+msgstr ""
+
+#: zzbrick_forms/projects.php
+msgid "Projects"
+msgstr ""
+
+#: zzbrick_forms/projects.php
+msgid "Project"
+msgstr ""
+
+#: zzbrick_forms/projects.php
+msgid "Period"
+msgstr ""
+
+#: zzbrick_forms/projects.php
+msgid "Main Project"
+msgstr ""
+
+#: zzbrick_request/ics.inc.php zzbrick_tables/events.php
 msgid "Organiser"
 msgstr "Organizator"
 
-#: zzbrick_request/ics.php
+#: zzbrick_request/ics.inc.php
 msgid "CANCELLED"
 msgstr "ANULOWANE"
+
+#: zzbrick_request/projects.inc.php
+msgid "Image %d"
+msgstr ""
+
+#: zzbrick_tables/eventdetails.php
+msgid "Event Details"
+msgstr ""
+
+#: zzbrick_tables/eventdetails.php
+msgid "Event"
+msgstr ""
+
+#: zzbrick_tables/eventdetails.php
+msgid "Identification"
+msgstr ""
+
+#: zzbrick_tables/eventdetails.php
+msgid "Label"
+msgstr ""
+
+#: zzbrick_tables/eventmenus.php
+msgid "Event Menus"
+msgstr ""
+
+#: zzbrick_tables/eventmenus.php
+msgid "Menu"
+msgstr ""
+
+#: zzbrick_tables/eventmenus.php
+msgid "Path"
+msgstr ""
 
 #: zzbrick_tables/events.php
 msgid "Events"
@@ -138,6 +202,42 @@ msgstr "Identyfikator"
 msgid "Created"
 msgstr "Utworzono"
 
+#: zzbrick_tables/events.php
+msgid "Registration information; will be hidden after the end of the event."
+msgstr ""
+
+#: zzbrick_tables/events.php
+msgid "Year"
+msgstr ""
+
+#: zzbrick_tables/events.php
+msgid "If different from the time of the event"
+msgstr ""
+
+#: zzbrick_tables/events.php
+msgid "Abstract"
+msgstr ""
+
+#: zzbrick_tables/eventtexts.php
+msgid "Event Texts"
+msgstr ""
+
+#: zzbrick_tables/eventtexts.php
+msgid "Text"
+msgstr ""
+
+#: zzbrick_tables/events-categories.php
+msgid "Categories of Events"
+msgstr ""
+
+#: zzbrick_tables/events-contacts.php
+msgid "Contacts of an Event"
+msgstr ""
+
+#: zzbrick_tables/events-media.php
+msgid "Media of an Event"
+msgstr ""
+
 #: templates/event.template.txt
 msgid "Event not found"
 msgstr "Nie znaleziono wydarzenia"
@@ -202,6 +302,14 @@ msgstr "Pobierz pozycję kalendarza „%s”"
 msgid "To the entire calendar %s"
 msgstr "Do całego kalendarza %s"
 
+#: templates/event.template.txt templates/project.template.txt
+msgid "Further Information"
+msgstr "Informacje dodatkowe"
+
+#: templates/events.template.txt
+msgid "We have no events from this year."
+msgstr ""
+
 #: templates/events.template.txt
 msgid "Subscribe to calendar %s"
 msgstr "Zasubskrybuj kalendarz %s"
@@ -217,6 +325,10 @@ msgstr "(Link zostanie ogłoszony uczestnikom)"
 #: templates/events.template.txt
 msgid "following"
 msgstr "następnie"
+
+#: templates/search-events.template.txt
+msgid "No events were found matching your search."
+msgstr ""
 
 #: events/_functions.inc.php
 msgid "An event can only end after the start."

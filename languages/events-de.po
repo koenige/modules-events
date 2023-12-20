@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.8.12\n"
+"X-Generator: Poedit 3.4.1\n"
 
 #: layout/events.css
 msgid "PREVIEW"
@@ -304,6 +304,10 @@ msgstr "Kalendereintrag „%s“ herunterladen"
 #: templates/event.template.txt
 msgid "To the entire calendar %s"
 msgstr "Zum gesamten Terminkalender %s"
+
+#: templates/event.template.txt templates/project.template.txt
+msgid "Further Information"
+msgstr "Weitere Informationen"
 
 #: templates/events.template.txt
 msgid "We have no events from this year."

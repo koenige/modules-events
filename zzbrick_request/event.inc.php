@@ -33,6 +33,7 @@ function mod_events_event($params) {
 	if (count($event) !== 1) {
 		$event['not_found'] = true;
 		$page['text'] = wrap_template('event', $event);
+		$page['dont_show_h1'] = true;
 		$page['status'] = 404;
 		return $page;
 	}
@@ -87,20 +88,16 @@ function mod_events_event($params) {
 		}
 	}
 
-	if (!empty($event['links'])) {
-		$event['links'] = wrap_template('filelinks', $event['links']);
-	}
-	if (!empty($event['images'])) {
+	if (!empty($event['links']))
+		$event['links'] = wrap_template('docs', $event['links']);
+	if (!empty($event['images']))
 		$lightbox = true;
-	}
-	if ($lightbox) {
+	if ($lightbox)
 		$page['extra']['magnific_popup'] = true;
-	}
 	brick_request_links($event['description'], $event, 'sequence');
 	
-	if (!empty($event['cancelled'])) {
+	if (!empty($event['cancelled']))
 		$page['status'] = 410;
-	}
 	$page['text'] = wrap_template('event', $event);
 	$page['meta'] = [
 		0 => ['property' => 'og:url', 'content' => wrap_setting('host_base').wrap_setting('request_uri')],

@@ -53,7 +53,10 @@
 <p><a href="%%% item direct_link %%%">%%% text "Further information about <strong>%s</strong>" event %%%</strong></a></p>
 %%% condition endif %%%
 
+%%% condition if links %%%
+<h2>%%% text Further Information %%%</h2>
 %%% item links %%%
+%%% condition endif %%%
 </div>
 
 %%% condition if hashtag %%%

@@ -84,7 +84,7 @@ function mod_events_project($params) {
 	}
 
 	if (!empty($event['links']))
-		$event['links'] = wrap_template('filelinks', $event['links']);
+		$event['links'] = wrap_template('docs', $event['links']);
 	if (!empty($event['images']))
 		$lightbox = true;
 	if ($lightbox)
