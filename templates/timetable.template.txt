@@ -44,7 +44,7 @@
 %%% loop categories %%%
 %%% item category %%%%%% loopposition first|middle "," %%% 
 %%% loop end %%%
-%%% condition if cancelled %%%
+<span class="event">%%% condition if cancelled %%%
 <del>
 %%% condition elseif identifier %%%
 <a href="%%% path events_event identifier %%%">
@@ -55,12 +55,14 @@
 %%% condition elseif identifier %%%
 </a>
 %%% condition endif %%%
+</span>
 %%% condition unless identifier %%%
 %%% item description markdown %%%
+%%% condition endif %%%
 %%% loop location %%%
-<p><em>%%% item contact %%%, %%% item postcode %%% %%% item place %%% %%% item description %%%</em></p>
+<p><em>%%% item contact %%%, %%% item address "%s, " %%%%%% item postcode %%% %%% item place %%% %%% item description %%%</em></p>
 %%% loop end %%%
-%%% condition endif %%%</td></tr>
+</td></tr>
 %%% loop end %%%
 %%% loop end %%%
 </table>
