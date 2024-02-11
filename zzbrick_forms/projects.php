@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/events
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2023 Gustaf Mossakowski
+ * @copyright Copyright © 2023-2024 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -83,6 +83,7 @@ if (in_array('contacts', wrap_setting('modules'))) {
 	$no = 30;
 	foreach ($values['roles'] as $role)
 		mf_contacts_contacts_subtable($zz, 'events', $role, $no++);
+	$last_contact_no = $no - 1;
 }
 
 $zz['fields'][26]['title'] = 'Category';
@@ -116,8 +117,18 @@ $zz['fields'][58] = [];
 $zz['fields'][59] = [];
 
 mf_default_categories_subtable($zz, 'events', 'projects', 50);
-if ($zz['fields'][50])
+if ($zz['fields'][50]) {
 	$zz['fields'][50]['separator_before'] = true;
+	if (isset($last_contact_no)) {
+		while ($last_contact_no >= 30) {
+			if (empty($zz['fields'][$last_contact_no]['hide_in_list'])) {
+				$zz['fields'][$last_contact_no]['unless']['export_mode']['list_append_next'] = true;
+				break;
+			}
+			$last_contact_no--;
+		}
+	}
+}
 
 // author
 $zz['fields'][11] = [];
