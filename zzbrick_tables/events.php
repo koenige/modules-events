@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/events
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2005-2023 Gustaf Mossakowski
+ * @copyright Copyright © 2005-2024 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -141,7 +141,7 @@ $zz['fields'][7]['fields'][3]['sql'] = 'SELECT contact_id, contact
 		ON contacts.contact_category_id = categories.category_id
 	WHERE categories.parameters LIKE "%&events_location=1%"
 	ORDER BY contact';
-$zz['fields'][7]['fields'][3]['add_details'] = 'places';
+$zz['fields'][7]['fields'][3]['add_details'] = ['area' => 'contacts_places'];
 $zz['fields'][7]['fields'][4]['type'] = 'hidden';
 $zz['fields'][7]['fields'][4]['value'] = wrap_category_id('roles/location');
 $zz['fields'][7]['fields'][4]['hide_in_form'] = true;
