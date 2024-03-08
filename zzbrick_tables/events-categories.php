@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/events
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2014, 2018, 2020-2023 Gustaf Mossakowski
+ * @copyright Copyright © 2014, 2018, 2020-2024 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -41,7 +41,7 @@ $zz['fields'][4]['def_val_ignore'] = true;
 
 $zz['fields'][3]['field_name'] = 'category_id';
 $zz['fields'][3]['type'] = 'select';
-$zz['fields'][3]['sql'] = 'SELECT category_id, category, description, main_category_id
+$zz['fields'][3]['sql'] = 'SELECT category_id, category, main_category_id
 	FROM /*_PREFIX_*/categories
 	ORDER BY sequence, category';
 $zz['fields'][3]['display_field'] = 'category';
