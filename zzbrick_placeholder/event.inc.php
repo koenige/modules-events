@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/events
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2023 Gustaf Mossakowski
+ * @copyright Copyright © 2023-2024 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -37,11 +37,9 @@ function mod_events_placeholder_event($brick) {
 		wrap_quit(404);
 	elseif (!$event)
 		return $brick;
-	$brick['data'] = $event;
 
-	// @todo add field events.parameters
-//	if ($event['parameters'])
-//		wrap_module_parameters('events', $event['parameters']);
+	if ($event['parameters'])
+		wrap_module_parameters('events', $event['parameters']);
 
 	$zz_page['access'][] = $event['event_rights'];
 	if ($event['main_event_rights'])
@@ -50,13 +48,14 @@ function mod_events_placeholder_event($brick) {
 
 	// breadcrumbs
 	$zz_page['breadcrumb_placeholder'][] = [
-		'title' => $brick['data']['year'],
-		'url_path' => $brick['data']['year'],
+		'title' => $event['year'],
+		'url_path' => $event['year'],
 		'add_next' => 1 // add event placeholder as separate breadcrumb
 	];
 	$zz_page['breadcrumb_placeholder'][] = [
-		'title' => $brick['data']['event'],
-		'url_path' => $brick['data']['event_idf']
+		'title' => $event['event'],
+		'url_path' => $event['event_idf']
 	];
+	$brick['data'] = $event;
 	return $brick;
 }
