@@ -6,7 +6,7 @@
  * https://www.zugzwang.org/modules/events
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2020-2023 Gustaf Mossakowski
+ * @copyright Copyright © 2020-2024 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -72,3 +72,4 @@
 /* 2023-09-28-1 */	ALTER TABLE `events_contacts` ADD `role` varchar(255) NULL AFTER `role_category_id`;
 /* 2023-10-08-1 */	UPDATE categories SET parameters = REPLACE(parameters, '&event_organiser=1', '&events_organiser=1') WHERE parameters LIKE '%&event_organiser=1%';
 /* 2023-10-08-2 */	UPDATE categories SET parameters = REPLACE(parameters, '&event_place=1', '&events_location=1') WHERE parameters LIKE '%&event_place=1%';
+/* 2024-03-13-1 */	ALTER TABLE `events` ADD `optional` enum('yes','no') COLLATE 'latin1_general_ci' NOT NULL DEFAULT 'no' AFTER `following`;

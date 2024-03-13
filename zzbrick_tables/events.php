@@ -253,6 +253,14 @@ $zz['fields'][27]['default'] = 'no';
 $zz['fields'][27]['hide_in_list'] = true;
 $zz['fields'][27]['hide_in_form'] = true;
 
+$zz['fields'][29]['title'] = 'Optional?';
+$zz['fields'][29]['field_name'] = 'optional';
+$zz['fields'][29]['type'] = 'select';
+$zz['fields'][29]['enum'] = ['yes', 'no'];
+$zz['fields'][29]['default'] = 'no';
+$zz['fields'][29]['hide_in_list'] = true;
+$zz['fields'][29]['hide_in_form'] = true;
+
 $zz['fields'][25]['title_tab'] = 'Seq.';
 $zz['fields'][25]['field_name'] = 'sequence';
 $zz['fields'][25]['type'] = 'number';
