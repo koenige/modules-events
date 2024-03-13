@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.4.1\n"
+"X-Generator: Poedit 3.4.2\n"
 
 #: layout/events.css
 msgid "PREVIEW"
@@ -100,12 +100,11 @@ msgstr "Veranstaltungen"
 
 #: zzbrick_tables/events.php
 msgid ""
-"If the exact date has not yet been set, the day and or month can be omitted "
-"here – then only the month is displayed! Leave the end empty if necessary."
+"If the exact date has not yet been set, the day and or month can be omitted here – then only the "
+"month is displayed! Leave the end empty if necessary."
 msgstr ""
-"Wenn der genaue Termin noch nicht feststeht, kann hier Tag und oder Monat "
-"weggelassen werden – dann wird nur der Monat angezeigt! Ende ggf. leer "
-"lassen."
+"Wenn der genaue Termin noch nicht feststeht, kann hier Tag und oder Monat weggelassen werden – dann "
+"wird nur der Monat angezeigt! Ende ggf. leer lassen."
 
 #: zzbrick_tables/events.php
 msgid "Timezone"
@@ -120,11 +119,9 @@ msgid "(cancelled)"
 msgstr "(fällt aus)"
 
 #: zzbrick_tables/events.php
-msgid ""
-"Short description of the event (is displayed in the calendar under the date)"
+msgid "Short description of the event (is displayed in the calendar under the date)"
 msgstr ""
-"Kurze Beschreibung der Veranstaltung (erscheint im Terminkalender direkt "
-"unterhalb des Termins)"
+"Kurze Beschreibung der Veranstaltung (erscheint im Terminkalender direkt unterhalb des Termins)"
 
 #: zzbrick_tables/events.php
 msgid "Begin"
@@ -152,11 +149,11 @@ msgstr "Findet statt?"
 
 #: zzbrick_tables/events.php
 msgid ""
-"Better not delete cancelled appointments, but mark them so that it is "
-"clearly visible that they’re cancelled."
+"Better not delete cancelled appointments, but mark them so that it is clearly visible that they’re "
+"cancelled."
 msgstr ""
-"Ausfallende Termine besser nicht löschen, sondern markieren, so daß klar "
-"ersichtlich ist, daß der Termin ausfällt."
+"Ausfallende Termine besser nicht löschen, sondern markieren, so daß klar ersichtlich ist, daß der "
+"Termin ausfällt."
 
 #: zzbrick_tables/events.php
 msgid "News?"
@@ -176,9 +173,7 @@ msgstr "Direktlink"
 
 #: zzbrick_tables/events.php
 msgid "Only if the full description of the event is on another website."
-msgstr ""
-"Nur, falls die genaue Beschreibung des Termins auf einer anderen Website "
-"steht."
+msgstr "Nur, falls die genaue Beschreibung des Termins auf einer anderen Website steht."
 
 #: zzbrick_tables/events.php
 msgid "Main Event"
@@ -206,8 +201,7 @@ msgstr "Erstellt"
 
 #: zzbrick_tables/events.php
 msgid "Registration information; will be hidden after the end of the event."
-msgstr ""
-"Informationen zur Anmeldung; werden nach Ende der Veranstaltung ausgeblendet."
+msgstr "Informationen zur Anmeldung; werden nach Ende der Veranstaltung ausgeblendet."
 
 #: zzbrick_tables/events.php
 msgid "Year"
@@ -220,6 +214,15 @@ msgstr "Falls abweichend vom Zeitpunkt des Veranstaltung"
 #: zzbrick_tables/events.php
 msgid "Abstract"
 msgstr "Kurzfassung"
+
+#: zzbrick_tables/events.php
+msgid "Optional?"
+msgstr "Optional?"
+
+#: zzbrick_tables/events.php
+msgid "If registration for the event is possible, ask about participation in this program item."
+msgstr ""
+"Sofern eine Anmeldung zur Veranstaltung möglich ist, frage die Teilnahme an diesen Programmpunkt ab."
 
 #: zzbrick_tables/eventtexts.php
 msgid "Event Texts"

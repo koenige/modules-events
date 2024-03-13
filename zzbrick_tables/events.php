@@ -260,6 +260,7 @@ $zz['fields'][29]['enum'] = ['yes', 'no'];
 $zz['fields'][29]['default'] = 'no';
 $zz['fields'][29]['hide_in_list'] = true;
 $zz['fields'][29]['hide_in_form'] = true;
+$zz['fields'][29]['explanation'] = 'If it is possible to register for the event, mark the program item as an option.';
 
 $zz['fields'][25]['title_tab'] = 'Seq.';
 $zz['fields'][25]['field_name'] = 'sequence';
