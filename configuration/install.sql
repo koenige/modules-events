@@ -129,7 +129,7 @@ CREATE TABLE `eventdetails` (
   `label` varchar(127) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `detail_category_id` int unsigned NOT NULL,
   `active` enum('yes','no') CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL DEFAULT 'yes',
-  `last_update` timestamp NOT NULL,
+  `last_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`eventdetail_id`),
   KEY `event_id` (`event_id`),
   KEY `detail_category_id` (`detail_category_id`)
@@ -155,7 +155,7 @@ CREATE TABLE `eventmenus` (
   `path` varchar(63) COLLATE utf8mb4_unicode_ci NOT NULL,
   `sequence` tinyint unsigned NOT NULL,
   `parameters` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `last_update` timestamp NOT NULL,
+  `last_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`eventmenu_id`),
   UNIQUE KEY `event_id_path` (`event_id`,`path`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
