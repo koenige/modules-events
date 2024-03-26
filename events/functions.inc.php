@@ -8,10 +8,41 @@
  * https://www.zugzwang.org/modules/events
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2023 Gustaf Mossakowski
+ * @copyright Copyright © 2023-2024 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
+
+/**
+ * get event IDs that are sub events for a given event
+ *
+ * @param int $event_id
+ * @return array
+ */
+function mf_events_subevents($event_id) {
+	if (!wrap_setting('events_series_category')) {
+		$sql = 'SELECT event_id
+			FROM /*_PREFIX_*/events
+			WHERE main_event_id = %d
+			AND event_category_id = %d';
+		$sql = sprintf($sql
+			, $event_id
+			, wrap_category_id('event/event')
+		);
+	} else {
+		// @deprecated
+		$sql = 'SELECT events.event_id
+			FROM /*_PREFIX_*/events
+			LEFT JOIN /*_PREFIX_*/categories series
+				ON /*_PREFIX_*/events.series_category_id = series.category_id
+			LEFT JOIN /*_PREFIX_*/events main_events
+				ON main_events.series_category_id = series.main_category_id
+			AND IFNULL(main_events.event_year, YEAR(main_events.date_begin)) = IFNULL(/*_PREFIX_*/events.event_year, YEAR(/*_PREFIX_*/events.date_begin))
+			WHERE main_events.event_id = %d';
+		$sql = sprintf($sql, $event_id);
+	}
+	return wrap_db_fetch($sql, '_dummy_', 'single value');
+}
 
 /**
  * get a list of organisations which are linked to an event
