@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/events
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2014-2023 Gustaf Mossakowski
+ * @copyright Copyright © 2014-2024 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -40,6 +40,11 @@ function mod_events_event($params) {
 
 	require_once __DIR__.'/../zzbrick_request_get/event.inc.php';
 	$event = mod_events_get_event($event['event_id']);
+	if ($event['parameters']) {
+		parse_str($event['parameters'], $event['parameters']);
+		$event += $event['parameters'];
+		wrap_module_parameters('events', $event['parameters']);
+	}
 	
 	$lightbox = false;
 	$event['timetable'] = mod_events_get_event_timetable($event['event_id']);

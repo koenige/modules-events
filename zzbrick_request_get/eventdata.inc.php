@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/events
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2020-2023 Gustaf Mossakowski
+ * @copyright Copyright © 2020-2024 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -53,6 +53,7 @@ function mod_events_get_eventdata($data, $settings = [], $id_field_name = '', $l
 			, category_id, category, hashtag
 			, IF(CURDATE() > IFNULL(date_end, date_begin), 1, NULL) AS past_event
 			, IF(following = "yes", 1, NULL) AS following
+			, events.parameters
 		FROM events
 		LEFT JOIN categories
 			ON events.event_category_id = categories.category_id
