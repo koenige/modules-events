@@ -267,7 +267,7 @@ function mod_events_get_eventdata_contacts($events, $ids, $langs) {
 	    LEFT JOIN categories contact_categories
 	    	ON contact_categories.category_id = contacts.contact_category_id
 		WHERE event_id IN (%s)
-		ORDER BY events_contacts.sequence, contact';
+		ORDER BY categories.sequence, events_contacts.sequence, contact';
 	$sql = sprintf($sql
 		, wrap_category_id('provider/website')
 		, implode(',', $ids)
@@ -276,6 +276,7 @@ function mod_events_get_eventdata_contacts($events, $ids, $langs) {
 	$contact_ids = [];
 	foreach ($data as $event_contact_id => $contact) {
 		$contact_ids[] = $contact['contact_id'];
+		$data[$event_contact_id][$contact['path']] = true;
 		if (!$contact['parameters']) continue;
 		parse_str($contact['parameters'], $parameters);
 		$data[$event_contact_id] += $parameters;
@@ -305,6 +306,12 @@ function mod_events_get_eventdata_contacts($events, $ids, $langs) {
 				$events[$lang][$contact['event_id']][$path.'_has_images'] = true;
 			else
 				$contact['images'] = [0 => []]; // dummy, do not show main image @todo change in zzbrick
+			$events[$lang][$contact['event_id']]['contacts'][$contact['category_id']]['category'] = $contact['category'];
+			$events[$lang][$contact['event_id']]['contacts'][$contact['category_id']][$contact['path']] = true;
+			$events[$lang][$contact['event_id']]['contacts'][$contact['category_id']]['contacts'][] = $contact;
+			if (!empty($contact['images']))
+				$events[$lang][$contact['event_id']]['contacts'][$contact['category_id']]['has_images'] = true;
+			// @deprecated
 			$events[$lang][$contact['event_id']][$path][$event_contact_id] = $contact;
 		}
 	}
