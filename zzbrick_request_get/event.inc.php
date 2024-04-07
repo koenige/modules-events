@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/events
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2020-2021, 2023 Gustaf Mossakowski
+ * @copyright Copyright © 2020-2021, 2023-2024 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -51,6 +51,7 @@ function mod_events_get_event_news($event) {
 			, identifier
 			, GROUP_CONCAT(category SEPARATOR ", ") AS categories
 			, date
+			, SUBSTRING_INDEX(identifier, "/", -1) AS identifier_short
 		FROM articles
 		LEFT JOIN articles_events USING (article_id)
 		LEFT JOIN articles_categories USING (article_id)

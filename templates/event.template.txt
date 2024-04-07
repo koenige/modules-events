@@ -126,7 +126,7 @@
 <h2>%%% text Books %%%</h2>
 <ul>
 %%% loop books %%%
-<li>%%% text Book presentation %%%: <a href="%%% setting news_books_path %%%/%%% item identifier %%%/">%%% item title %%%</a></li>
+<li>%%% text Book presentation %%%: <a href="%%% path news_book identifier_short %%%">%%% item title %%%</a></li>
 %%% loop end %%%
 </ul>
 %%% condition endif %%%

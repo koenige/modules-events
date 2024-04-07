@@ -5,7 +5,7 @@
 # https://www.zugzwang.org/modules/events
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2023 Gustaf Mossakowski
+# @copyright Copyright © 2023-2024 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 # 
 %%% condition if not_found %%%
@@ -82,7 +82,7 @@
 <h2>%%% text Books %%%</h2>
 <ul>
 %%% loop books %%%
-<li>%%% text Book presentation %%%: <a href="%%% setting news_books_path %%%/%%% item identifier %%%/">%%% item title %%%</a></li>
+<li>%%% text Book presentation %%%: <a href="%%% path news_book identifier_short %%%">%%% item title %%%</a></li>
 %%% loop end %%%
 </ul>
 %%% condition endif %%%
