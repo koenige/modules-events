@@ -12,7 +12,7 @@
 <h1>%%% text Event not found %%%</h1>
 
 <p>%%% text Unfortunately we could not find an event under this URL. %%%
- <a href="%%% setting base %%%%%% setting events_path %%%/">%%% text Please take a look at our calendar. %%%</a></p>
+ <a href="%%% path events_events %%%">%%% text Please take a look at our calendar. %%%</a></p>
 
 %%% condition else %%%
 <div itemscope itemtype="http://schema.org/Event" class="event js-gallery">
@@ -56,6 +56,13 @@
 </div>
 %%% condition endif %%%
 %%% item abstract markdown "<div class='abstract-event'>%s</div>" %%%
+
+%%% loop videos 1 %%%
+<video class="topvideo" width="%%% item width_px %%%" height="%%% item height_px %%%" controls preload="metadata"%%% condition if thumb_extension %%% poster="%%% setting files_path %%%/%%% item filename %%%.%%% setting events_video_image_size %%%.%%% item thumb_extension %%%?v=%%% item version %%%"%%% condition endif %%%>
+  <source src="%%% setting files_path %%%/%%% item filename %%%.%%% item extension %%%?v=%%% item version %%%" type="%%% item mime_content_type %%%/%%% item mime_subtype %%%">
+</video>
+%%% loop end %%%
+
 %%% item description markdown %%%
 %%% item timetable %%%
 
@@ -84,8 +91,8 @@
 <h2>%%% text Supporting Event %%%</h2>
 <ul class="main_events">
 %%% loop events %%%
-<li><span class="date">%%% item duration wrap_date %%%</span>%%% item time_begin " %s" %%%%%% item time_end "–%s" %%%
-%%% condition if time_begin | time_end %%% %%% text h %%%%%% condition endif %%%: <a href="%%% path events_event identifier %%%">%%% item event %%%</a></li>
+<li><span class="date">%%% item duration wrap_date %%%</span>%%% condition if time_begin | time_end %%% %%% text h_prefix %%%%%% condition endif %%%%%% item time_begin " %s" %%%%%% item time_end "–%s" %%%
+%%% condition if time_begin | time_end %%% %%% text h %%%%%% condition endif %%%: %%% loop categories %%%%%% item category %%%%%%loopposition first|middle "," %%% %%% loop end %%%<a href="%%% path events_event identifier %%%">%%% item event %%%</a></li>
 %%% loop end %%%
 </ul>
 %%% condition endif %%%
@@ -117,7 +124,7 @@
 <h2>%%% text News %%%</h2>
 <ul>
 %%% loop articles %%%
-<li>%%% item date wrap_date %%%: <a href="%%% setting news_url %%%/%%% item identifier %%%/">%%% item title %%%</a></li>
+<li>%%% item date wrap_date %%%: <a href="%%% path news_article identifier %%%">%%% item title %%%</a></li>
 %%% loop end %%%
 </ul>
 %%% condition endif %%%
@@ -148,12 +155,12 @@
 <p><a href="%%% path events_ics identifier %%%.ics" title="%%% text Enter event in your own calendar (ICS) %%%">%%% text "Download calendar entry “%s”" event %%%</a></p>
 %%% condition endif %%%
 %%% condition endif %%%
-<p><a href="%%% path events_event year %%%">%%% text "To the entire calendar %s" year %%%</a></p>
+<p><a href="%%% path events_events_yearly year %%%">%%% text "To the entire calendar %s" year %%%</a></p>
 </div>
 </div>
 %%% condition endif %%%
 
-%%% condition unless events_timezone %%%
+%%% condition unless setting events_timezone %%%
 <script src="%%% setting behaviour_path %%%/moments/moment-with-locales.min.js"></script>
 <script src="%%% setting behaviour_path %%%/events/timezone.js"></script>
 %%% condition endif %%%
