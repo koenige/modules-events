@@ -1,0 +1,21 @@
+# events module
+# template for editing an event
+# 
+# Part of »Zugzwang Project«
+# https://www.zugzwang.org/modules/events
+#
+# @author Gustaf Mossakowski <gustaf@koenige.org>
+# @copyright Copyright © 2024 Gustaf Mossakowski
+# @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
+# 
+<h2>%%% text Event tools %%%</h2>
+
+<nav>
+<ul class="subpages">
+%%% page subpages just_list_elements=1 %%%
+</ul>
+</nav>
+
+%%% condition if published %%%
+<p><a href="%%% path events_event identifier %%%">%%% text Event on the public website %%%</a></p>
+%%% condition endif %%%
