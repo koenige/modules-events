@@ -5,7 +5,7 @@
 # https://www.zugzwang.org/modules/events
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2020-2021 Gustaf Mossakowski
+# @copyright Copyright © 2020-2021, 2024 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
 msgid ""
@@ -21,7 +21,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 3.4.1\n"
+"X-Generator: Poedit 3.4.2\n"
 
 #: layout/events.css
 msgid "PREVIEW"
@@ -218,6 +218,16 @@ msgstr ""
 msgid "Abstract"
 msgstr ""
 
+#: zzbrick_tables/events.php
+msgid "Optional?"
+msgstr ""
+
+#: zzbrick_tables/events.php
+msgid ""
+"If registration for the event is possible, ask about participation in this "
+"program item."
+msgstr ""
+
 #: zzbrick_tables/eventtexts.php
 msgid "Event Texts"
 msgstr ""
@@ -305,6 +315,10 @@ msgstr "Do całego kalendarza %s"
 #: templates/event.template.txt templates/project.template.txt
 msgid "Further Information"
 msgstr "Informacje dodatkowe"
+
+#: templates/event.template.txt
+msgid " and "
+msgstr " i "
 
 #: templates/events.template.txt
 msgid "We have no events from this year."

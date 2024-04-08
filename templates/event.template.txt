@@ -31,7 +31,7 @@
 %%% condition if location %%%<br>
 %%% loop location %%%
 <span itemprop='location'>%%% condition if website %%%<a href="%%% item website %%%">%%% condition endif %%%%%% item contact %%%%%% item website </a> %%%%%% condition if show_direct_link %%%: <a href="%%% item direct_link %%%">%%% item direct_link %%%</a>%%% condition elseif platform %%% <span class="location_note">%%% text (Link will be announced to participants) %%%</span>%%% condition endif %%%</span>
-%%% loopposition first|middle ", " %%%
+%%% loopposition middle ", " %%%%%% loopposition last " and " wrap_text %%%
 %%% loop end %%%
 %%% condition endif %%%
 %%% item cancelled "</del>" %%%

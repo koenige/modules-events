@@ -301,6 +301,10 @@ msgstr ""
 msgid "Further Information"
 msgstr ""
 
+#: templates/event.template.txt
+msgid " and "
+msgstr ""
+
 #: templates/events.template.txt
 msgid "We have no events from this year."
 msgstr ""
