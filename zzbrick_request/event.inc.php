@@ -103,6 +103,13 @@ function mod_events_event($params) {
 	
 	if (!empty($event['cancelled']))
 		$page['status'] = 410;
+
+	if (in_array('activities', wrap_setting('modules'))) {
+		// @todo check against dates, do not show form after begin etc.
+		wrap_package_activate('activities');
+		$event['form'] = mf_activities_event_form($event);
+	}
+
 	$page['text'] = wrap_template('event', $event);
 	$page['meta'] = [
 		0 => ['property' => 'og:url', 'content' => wrap_setting('host_base').wrap_setting('request_uri')],
