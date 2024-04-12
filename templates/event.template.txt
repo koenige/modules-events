@@ -25,8 +25,8 @@
 %%% item category %%%
 %%% loop end %%%,
 %%% condition endif %%%
-<time datetime='%%% item date_begin %%%%%% item time_begin_iso "T%s" %%%' itemprop="startDate">%%% item weekday_begin %%%%%% item weekday_end "–%s" %%% %%% item duration wrap_date %%%
-%%% condition if time_begin %%%, %%% item time_begin %%%%%% condition endif %%%</time>%%% condition if time_end %%%–<time datetime='%%% item date_end %%%%%% condition unless date_end %%%%%% item date_begin %%%%%% condition endif %%%%%% item time_end_iso "T%s" %%%' itemprop="endDate">%%% item time_end %%%</time>%%% condition endif %%%
+<time datetime='%%% item date_begin_iso %%%%%% item time_begin_iso "T%s" %%%' itemprop="startDate">%%% item weekday_begin %%%%%% item weekday_end "–%s" %%% %%% item duration wrap_date %%%
+%%% condition if time_begin %%%, %%% item time_begin %%%%%% condition endif %%%</time>%%% condition if time_end %%%–<time datetime='%%% item date_end_iso %%%%%% condition unless date_end %%%%%% item date_begin %%%%%% condition endif %%%%%% item time_end_iso "T%s" %%%' itemprop="endDate">%%% item time_end %%%</time>%%% condition endif %%%
 %%% condition if time_begin | time_end %%% %%% text h %%% %%% item timezone "UTC<span class="timezone">%s</span>" %%%%%% condition endif %%%
 %%% condition if location %%%<br>
 %%% loop location %%%

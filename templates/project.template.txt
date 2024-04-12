@@ -24,7 +24,7 @@
 %%% item category %%%
 %%% loop end %%%,
 %%% condition endif %%%
-<time datetime='%%% item date_begin %%%%%% item time_begin_iso "T%s" %%%' itemprop="startDate">%%% item duration wrap_date %%%</time>
+<time datetime='%%% item date_begin_iso %%%%%% item time_begin_iso "T%s" %%%' itemprop="startDate">%%% item duration wrap_date %%%</time>
 %%% condition if location %%%<br>
 %%% loop location %%%
 <span itemprop='location'>%%% condition if website %%%<a href="%%% item website %%%">%%% condition endif %%%%%% item contact %%%%%% item website </a> %%%%%% condition if show_direct_link %%%: <a href="%%% item direct_link %%%">%%% item direct_link %%%</a>%%% condition elseif platform %%% <span class="location_note">%%% text (Link will be announced to participants) %%%</span>%%% condition endif %%%</span>

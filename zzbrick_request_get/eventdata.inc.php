@@ -33,7 +33,14 @@ function mod_events_get_eventdata($data, $settings = [], $id_field_name = '', $l
 	$sql = 'SELECT event_id
 			, IF(event_category_id = %d, identifier, NULL) AS identifier
 			, identifier AS uid
-			, event, abstract, events.description, date_begin, date_end
+			, event, abstract, events.description
+			, date_begin, date_end
+			, STR_TO_DATE(REPLACE(date_begin, "-00", "-01"), "%%Y-%%m-%%d") AS date_begin_iso
+			, CASE 
+				WHEN date_end LIKE "%%-00" THEN LAST_DAY(STR_TO_DATE(REPLACE(date_end, "-00", "-01"), "%%Y-%%m-%%d"))
+				WHEN date_end LIKE "%%-00-00" THEN LAST_DAY(STR_TO_DATE(REPLACE(date_end, "-00-00", "-01-01"), "%%Y-%%m-%%d"))
+				ELSE STR_TO_DATE(date_end, "%%Y-%%m-%%d")
+			END AS date_end_iso
 			, IF(date_begin >= CURDATE(), registration, NULL) AS registration
 			, CONCAT(date_begin, IFNULL(CONCAT("/", date_end), "")) AS duration
 			, TIME_FORMAT(time_begin, "%%H.%%i") AS time_begin
