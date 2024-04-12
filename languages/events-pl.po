@@ -278,7 +278,7 @@ msgstr "Więcej informacji na temat <strong>%s</strong>"
 
 #: templates/event.template.txt zzbrick_tables/events.php
 msgid "Registration"
-msgstr "Rejstracja"
+msgstr "Rejestracja"
 
 #: templates/event.template.txt
 msgid "Supporting Event"
