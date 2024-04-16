@@ -26,6 +26,14 @@ msgstr ""
 msgid "PREVIEW"
 msgstr "VORSCHAU"
 
+#: templates/eventinternal.template.txt
+msgid "Event tools"
+msgstr "Veranstaltungswerkzeuge"
+
+#: templates/eventinternal.template.txt
+msgid "Event on the public website"
+msgstr "Veranstaltung auf der öffentlichen Website"
+
 #: templates/project.template.txt
 msgid "Project not found"
 msgstr "Projekt nicht gefunden"
@@ -380,6 +388,10 @@ msgstr "Fr"
 #: zzbrick_request/event.inc.php zzbrick_request/events.inc.php
 msgid "Sat"
 msgstr "Sa"
+
+#: zzbrick_request/eventinternal.inc.php
+msgid "Internal"
+msgstr "Intern"
 
 #: templates/timetable.template.txt
 msgid "Schedule (subject to change)"

@@ -18,5 +18,7 @@ function mod_events_eventinternal($params, $settings, $event) {
 	if (!wrap_access('events_event_edit', $event['event_rights'])) wrap_quit(403);
 	
 	$page['text'] = wrap_template('eventinternal', $event);
+	$page['title'] = sprintf('%s: %s, %s', wrap_text('Internal'), $event['event'], wrap_date($event['duration']));
+	$page['breadcrumbs'][]['title'] = strip_tags($event['event']);
 	return $page;
 }
