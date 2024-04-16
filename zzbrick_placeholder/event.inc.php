@@ -25,12 +25,17 @@ function mod_events_placeholder_event($brick) {
 			, IF(events.published = "yes", 1, NULL) AS published
 			, IFNULL((SELECT MAX(timetable.date_begin) FROM events timetable
 				WHERE timetable.main_event_id = events.event_id), date_begin) AS timetable_max
-			, parameters
+			, events.parameters
 	    FROM events
 	    WHERE identifier = "%s"';
 	if (in_array('activities', wrap_setting('modules'))) {
-		$sql = wrap_edit_sql($sql, 'SELECT', 'forms.form_id');
-		$sql = wrap_edit_sql($sql, 'JOIN', 'LEFT JOIN forms USING (event_id)');
+		$sql = wrap_edit_sql($sql, 'SELECT',
+			'forms.form_id, form_categories.parameters AS form_parameters'
+		);
+		$sql = wrap_edit_sql($sql, 'JOIN', 'LEFT JOIN forms USING (event_id)
+			LEFT JOIN categories form_categories
+				ON forms.form_category_id = form_categories.category_id'
+		);
 	}
 	$sql = sprintf($sql, wrap_db_escape($brick['parameter']));
 	$event = wrap_db_fetch($sql);
@@ -38,6 +43,7 @@ function mod_events_placeholder_event($brick) {
 		wrap_quit(404);
 	elseif (!$event)
 		return $brick;
+	$event = wrap_translate($event, 'events');
 
 	if ($event['parameters'])
 		wrap_module_parameters('events', $event['parameters']);
