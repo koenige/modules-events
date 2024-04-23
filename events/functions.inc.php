@@ -82,3 +82,19 @@ function mf_events_event_organisations($event_id) {
 	}
 	return array_values($data);
 }
+
+/**
+ * get organiser contacts for an event
+ *
+ * @param int $event_id
+ * @return array
+ */
+function mf_events_organisers($event_id) {
+	$sql = 'SELECT contact_id, contact
+		FROM events_contacts
+		LEFT JOIN contacts USING (contact_id)
+		WHERE event_id = %d
+		AND role_category_id = /*_ID CATEGORIES roles/organiser _*/';
+	$sql = sprintf($sql, $event_id);
+	return wrap_db_fetch($sql, 'contact_id');
+}
