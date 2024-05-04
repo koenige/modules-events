@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/events
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2014-2018, 2020-2023 Gustaf Mossakowski
+ * @copyright Copyright © 2014-2018, 2020-2024 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -20,7 +20,7 @@
  *		-	all events from today on
  *		[0]	numeric: year
  *		[0] current: all events from now on, only limit
- *		[0] organisation: alle events of an organisation
+ *		[0] organisation: all events of an organisation
  * @param array $settings
  *		int 'limit' (only if current is present)
  * @return array
