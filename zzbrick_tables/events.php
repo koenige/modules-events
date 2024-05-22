@@ -195,9 +195,11 @@ $zz['fields'][61]['subselect']['suffix'] = '</p>';
 $zz['fields'][26]['title'] = 'Category';
 $zz['fields'][26]['field_name'] = 'event_category_id';
 $zz['fields'][26]['type'] = 'select';
-$zz['fields'][26]['sql'] = 'SELECT category_id, category, description, main_category_id
+$zz['fields'][26]['sql'] = 'SELECT category_id
+		, category, description, main_category_id, parameters
 	FROM /*_PREFIX_*/categories
 	ORDER BY sequence, category';
+$zz['fields'][26]['sql_ignore'] = ['parameters'];
 $zz['fields'][26]['display_field'] = 'category';
 $zz['fields'][26]['character_set'] = 'utf8';
 $zz['fields'][26]['key_field_name'] = 'category_id';
@@ -347,12 +349,14 @@ if (wrap_access('events_parameters')) {
 $zz['fields'][2]['field_name'] = 'identifier';
 $zz['fields'][2]['type'] = 'identifier';
 $zz['fields'][2]['fields'] = [
-	'event_year', 'date_begin{0,4}', 'date_end{0,4}', 'event', 'identifier'
+	'event_year', 'date_begin{0,4}', 'date_end{0,4}', 'event', 'identifier',
+	'event_category_id[parameters]'
 ];
 $zz['fields'][2]['identifier']['ignore_this_if']['date_begin{0,4}'] = 'event_year';
 $zz['fields'][2]['identifier']['ignore_this_if']['date_end{0,4}'] = 'date_begin{0,4}';
 $zz['fields'][2]['identifier']['concat'] = ['/'];
 $zz['fields'][2]['identifier']['exists'] = '-';
+$zz['fields'][2]['identifier']['parameters'] = 'event_category_id[parameters]';
 $zz['fields'][2]['hide_in_list'] = true;
 
 $zz['fields'][21]['field_name'] = 'created';
