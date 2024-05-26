@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/events
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2023 Gustaf Mossakowski
+ * @copyright Copyright © 2023-2024 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -38,7 +38,7 @@ function mod_events_project($params) {
 		return $page;
 	}
 
-	wrap_include_files('zzbrick_request_get/event', 'events');
+	wrap_include('zzbrick_request_get/event', 'events');
 	$event = mod_events_get_event($event['event_id'], ['category' => 'project']);
 	if (!$event) {
 		$event['not_found'] = true;
