@@ -1,0 +1,20 @@
+# events module
+# template for contact: events
+# 
+# Part of »Zugzwang Project«
+# https://www.zugzwang.org/modules/clubs
+#
+# @author Gustaf Mossakowski <gustaf@koenige.org>
+# @copyright Copyright © 2024 Gustaf Mossakowski
+# @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
+# 
+%%% condition if events %%%
+<tr><th>%%% text Events %%%</th>
+<td>
+<ul>
+%%% loop events %%%
+<li><a href="%%% path events_internal_event identifier %%%">%%% item event %%% %%% item duration wrap_date %%%</a>%%% item role " (%s)" %%%</li>
+%%% loop end %%%
+</ul>
+</td></tr>
+%%% condition endif %%%
