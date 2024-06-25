@@ -16,17 +16,13 @@
 function mod_events_event($params) {
 	if (count($params) !== 2) return false;
 
-	$published = empty($_SESSION['logged_in']) ? 'AND events.published = "yes"' : '';
-	
 	$sql = 'SELECT event_id
+			, IF(published = "yes", 1, NULL) AS published
 	    FROM events
 	    WHERE identifier = "%d/%s"
-	    AND event_category_id = %d
-	    %s';
+	    AND event_category_id = /*_ID categories event/event _*/';
 	$sql = sprintf($sql
 		, $params[0], wrap_db_escape($params[1])
-		, wrap_category_id('event/event')
-		, $published
 	);
 	$event = wrap_db_fetch($sql);
 	
@@ -37,6 +33,8 @@ function mod_events_event($params) {
 		$page['status'] = 404;
 		return $page;
 	}
+	if (empty($_SESSION['logged_in']) AND !$event['published'])
+		wrap_quit(410, wrap_text('This event is no longer published. It may not take place.'));
 
 	require_once __DIR__.'/../zzbrick_request_get/event.inc.php';
 	$event = mod_events_get_event($event['event_id']);

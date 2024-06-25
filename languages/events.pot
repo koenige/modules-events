@@ -19,7 +19,6 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.4.1\n"
 
 #: layout/events.css
 msgid "PREVIEW"
@@ -339,6 +338,10 @@ msgstr ""
 
 #: events/_functions.inc.php
 msgid "An event can only end after the start."
+msgstr ""
+
+#: zzbrick_request/event.inc.php
+msgid "This event is no longer published. It may not take place."
 msgstr ""
 
 #: zzbrick_request/event.inc.php zzbrick_request/events.inc.php
