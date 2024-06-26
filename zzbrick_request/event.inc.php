@@ -26,7 +26,7 @@ function mod_events_event($params) {
 	);
 	$event = wrap_db_fetch($sql);
 	
-	if (count($event) !== 1) {
+	if (!$event) {
 		$event['not_found'] = true;
 		$page['text'] = wrap_template('event', $event);
 		$page['dont_show_h1'] = true;
