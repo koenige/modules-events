@@ -20,6 +20,98 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#: configuration/access.cfg
+msgid "public event or year/category overview of events"
+msgstr ""
+
+#: configuration/access.cfg
+msgid "allow to edit an event"
+msgstr ""
+
+#: configuration/access.cfg
+msgid "set a year different from the date for an event"
+msgstr ""
+
+#: configuration/access.cfg
+msgid "calendar overview"
+msgstr ""
+
+#: configuration/access.cfg
+msgid "annual overview of events"
+msgstr ""
+
+#: configuration/access.cfg
+msgid "allow to add text blocks to an event"
+msgstr ""
+
+#: configuration/access.cfg
+msgid "ics calendar download on website"
+msgstr ""
+
+#: configuration/access.cfg
+msgid "access to internal event"
+msgstr ""
+
+#: configuration/access.cfg
+msgid "change parameters per event"
+msgstr ""
+
+#: configuration/access.cfg
+msgid "single project"
+msgstr ""
+
+#: configuration/access.cfg
+msgid "allow to copy a timetable"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "use as link for the event"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "size of image linked from standard image in event"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "use field events_categories.property to set values for categories"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "path to public event or year/category overview of events"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "allow to set a different event year than when the event takes place"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "path to calendar overview"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "path to annual overview of events"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "path to ics calendar download on website"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "name of the calendar for ICS export"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "description of the calendar for ICS export"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "standard size of image displayed in event"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "retina 2x size of image displayed in event"
+msgstr ""
+
 #: layout/events.css
 msgid "PREVIEW"
 msgstr ""
