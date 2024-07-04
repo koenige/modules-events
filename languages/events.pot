@@ -112,6 +112,90 @@ msgstr ""
 msgid "retina 2x size of image displayed in event"
 msgstr ""
 
+#: configuration/settings.cfg
+msgid "path to internal page of an event"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "path to events on internal website"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "show a leaflet map next to the event"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "size of image in events list"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "maximum no. of media files per event"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "size in px of image for OpenGraph (Facebook, Twitter)"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "marks a role category so that event is treated as own event in calendar"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "path to event calendar on website"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "are project images put on several sub pages?"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "only show a project if it has at least one image associated"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "path to project"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "path to projects overview"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "show description in projects list directly after project"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "size of images displayed in timetable"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "allow to show an event as a news item"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "use series_category_id to determine series of an event, not events_categories (@deprecated)"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "placeholder to place timetable at given position on page"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "timezone if all events in the calendar are in the same timezone, start with backslash"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "default timezone, start with backslash"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "standard size of video and poster image in an event"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "size of name tag, e. g. 9x5.5"
+msgstr ""
+
 #: layout/events.css
 msgid "PREVIEW"
 msgstr ""
