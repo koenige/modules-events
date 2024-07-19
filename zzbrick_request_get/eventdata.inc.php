@@ -229,6 +229,7 @@ function mod_events_get_eventdata_details($events, $ids = [], $langs = []) {
 				if (!empty($detail['parameters']['direct_link'])) {
 					$events[$lang][$detail['event_id']]['direct_link'] = $detail['identification'];
 					$events[$lang][$detail['event_id']]['direct_link_label'] = $detail['label'] ?? $detail['category'];
+					continue; // do not add the direct link to details
 				}
 			}
 			$events[$lang][$detail['event_id']]['details'][$eventdetail_id] = $detail; 

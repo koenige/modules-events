@@ -102,7 +102,7 @@
 %%% condition if details %%%
 <ul>
 %%% loop details %%%
-<li><a href="%%% item identification %%%">%%% item label %%%</a></li>
+<li><a href="%%% item identification %%%">%%% condition if label %%%%%% item label %%%%%% condition else %%%%%% item identification %%%%%% condition endif %%%</a></li>
 %%% loop end %%%
 </ul>
 %%% condition endif %%%
