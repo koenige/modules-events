@@ -307,8 +307,10 @@ function mod_events_get_eventdata_contacts($events, $ids, $langs) {
 					else
 						$path = substr($params['alias'], strrpos($params['alias'], '/') + 1);
 				}
-				if (!empty($params['events_own_event']))
-					$events[$lang][$contact['event_id']]['own_event'] = true;
+				if (!empty($params['events_own_event']) AND wrap_setting('own_contact_id')) {
+					if ($contact['contact_id'] == wrap_setting('own_contact_id'))
+						$events[$lang][$contact['event_id']]['own_event'] = true;
+				}
 			}
 			if (!empty($contact['show_direct_link']))
 				$contact['direct_link'] = $events[$lang][$contact['event_id']]['direct_link'] ?? '';
