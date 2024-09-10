@@ -26,9 +26,7 @@ use Kigkonsult\Icalcreator\Vtimezone;
  */
 function mod_events_ics($params) {
 	if (count($params) === 1) {
-		if (substr($params[0], -4) !== '.ics') return false;
-		$page['headers']['filename'] = $params[0];
-		$params[0] = substr($params[0], 0, -4);
+		$page['headers']['filename'] = $params[0].'.ics';
 		switch ($params[0]) {
 		case wrap_setting('site'):
 			$where_condition = '';
@@ -37,9 +35,7 @@ function mod_events_ics($params) {
 			return false;
 		}
 	} elseif (count($params) === 2) {
-		if (substr($params[1], -4) !== '.ics') return false;
-		$page['headers']['filename'] = $params[0].' '.$params[1];
-		$params[1] = substr($params[1], 0, -4);
+		$page['headers']['filename'] = $params[0].' '.$params[1].'.ics';
 		$where_condition = sprintf(
 			' AND (main_events.identifier = "%d/%s" OR events.identifier = "%d/%s")',
 			$params[0], wrap_db_escape($params[1]),
@@ -70,7 +66,6 @@ function mod_events_ics($params) {
 		%s
 		ORDER BY IFNULL(events.date_begin, events.date_end), events.time_begin, events.date_end, events.time_end, events.sequence
 	';
-
 	$sql = sprintf($sql, $where_condition);
 	$events = wrap_db_fetch($sql, 'event_id');
 	if (!$events) return false;

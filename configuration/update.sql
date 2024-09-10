@@ -75,3 +75,4 @@
 /* 2024-03-13-1 */	ALTER TABLE `events` ADD `optional` enum('yes','no') COLLATE 'latin1_general_ci' NOT NULL DEFAULT 'no' AFTER `following`;
 /* 2024-03-16-1 */	ALTER TABLE `eventdetails` CHANGE `last_update` `last_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP;
 /* 2024-03-16-2 */	ALTER TABLE `eventmenus` CHANGE `last_update` `last_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP;
+/* 2024-09-10-1 */	UPDATE webpages SET identifier = CONCAT(identifier, '.ics'), ending = 'none' WHERE content LIKE '% request ics * %' AND SUBSTRING(identifier, -1) = '*';
