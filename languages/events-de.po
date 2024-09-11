@@ -20,11 +20,208 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.4.4\n"
+"X-Generator: Poedit 3.5\n"
+
+#: configuration/access.cfg
+msgid "public event or year/category overview of events"
+msgstr ""
+
+#: configuration/access.cfg
+msgid "allow to edit an event"
+msgstr ""
+
+#: configuration/access.cfg
+msgid "set a year different from the date for an event"
+msgstr ""
+
+#: configuration/access.cfg
+msgid "calendar overview"
+msgstr ""
+
+#: configuration/access.cfg
+msgid "annual overview of events"
+msgstr ""
+
+#: configuration/access.cfg
+msgid "allow to add text blocks to an event"
+msgstr ""
+
+#: configuration/access.cfg
+msgid "ics calendar download on website"
+msgstr ""
+
+#: configuration/access.cfg
+msgid "access to internal event"
+msgstr ""
+
+#: configuration/access.cfg
+msgid "change parameters per event"
+msgstr ""
+
+#: configuration/access.cfg
+msgid "single project"
+msgstr ""
+
+#: configuration/access.cfg
+msgid "allow to copy a timetable"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "use as link for the event"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "size of image linked from standard image in event"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "use field events_categories.property to set values for categories"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "path to public event or year/category overview of events"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "allow to set a different event year than when the event takes place"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "path to calendar overview"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "path to annual overview of events"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "path to ics calendar download on website"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "name of the calendar for ICS export"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "description of the calendar for ICS export"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "standard size of image displayed in event"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "retina 2x size of image displayed in event"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "path to internal page of an event"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "path to events on internal website"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "show a leaflet map next to the event"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "size of image in events list"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "maximum no. of media files per event"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "size in px of image for OpenGraph (Facebook, Twitter)"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "marks a role category so that event is treated as own event in calendar"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "path to event calendar on website"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "are project images put on several sub pages?"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "only show a project if it has at least one image associated"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "path to project"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "path to projects overview"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "show description in projects list directly after project"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "size of images displayed in timetable"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "allow to show an event as a news item"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid ""
+"use series_category_id to determine series of an event, not "
+"events_categories (@deprecated)"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "placeholder to place timetable at given position on page"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid ""
+"timezone if all events in the calendar are in the same timezone, start with "
+"backslash"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "default timezone, start with backslash"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "standard size of video and poster image in an event"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "size of name tag, e. g. 9x5.5"
+msgstr ""
 
 #: layout/events.css
 msgid "PREVIEW"
 msgstr "VORSCHAU"
+
+#: templates/event-deadlines.template.txt
+msgid "Deadlines, like other dates, run from one date to another date."
+msgstr "Fristen laufen, wie andere Termine auch, von einem Datum zum anderen."
+
+#: templates/event-deadlines.template.txt
+msgid "The start date can be left blank, then the deadline starts immediately."
+msgstr ""
+"Das Startdatum kann leer gelassen werden, dann beginnt die Frist sofort."
+
+#: templates/event-deadlines.template.txt
+msgid ""
+"If a registration deadline starts on a specific date, no one can register "
+"before the deadline begins."
+msgstr ""
+"Beginnt eine Anmeldefrist an einem bestimmten Datum, kann sich niemand vor "
+"Beginn der Frist anmelden."
 
 #: templates/eventinternal.template.txt
 msgid "Event tools"
@@ -45,6 +242,14 @@ msgstr "Leider konnten wir unter dieser URL kein Projekt finden."
 #: templates/projects.template.txt
 msgid "We have no projects in this category."
 msgstr "Wir haben keine Projekte in dieser Kategorie."
+
+#: zzbrick_forms/deadlines.php
+msgid "Deadlines"
+msgstr "Fristen"
+
+#: zzbrick_forms/deadlines.php
+msgid "No categories defined for deadlines (with parameter `%s`)"
+msgstr "Keine Kategorien für Fristen definiert (mit Parameter `%s`)"
 
 #: zzbrick_forms/projects.php
 msgid "Projects"

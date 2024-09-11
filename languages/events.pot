@@ -200,6 +200,18 @@ msgstr ""
 msgid "PREVIEW"
 msgstr ""
 
+#: templates/event-deadlines.template.txt
+msgid "Deadlines, like other dates, run from one date to another date."
+msgstr ""
+
+#: templates/event-deadlines.template.txt
+msgid "The start date can be left blank, then the deadline starts immediately."
+msgstr ""
+
+#: templates/event-deadlines.template.txt
+msgid "If a registration deadline starts on a specific date, no one can register before the deadline begins."
+msgstr ""
+
 #: templates/eventinternal.template.txt
 msgid "Event tools"
 msgstr ""
@@ -218,6 +230,14 @@ msgstr ""
 
 #: templates/projects.template.txt
 msgid "We have no projects in this category."
+msgstr ""
+
+#: zzbrick_forms/deadlines.php
+msgid "Deadlines"
+msgstr ""
+
+#: zzbrick_forms/deadlines.php
+msgid "No categories defined for deadlines (with parameter `%s`)"
 msgstr ""
 
 #: zzbrick_forms/projects.php
