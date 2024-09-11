@@ -54,6 +54,8 @@ foreach ($zz['fields'] as $no => $field) {
 		break;
 	
 	case 'event':
+		$zz['fields'][$no]['type'] = 'memo';
+		$zz['fields'][$no]['rows'] = 2;
 		unset($zz['fields'][$no]['link']);
 		break;
 	
