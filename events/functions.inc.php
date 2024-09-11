@@ -48,17 +48,20 @@ function mf_events_subevents($event_id) {
  * get a list of organisations which are linked to an event
  *
  * @param int $event_id
+ * @param array $params
  * @return array
  */
-function mf_events_event_organisations($event_id) {
+function mf_events_event_organisations($event_id, $params = []) {
 	$sql = 'SELECT contact_id
 			, contact
 			, SUBSTRING_INDEX(roles.path, "/", -1) AS role_identifier
+			, role_category_id
 			, roles.category AS role_category
 			, SUBSTRING_INDEX(organisation_types.path, "/", -1) AS type
 			, contacts.identifier
 			, contacts_contacts.contact_id AS place_contact_id
 			, contacts_contacts.role
+			, contacts.description
 		FROM events_contacts
 		LEFT JOIN contacts USING (contact_id)
 		LEFT JOIN categories organisation_types
@@ -68,15 +71,21 @@ function mf_events_event_organisations($event_id) {
 			ON roles.category_id = events_contacts.role_category_id
 		WHERE event_id = %d
 		AND (ISNULL(contacts_contacts.contact_id) OR contacts_contacts.published = "yes")
+		ORDER BY organisation_types.sequence, organisation_types.path
 	';
 	$sql = sprintf($sql, $event_id);
 	$organisations = wrap_db_fetch($sql, 'contact_id');
 	$details = mf_contacts_contactdetails(array_keys($organisations));
+	if (!empty($params['addresses']))
+		$addresses = mf_contacts_addresses(array_keys($organisations));
 	$data = [];
 	foreach ($organisations as $contact_id => $org) {
 		$org[$org['type']] = 1;
 		$org += $details[$contact_id] ?? [];
+		$org['addresses'] = $addresses[$contact_id] ?? [];
 		$data[$org['role_category']]['role_category'] = $org['role_category'];
+		$data[$org['role_category']]['type'] = $org['type'];
+		$data[$org['role_category']][$org['type']] = 1;
 		$data[$org['role_category']]['organisations'][] = $org;
 		if ($org['place_contact_id']) $contact_ids[] = $org['place_contact_id'];
 	}
