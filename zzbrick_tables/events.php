@@ -108,20 +108,20 @@ $zz['fields'][8]['explanation'] = 'Short description of the event (is displayed 
 $zz['fields'][8]['format'] = 'markdown';
 $zz['fields'][8]['typo_cleanup'] = true;
 
-$zz['fields'][24] = zzform_include('events-categories');
-$zz['fields'][24]['title'] = 'Category';
-$zz['fields'][24]['type'] = 'subtable';
-$zz['fields'][24]['min_records'] = 1;
-$zz['fields'][24]['max_records'] = 4;
-$zz['fields'][24]['form_display'] = 'lines';
-$zz['fields'][24]['fields'][2]['type'] = 'foreign_key';
-$zz['fields'][24]['fields'][3]['show_title'] = false;
-$zz['fields'][24]['fields'][4]['type'] = 'sequence';
-$zz['fields'][24]['class'] = 'hidden480';
-$zz['fields'][24]['list_append_next'] = true;
-$zz['fields'][24]['subselect']['prefix'] = '<em>';
-$zz['fields'][24]['subselect']['suffix'] = '</em>';
-$zz['fields'][24]['sql'] .= ' ORDER BY events_categories.sequence';
+$zz['fields'][40] = zzform_include('events-categories');
+$zz['fields'][40]['title'] = 'Category';
+$zz['fields'][40]['type'] = 'subtable';
+$zz['fields'][40]['min_records'] = 1;
+$zz['fields'][40]['max_records'] = 4;
+$zz['fields'][40]['form_display'] = 'lines';
+$zz['fields'][40]['fields'][2]['type'] = 'foreign_key';
+$zz['fields'][40]['fields'][3]['show_title'] = false;
+$zz['fields'][40]['fields'][4]['type'] = 'sequence';
+$zz['fields'][40]['class'] = 'hidden480';
+$zz['fields'][40]['list_append_next'] = true;
+$zz['fields'][40]['subselect']['prefix'] = '<em>';
+$zz['fields'][40]['subselect']['suffix'] = '</em>';
+$zz['fields'][40]['sql'] .= ' ORDER BY events_categories.sequence';
 
 // @deprecated
 $zz['fields'][7] = zzform_include('events-contacts');
@@ -208,8 +208,8 @@ $zz['fields'][26]['show_hierarchy_subtree'] = wrap_category_id('event');
 $zz['fields'][26]['hide_in_list'] = true;
 $zz['fields'][26]['hide_in_form'] = true;
 $zz['fields'][26]['add_details'] = sprintf('categories?filter[maincategory]=%d', wrap_category_id('event'));
+$zz['fields'][26]['exclude_from_search'] = true;
 // activate only for timetable
-// @todo move to events-categories
 $zz['fields'][26]['type'] = 'hidden';
 $zz['fields'][26]['type_detail'] = 'select';
 $zz['fields'][26]['value'] = wrap_category_id('event/event');
