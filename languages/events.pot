@@ -256,6 +256,10 @@ msgstr ""
 msgid "Main Project"
 msgstr ""
 
+#: zzbrick_forms/timetable.php
+msgid "Timetable"
+msgstr ""
+
 #: zzbrick_request/ics.inc.php zzbrick_tables/events.php
 msgid "Organiser"
 msgstr ""

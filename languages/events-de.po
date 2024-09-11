@@ -267,6 +267,10 @@ msgstr "Zeitraum"
 msgid "Main Project"
 msgstr "Hauptprojekt"
 
+#: zzbrick_forms/timetable.php
+msgid "Timetable"
+msgstr "Zeitplan"
+
 #: zzbrick_request/ics.inc.php zzbrick_tables/events.php
 msgid "Organiser"
 msgstr "Veranstalter"
