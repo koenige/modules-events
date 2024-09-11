@@ -2,19 +2,20 @@
 
 /**
  * events module
- * Form for 'eventmenus'
+ * Form for 'events'
  *
  * Part of »Zugzwang Project«
  * https://www.zugzwang.org/modules/events
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2023 Gustaf Mossakowski
+ * @copyright Copyright © 2023-2024 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
 
 $values = $values ?? [];
 $zz = zzform_include('events', $values);
+$zz['where']['event_category_id'] = wrap_category_id('event/event');
 
 //
 // events_contacts
