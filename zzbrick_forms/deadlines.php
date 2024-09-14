@@ -33,20 +33,31 @@ foreach ($zz['fields'] as $no => $field) {
 	$identifier = zzform_field_identifier($field);
 	switch ($identifier) {
 	case 'event_id':
-	case 'date_begin':
-	case 'date_end':
 	case 'time_begin':
 	case 'time_end':
-	case 'event':
 	case 'main_event_id':
 	case 'published':
 	case 'last_update':
+		break;
+
+	case 'date_begin':
+		$zz['fields'][$no]['default'] = '';
+		break;
+
+	case 'date_end':
+		$zz['fields'][$no]['default'] = date('d.m.Y', time());
+		break;
+
+	case 'event':
+		if (!empty($_GET['add']['event_category_id']))
+			$zz['fields'][$no]['default'] = $deadline_categories[$_GET['add']['event_category_id']]['category'] ?? '';
 		break;
 
 	case 'identifier':
 		$zz['fields'][$no]['fields'] = [
 			'main_event_id[identifier]', 'event', 'identifier'
 		];
+		$zz['fields'][$no]['hide_in_form'] = true;
 		break;
 	
 	case 'event_category_id':
