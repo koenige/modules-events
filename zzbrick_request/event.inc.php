@@ -121,7 +121,7 @@ function mod_events_event($params) {
 			= ['property' => 'og:image', 'content' => wrap_setting('host_base').wrap_setting('files_path').'/'.$main_img['filename'].'.'.wrap_setting('events_og_image_size').'.'.$main_img['thumb_extension'].'?v='.$main_img['version']];
 	}
 	$page['title'] = $event['event'].', '.wrap_date($event['duration']);
-	$page['breadcrumbs'][] = '<a href="'.wrap_path('events_event', $event['year']).'">'.$event['year'].'</a>';
+	$page['breadcrumbs'][] = ['title' => $event['year'], url_path => wrap_path('events_event', $event['year'])];
 	$page['breadcrumbs'][]['title'] = $event['event'];
 	$page['dont_show_h1'] = true;
 	if (!$event['published'])
