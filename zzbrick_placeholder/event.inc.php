@@ -46,7 +46,7 @@ function mod_events_placeholder_event($brick) {
 	$event = wrap_translate($event, 'events');
 
 	if ($event['parameters'])
-		wrap_module_parameters('events', $event['parameters']);
+		wrap_match_module_parameters('events', $event['parameters']);
 
 	$zz_page['access'][] = $event['event_rights'];
 	if ($event['main_event_rights'])

@@ -41,7 +41,7 @@ function mod_events_event($params) {
 	if ($event['parameters']) {
 		parse_str($event['parameters'], $event['parameters']);
 		$event += $event['parameters'];
-		wrap_module_parameters('events', $event['parameters']);
+		wrap_match_module_parameters('events', $event['parameters']);
 	}
 	
 	$lightbox = false;
