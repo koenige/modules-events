@@ -100,6 +100,15 @@ $zz['fields'][6]['link'] = [
 $zz['fields'][6]['typo_cleanup'] = true;
 $zz['fields'][6]['typo_remove_double_spaces'] = true;
 
+$zz['fields'][12]['title_tab'] = 'Abbr.';
+$zz['fields'][12]['title'] = 'Abbreviation';
+$zz['fields'][12]['field_name'] = 'event_abbr';
+$zz['fields'][12]['hide_in_list_if_empty'] = true;
+if (!wrap_setting('events_event_abbr')) {
+	$zz['fields'][12]['hide_in_form'] = true;
+	$zz['fields'][12]['hide_in_list'] = true;
+}
+
 $zz['fields'][8]['field_name'] = 'abstract';
 $zz['fields'][8]['type'] = 'memo';
 $zz['fields'][8]['hide_in_list'] = true;

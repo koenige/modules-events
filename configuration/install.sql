@@ -15,6 +15,7 @@
 CREATE TABLE `events` (
   `event_id` int unsigned NOT NULL AUTO_INCREMENT,
   `event` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `event_abbr` varchar(8) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `identifier` varchar(63) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
   `abstract` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `description` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
