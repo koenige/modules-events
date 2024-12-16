@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/events
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2012, 2014, 2019-2020, 2022-2023 Gustaf Mossakowski
+ * @copyright Copyright © 2012, 2014, 2019-2020, 2022-2024 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -45,11 +45,9 @@ $zz['fields'][4]['placeholder'] = true;
 $zz['fields'][5]['title'] = 'Type';
 $zz['fields'][5]['field_name'] = 'detail_category_id';
 $zz['fields'][5]['type'] = 'select';
-$zz['fields'][5]['sql'] = sprintf('SELECT category_id, category
+$zz['fields'][5]['sql'] = 'SELECT category_id, category
 	FROM /*_PREFIX_*/categories
-	WHERE main_category_id = %d',
-	wrap_category_id('event-details')
-);
+	WHERE main_category_id = /*_ID categories event-details _*/';
 $zz['fields'][5]['display_field'] = 'category';
 $zz['fields'][5]['character_set'] = 'utf8';
 

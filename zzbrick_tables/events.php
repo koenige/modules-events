@@ -211,7 +211,6 @@ $zz['fields'][26]['sql'] = 'SELECT category_id
 $zz['fields'][26]['sql_ignore'] = ['parameters'];
 $zz['fields'][26]['display_field'] = 'category';
 $zz['fields'][26]['character_set'] = 'utf8';
-$zz['fields'][26]['key_field_name'] = 'category_id';
 $zz['fields'][26]['show_hierarchy'] = 'main_category_id';
 $zz['fields'][26]['show_hierarchy_subtree'] = wrap_category_id('event');
 $zz['fields'][26]['hide_in_list'] = true;
@@ -344,7 +343,6 @@ $zz['fields'][9]['sql'] = 'SELECT event_id, event
 	WHERE ISNULL(main_event_id)
 	ORDER BY identifier DESC';
 $zz['fields'][9]['sql_format'][2] = 'wrap_date';
-$zz['fields'][9]['key_field_name'] = 'event_id'; // for subtitle!
 $zz['fields'][9]['hide_in_list'] = true;
 
 if (wrap_access('events_parameters')) {
@@ -422,12 +420,12 @@ $zz['filter'][2]['identifier'] = 'category';
 $zz['filter'][2]['type'] = 'list';
 $zz['filter'][2]['where'] = '/*_PREFIX_*/events_categories.category_id';
 
-$zz['filter'][3]['sql'] = sprintf('SELECT DISTINCT contact_id
+$zz['filter'][3]['sql'] = 'SELECT DISTINCT contact_id
 		, IFNULL(contact_short, contact) AS contact
 	FROM events_contacts
 	LEFT JOIN contacts USING (contact_id)
-	WHERE events_contacts.role_category_id = %d
-	ORDER BY contact', wrap_category_id('roles/organiser'));
+	WHERE events_contacts.role_category_id = /*_ID categories roles/organiser _*/
+	ORDER BY contact';
 $zz['filter'][3]['title'] = wrap_text('Organiser');
 $zz['filter'][3]['identifier'] = 'organiser';
 $zz['filter'][3]['type'] = 'list';

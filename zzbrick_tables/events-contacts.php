@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/events
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2012, 2014, 2016, 2018-2023 Gustaf Mossakowski
+ * @copyright Copyright © 2012, 2014, 2016, 2018-2024 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -48,7 +48,6 @@ $zz['fields'][3]['display_field'] = 'contact';
 
 $zz['fields'][4]['title'] = 'Role';
 $zz['fields'][4]['field_name'] = 'role_category_id';
-$zz['fields'][4]['key_field_name'] = 'category_id';
 $zz['fields'][4]['type'] = 'select';
 $zz['fields'][4]['sql'] = 'SELECT category_id, category, main_category_id
 	FROM /*_PREFIX_*/categories
