@@ -8,9 +8,9 @@
 # @copyright Copyright © 2023-2024 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 # 
-%%% condition if no_projects %%%
+%%% if no_projects %%%
 %%% text We have no projects in this category. %%%
-%%% condition else %%%
+%%% else %%%
 <table class="events projects js-gallery">
 %%% loop start %%%
 <tr itemscope itemtype="http://schema.org/Event" class="%%% loopposition uneven un %%%even">
@@ -19,40 +19,40 @@
 </time>
 </th>
 <td>
-%%% condition if images %%%
+%%% if images %%%
 <p class="newsimg">
 %%% loop images 1 %%%<a href="%%% setting base %%%%%% path events_project identifier %%%">
 <img src="%%% setting files_path %%%/%%% item filename %%%.%%% setting events_list_image_size %%%.%%% item thumb_extension %%%?v=%%% item version %%%" alt="%%% item title wrap_html_escape %%%">
 </a>
 %%% loop end %%%
 </p>
-%%% condition endif %%%
+%%% endif %%%
 
 <div class="projecttext">
 <strong itemprop="name"><a href="%%% setting base %%%%%% path events_project identifier %%%">%%% item event %%%</a></strong> 
-%%% condition if setting events_projects_abstract_first %%%
+%%% if setting events_projects_abstract_first %%%
 <div itemprop="description" class="project_description">
 %%% item abstract markdown %%%
 </div>
-%%% condition endif %%%
-%%% condition if categories %%%
+%%% endif %%%
+%%% if categories %%%
  – 
 %%% loop categories %%%
 %%% loopposition middle ", " %%%%%% loopposition last " & " %%%
 %%% item category %%%
 %%% loop end %%%
-%%% condition endif %%%
-%%% condition if location %%%
- %%% text in %%% <span itemprop='location'>%%% loop location %%%%%% item place "%s, " %%% %%% item contact %%%%%% item address ", %s" %%%%%% condition unless own_country %%%%%% item country " (%s)" %%%%%% condition endif %%%%%% loopposition first|middle ", " %%%%%% loop end %%%</span>
-%%% condition endif %%%
+%%% endif %%%
+%%% if location %%%
+ %%% text in %%% <span itemprop='location'>%%% loop location %%%%%% item place "%s, " %%% %%% item contact %%%%%% item address ", %s" %%%%%% unless own_country %%%%%% item country " (%s)" %%%%%% endif %%%%%% loopposition first|middle ", " %%%%%% loop end %%%</span>
+%%% endif %%%
 
-%%% condition unless setting events_projects_abstract_first %%%
+%%% unless setting events_projects_abstract_first %%%
 <div itemprop="description" class="project_description">
 %%% item abstract markdown %%%
 </div>
-%%% condition endif %%%
+%%% endif %%%
 </div>
 </td></tr>
 %%% loop end %%%
 </table>
-%%% condition endif %%%
+%%% endif %%%

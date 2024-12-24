@@ -5,60 +5,60 @@
 # https://www.zugzwang.org/modules/events
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2015-2018, 2020-2021 Gustaf Mossakowski
+# @copyright Copyright © 2015-2018, 2020-2021, 2024 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
-%%% condition if programme %%%
+%%% if programme %%%
 <h2 id="timetable">%%% text Events in the supporting program %%%</h2>
-%%% condition else %%%
-%%% condition if past_event %%%
+%%% else %%%
+%%% if past_event %%%
 <h2 id="timetable">%%% text Schedule %%%</h2>
-%%% condition else %%%
+%%% else %%%
 <h2 id="timetable">%%% text Schedule (subject to change) %%%</h2>
-%%% condition endif %%%
-%%% condition endif %%%
+%%% endif %%%
+%%% endif %%%
 <table class="timetable">
 %%% loop start %%%
 <tr><th colspan="2"><h3>%%% item weekday_begin %%% %%% item date_begin wrap_date %%%</h3></th></tr>
 %%% loop hours %%%
 <tr><th class="time">
-%%% condition if following %%%
+%%% if following %%%
 %%% text following %%%
-%%% condition elseif time_begin | time_end %%%
-%%% condition if time_begin %%%%%% text h_prefix %%% %%% item time_begin "%s" %%%&nbsp;%%% text h %%%%%% condition endif %%%
-%%% condition if time_end %%%<wbr>–%%% item time_end "%s" %%%&nbsp;%%% text h %%%%%% condition endif %%%
-%%% condition else %%%
+%%% elseif time_begin | time_end %%%
+%%% if time_begin %%%%%% text h_prefix %%% %%% item time_begin "%s" %%%&nbsp;%%% text h %%%%%% endif %%%
+%%% if time_end %%%<wbr>–%%% item time_end "%s" %%%&nbsp;%%% text h %%%%%% endif %%%
+%%% else %%%
 –
-%%% condition endif %%%
+%%% endif %%%
 </th>
 <td>
-%%% condition unless identifier %%%
-%%% condition if images %%%
+%%% unless identifier %%%
+%%% if images %%%
 <p class="tt_image js-gallery">
 %%% loop images 1 %%%
 <a href="%%% setting files_path %%%/%%% item filename %%%.%%% item extension %%%?v=%%% item version %%%" class="js-img" data-title="%%% item title wrap_html_escape %%% %%% item source wrap_html_escape "<br>%s" %%%" title="%%% item title strip_tags %%% %%% item source strip_tags %%%"><img src="%%% setting files_path %%%/%%% item filename %%%.%%% setting events_timetable_image_size %%%.%%% item thumb_extension %%%?v=%%% item version %%%" alt="%%% item title wrap_html_escape %%%"></a>
 %%% loop end %%%
 </p>
-%%% condition endif %%%
-%%% condition endif %%%
+%%% endif %%%
+%%% endif %%%
 %%% loop categories %%%
 %%% item category %%%%%% loopposition first|middle "," %%% 
 %%% loop end %%%
-<span class="event">%%% condition if cancelled %%%
+<span class="event">%%% if cancelled %%%
 <del>
-%%% condition elseif identifier %%%
+%%% elseif identifier %%%
 <a href="%%% path events_event identifier %%%">
-%%% condition endif %%%
+%%% endif %%%
 %%% item event markdown %%%
-%%% condition if cancelled %%%
+%%% if cancelled %%%
 </del> – %%% text cancelled! %%%
-%%% condition elseif identifier %%%
+%%% elseif identifier %%%
 </a>
-%%% condition endif %%%
+%%% endif %%%
 </span>
-%%% condition unless identifier %%%
+%%% unless identifier %%%
 %%% item description markdown %%%
-%%% condition endif %%%
+%%% endif %%%
 %%% loop location %%%
 <p><em>%%% item contact %%%, %%% item address "%s, " %%%%%% item postcode %%% %%% item place %%% %%% item description %%%</em></p>
 %%% loop end %%%

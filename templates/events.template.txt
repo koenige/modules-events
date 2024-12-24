@@ -8,50 +8,50 @@
 # @copyright Copyright © 2014-2017, 2020, 2022-2024 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 # 
-%%% condition if no_events %%%
+%%% if no_events %%%
 %%% text We have no events from this year. %%%
-%%% condition else %%%
+%%% else %%%
 <table class="events js-gallery">
 %%% loop start %%%
-%%% condition if change_month_iso %%%
+%%% if change_month_iso %%%
 <tr class="section_month">
 <td colspan="2"><h2>%%% item month_iso wrap_date %%%</h2></td>
 </tr>
-%%% condition endif %%%
-<tr itemscope itemtype="http://schema.org/Event" class="%%% loopposition uneven un %%%even%%% condition unless published %%% unpublished%%% condition endif %%%%%% condition if change_week %%% section_week%%% condition endif %%%">
+%%% endif %%%
+<tr itemscope itemtype="http://schema.org/Event" class="%%% loopposition uneven un %%%even%%% unless published %%% unpublished%%% endif %%%%%% if change_week %%% section_week%%% endif %%%">
 <th>
 %%% item cancelled "<del>" %%%
-<time datetime='%%% item date_begin_iso %%%%%% item time_begin_iso "T%s" %%%' itemprop="startDate">%%% condition unless change_duration %%%<span class="identical_duration">%%% condition endif %%%<span class="weekday">%%% item weekday_begin %%%%%% item weekday_end "–%s" %%%</span> %%% item duration wrap_date %%%%%% condition unless change_duration %%%</span>%%% condition endif %%%
-%%% condition if time_begin %%%%%% condition unless change_duration %%%<span class="identical_duration">%%% condition endif %%%<br>%%% condition unless change_duration %%%</span>%%% condition endif %%%<em>%%% item time_begin %%%</em>%%% condition endif %%%</time>%%% condition if time_end %%%–<time datetime='%%% item date_end_iso %%%%%% condition unless date_end %%%%%% item date_begin %%%%%% condition endif %%%%%% item time_end_iso "T%s" %%%' itemprop="endDate"><em>%%% item time_end %%%</em></time>%%% condition endif %%%
-%%% condition if time_begin | time_end %%%<em> %%% text h %%% %%% item timezone "UTC%s" %%%</em>%%% condition endif %%%
+<time datetime='%%% item date_begin_iso %%%%%% item time_begin_iso "T%s" %%%' itemprop="startDate">%%% unless change_duration %%%<span class="identical_duration">%%% endif %%%<span class="weekday">%%% item weekday_begin %%%%%% item weekday_end "–%s" %%%</span> %%% item duration wrap_date %%%%%% unless change_duration %%%</span>%%% endif %%%
+%%% if time_begin %%%%%% unless change_duration %%%<span class="identical_duration">%%% endif %%%<br>%%% unless change_duration %%%</span>%%% endif %%%<em>%%% item time_begin %%%</em>%%% endif %%%</time>%%% if time_end %%%–<time datetime='%%% item date_end_iso %%%%%% unless date_end %%%%%% item date_begin %%%%%% endif %%%%%% item time_end_iso "T%s" %%%' itemprop="endDate"><em>%%% item time_end %%%</em></time>%%% endif %%%
+%%% if time_begin | time_end %%%<em> %%% text h %%% %%% item timezone "UTC%s" %%%</em>%%% endif %%%
 %%% item cancelled "</del>" %%%
 </th>
 <td>
-%%% condition if cancelled %%%
+%%% if cancelled %%%
 %%% text Cancelled: %%% <del>
-%%% condition endif %%%
-%%% condition if images %%%
+%%% endif %%%
+%%% if images %%%
 <p class="newsimg">
 %%% loop images 1 %%%
-%%% condition unless cancelled %%%%%% condition if description %%%<a href="%%% setting base %%%%%% path events_event identifier %%%">%%% condition elseif direct_link %%%<a href="%%% item direct_link %%%">%%% condition endif %%%%%% condition endif %%%
+%%% unless cancelled %%%%%% if description %%%<a href="%%% setting base %%%%%% path events_event identifier %%%">%%% elseif direct_link %%%<a href="%%% item direct_link %%%">%%% endif %%%%%% endif %%%
 <img src="%%% setting files_path %%%/%%% item filename %%%.%%% setting events_list_image_size %%%.%%% item thumb_extension %%%?v=%%% item version %%%" alt="%%% item title wrap_html_escape %%%">
-%%% condition unless cancelled %%%%%% condition if description | direct_link  %%%</a>%%% condition endif %%%%%% condition endif %%%
+%%% unless cancelled %%%%%% if description | direct_link  %%%</a>%%% endif %%%%%% endif %%%
 %%% loop end %%%
 </p>
-%%% condition endif %%%
+%%% endif %%%
 
-<strong itemprop="name">%%% condition unless cancelled %%%%%% condition if description %%%<a href="%%% setting base %%%%%% path events_event identifier %%%">%%% condition elseif direct_link %%%<a href="%%% item direct_link %%%">%%% condition endif %%%%%% condition endif %%%%%% item event %%%%%% condition unless cancelled %%%%%% condition if description | direct_link %%%</a>%%% condition endif %%%%%% condition endif %%%</strong>%%% condition if categories %%%, 
+<strong itemprop="name">%%% unless cancelled %%%%%% if description %%%<a href="%%% setting base %%%%%% path events_event identifier %%%">%%% elseif direct_link %%%<a href="%%% item direct_link %%%">%%% endif %%%%%% endif %%%%%% item event %%%%%% unless cancelled %%%%%% if description | direct_link %%%</a>%%% endif %%%%%% endif %%%</strong>%%% if categories %%%, 
 %%% loop categories %%%
 %%% loopposition middle ", " %%%%%% loopposition last " & " %%%
 %%% item category %%%
 %%% loop end %%%
-%%% condition endif %%%
-%%% condition if location %%%
- %%% text in %%% <span itemprop='location'>%%% loop location %%%%%% item place "%s, " %%% %%% item contact %%%%%% item address ", %s" %%%%%% condition unless own_country %%%%%% item country " (%s)" %%%%%% condition endif %%%%%% loopposition first|middle ", " %%%%%% loop end %%%</span>
-%%% condition elseif place %%%
-<span itemprop='location'> %%% condition if reise %%%nach%%% condition else %%%in%%% condition endif %%% %%% item place %%%</span>
-%%% condition endif %%%
-%%% condition unless cancelled %%%%%% condition if lib icalcreator %%% <span class="ics">(<a href="%%% path events_ics identifier %%%.ics" title="%%% text Enter event in your own calendar (ICS) %%%">ICS</a>)</span>%%% condition endif %%%%%% condition endif %%%
+%%% endif %%%
+%%% if location %%%
+ %%% text in %%% <span itemprop='location'>%%% loop location %%%%%% item place "%s, " %%% %%% item contact %%%%%% item address ", %s" %%%%%% unless own_country %%%%%% item country " (%s)" %%%%%% endif %%%%%% loopposition first|middle ", " %%%%%% loop end %%%</span>
+%%% elseif place %%%
+<span itemprop='location'> %%% if reise %%%nach%%% else %%%in%%% endif %%% %%% item place %%%</span>
+%%% endif %%%
+%%% unless cancelled %%%%%% if lib icalcreator %%% <span class="ics">(<a href="%%% path events_ics identifier %%%.ics" title="%%% text Enter event in your own calendar (ICS) %%%">ICS</a>)</span>%%% endif %%%%%% endif %%%
 
 <div itemprop="description">
 %%% item abstract markdown %%%
@@ -60,7 +60,7 @@
 </td></tr>
 %%% loop end %%%
 </table>
-%%% condition if lib icalcreator %%%
+%%% if lib icalcreator %%%
 <p class="noprint"><a href="webcal://%%% setting hostname %%%%%% path events_ics setting site %%%.ics">%%% text "Subscribe to calendar %s" cal_title %%%</a></p>
-%%% condition endif %%%
-%%% condition endif %%%
+%%% endif %%%
+%%% endif %%%

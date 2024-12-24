@@ -16,6 +16,6 @@
 </ul>
 </nav>
 
-%%% condition if published %%%
+%%% if published %%%
 <p><a href="%%% path events_event identifier %%%">%%% text Event on the public website %%%</a></p>
-%%% condition endif %%%
+%%% endif %%%

@@ -8,58 +8,58 @@
 # @copyright Copyright © 2023-2024 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 # 
-%%% condition if not_found %%%
+%%% if not_found %%%
 <h1>%%% text Project not found %%%</h1>
 
 <p>%%% text Unfortunately we could not find any project under this URL. %%%</p>
 
-%%% condition else %%%
+%%% else %%%
 <div itemscope itemtype="http://schema.org/Event" class="event js-gallery">
 
 <h1 itemprop="name">%%% item event %%%</h1>
 <h2>
-%%% condition if categories %%%
+%%% if categories %%%
 %%% loop categories %%%
 %%% loopposition middle ", " %%%%%% loopposition last " & " %%%
 %%% item category %%%
 %%% loop end %%%,
-%%% condition endif %%%
+%%% endif %%%
 <time datetime='%%% item date_begin_iso %%%%%% item time_begin_iso "T%s" %%%' itemprop="startDate">%%% item duration wrap_date %%%</time>
-%%% condition if location %%%<br>
+%%% if location %%%<br>
 %%% loop location %%%
-<span itemprop='location'>%%% condition if website %%%<a href="%%% item website %%%">%%% condition endif %%%%%% item contact %%%%%% item website </a> %%%%%% condition if show_direct_link %%%: <a href="%%% item direct_link %%%">%%% item direct_link %%%</a>%%% condition elseif platform %%% <span class="location_note">%%% text (Link will be announced to participants) %%%</span>%%% condition endif %%%</span>
+<span itemprop='location'>%%% if website %%%<a href="%%% item website %%%">%%% endif %%%%%% item contact %%%%%% item website </a> %%%%%% if show_direct_link %%%: <a href="%%% item direct_link %%%">%%% item direct_link %%%</a>%%% elseif platform %%% <span class="location_note">%%% text (Link will be announced to participants) %%%</span>%%% endif %%%</span>
 %%% loopposition first|middle ", " %%%
 %%% loop end %%%
-%%% condition endif %%%
+%%% endif %%%
 </h2>
 
 %%% item map %%%
 
 <div itemprop="description">
-%%% condition if images %%%
+%%% if images %%%
 <div class="image right"><figure>
 %%% loop images 1 %%%
-<a href="%%% setting files_path %%%/%%% item filename %%%%%% condition if filecategory_links %%%.%%% setting events_big_image_size %%%.%%% item thumb_extension %%%%%% condition else %%%.%%% item extension %%%%%% condition endif %%%?v=%%% item version %%%" class="js-img" title="%%% item title strip_tags %%% %%% item source strip_tags %%%" data-title="%%% item title wrap_html_escape %%% %%% item source wrap_html_escape "<br>%s" %%%"><img src="%%% setting files_path %%%/%%% item filename %%%.%%% setting events_image_size %%%.%%% item thumb_extension %%%?v=%%% item version %%%" srcset="%%% setting files_path %%%/%%% item filename %%%.%%% setting events_image_size %%%.%%% item thumb_extension %%%?v=%%% item version %%% 1x, %%% setting files_path %%%/%%% item filename %%%.%%% setting events_image_size_x2 %%%.%%% item thumb_extension %%%?v=%%% item version %%% 2x" alt="%%% item title wrap_html_escape %%%"></a>
-%%% condition if source %%% <figcaption><small>%%% item source %%%</small></figcaption>%%% condition endif %%%
+<a href="%%% setting files_path %%%/%%% item filename %%%%%% if filecategory_links %%%.%%% setting events_big_image_size %%%.%%% item thumb_extension %%%%%% else %%%.%%% item extension %%%%%% endif %%%?v=%%% item version %%%" class="js-img" title="%%% item title strip_tags %%% %%% item source strip_tags %%%" data-title="%%% item title wrap_html_escape %%% %%% item source wrap_html_escape "<br>%s" %%%"><img src="%%% setting files_path %%%/%%% item filename %%%.%%% setting events_image_size %%%.%%% item thumb_extension %%%?v=%%% item version %%%" srcset="%%% setting files_path %%%/%%% item filename %%%.%%% setting events_image_size %%%.%%% item thumb_extension %%%?v=%%% item version %%% 1x, %%% setting files_path %%%/%%% item filename %%%.%%% setting events_image_size_x2 %%%.%%% item thumb_extension %%%?v=%%% item version %%% 2x" alt="%%% item title wrap_html_escape %%%"></a>
+%%% if source %%% <figcaption><small>%%% item source %%%</small></figcaption>%%% endif %%%
 %%% loop end %%%
 </figure>
 </div>
-%%% condition endif %%%
+%%% endif %%%
 %%% item abstract markdown "<div class='abstract-event'>%s</div>" %%%
 %%% item description markdown %%%
 %%% item timetable %%%
 
-%%% condition if direct_link %%%
+%%% if direct_link %%%
 <p><a href="%%% item direct_link %%%">%%% text "Further information about <strong>%s</strong>" event %%%</strong></a></p>
-%%% condition endif %%%
+%%% endif %%%
 
-%%% condition if links %%%
+%%% if links %%%
 <h2>%%% text Further Information %%%</h2>
 %%% item links %%%
-%%% condition endif %%%
+%%% endif %%%
 </div>
 
-%%% condition if hashtag %%%
+%%% if hashtag %%%
 <h2>%%% text Hashtag %%% #%%% item hashtag %%%</h2>
 
 <ul>
@@ -67,34 +67,34 @@
 <li><a href="https://www.instagram.com/explore/tags/%%% item hashtag %%%">#%%% item hashtag %%% @instagram</a></li>
 </ul>
 
-%%% condition endif %%%
+%%% endif %%%
 
-%%% condition if articles %%%
+%%% if articles %%%
 <h2>%%% text News %%%</h2>
 <ul>
 %%% loop articles %%%
 <li>%%% item date wrap_date %%%: <a href="%%% setting news_url %%%/%%% item identifier %%%/">%%% item title %%%</a></li>
 %%% loop end %%%
 </ul>
-%%% condition endif %%%
+%%% endif %%%
 
-%%% condition if books %%%
+%%% if books %%%
 <h2>%%% text Books %%%</h2>
 <ul>
 %%% loop books %%%
 <li>%%% text Book presentation %%%: <a href="%%% path news_book identifier_short %%%">%%% item title %%%</a></li>
 %%% loop end %%%
 </ul>
-%%% condition endif %%%
+%%% endif %%%
 
-%%% condition if images %%%
+%%% if images %%%
 <p class="newsgallery">
 %%% loop images 2- %%%
 <a href="%%% setting files_path %%%/%%% item filename %%%.%%% setting events_big_image_size %%%.%%% item thumb_extension %%%?v=%%% item version %%%" title="%%% item title wrap_html_escape %%%%%% item source wrap_html_escape " (%s)" %%%" data-title="%%% item title %%%%%% item source wrap_html_escape " (%s)" %%%" class="js-img%%% loopposition uneven " first" %%%"><img src="%%% setting files_path %%%/%%% item filename %%%.%%% setting events_image_size %%%.%%% item thumb_extension %%%?v=%%% item version %%%" alt="%%% text Image %%% %%% item title %%%"></a>
 %%% loop end %%%
 </p>
-%%% condition endif %%%
-%%% condition endif %%%
+%%% endif %%%
+%%% endif %%%
 
 
 </div>

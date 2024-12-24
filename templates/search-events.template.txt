@@ -5,18 +5,18 @@
 # https://www.zugzwang.org/modules/events
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2020, 2022 Gustaf Mossakowski
+# @copyright Copyright © 2020, 2022, 2024 Gustaf Mossakowski
 #
 <h3>%%% text Events %%%</h3>
 
-%%% condition if events %%%
+%%% if events %%%
 <ul>
 %%% loop events %%%
-<li>%%% condition if images %%%<a href="%%% path events_event identifier %%%"><img src="%%% setting files_path %%%/%%% loop images 1 %%%%%% item filename %%%.%%% setting search_image_size %%%.%%% item thumb_extension %%%?v=%%% item version %%%%%% loop end %%%"></a>%%% condition else %%%<span class="no-img"></span>%%% condition endif %%% %%% item duration wrap_date %%% %%% item category %%%<br><a href="%%% path events_event identifier %%%">%%% item event %%%</a></li>
+<li>%%% if images %%%<a href="%%% path events_event identifier %%%"><img src="%%% setting files_path %%%/%%% loop images 1 %%%%%% item filename %%%.%%% setting search_image_size %%%.%%% item thumb_extension %%%?v=%%% item version %%%%%% loop end %%%"></a>%%% else %%%<span class="no-img"></span>%%% endif %%% %%% item duration wrap_date %%% %%% item category %%%<br><a href="%%% path events_event identifier %%%">%%% item event %%%</a></li>
 %%% loop end %%%
 </ul>
 
-%%% condition else %%%
+%%% else %%%
 <p>%%% text No events were found matching your search. %%%</p>
 
-%%% condition endif %%%
+%%% endif %%%
