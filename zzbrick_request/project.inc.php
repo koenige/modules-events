@@ -20,11 +20,10 @@ function mod_events_project($params) {
 	$sql = 'SELECT event_id
 	    FROM events
 	    WHERE identifier = "%s"
-	    AND event_category_id = %d
+	    AND event_category_id = /*_ID categories event/project _*/
 	    %s';
 	$sql = sprintf($sql
 		, wrap_db_escape(implode('/', $params))
-		, wrap_category_id('event/project')
 		, $published
 	);
 	$event = wrap_db_fetch($sql);

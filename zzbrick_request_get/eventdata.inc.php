@@ -31,7 +31,7 @@ function mod_events_get_eventdata($data, $settings = [], $id_field_name = '', $l
 	$langs = wrap_data_langs($data, $lang_field_name);
 
 	$sql = 'SELECT event_id
-			, IF(event_category_id = %d, identifier, NULL) AS identifier
+			, IF(event_category_id = /*_ID categories event/%s _*/, identifier, NULL) AS identifier
 			, identifier AS uid
 			, event, abstract, events.description
 			, date_begin, date_end
@@ -67,7 +67,7 @@ function mod_events_get_eventdata($data, $settings = [], $id_field_name = '', $l
 		WHERE events.event_id IN (%s)
 		ORDER BY FIELD(events.event_id, %s)';
 	$sql = sprintf($sql
-		, wrap_category_id('event/'.($settings['category'] ?? 'event'))
+		, $settings['category'] ?? 'event'
 		, implode(',', $ids), implode(',', $ids)
 	);
 	$eventdata = wrap_db_fetch($sql, 'event_id');
@@ -259,7 +259,7 @@ function mod_events_get_eventdata_contacts($events, $ids, $langs) {
 			, country, countries.country_id, contacts.description
 			, (SELECT identification FROM contactdetails cd
 				WHERE cd.contact_id = contacts.contact_id
-				AND cd.provider_category_id = %d) AS website
+				AND cd.provider_category_id = /*_ID categories provider/website _*/) AS website
 			, SUBSTRING_INDEX(contact_categories.path, "/", -1) AS contact_path
 			, contacts.parameters
 			, categories.parameters AS category_parameters
@@ -276,10 +276,7 @@ function mod_events_get_eventdata_contacts($events, $ids, $langs) {
 	    	ON contact_categories.category_id = contacts.contact_category_id
 		WHERE event_id IN (%s)
 		ORDER BY categories.sequence, events_contacts.sequence, contact';
-	$sql = sprintf($sql
-		, wrap_category_id('provider/website')
-		, implode(',', $ids)
-	);
+	$sql = sprintf($sql, implode(',', $ids));
 	$data = wrap_db_fetch($sql, 'event_contact_id');
 	$contact_ids = [];
 	foreach ($data as $event_contact_id => $contact) {

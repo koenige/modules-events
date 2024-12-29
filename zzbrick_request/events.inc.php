@@ -77,7 +77,7 @@ function mod_events_events($params, $settings) {
 	    FROM events
 	    %s
 		WHERE %s
-		AND event_category_id = %d
+		AND event_category_id = /*_ID categories event/event _*/
 		%s
 		ORDER BY events.date_begin %s, events.date_end, events.time_begin
 		%s
@@ -85,7 +85,6 @@ function mod_events_events($params, $settings) {
 	$sql = sprintf($sql
 		, $join
 		, $published
-		, wrap_category_id('event/event')
 		, $condition
 		, $sort ?? ($current ? 'ASC' : 'DESC')
 		, $limit ? sprintf(' LIMIT %d', $limit) : ''

@@ -139,8 +139,8 @@ $zz['fields'][7]['table_name'] = 'places';
 $zz['fields'][7]['type'] = 'subtable';
 $zz['fields'][7]['min_records'] = 1;
 $zz['fields'][7]['max_records'] = 20;
-$zz['fields'][7]['sql'] .= sprintf(' WHERE role_category_id = %d
-	ORDER BY sequence, contact', wrap_category_id('roles/location'));
+$zz['fields'][7]['sql'] .= ' WHERE role_category_id = /*_ID categories roles/location _*/
+	ORDER BY sequence, contact';
 $zz['fields'][7]['form_display'] = 'lines';
 $zz['fields'][7]['fields'][2]['type'] = 'foreign_key';
 $zz['fields'][7]['fields'][3]['show_title'] = false;
@@ -159,7 +159,7 @@ $zz['fields'][7]['class'] = 'hidden480';
 $zz['fields'][7]['subselect']['prefix'] = ' <em>'.wrap_text('in').' ';
 $zz['fields'][7]['subselect']['suffix'] = '</em>';
 $zz['fields'][7]['list_append_next'] = true;
-$zz['fields'][7]['subselect']['sql'] .= sprintf(' WHERE role_category_id = %d', wrap_category_id('roles/location'));
+$zz['fields'][7]['subselect']['sql'] .= ' WHERE role_category_id = /*_ID categories roles/location _*/';
 
 // events-contacts
 $zz['fields'][60] = [];
@@ -180,8 +180,8 @@ $zz['fields'][61]['table_name'] = 'organisers';
 $zz['fields'][61]['type'] = 'subtable';
 $zz['fields'][61]['min_records'] = 1;
 $zz['fields'][61]['max_records'] = 10;
-$zz['fields'][61]['sql'] .= sprintf(' WHERE role_category_id = %d
-	ORDER BY sequence, contact', wrap_category_id('roles/organiser'));
+$zz['fields'][61]['sql'] .= ' WHERE role_category_id = /*_ID categories roles/organiser _*/
+	ORDER BY sequence, contact';
 $zz['fields'][61]['form_display'] = 'lines';
 $zz['fields'][61]['fields'][2]['type'] = 'foreign_key';
 $zz['fields'][61]['fields'][3]['show_title'] = false;
@@ -197,7 +197,7 @@ $zz['fields'][61]['fields'][4]['value'] = wrap_category_id('roles/organiser');
 $zz['fields'][61]['fields'][4]['hide_in_form'] = true;
 $zz['fields'][61]['fields'][5]['type'] = 'sequence';
 $zz['fields'][61]['class'] = 'hidden480';
-$zz['fields'][61]['subselect']['sql'] .= sprintf(' WHERE role_category_id = %d', wrap_category_id('roles/organiser'));
+$zz['fields'][61]['subselect']['sql'] .= ' WHERE role_category_id = /*_ID categories roles/organiser _*/';
 $zz['fields'][61]['subselect']['prefix'] = '<p>'.wrap_text('Organiser').': ';
 $zz['fields'][61]['subselect']['suffix'] = '</p>';
 

@@ -24,11 +24,7 @@ function mf_events_subevents($event_id) {
 		$sql = 'SELECT event_id
 			FROM /*_PREFIX_*/events
 			WHERE main_event_id = %d
-			AND event_category_id = %d';
-		$sql = sprintf($sql
-			, $event_id
-			, wrap_category_id('event/event')
-		);
+			AND event_category_id = /*_ID categories event/event _*/';
 	} else {
 		// @deprecated
 		$sql = 'SELECT events.event_id
@@ -39,8 +35,8 @@ function mf_events_subevents($event_id) {
 				ON main_events.series_category_id = series.main_category_id
 			AND IFNULL(main_events.event_year, YEAR(main_events.date_begin)) = IFNULL(/*_PREFIX_*/events.event_year, YEAR(/*_PREFIX_*/events.date_begin))
 			WHERE main_events.event_id = %d';
-		$sql = sprintf($sql, $event_id);
 	}
+	$sql = sprintf($sql, $event_id);
 	return wrap_db_fetch($sql, '_dummy_', 'single value');
 }
 

@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/events
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2023 Gustaf Mossakowski
+ * @copyright Copyright © 2023-2024 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -27,7 +27,7 @@ function mod_events_projects($params, $settings) {
 	$current = false;
 	$join = '';
 
-	$conditions[] = sprintf('events.event_category_id = %d', wrap_category_id('event/project'));
+	$conditions[] = 'events.event_category_id = /*_ID categories event/project _*/';
 
 	if (count($params) === 1 AND $params[0] === 'current') {
 		$conditions[] = '(date_begin >= CURDATE() OR date_end >= CURDATE())';
