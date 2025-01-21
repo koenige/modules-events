@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/events
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2023-2024 Gustaf Mossakowski
+ * @copyright Copyright © 2023-2025 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -20,6 +20,11 @@ $zz['fields'][1]['title'] = 'ID';
 $zz['fields'][1]['field_name'] = 'event_id';
 $zz['fields'][1]['type'] = 'id';
 $zz['fields'][1]['import_id_value'] = true;
+
+$zz['fields'][12]['title_tab'] = 'Abbr.';
+$zz['fields'][12]['title'] = 'Abbreviation';
+$zz['fields'][12]['field_name'] = 'event_abbr';
+$zz['fields'][12]['hide_in_list_if_empty'] = true;
 
 $zz['fields'][6]['title'] = 'Project';
 $zz['fields'][6]['field_name'] = 'event';
@@ -46,7 +51,7 @@ $zz['fields'][4]['field_name'] = 'date_begin';
 $zz['fields'][4]['type'] = 'date';
 $zz['fields'][4]['list_append_next'] = true;
 $zz['fields'][4]['append_next'] = true;
-$zz['fields'][4]['class'] = 'block480a';
+$zz['fields'][4]['class'] = 'block480a number';
 
 $zz['fields'][5]['list_prefix'] = '–';
 $zz['fields'][5]['prefix'] = ' – ';
@@ -58,7 +63,7 @@ $zz['fields'][5]['validate_msg']['>='] = wrap_text('A project can only end after
 
 $zz['fields'][8]['field_name'] = 'abstract';
 $zz['fields'][8]['type'] = 'memo';
-$zz['fields'][8]['rows'] = 3;
+$zz['fields'][8]['rows'] = 8;
 $zz['fields'][8]['format'] = 'markdown';
 $zz['fields'][8]['typo_cleanup'] = true;
 $zz['fields'][8]['list_append_next'] = true;
@@ -141,6 +146,9 @@ $zz['fields'][80]['form_display'] = 'horizontal';
 $zz['fields'][80]['sql'] .= ' ORDER BY sequence';
 $zz['fields'][80]['fields'][2]['type'] = 'foreign_key';
 $zz['fields'][80]['class'] = 'hidden480';
+$zz['fields'][80]['hide_in_list_if_empty'] = true;
+if ($zz['fields'][51])
+	$zz['fields'][80]['separator_before'] = true;
 
 $zz['fields'][14]['title'] = 'Description';
 $zz['fields'][14]['title_desc'] = '(optional)<br>';
@@ -196,8 +204,9 @@ $zz['fields'][9]['show_hierarchy_same_table'] = true;
 $zz['fields'][2]['field_name'] = 'identifier';
 $zz['fields'][2]['type'] = 'identifier';
 $zz['fields'][2]['fields'] = [
-	'event', 'identifier'
+	'event_abbr', 'event', 'identifier'
 ];
+$zz['fields'][2]['identifier']['ignore_this_if']['event'] = 'event_abbr';
 $zz['fields'][2]['identifier']['exists'] = '-';
 $zz['fields'][2]['hide_in_list'] = true;
 
@@ -223,6 +232,7 @@ $zz['sql'] = 'SELECT DISTINCT /*_PREFIX_*/events.*
 	LEFT JOIN /*_PREFIX_*/events_contacts USING (event_id)
 	LEFT JOIN /*_PREFIX_*/categories
 		ON /*_PREFIX_*/events.event_category_id = /*_PREFIX_*/categories.category_id
+	WHERE /*_PREFIX_*/events.event_category_id = /*_ID categories event/project _*/
 ';
 
 $zz['sqlorder'] = ' ORDER BY date_begin DESC, IFNULL(time_begin, time_end) DESC, sequence DESC, identifier DESC';
@@ -303,7 +313,8 @@ if (wrap_setting('multiple_websites')) {
 		LEFT JOIN /*_PREFIX_*/events_contacts USING (event_id)
 		LEFT JOIN /*_PREFIX_*/categories
 			ON /*_PREFIX_*/events.event_category_id = /*_PREFIX_*/categories.category_id
-		LEFT JOIN /*_PREFIX_*/websites USING (website_id) 
+		LEFT JOIN /*_PREFIX_*/websites USING (website_id)
+		WHERE /*_PREFIX_*/events.event_category_id = /*_ID categories event/project _*/
 	';
 
 	if (empty($zz['where']['website_id']) AND empty($_GET['where']['website_id'])) {
@@ -321,4 +332,3 @@ if (wrap_setting('multiple_websites')) {
 	$zz['subtitle']['website_id']['sql'] = $zz['fields'][22]['sql'];
 	$zz['subtitle']['website_id']['var'] = ['domain'];
 }
-

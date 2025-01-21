@@ -5,7 +5,7 @@
 # https://www.zugzwang.org/modules/events
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2020-2024 Gustaf Mossakowski
+# @copyright Copyright © 2020-2025 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
 msgid ""
@@ -449,6 +449,14 @@ msgid ""
 msgstr ""
 "Sofern eine Anmeldung zur Veranstaltung möglich ist, frage die Teilnahme an "
 "diesen Programmpunkt ab."
+
+#: zzbrick_tables/events.php
+msgid "Abbr."
+msgstr "Abk."
+
+#: zzbrick_tables/events.php
+msgid "Abbreviation"
+msgstr "Abkürzung"
 
 #: zzbrick_tables/eventtexts.php
 msgid "Event Texts"
