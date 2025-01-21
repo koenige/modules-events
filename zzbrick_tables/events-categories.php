@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/events
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2014, 2018, 2020-2024 Gustaf Mossakowski
+ * @copyright Copyright © 2014, 2018, 2020-2025 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -85,4 +85,4 @@ $zz['sql'] = sprintf('SELECT /*_PREFIX_*/events_categories.*
 	, wrap_placeholder('mysql_date_format')
 	, wrap_placeholder('mysql_date_format')
 );
-$zz['sqlorder'] = ' ORDER BY IFNULL(date_begin, date_end) DESC, time_begin DESC, events.identifier, category';
+$zz['sqlorder'] = ' ORDER BY IFNULL(date_begin, date_end) DESC, time_begin DESC, events.identifier, sequence, category';
