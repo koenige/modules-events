@@ -150,6 +150,17 @@ $zz['fields'][80]['hide_in_list_if_empty'] = true;
 if ($zz['fields'][51])
 	$zz['fields'][80]['separator_before'] = true;
 
+if (wrap_setting('events_projects_links')) {
+	$zz['fields'][16] = zzform_include('eventdetails');
+	$zz['fields'][16]['title'] = 'Links';
+	$zz['fields'][16]['type'] = 'subtable';
+	$zz['fields'][16]['hide_in_list'] = true;
+	$zz['fields'][16]['min_records'] = 1;
+	$zz['fields'][16]['form_display'] = 'vertical';
+	$zz['fields'][16]['fields'][2]['type'] = 'foreign_key';
+	$zz['fields'][16]['fields'][6]['hide_in_form'] = true;
+}
+
 $zz['fields'][14]['title'] = 'Description';
 $zz['fields'][14]['title_desc'] = '(optional)<br>';
 $zz['fields'][14]['field_name'] = 'description';
