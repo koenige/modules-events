@@ -258,8 +258,6 @@ $zz['fields'][80]['sql'] .= ' ORDER BY sequence';
 $zz['fields'][80]['fields'][2]['type'] = 'foreign_key';
 $zz['fields'][80]['class'] = 'hidden480';
 $zz['fields'][80]['hide_in_list_if_empty'] = true;
-if ($zz['fields'][51])
-	$zz['fields'][80]['separator_before'] = true;
 
 if (wrap_setting('events_projects_links')) {
 	$zz['fields'][16] = zzform_include('eventdetails');
