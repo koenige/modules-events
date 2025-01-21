@@ -170,7 +170,6 @@ if (wrap_setting('events_projects_links')) {
 	$zz['fields'][16]['min_records'] = 1;
 	$zz['fields'][16]['form_display'] = 'vertical';
 	$zz['fields'][16]['fields'][2]['type'] = 'foreign_key';
-	$zz['fields'][16]['fields'][6]['hide_in_form'] = true;
 }
 
 $zz['fields'][14]['title'] = 'Description';
