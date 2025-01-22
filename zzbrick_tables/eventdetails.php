@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/events
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2012, 2014, 2019-2020, 2022-2024 Gustaf Mossakowski
+ * @copyright Copyright © 2012, 2014, 2019-2020, 2022-2025 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -36,6 +36,7 @@ $zz['fields'][3]['field_name'] = 'identification';
 $zz['fields'][3]['type'] = 'url';
 $zz['fields'][3]['list_append_next'] = true;
 $zz['fields'][3]['placeholder'] = 'URL';
+$zz['fields'][3]['remove_local_hostname'] = false;
 
 $zz['fields'][4]['field_name'] = 'label';
 $zz['fields'][4]['type'] = 'text';
