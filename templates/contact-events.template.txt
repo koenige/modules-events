@@ -5,7 +5,7 @@
 # https://www.zugzwang.org/modules/clubs
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2024 Gustaf Mossakowski
+# @copyright Copyright © 2024-2025 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 # 
 %%% if events %%%
@@ -14,6 +14,16 @@
 <ul>
 %%% loop events %%%
 <li><a href="%%% path events_internal_event identifier %%%">%%% item event %%% %%% item duration wrap_date %%%</a>%%% item role " (%s)" %%%</li>
+%%% loop end %%%
+</ul>
+</td></tr>
+%%% endif %%%
+%%% if projects %%%
+<tr><th>%%% text Projects %%%</th>
+<td>
+<ul>
+%%% loop projects %%%
+<li><a href="%%% path events_project identifier %%%">%%% item event %%%</a>%%% if duration %%%, %%% item duration wrap_date %%%%%% endif %%% %%% item role " (%s)" %%%</li>
 %%% loop end %%%
 </ul>
 </td></tr>
