@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/events
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2020-2024 Gustaf Mossakowski
+ * @copyright Copyright © 2020-2025 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -146,7 +146,8 @@ function mod_events_get_eventdata_categories($events, $ids, $langs) {
 			, main_categories.category AS main_category
 			, main_categories.parameters AS main_parameters
 			, main_categories.path AS main_path
-			, types.path AS type_path, types.category AS type_category
+			, SUBSTRING_INDEX(types.path, "/", -1) AS type_path
+			, types.category AS type_category
 			, types.parameters AS type_parameters
 			, property
 		FROM events_categories
@@ -162,7 +163,7 @@ function mod_events_get_eventdata_categories($events, $ids, $langs) {
 	$data = wrap_db_fetch($sql, 'event_category_id');
 	foreach ($langs as $lang) {
 		$categories[$lang] = wrap_translate($data, 'categories', 'category_id', true, $lang);
-		$categories[$lang] = wrap_translate($data, ['main_category' => 'categories.category'], 'main_category_id', true, $lang);
+		$categories[$lang] = wrap_translate($categories[$lang], ['main_category' => 'categories.category'], 'main_category_id', true, $lang);
 	}
 	$parameter_types = ['parameters', 'main_parameters'];
 	foreach ($categories as $lang => $categories_per_lang) {
@@ -184,7 +185,7 @@ function mod_events_get_eventdata_categories($events, $ids, $langs) {
 				$type_path = $category['type_parameters']['alias'] ?? $category['type_path'];
 			}
 			if (in_array($type_path, ['events', 'projects'])) $type_path = 'categories';
-			$events[$lang][$category['event_id']][$type_path][$event_category_id] = $category; 
+			$events[$lang][$category['event_id']][$type_path][$category['category_id']] = $category; 
 		}
 	}
 	return $events;
@@ -250,7 +251,7 @@ function mod_events_get_eventdata_details($events, $ids = [], $langs = []) {
  * @return array
  */
 function mod_events_get_eventdata_contacts($events, $ids, $langs) {
-	$sql = 'SELECT event_id, event_contact_id, contact, contact_id
+	$sql = 'SELECT event_id, event_contact_id, contact, contact_id, contacts.identifier
 			, categories.category_id, categories.category
 			, SUBSTRING_INDEX(categories.path, "/", -1) AS path
 			, IF(address != contact, address, "") AS address
@@ -275,7 +276,7 @@ function mod_events_get_eventdata_contacts($events, $ids, $langs) {
 	    LEFT JOIN categories contact_categories
 	    	ON contact_categories.category_id = contacts.contact_category_id
 		WHERE event_id IN (%s)
-		ORDER BY categories.sequence, events_contacts.sequence, contact';
+		ORDER BY categories.sequence, categories.path, events_contacts.sequence, contact';
 	$sql = sprintf($sql, implode(',', $ids));
 	$data = wrap_db_fetch($sql, 'event_contact_id');
 	$contact_ids = [];
