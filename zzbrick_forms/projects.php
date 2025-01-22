@@ -43,6 +43,18 @@ $zz['fields'][6]['link'] = [
 ];
 $zz['fields'][6]['typo_cleanup'] = true;
 $zz['fields'][6]['typo_remove_double_spaces'] = true;
+$zz['fields'][6]['list_append_next'] = true;
+$zz['fields'][6]['list_prefix'] = '<h4>';
+$zz['fields'][6]['list_suffix'] = '</h4>';
+
+$zz['fields'][8]['field_name'] = 'abstract';
+$zz['fields'][8]['type'] = 'memo';
+$zz['fields'][8]['rows'] = 8;
+$zz['fields'][8]['format'] = 'markdown';
+$zz['fields'][8]['typo_cleanup'] = true;
+$zz['fields'][8]['separator'] = true;
+$zz['fields'][8]['list_prefix'] = '<p><small>';
+$zz['fields'][8]['list_suffix'] = '</small></p>';
 
 $zz['fields'][4]['title'] = 'Begin';
 $zz['fields'][4]['title_append'] = 'Period';
@@ -75,13 +87,11 @@ $zz['fields'][79] = [];
 
 mf_events_events_subtable($zz, 'projects', 70);
 
-$zz['fields'][8]['field_name'] = 'abstract';
-$zz['fields'][8]['type'] = 'memo';
-$zz['fields'][8]['rows'] = 8;
-$zz['fields'][8]['format'] = 'markdown';
-$zz['fields'][8]['typo_cleanup'] = true;
-$zz['fields'][8]['list_append_next'] = true;
-$zz['fields'][8]['separator'] = true;
+// extra fields
+$zz['fields'][16] = [];
+$zz['fields'][17] = [];
+$zz['fields'][18] = [];
+$zz['fields'][19] = [];
 
 // events_contacts 30 … 40
 $zz['fields'][30] = [];
@@ -103,6 +113,10 @@ if (in_array('contacts', wrap_setting('modules'))) {
 	foreach ($values['roles'] as $role)
 		mf_contacts_contacts_subtable($zz, 'events', $role, $no++);
 	$last_contact_no = $no - 1;
+	if ($zz['fields'][30]) {
+		$zz['fields'][30]['separator_before'] = 1;
+		mf_default_categories_details_tab($zz['fields'], 30, 39);
+	}
 }
 
 $zz['fields'][26]['title'] = 'Category';
@@ -146,6 +160,7 @@ if ($zz['fields'][50]) {
 			$last_contact_no--;
 		}
 	}
+	mf_default_categories_details_tab($zz['fields'], 50, 59);
 }
 
 // author
@@ -163,13 +178,13 @@ $zz['fields'][80]['class'] = 'hidden480';
 $zz['fields'][80]['hide_in_list_if_empty'] = true;
 
 if (wrap_setting('events_projects_links')) {
-	$zz['fields'][16] = zzform_include('eventdetails');
-	$zz['fields'][16]['title'] = 'Links';
-	$zz['fields'][16]['type'] = 'subtable';
-	$zz['fields'][16]['hide_in_list'] = true;
-	$zz['fields'][16]['min_records'] = 1;
-	$zz['fields'][16]['form_display'] = 'vertical';
-	$zz['fields'][16]['fields'][2]['type'] = 'foreign_key';
+	$zz['fields'][24] = zzform_include('eventdetails');
+	$zz['fields'][24]['title'] = 'Links';
+	$zz['fields'][24]['type'] = 'subtable';
+	$zz['fields'][24]['hide_in_list'] = true;
+	$zz['fields'][24]['min_records'] = 1;
+	$zz['fields'][24]['form_display'] = 'vertical';
+	$zz['fields'][24]['fields'][2]['type'] = 'foreign_key';
 }
 
 $zz['fields'][14]['title'] = 'Description';
@@ -258,6 +273,7 @@ $zz['sql'] = 'SELECT DISTINCT /*_PREFIX_*/events.*
 ';
 
 $zz['sqlorder'] = ' ORDER BY date_begin DESC, IFNULL(time_begin, time_end) DESC, sequence DESC, identifier DESC';
+$zz['sql_translate'] = ['event_id' => 'events'];
 
 $zz['conditions'][1]['scope'] = 'record';
 $zz['conditions'][1]['where'] = 'takes_place = "no"';
@@ -354,3 +370,18 @@ if (wrap_setting('multiple_websites')) {
 	$zz['subtitle']['website_id']['sql'] = $zz['fields'][22]['sql'];
 	$zz['subtitle']['website_id']['var'] = ['domain'];
 }
+
+$zz['subtitle']['contact_id'] = [
+	'sql' => 'SELECT contact_id, contact FROM events LEFT JOIN contacts USING (contact_id)',
+	'var' => ['contact']
+];
+$zz['subtitle']['category_id'] = [
+	'sql' => 'SELECT category_id, category FROM categories',
+	'var' => ['category']
+];
+$zz['subtitle']['event_id'] = [
+	'sql' => 'SELECT event_id, event FROM events',
+	'var' => ['event']
+];
+
+$zz['export'][] = 'CSV Excel';
