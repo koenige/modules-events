@@ -372,7 +372,7 @@ if (wrap_setting('multiple_websites')) {
 }
 
 $zz['subtitle']['contact_id'] = [
-	'sql' => 'SELECT contact_id, contact FROM events LEFT JOIN contacts USING (contact_id)',
+	'sql' => 'SELECT contact_id, contact FROM events LEFT JOIN events_contacts USING (event_id) LEFT JOIN contacts USING (contact_id)',
 	'var' => ['contact']
 ];
 $zz['subtitle']['category_id'] = [
