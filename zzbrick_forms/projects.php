@@ -41,6 +41,7 @@ $zz['fields'][6]['link'] = [
 	'area' => 'events_project',
 	'fields' => ['identifier']
 ];
+$zz['fields'][6]['link_record'] = true;
 $zz['fields'][6]['typo_cleanup'] = true;
 $zz['fields'][6]['typo_remove_double_spaces'] = true;
 $zz['fields'][6]['list_append_next'] = true;
@@ -185,6 +186,8 @@ if (wrap_setting('events_projects_links')) {
 	$zz['fields'][24]['min_records'] = 1;
 	$zz['fields'][24]['form_display'] = 'vertical';
 	$zz['fields'][24]['fields'][2]['type'] = 'foreign_key';
+	// detail_category_id
+	$zz['fields'][24]['fields'][5]['for_action_ignore'] = true;
 }
 
 $zz['fields'][14]['title'] = 'Description';
