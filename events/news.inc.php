@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/events
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2022-2024 Gustaf Mossakowski
+ * @copyright Copyright © 2022-2025 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -32,21 +32,21 @@ function mf_events_in_news($type = 'all') {
 		FROM events
 		WHERE IF(ISNULL(date_end), date_begin >= CURDATE(), date_end >= CURDATE())
 		AND published = "yes"
-		AND ISNULL(main_event_id)';
+		AND events.event_category_id = /*_ID categories event/event _*/';
 	$sql = sprintf($sql
 		, wrap_path('events_event', '", identifier, "')
 	);
 
 	switch ($type) {
 	case 'all':
-		$sql .= 'AND show_in_news = "yes"
+		$sql .= ' AND show_in_news = "yes"
 			ORDER BY created DESC, identifier DESC';
 		break;
 	case 'rss':
-		$sql .= 'ORDER BY created DESC, identifier DESC';
+		$sql .= ' ORDER BY created DESC, identifier DESC';
 		break;
 	case 'latest':
-		$sql .= 'ORDER BY date_begin ASC, time_begin ASC
+		$sql .= ' ORDER BY date_begin ASC, time_begin ASC
 			LIMIT 1';
 		break;
 	}

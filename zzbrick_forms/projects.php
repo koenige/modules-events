@@ -233,6 +233,7 @@ $zz['fields'][9]['field_name'] = 'main_event_id';
 $zz['fields'][9]['type'] = 'select';
 $zz['fields'][9]['sql'] = 'SELECT event_id, event, main_event_id, identifier
 	FROM events
+	WHERE event_category_id = /*_ID categories event/project _*/
 	ORDER BY identifier';
 $zz['fields'][9]['hide_in_list'] = true;
 $zz['fields'][9]['show_hierarchy'] = 'main_event_id';

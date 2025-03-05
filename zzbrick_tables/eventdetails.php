@@ -27,7 +27,7 @@ $zz['fields'][2]['sql'] = 'SELECT event_id, event
 		, CONCAT(IFNULL(events.date_begin, ""), IFNULL(CONCAT("/", events.date_end), "")) AS duration
 		, identifier
 	FROM /*_PREFIX_*/events
-	WHERE ISNULL(main_event_id)
+	WHERE /*_PREFIX_*/events.event_category_id = /*_ID categories event/event _*/
 	ORDER BY identifier DESC';
 $zz['fields'][2]['sql_format'][2] = 'wrap_date';
 $zz['fields'][2]['display_field'] = 'event';

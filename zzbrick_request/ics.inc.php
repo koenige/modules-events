@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/events
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2009, 2014-2021, 2023 Gustaf Mossakowski
+ * @copyright Copyright © 2009, 2014-2021, 2023, 2025 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -95,7 +95,7 @@ function mod_events_ics($params) {
 			}
 		}
 		// hour
-		if (empty($event['main_event_id']) AND count($events) > 1) {
+		if ($event['event_category_id'] === wrap_category_id('event/event') AND count($events) > 1) {
 			unset($event['hour']); // don't show start and end date if timetable is present
 		}
 		// description

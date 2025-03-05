@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/events
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2010, 2013-2015, 2017-2024 Gustaf Mossakowski
+ * @copyright Copyright © 2010, 2013-2015, 2017-2025 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -26,7 +26,7 @@ $zz['fields'][2]['sql'] = 'SELECT event_id, event
 		, CONCAT(IFNULL(events.date_begin, ""), IFNULL(CONCAT("/", events.date_end), "")) AS duration
 		, identifier
 	FROM /*_PREFIX_*/events
-	WHERE ISNULL(main_event_id)
+	WHERE /*_PREFIX_*/events.event_category_id = /*_ID categories event/event _*/
 	ORDER BY identifier DESC';
 $zz['fields'][2]['sql_format'][2] = 'wrap_date';
 $zz['fields'][2]['display_field'] = 'event';
