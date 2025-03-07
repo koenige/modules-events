@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/events
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2014-2018, 2020-2024 Gustaf Mossakowski
+ * @copyright Copyright © 2014-2018, 2020-2025 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -23,6 +23,8 @@
  *		[0] organisation: all events of an organisation
  * @param array $settings
  *		int 'limit' (only if current is present)
+ *		mixed 'category'
+ *		bool 'archive'
  * @return array
  */
 function mod_events_events($params, $settings) {
@@ -32,15 +34,18 @@ function mod_events_events($params, $settings) {
 
 	$limit = false;
 	$current = false;
-	$condition = '';
-	$join = '';
+	$condition = [];
+	$condition[] = 'events.event_category_id = /*_ID categories event/event _*/';
+	$join = [];
 	if (empty($params)) {
-		$condition = 'AND (date_begin >= CURDATE() OR date_end >= CURDATE())';
-		$current = true;
+		if (empty($settings['archive'])) {
+			$condition[] = 'date_begin >= CURDATE() OR date_end >= CURDATE()';
+			$current = true;
+		}
 	} elseif (is_numeric($params[0])) {
 		$year = $params[0];
 		if (count($params) > 2) return false;
-		$condition = sprintf('AND (YEAR(date_begin) = %d OR YEAR(date_end) = %d)', $year, $year);
+		$condition[] = sprintf('(YEAR(date_begin) = %d OR YEAR(date_end) = %d)', $year, $year);
 		$page['breadcrumbs'][]['title'] = $year;
 		$zz_page['db']['title'] .= ' '.$year;
 	} elseif ($params[0] !== 'current') {
@@ -50,42 +55,47 @@ function mod_events_events($params, $settings) {
 		$sql = sprintf($sql, wrap_db_escape($params[0]));
 		$contact_id = wrap_db_fetch($sql, '', 'single value');
 		if (!$contact_id) return false;
-		$join = 'LEFT JOIN events_contacts USING (event_id)';
-		$condition = sprintf(' AND contact_id = %d', $contact_id);
+		$join[] = 'LEFT JOIN events_contacts USING (event_id)';
+		$condition[] = sprintf('contact_id = %d', $contact_id);
 	} elseif (count($params) > 2)  {
 		return false;
 	} else {
-		// current
 		$limit = $settings['limit'] ?? 3;
 		$page['dont_show_h1'] = true;
-		$condition = ' AND (date_begin >= CURDATE() OR date_end >= CURDATE())
-		AND takes_place = "yes"';
-		$current = true;
+		if (empty($settings['archive'])) {
+			// current
+			$condition[] = 'date_begin >= CURDATE() OR date_end >= CURDATE()';
+			$current = true;
+		}
+		$condition[] = 'takes_place = "yes"';
 	}
-
-	if (!empty($_SESSION['logged_in'])) {
-		$published = '(events.published = "yes" OR events.published = "no")';
-	} else {
-		$published = 'events.published = "yes"';
+	if (!empty($settings['category'])) {
+		if (!is_array($settings['category'])) $settings['category'] = [$settings['category']];
+		$join[] = 'LEFT JOIN events_categories USING (event_id)';
+		$categories = [];
+		foreach ($settings['category'] as $path) {
+			$categories[] = sprintf('events_categories.category_id = /*_ID categories events/%s _*/', $path);
+		}
+		$condition[] = implode(' OR ', $categories);
+	}
+	
+	if (empty($_SESSION['logged_in'])) {
+		$condition[] = 'events.published = "yes"';
 	}
 	
 	$sort = $settings['sort'] ?? NULL;
 	if (!in_array($sort, ['ASC', 'DESC'])) $sort = NULL;
 	
 	$sql = 'SELECT event_id
-			, IF(date_begin >= CURDATE() OR date_end >= CURDATE(), "Aktuelle Termine", "Vergangene Termine") AS terminstatus
 	    FROM events
 	    %s
-		WHERE %s
-		AND event_category_id = /*_ID categories event/event _*/
-		%s
+		WHERE (%s)
 		ORDER BY events.date_begin %s, events.date_end, events.time_begin
 		%s
 	';
 	$sql = sprintf($sql
-		, $join
-		, $published
-		, $condition
+		, implode(' ', $join)
+		, implode(') AND (', $condition)
 		, $sort ?? ($current ? 'ASC' : 'DESC')
 		, $limit ? sprintf(' LIMIT %d', $limit) : ''
 	);
