@@ -59,6 +59,7 @@ function mod_events_ics($params) {
 			, DATE_FORMAT(IFNULL(events.date_end, events.date_begin), "%%Y") AS end_year
 			, DATE_FORMAT(IFNULL(DATE_ADD(events.date_end, INTERVAL 1 DAY), events.date_begin), "%%Y%%m%%d") AS dt_date_end
 			, events.last_update AS timestamp
+			, events.event_category_id
 		FROM events
 		LEFT JOIN events main_events
 			ON events.main_event_id = main_events.event_id
