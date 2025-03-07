@@ -158,6 +158,7 @@ function mod_events_get_eventdata_categories($events, $ids, $langs) {
 			ON main_categories.category_id = categories.main_category_id
 			AND categories.main_category_id != events_categories.type_category_id
 		WHERE event_id IN (%s)
+		AND (ISNULL(categories.parameters) OR categories.parameters NOT LIKE "%%&hide_category=1%%")
 		ORDER by categories.sequence, categories.category';
 	$sql = sprintf($sql, implode(',', $ids));
 	$data = wrap_db_fetch($sql, 'event_category_id');
