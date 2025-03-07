@@ -25,6 +25,7 @@
  *		int 'limit' (only if current is present)
  *		mixed 'category'
  *		bool 'archive'
+ *		bool 'no404'
  * @return array
  */
 function mod_events_events($params, $settings) {
@@ -106,7 +107,8 @@ function mod_events_events($params, $settings) {
 
 	if (!$events) {
 		$events['no_events'] = true;
-		if (empty($params) OR $params[0] !== 'current') $page['status'] = 404;
+		if ((empty($params) OR $params[0] !== 'current') AND empty($settings['no404']))
+			$page['status'] = 404;
 	} else {
 		foreach ($events as $event_id => $event) {
 			if (empty($event['images'])) continue;
