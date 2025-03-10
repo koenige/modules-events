@@ -79,7 +79,6 @@ function mod_events_event($params) {
 		if ($event['places']) {
 			$event['map'] = wrap_template('places-geojson', $event['places']);
 			$event['map'] .= wrap_template('leaflet');
-			$page['head'] = wrap_template('leaflet-head');
 		}
 	}
 
