@@ -21,7 +21,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 3.4.2\n"
+"X-Generator: Poedit 3.6\n"
 
 #: layout/events.css
 msgid "PREVIEW"
@@ -322,7 +322,7 @@ msgstr " i "
 
 #: templates/events.template.txt
 msgid "We have no events from this year."
-msgstr ""
+msgstr "Nie mamy żadnych wydarzeń w tym roku."
 
 #: templates/events.template.txt
 msgid "Subscribe to calendar %s"
