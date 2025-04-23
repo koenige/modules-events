@@ -85,4 +85,4 @@ $zz['sql'] = sprintf('SELECT /*_PREFIX_*/events_categories.*
 	, wrap_placeholder('mysql_date_format')
 	, wrap_placeholder('mysql_date_format')
 );
-$zz['sqlorder'] = ' ORDER BY IFNULL(date_begin, date_end) DESC, time_begin DESC, events.identifier, sequence, category';
+$zz['sqlorder'] = ' ORDER BY IFNULL(date_begin, date_end) DESC, time_begin DESC, events.identifier, sequence, /*_PREFIX_*/categories.category';
