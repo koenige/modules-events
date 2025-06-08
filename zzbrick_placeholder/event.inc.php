@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/events
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2023-2024 Gustaf Mossakowski
+ * @copyright Copyright © 2023-2025 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -26,6 +26,9 @@ function mod_events_placeholder_event($brick) {
 			, IFNULL((SELECT MAX(timetable.date_begin) FROM events timetable
 				WHERE timetable.main_event_id = events.event_id), date_begin) AS timetable_max
 			, events.parameters
+			, IF((events.date_begin <= CURDATE() OR ISNULL(events.date_begin))
+				AND IFNULL(events.date_end, events.date_begin) >= CURDATE(), 1, NULL
+			) AS running
 	    FROM events
 	    WHERE identifier = "%s"';
 	if (in_array('activities', wrap_setting('modules'))) {
