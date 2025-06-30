@@ -38,6 +38,7 @@ $zz['fields'][4]['field_name'] = 'sequence';
 $zz['fields'][4]['type'] = 'number';
 $zz['fields'][4]['auto_value'] = 'increment';
 $zz['fields'][4]['def_val_ignore'] = true;
+$zz['fields'][4]['exclude_from_search'] = true;
 
 $zz['fields'][3]['field_name'] = 'category_id';
 $zz['fields'][3]['type'] = 'select';
