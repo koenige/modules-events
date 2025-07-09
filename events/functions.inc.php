@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/events
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2023-2024 Gustaf Mossakowski
+ * @copyright Copyright © 2023-2025 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -48,6 +48,8 @@ function mf_events_subevents($event_id) {
  * @return array
  */
 function mf_events_event_organisations($event_id, $params = []) {
+	if (!wrap_package('contacts')) return [];
+
 	$sql = 'SELECT contact_id
 			, contact
 			, SUBSTRING_INDEX(roles.path, "/", -1) AS role_identifier
@@ -95,6 +97,8 @@ function mf_events_event_organisations($event_id, $params = []) {
  * @return array
  */
 function mf_events_organisers($event_id) {
+	if (!wrap_package('contacts')) return [];
+
 	$sql = 'SELECT contact_id, contact
 		FROM events_contacts
 		LEFT JOIN contacts USING (contact_id)

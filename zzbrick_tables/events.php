@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/events
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2005-2024 Gustaf Mossakowski
+ * @copyright Copyright © 2005-2025 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -132,34 +132,36 @@ $zz['fields'][40]['subselect']['prefix'] = '<em>';
 $zz['fields'][40]['subselect']['suffix'] = '</em>';
 $zz['fields'][40]['sql'] .= ' ORDER BY events_categories.sequence';
 
-// @deprecated
-$zz['fields'][7] = zzform_include('events-contacts');
-$zz['fields'][7]['title'] = 'Place';
-$zz['fields'][7]['table_name'] = 'places';
-$zz['fields'][7]['type'] = 'subtable';
-$zz['fields'][7]['min_records'] = 1;
-$zz['fields'][7]['max_records'] = 20;
-$zz['fields'][7]['sql'] .= ' WHERE role_category_id = /*_ID categories roles/location _*/
-	ORDER BY sequence, contact';
-$zz['fields'][7]['form_display'] = 'lines';
-$zz['fields'][7]['fields'][2]['type'] = 'foreign_key';
-$zz['fields'][7]['fields'][3]['show_title'] = false;
-$zz['fields'][7]['fields'][3]['sql'] = 'SELECT contact_id, contact
-	FROM contacts
-	LEFT JOIN categories
-		ON contacts.contact_category_id = categories.category_id
-	WHERE categories.parameters LIKE "%&events_location=1%"
-	ORDER BY contact';
-$zz['fields'][7]['fields'][3]['add_details'] = ['area' => 'contacts_places'];
-$zz['fields'][7]['fields'][4]['type'] = 'hidden';
-$zz['fields'][7]['fields'][4]['value'] = wrap_category_id('roles/location');
-$zz['fields'][7]['fields'][4]['hide_in_form'] = true;
-$zz['fields'][7]['fields'][5]['type'] = 'sequence';
-$zz['fields'][7]['class'] = 'hidden480';
-$zz['fields'][7]['subselect']['prefix'] = ' <em>'.wrap_text('in').' ';
-$zz['fields'][7]['subselect']['suffix'] = '</em>';
-$zz['fields'][7]['list_append_next'] = true;
-$zz['fields'][7]['subselect']['sql'] .= ' WHERE role_category_id = /*_ID categories roles/location _*/';
+if (wrap_package('contacts')) {
+	// @deprecated
+	$zz['fields'][7] = zzform_include('events-contacts');
+	$zz['fields'][7]['title'] = 'Place';
+	$zz['fields'][7]['table_name'] = 'places';
+	$zz['fields'][7]['type'] = 'subtable';
+	$zz['fields'][7]['min_records'] = 1;
+	$zz['fields'][7]['max_records'] = 20;
+	$zz['fields'][7]['sql'] .= ' WHERE role_category_id = /*_ID categories roles/location _*/
+		ORDER BY sequence, contact';
+	$zz['fields'][7]['form_display'] = 'lines';
+	$zz['fields'][7]['fields'][2]['type'] = 'foreign_key';
+	$zz['fields'][7]['fields'][3]['show_title'] = false;
+	$zz['fields'][7]['fields'][3]['sql'] = 'SELECT contact_id, contact
+		FROM contacts
+		LEFT JOIN categories
+			ON contacts.contact_category_id = categories.category_id
+		WHERE categories.parameters LIKE "%&events_location=1%"
+		ORDER BY contact';
+	$zz['fields'][7]['fields'][3]['add_details'] = ['area' => 'contacts_places'];
+	$zz['fields'][7]['fields'][4]['type'] = 'hidden';
+	$zz['fields'][7]['fields'][4]['value'] = wrap_category_id('roles/location');
+	$zz['fields'][7]['fields'][4]['hide_in_form'] = true;
+	$zz['fields'][7]['fields'][5]['type'] = 'sequence';
+	$zz['fields'][7]['class'] = 'hidden480';
+	$zz['fields'][7]['subselect']['prefix'] = ' <em>'.wrap_text('in').' ';
+	$zz['fields'][7]['subselect']['suffix'] = '</em>';
+	$zz['fields'][7]['list_append_next'] = true;
+	$zz['fields'][7]['subselect']['sql'] .= ' WHERE role_category_id = /*_ID categories roles/location _*/';
+}
 
 // events-contacts
 $zz['fields'][60] = [];
@@ -173,33 +175,35 @@ $zz['fields'][67] = [];
 $zz['fields'][68] = [];
 $zz['fields'][69] = [];
 
-// @deprecated
-$zz['fields'][61] = zzform_include('events-contacts');
-$zz['fields'][61]['title'] = 'Organiser';
-$zz['fields'][61]['table_name'] = 'organisers';
-$zz['fields'][61]['type'] = 'subtable';
-$zz['fields'][61]['min_records'] = 1;
-$zz['fields'][61]['max_records'] = 10;
-$zz['fields'][61]['sql'] .= ' WHERE role_category_id = /*_ID categories roles/organiser _*/
-	ORDER BY sequence, contact';
-$zz['fields'][61]['form_display'] = 'lines';
-$zz['fields'][61]['fields'][2]['type'] = 'foreign_key';
-$zz['fields'][61]['fields'][3]['show_title'] = false;
-$zz['fields'][61]['fields'][3]['sql'] = 'SELECT contact_id, contact
-	FROM contacts
-	LEFT JOIN categories
-		ON contacts.contact_category_id = categories.category_id
-	WHERE categories.parameters LIKE "%&events_organiser=1%"
-	ORDER BY contact';
-$zz['fields'][61]['fields'][3]['add_details'] = 'organisers';
-$zz['fields'][61]['fields'][4]['type'] = 'hidden';
-$zz['fields'][61]['fields'][4]['value'] = wrap_category_id('roles/organiser');
-$zz['fields'][61]['fields'][4]['hide_in_form'] = true;
-$zz['fields'][61]['fields'][5]['type'] = 'sequence';
-$zz['fields'][61]['class'] = 'hidden480';
-$zz['fields'][61]['subselect']['sql'] .= ' WHERE role_category_id = /*_ID categories roles/organiser _*/';
-$zz['fields'][61]['subselect']['prefix'] = '<p>'.wrap_text('Organiser').': ';
-$zz['fields'][61]['subselect']['suffix'] = '</p>';
+if (wrap_package('contacts')) {
+	// @deprecated
+	$zz['fields'][61] = zzform_include('events-contacts');
+	$zz['fields'][61]['title'] = 'Organiser';
+	$zz['fields'][61]['table_name'] = 'organisers';
+	$zz['fields'][61]['type'] = 'subtable';
+	$zz['fields'][61]['min_records'] = 1;
+	$zz['fields'][61]['max_records'] = 10;
+	$zz['fields'][61]['sql'] .= ' WHERE role_category_id = /*_ID categories roles/organiser _*/
+		ORDER BY sequence, contact';
+	$zz['fields'][61]['form_display'] = 'lines';
+	$zz['fields'][61]['fields'][2]['type'] = 'foreign_key';
+	$zz['fields'][61]['fields'][3]['show_title'] = false;
+	$zz['fields'][61]['fields'][3]['sql'] = 'SELECT contact_id, contact
+		FROM contacts
+		LEFT JOIN categories
+			ON contacts.contact_category_id = categories.category_id
+		WHERE categories.parameters LIKE "%&events_organiser=1%"
+		ORDER BY contact';
+	$zz['fields'][61]['fields'][3]['add_details'] = 'organisers';
+	$zz['fields'][61]['fields'][4]['type'] = 'hidden';
+	$zz['fields'][61]['fields'][4]['value'] = wrap_category_id('roles/organiser');
+	$zz['fields'][61]['fields'][4]['hide_in_form'] = true;
+	$zz['fields'][61]['fields'][5]['type'] = 'sequence';
+	$zz['fields'][61]['class'] = 'hidden480';
+	$zz['fields'][61]['subselect']['sql'] .= ' WHERE role_category_id = /*_ID categories roles/organiser _*/';
+	$zz['fields'][61]['subselect']['prefix'] = '<p>'.wrap_text('Organiser').': ';
+	$zz['fields'][61]['subselect']['suffix'] = '</p>';
+}
 
 $zz['fields'][26]['title'] = 'Category';
 $zz['fields'][26]['field_name'] = 'event_category_id';
@@ -385,10 +389,11 @@ $zz['sql'] = 'SELECT DISTINCT /*_PREFIX_*/events.*
 	, /*_PREFIX_*/categories.category
 	FROM /*_PREFIX_*/events
 	LEFT JOIN /*_PREFIX_*/events_categories USING (event_id)
-	LEFT JOIN /*_PREFIX_*/events_contacts USING (event_id)
 	LEFT JOIN /*_PREFIX_*/categories
 		ON /*_PREFIX_*/events.event_category_id = /*_PREFIX_*/categories.category_id
 ';
+if (wrap_package('contacts'))
+	$zz['sql'] = wrap_edit_sql($zz['sql'], 'JOIN', 'LEFT JOIN /*_PREFIX_*/events_contacts USING (event_id)');
 
 $zz['sqlorder'] = ' ORDER BY /*_PREFIX_*/events.date_begin DESC, IFNULL(/*_PREFIX_*/events.time_begin, /*_PREFIX_*/events.time_end) DESC, /*_PREFIX_*/events.sequence DESC, /*_PREFIX_*/events.identifier DESC';
 
@@ -420,16 +425,18 @@ $zz['filter'][2]['identifier'] = 'category';
 $zz['filter'][2]['type'] = 'list';
 $zz['filter'][2]['where'] = '/*_PREFIX_*/events_categories.category_id';
 
-$zz['filter'][3]['sql'] = 'SELECT DISTINCT contact_id
-		, IFNULL(contact_short, contact) AS contact
-	FROM events_contacts
-	LEFT JOIN contacts USING (contact_id)
-	WHERE events_contacts.role_category_id = /*_ID categories roles/organiser _*/
-	ORDER BY contact';
-$zz['filter'][3]['title'] = wrap_text('Organiser');
-$zz['filter'][3]['identifier'] = 'organiser';
-$zz['filter'][3]['type'] = 'list';
-$zz['filter'][3]['where'] = '/*_PREFIX_*/events_contacts.contact_id';
+if (wrap_package('contacts')) {
+	$zz['filter'][3]['sql'] = 'SELECT DISTINCT contact_id
+			, IFNULL(contact_short, contact) AS contact
+		FROM events_contacts
+		LEFT JOIN contacts USING (contact_id)
+		WHERE events_contacts.role_category_id = /*_ID categories roles/organiser _*/
+		ORDER BY contact';
+	$zz['filter'][3]['title'] = wrap_text('Organiser');
+	$zz['filter'][3]['identifier'] = 'organiser';
+	$zz['filter'][3]['type'] = 'list';
+	$zz['filter'][3]['where'] = '/*_PREFIX_*/events_contacts.contact_id';
+}
 
 $zz['filter'][4]['title'] = wrap_text('Published');
 $zz['filter'][4]['identifier'] = 'published';
@@ -471,11 +478,12 @@ if (wrap_setting('multiple_websites')) {
 			, /*_PREFIX_*/websites.domain
 		FROM /*_PREFIX_*/events
 		LEFT JOIN /*_PREFIX_*/events_categories USING (event_id)
-		LEFT JOIN /*_PREFIX_*/events_contacts USING (event_id)
 		LEFT JOIN /*_PREFIX_*/categories
 			ON /*_PREFIX_*/events.event_category_id = /*_PREFIX_*/categories.category_id
 		LEFT JOIN /*_PREFIX_*/websites USING (website_id) 
 	';
+	if (wrap_package('contacts'))
+		$zz['sql'] = wrap_edit_sql($zz['sql'], 'JOIN', 'LEFT JOIN /*_PREFIX_*/events_contacts USING (event_id)');
 
 	if (empty($zz['where']['website_id']) AND empty($_GET['where']['website_id'])) {
 		$zz['filter'][1]['sql'] = 'SELECT website_id, domain

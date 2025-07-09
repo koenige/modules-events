@@ -49,7 +49,7 @@ function mod_events_events($params, $settings) {
 		$condition[] = sprintf('(YEAR(date_begin) = %d OR YEAR(date_end) = %d)', $year, $year);
 		$page['breadcrumbs'][]['title'] = $year;
 		$zz_page['db']['title'] .= ' '.$year;
-	} elseif ($params[0] !== 'current') {
+	} elseif ($params[0] !== 'current' AND wrap_package('contacts')) {
 		// Organisation?
 		$sql = 'SELECT contact_id FROM contacts
 			WHERE identifier = "%s"';

@@ -103,7 +103,8 @@ function mod_events_get_eventdata($data, $settings = [], $id_field_name = '', $l
 	$events = mod_events_get_eventdata_details($events, $ids, $langs);
 
 	// contacts
-	$events = mod_events_get_eventdata_contacts($events, $ids, $langs);
+	if (wrap_package('contacts'))
+		$events = mod_events_get_eventdata_contacts($events, $ids, $langs);
 	
 	$data = wrap_data_merge($data, $events, $id_field_name, $lang_field_name);
 	

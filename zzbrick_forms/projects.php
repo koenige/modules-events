@@ -106,7 +106,7 @@ $zz['fields'][37] = [];
 $zz['fields'][38] = [];
 $zz['fields'][39] = [];
 
-if (in_array('contacts', wrap_setting('modules'))) {
+if (wrap_package('contacts')) {
 	$values['roles_restrict_to'] = 'projects';
 	mf_default_categories_restrict($values, 'roles');
 
@@ -270,11 +270,13 @@ $zz['sql'] = 'SELECT DISTINCT /*_PREFIX_*/events.*
 	, /*_PREFIX_*/categories.category
 	FROM /*_PREFIX_*/events
 	LEFT JOIN /*_PREFIX_*/events_categories USING (event_id)
-	LEFT JOIN /*_PREFIX_*/events_contacts USING (event_id)
 	LEFT JOIN /*_PREFIX_*/categories
 		ON /*_PREFIX_*/events.event_category_id = /*_PREFIX_*/categories.category_id
 	WHERE /*_PREFIX_*/events.event_category_id = /*_ID categories event/project _*/
 ';
+if (wrap_package('contacts'))
+	$zz['sql'] = wrap_edit_sql($zz['sql'], 'JOIN', 'LEFT JOIN /*_PREFIX_*/events_contacts USING (event_id)');
+
 
 $zz['sqlorder'] = ' ORDER BY date_begin DESC, IFNULL(time_begin, time_end) DESC, sequence DESC, identifier DESC';
 $zz['sql_translate'] = ['event_id' => 'events'];
@@ -307,16 +309,18 @@ $zz['filter'][2]['identifier'] = 'category';
 $zz['filter'][2]['type'] = 'list';
 $zz['filter'][2]['where'] = '/*_PREFIX_*/events_categories.category_id';
 
-$zz['filter'][3]['sql'] = 'SELECT DISTINCT contact_id
-		, IFNULL(contact_short, contact) AS contact
-	FROM events_contacts
-	LEFT JOIN contacts USING (contact_id)
-	WHERE events_contacts.role_category_id = /*_ID categories roles/organiser _*/
-	ORDER BY contact';
-$zz['filter'][3]['title'] = wrap_text('Organiser');
-$zz['filter'][3]['identifier'] = 'organiser';
-$zz['filter'][3]['type'] = 'list';
-$zz['filter'][3]['where'] = '/*_PREFIX_*/events_contacts.contact_id';
+if (wrap_package('contacts')) {
+	$zz['filter'][3]['sql'] = 'SELECT DISTINCT contact_id
+			, IFNULL(contact_short, contact) AS contact
+		FROM events_contacts
+		LEFT JOIN contacts USING (contact_id)
+		WHERE events_contacts.role_category_id = /*_ID categories roles/organiser _*/
+		ORDER BY contact';
+	$zz['filter'][3]['title'] = wrap_text('Organiser');
+	$zz['filter'][3]['identifier'] = 'organiser';
+	$zz['filter'][3]['type'] = 'list';
+	$zz['filter'][3]['where'] = '/*_PREFIX_*/events_contacts.contact_id';
+}
 
 $zz['filter'][4]['title'] = wrap_text('Published');
 $zz['filter'][4]['identifier'] = 'published';
@@ -352,12 +356,13 @@ if (wrap_setting('multiple_websites')) {
 			, /*_PREFIX_*/websites.domain
 		FROM /*_PREFIX_*/events
 		LEFT JOIN /*_PREFIX_*/events_categories USING (event_id)
-		LEFT JOIN /*_PREFIX_*/events_contacts USING (event_id)
 		LEFT JOIN /*_PREFIX_*/categories
 			ON /*_PREFIX_*/events.event_category_id = /*_PREFIX_*/categories.category_id
 		LEFT JOIN /*_PREFIX_*/websites USING (website_id)
 		WHERE /*_PREFIX_*/events.event_category_id = /*_ID categories event/project _*/
 	';
+	if (wrap_package('contacts'))
+		$zz['sql'] = wrap_edit_sql($zz['sql'], 'JOIN', 'LEFT JOIN /*_PREFIX_*/events_contacts USING (event_id)');
 
 	if (empty($zz['where']['website_id']) AND empty($_GET['where']['website_id'])) {
 		$zz['filter'][1]['sql'] = 'SELECT website_id, domain
