@@ -293,7 +293,7 @@ if (wrap_package('contacts'))
 	$zz['sql'] = wrap_edit_sql($zz['sql'], 'JOIN', 'LEFT JOIN /*_PREFIX_*/events_contacts USING (event_id)');
 
 
-$zz['sqlorder'] = ' ORDER BY date_begin DESC, IFNULL(time_begin, time_end) DESC, sequence DESC, identifier DESC';
+$zz['sqlorder'] = ' ORDER BY date_begin DESC, IFNULL(time_begin, time_end) DESC, sequence DESC, identifier ASC';
 $zz['sql_translate'] = ['event_id' => 'events'];
 
 $zz['conditions'][1]['scope'] = 'record';
