@@ -104,8 +104,7 @@ function mod_events_project($params) {
 		$page['meta'][] 
 			= ['property' => 'og:image', 'content' => wrap_setting('host_base').wrap_setting('files_path').'/'.$main_img['filename'].'.'.wrap_setting('events_og_image_size').'.'.$main_img['thumb_extension'].'?v='.$main_img['version']];
 	}
-	$page['title'] = $event['event'].', '.wrap_date($event['duration']).($image_no ? ', '.wrap_text('Image %d', ['values' => $image_no]) : '');
-	$page['breadcrumbs'][] = ['title' => $event['year'], 'url_path' => wrap_path('events_event', $event['year'])];
+	$page['title'] = $event['event'].($image_no ? ', '.wrap_text('Image %d', ['values' => $image_no]) : '');
 	if ($image_no) {
 		$page['breadcrumbs'][] = ['title' => $event['event'], 'url_path' => '../'];
 		$page['breadcrumbs'][]['title'] = $image_no;
