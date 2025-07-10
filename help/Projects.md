@@ -40,6 +40,8 @@ can have several parameters:
 * `max_records: 1` – Only one category can be chosen per field, set to a
 higher value means that n categories can be selected.
 
+* `min_records: 1` – Show at least one category selection (default is 0).
+
 * `min_records_required: 1` - It is required to chose at least one
 category in this field.
 
@@ -51,7 +53,8 @@ category in this field.
 * `property: 1` – Show a field for a property value next to the
 category. Setting a property means you can add further information for
 each child category, e. g. `type: url` if a property is meant to be a
-URL.
+URL. The general setting `events_category_properties` must be set to
+true for using this feature.
 
 * `hide_in_list` – Do not show this field in the list view.
   
