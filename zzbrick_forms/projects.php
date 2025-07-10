@@ -251,6 +251,21 @@ $zz['fields'][2]['identifier']['ignore_this_if']['event'] = 'event_abbr';
 $zz['fields'][2]['identifier']['exists'] = '-';
 $zz['fields'][2]['hide_in_list'] = true;
 
+if (wrap_access('events_projects_identifier')) {
+	$zz['fields'][2]['read_options'] = 92;
+
+	$zz['fields'][92]['field_name'] = 'change_identifier';
+	$zz['fields'][92]['title'] = 'Change identifier?';
+	$zz['fields'][92]['type'] = 'option';
+	$zz['fields'][92]['type_detail'] = 'select';
+	$zz['fields'][92]['enum'] = ['yes', 'no'];
+	$zz['fields'][92]['options'] = [
+		'yes' => ['fields' => ['event_abbr', 'event']],
+		'no' => ['fields' => ['event_abbr', 'event', 'identifier']]
+	];
+	$zz['fields'][92]['default'] = 'no';
+}
+
 $zz['fields'][21]['field_name'] = 'created';
 $zz['fields'][21]['type'] = 'hidden';
 $zz['fields'][21]['type_detail'] = 'datetime';
