@@ -67,16 +67,16 @@ function mod_events_projects($params, $settings) {
 		, $current ? 'ASC' : 'DESC'
 		, isset($settings['limit']) ? sprintf(' LIMIT %d', $settings['limit']) : ''
 	);
-	$events = wrap_db_fetch($sql, 'event_id');
+	$data = wrap_db_fetch($sql, 'event_id');
 	
 	require_once __DIR__.'/../zzbrick_request_get/eventdata.inc.php';
-	$events = mod_events_get_eventdata($events, ['category' => 'project']);
+	$data = mod_events_get_eventdata($data, ['category' => 'project']);
 
-	if (!$events) {
-		$events['no_projects'] = true;
+	if (!$data) {
+		$data['no_projects'] = true;
 		$page['status'] = 404;
 	} else {
-		foreach ($events as $event_id => $event) {
+		foreach ($data as $event_id => $event) {
 			if (empty($event['images'])) continue;
 			if (in_array('magnificpopup', wrap_setting('modules')))
 				$page['extra']['magnific_popup'] = true;
@@ -84,8 +84,51 @@ function mod_events_projects($params, $settings) {
 		}
 		$page['status'] = 200;
 	}
+	
+	$data += mod_events_projects_categories($data);
 
 	$template = !empty($settings['template']) ? $settings['template'] : 'projects';
-	$page['text'] = wrap_template($template, $events);
+	$page['text'] = wrap_template($template, $data);
 	return $page;
+}
+
+/**
+ * get list of project categories
+ *
+ * @param array $data
+ * @return array
+ */
+function mod_events_projects_categories($data) {
+	$sql = 'SELECT category_id, category, SUBSTRING_INDEX(path, "/", -1) AS path
+			, description
+		FROM categories
+		WHERE main_category_id = /*_ID categories projects _*/';
+	$categories = wrap_db_fetch($sql, 'category_id');
+	$sql = 'SELECT category_id, category, SUBSTRING_INDEX(path, "/", -1) AS path
+			, description
+		FROM categories
+		WHERE main_category_id IN (%s)';
+	$categories = wrap_db_children($categories, $sql, 'category_id', 'main_category_id');
+	if (!$categories) return [];
+	
+	$paths = [];
+	foreach ($categories[0] as $category_id => $category) {
+		$key = sprintf('categories_%s', $category['path']);
+		$paths[] = $category['path'];
+		$data[$key] = $categories[$category_id] ?? [];
+	}
+	foreach ($data as $event_id => $project) {
+		if (!is_numeric($event_id)) continue;
+		foreach ($paths as $path) {
+			if (!array_key_exists($path, $project)) continue;
+			if (!is_array($project[$path])) continue;
+			$key = sprintf('categories_%s', $path);
+			foreach (array_keys($project[$path]) as $category_id) {
+				if (empty($data[$key][$category_id]['projects']))
+					$data[$key][$category_id]['projects'] = [];
+				$data[$key][$category_id]['projects'][] = $project;
+			}
+		}
+	}
+	return $data;
 }
