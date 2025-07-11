@@ -187,7 +187,12 @@ function mod_events_get_eventdata_categories($events, $ids, $langs) {
 				$type_path = $category['type_parameters']['alias'] ?? $category['type_path'];
 			}
 			if (in_array($type_path, ['events', 'projects'])) $type_path = 'categories';
-			$events[$lang][$category['event_id']][$type_path][$category['category_id']] = $category; 
+			$c_path = $category['path'];
+			if (str_starts_with($c_path, $category['main_path'].'/'))
+				$c_path = substr($c_path, strlen($category['main_path']) + 1);
+			$type_category_path = sprintf('%s_category_%s', $type_path, str_replace('/', '_', $c_path));
+			$events[$lang][$category['event_id']][$type_path][$category['category_id']] = $category;
+			$events[$lang][$category['event_id']][$type_category_path] = true;
 		}
 	}
 	return $events;
