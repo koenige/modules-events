@@ -76,7 +76,7 @@ $zz['sqlorder'] = ' ORDER BY date_begin DESC, IFNULL(time_begin, time_end) DESC,
 $zz['conditions'][1]['scope'] = 'record';
 $zz['conditions'][1]['where'] = '/*_PREFIX_*/eventtexts.published = "no"';
 
-$zz['subtitle']['event_id']['sql'] = 'SELECT event
+$zz['subtitle']['event_id']['sql'] = 'SELECT event_id, event
 	, CONCAT(date_begin, IFNULL(CONCAT("/", date_end), "")) AS duration
 	FROM /*_PREFIX_*/events';
 $zz['subtitle']['event_id']['var'] = ['event', 'duration'];
