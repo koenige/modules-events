@@ -69,8 +69,8 @@ function mod_events_projects($params, $settings) {
 	);
 	$data = wrap_db_fetch($sql, 'event_id');
 	
-	require_once __DIR__.'/../zzbrick_request_get/eventdata.inc.php';
-	$data = mod_events_get_eventdata($data, ['category' => 'project']);
+	wrap_include('data', 'zzwrap');
+	$data = wrap_data('events', $data, ['category' => 'project']);
 
 	if (!$data) {
 		$data['no_projects'] = true;

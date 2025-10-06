@@ -19,13 +19,13 @@
  *
  * @param array $data
  * @param array $settings
- * @param string $id_field_name (optional, if key does not equal event_id)
- * @param string $lang_field_name (optional, if not current language shall be used)
  * @return array
  */
-function mod_events_get_eventdata($data, $settings = [], $id_field_name = '', $lang_field_name = '') {
+function mf_events_data($data, $settings = []) {
 	if (!$data) return $data;
-	wrap_include('data', 'zzwrap');
+
+	$id_field_name = $settings['id_field_name'] ?? NULL; // (optional, if key does not equal event_id)
+	$lang_field_name = $settings['lang_field_name'] ?? NULL; // (optional, if not current language shall be used)
 
 	$ids = wrap_data_ids($data, $id_field_name);
 	$langs = wrap_data_langs($data, $lang_field_name);
@@ -97,14 +97,15 @@ function mod_events_get_eventdata($data, $settings = [], $id_field_name = '', $l
 	if (!$data) return [];
 	
 	// categories
-	$events = mod_events_get_eventdata_categories($events, $ids, $langs);
+	$events = mf_events_categories($events, $ids, $langs);
 
 	// details (links)
-	$events = mod_events_get_eventdata_details($events, $ids, $langs);
+	$events = mf_events_details($events, $ids, $langs);
 
 	// contacts
+	// @todo use wrap_data_package(), read from contacts module
 	if (wrap_package('contacts'))
-		$events = mod_events_get_eventdata_contacts($events, $ids, $langs);
+		$events = mf_events_contacts($events, $ids, $langs);
 	
 	$data = wrap_data_merge($data, $events, $id_field_name, $lang_field_name);
 	
@@ -138,7 +139,7 @@ function mod_events_get_eventdata($data, $settings = [], $id_field_name = '', $l
  * @param array $langs
  * @return array
  */
-function mod_events_get_eventdata_categories($events, $ids, $langs) {
+function mf_events_categories($events, $ids, $langs) {
 	$sql = 'SELECT event_category_id, event_id
 			, categories.category_id, categories.category, categories.category_short
 			, categories.parameters
@@ -206,7 +207,7 @@ function mod_events_get_eventdata_categories($events, $ids, $langs) {
  * @param array $langs
  * @return array
  */
-function mod_events_get_eventdata_details($events, $ids = [], $langs = []) {
+function mf_events_details($events, $ids = [], $langs = []) {
 	if (!$ids) $ids = array_keys($events);
 	
 	$sql = 'SELECT eventdetail_id, event_id
@@ -257,7 +258,7 @@ function mod_events_get_eventdata_details($events, $ids = [], $langs = []) {
  * @param array $langs
  * @return array
  */
-function mod_events_get_eventdata_contacts($events, $ids, $langs) {
+function mf_events_contacts($events, $ids, $langs) {
 	$sql = 'SELECT event_id, event_contact_id, contact, contact_id, contacts.identifier
 			, categories.category_id, categories.category
 			, SUBSTRING_INDEX(categories.path, "/", -1) AS path

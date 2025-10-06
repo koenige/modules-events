@@ -54,8 +54,8 @@ function mf_events_in_news($type = 'all') {
 	if (!$events) return [];
 
 	$events = wrap_translate($events, 'events');
-	wrap_include('zzbrick_request_get/eventdata', 'events');
-	$events = mod_events_get_eventdata_details($events);
+	wrap_include('data/events', 'events');
+	$events = mf_events_details($events);
 	foreach ($events as $event_id => $event) {
 		if (!empty($event['direct_link']))
 			$events[$event_id]['link'] = $event['direct_link'];

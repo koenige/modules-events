@@ -70,8 +70,9 @@ function mod_events_ics($params) {
 	$sql = sprintf($sql, $where_condition);
 	$events = wrap_db_fetch($sql, 'event_id');
 	if (!$events) return false;
-	require_once __DIR__.'/../zzbrick_request_get/eventdata.inc.php';
-	$events = mod_events_get_eventdata($events);
+
+	wrap_include('data', 'zzwrap');
+	$events = wrap_data('events', $events);
 	
 	wrap_lib('icalcreator');
 

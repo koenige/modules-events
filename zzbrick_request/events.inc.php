@@ -102,8 +102,8 @@ function mod_events_events($params, $settings) {
 	);
 	$events = wrap_db_fetch($sql, 'event_id');
 	
-	require_once __DIR__.'/../zzbrick_request_get/eventdata.inc.php';
-	$events = mod_events_get_eventdata($events);
+	wrap_include('data', 'zzwrap');
+	$events = wrap_data('events', $events);
 
 	if (!$events) {
 		$events['no_events'] = true;
