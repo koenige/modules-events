@@ -17,19 +17,11 @@
  * get event data per ID, pre-sorted
  * existing data is appended to event data
  *
- * @param array $data
- * @param array $settings
+ * @param array $ids
+ * @param array $langs
  * @return array
  */
-function mf_events_data($data, $settings = []) {
-	if (!$data) return $data;
-
-	$id_field_name = $settings['id_field_name'] ?? NULL; // (optional, if key does not equal event_id)
-	$lang_field_name = $settings['lang_field_name'] ?? NULL; // (optional, if not current language shall be used)
-
-	$ids = wrap_data_ids($data, $id_field_name);
-	$langs = wrap_data_langs($data, $lang_field_name);
-
+function mf_events_data($ids, $langs, $settings = []) {
 	$sql = 'SELECT event_id
 			, IF(event_category_id = /*_ID categories event/%s _*/, identifier, NULL) AS identifier
 			, identifier AS uid
@@ -82,6 +74,7 @@ function mf_events_data($data, $settings = []) {
 
 	// media
 	$events = wrap_data_media($events, $ids, $langs, 'events', 'event');
+	$deleted = [];
 	// media required?
 	if (!empty($settings['category']) AND $settings['category'] === 'project' AND wrap_setting('events_project_needs_images')) {
 		foreach ($events as $lang => $events_per_lang) {
@@ -90,11 +83,11 @@ function mf_events_data($data, $settings = []) {
 				unset($events[$lang][$event_id]);
 				$key = array_search($event_id, $ids);
 				unset($ids[$key]);
-				unset($data[$event_id]);
+				$deleted[] = $event_id;
 			}
 		}
 	}
-	if (!$data) return [];
+	if (!$ids) return ['deleted' => $deleted];
 	
 	// categories
 	$events = mf_events_categories($events, $ids, $langs);
@@ -107,8 +100,10 @@ function mf_events_data($data, $settings = []) {
 	if (wrap_package('contacts'))
 		$events = mf_events_contacts($events, $ids, $langs);
 	
-	$data = wrap_data_merge($data, $events, $id_field_name, $lang_field_name);
-	
+	return [$events, 'deleted' => $deleted];
+}
+
+function mf_events_data_finalize($data, $ids) {
 	// mark equal fields
 	$last_line = [];
 	$fields = ['year', 'month_iso', 'duration', 'week'];
