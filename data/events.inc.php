@@ -103,6 +103,13 @@ function mf_events_data($ids, $langs, $settings = []) {
 	return [$events, 'deleted' => $deleted];
 }
 
+/**
+ * get further event data after merging results
+ *
+ * @param array $data
+ * @param array $ids
+ * @return array
+ */
 function mf_events_data_finalize($data, $ids) {
 	// mark equal fields
 	$last_line = [];
