@@ -1,0 +1,18 @@
+# events module
+# template for years with events
+# 
+# Part of »Zugzwang Project«
+# https://www.zugzwang.org/modules/events
+#
+# @author Gustaf Mossakowski <gustaf@koenige.org>
+# @copyright Copyright © 2013-2017, 2019-2020, 2023-2025 Gustaf Mossakowski
+# @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
+# 
+<ul class="events-years">
+%%% loop years %%%
+<li>%%% if current_year %%%<strong>%%% else %%%<a href="%%% path events_events_yearly link %%%">%%% endif %%%
+%%% item year %%%
+%%% if current_year %%%</strong>%%% else %%%</a>%%% endif %%%
+</li>
+%%% loop end %%%
+</ul>
