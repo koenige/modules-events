@@ -40,7 +40,7 @@ function mf_events_data($ids, $langs, $settings = []) {
 			, time_begin AS time_begin_iso
 			, time_end AS time_end_iso
 			, IF(takes_place = "yes", NULL, 1) AS cancelled
-			, YEAR(IFNULL(date_begin, date_end)) AS year
+			, IFNULL(event_year, YEAR(IFNULL(date_begin, date_end))) AS year
 			, MONTH(IFNULL(date_begin, date_end)) AS month
 			, DATE_FORMAT(IFNULL(date_begin, date_end), "%%Y-%%m-00") AS month_iso
 			, WEEK(IFNULL(date_begin, date_end), 1) AS week
@@ -111,6 +111,8 @@ function mf_events_data($ids, $langs, $settings = []) {
  * @return array
  */
 function mf_events_data_finalize($data, $ids) {
+	$data = wrap_data_packages('events', $data, $ids);
+
 	// mark equal fields
 	$last_line = [];
 	$fields = ['year', 'month_iso', 'duration', 'week'];
@@ -333,6 +335,15 @@ function mf_events_contacts($events, $ids, $langs) {
 				$events[$lang][$contact['event_id']]['contacts'][$contact['category_id']]['has_images'] = true;
 			// @deprecated
 			$events[$lang][$contact['event_id']][$path][$event_contact_id] = $contact;
+		}
+	}
+	// inherit contacts from main event, if no contacts are set
+	foreach ($events as $lang => $lang_events) {
+		foreach ($lang_events as $event_id => $event) {
+			if (empty($event['main_event_id'])) continue;
+			if (!empty($event['contacts'])) continue;
+			if (empty($lang_events[$event['main_event_id']]['contacts'])) continue;
+			$events[$lang][$event_id]['contacts'] = $lang_events[$event['main_event_id']]['contacts'];
 		}
 	}
 	return $events;
