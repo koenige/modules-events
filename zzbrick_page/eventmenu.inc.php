@@ -25,6 +25,7 @@ function page_eventmenu() {
 			, menu, path, eventmenus.parameters
 			, IFNULL(event_year, YEAR(date_begin)) AS year
 			, eventmenus.event_id
+			, website_id
 		FROM eventmenus
 		LEFT JOIN events
 			ON eventmenus.event_id = IFNULL(events.main_event_id, events.event_id)
@@ -44,11 +45,18 @@ function page_eventmenu() {
 		// check parameters
 		if ($line['parameters']) {
 			parse_str($line['parameters'], $line['parameters']);
-			if (!empty($line['parameters']['running']))
+			if (!empty($line['parameters']['running'])) {
 				if (!page_eventmenu_running($line['event_id'])) {
 					unset($data[$eventmenu_id]);
 					continue;
 				}
+			}
+			if (!empty($line['parameters']['check'])) {
+				if (!page_eventmenu_check($line['path'], $line['website_id'])) {
+					unset($data[$eventmenu_id]);
+					continue;
+				}
+			}
 		}
 
 		// check if menu is active or below
@@ -89,11 +97,18 @@ function page_eventmenu_running($event_id) {
 }
 
 /**
- * check if a URL exists
+ * check if a URL exists, via local cache file
  *
  * @param string $url
+ * @param int $website_id
  * @return bool
  */
-function page_eventmenu_check($url) {
+function page_eventmenu_check($url, $website_id) {
+	static $check = [];
+	if (array_key_exists($event_id, $check)) return $check[$url];
 
+	$host_base = wrap_host_base($website_id);
+	$cache_file = wrap_cache_filename('url', $host_base.'/'.$url);
+	$check[$url] = file_exists($cache_file) ? true : false;
+	return $check[$url];
 }
