@@ -35,21 +35,21 @@ function page_eventmenu() {
 
 	$placeholder_keys = ['menu', 'path'];
 
-	foreach ($data as $eventmenu_id => $line) {
+	foreach ($data as &$line) {
 		// remove anchor for comparison
 		if ($pos = strpos($line['path'], '#'))
 			$line['path'] = substr($line['path'], 0, $pos);
 
 		// check if menu is active or below
 		if ($line['path'] === wrap_setting('request_uri'))	
-			$data[$eventmenu_id]['path'] = false;
+			$line['path'] = false;
 		elseif (str_starts_with(wrap_setting('request_uri'), $line['path']))
-			$data[$eventmenu_id]['below'] = true;
+			$line['below'] = true;
 		
 		// placeholders
 		foreach ($placeholder_keys as $key) {
 			if (strstr($line[$key], '%%% year %%%'))
-				$data[$eventmenu_id][$key] = str_replace('%%% year %%%', $line['year'], $line[$key]);
+				$line[$key] = str_replace('%%% year %%%', $line['year'], $line[$key]);
 		}
 	}
 	
