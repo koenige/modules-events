@@ -24,6 +24,7 @@ function page_eventmenu() {
 	$sql = 'SELECT eventmenu_id
 			, menu, path, eventmenus.parameters
 			, IFNULL(event_year, YEAR(date_begin)) AS year
+			, eventmenus.event_id
 		FROM eventmenus
 		LEFT JOIN events
 			ON eventmenus.event_id = IFNULL(events.main_event_id, events.event_id)
@@ -35,10 +36,20 @@ function page_eventmenu() {
 
 	$placeholder_keys = ['menu', 'path'];
 
-	foreach ($data as &$line) {
+	foreach ($data as $eventmenu_id => &$line) {
 		// remove anchor for comparison
 		if ($pos = strpos($line['path'], '#'))
 			$line['path'] = substr($line['path'], 0, $pos);
+
+		// check parameters
+		if ($line['parameters']) {
+			parse_str($line['parameters'], $line['parameters']);
+			if (!empty($line['parameters']['running']))
+				if (!page_eventmenu_running($line['event_id'])) {
+					unset($data[$eventmenu_id]);
+					continue;
+				}
+		}
 
 		// check if menu is active or below
 		if ($line['path'] === wrap_setting('request_uri'))	
@@ -54,4 +65,35 @@ function page_eventmenu() {
 	}
 	
 	return wrap_template('eventmenu', $data);
+}
+
+/**
+ * check if an event is (or associated events are) running
+ *
+ * @param int $event_id
+ * @return bool
+ */
+function page_eventmenu_running($event_id) {
+	static $running = [];
+	if (array_key_exists($event_id, $running)) return $running[$event_id];
+	
+	$sql = 'SELECT event_id
+		FROM events
+		WHERE (event_id = %d OR main_event_id = %d)
+		AND event_category_id = /*_ID categories event/event _*/
+ 		AND NOW() BETWEEN IFNULL(date_begin, date_begin) AND IFNULL(date_end, date_begin)';
+	$sql = sprintf($sql, $event_id, $event_id);
+	$events = wrap_db_fetch($sql, 'event_id', 'single value');
+	$running[$event_id] = count($events) ? true : false;
+	return $running[$event_id];
+}
+
+/**
+ * check if a URL exists
+ *
+ * @param string $url
+ * @return bool
+ */
+function page_eventmenu_check($url) {
+
 }
