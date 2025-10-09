@@ -26,12 +26,13 @@ $zz['fields'][5]['type'] = 'number';
 
 $zz['fields'][2]['field_name'] = 'event_id';
 $zz['fields'][2]['type'] = 'select';
-$zz['fields'][2]['sql'] = sprintf('SELECT event_id
-		, CONCAT(/*_PREFIX_*/events.event, " (", DATE_FORMAT(/*_PREFIX_*/events.date_begin, "%s"), ")") AS event
+$zz['fields'][2]['sql'] = 'SELECT event_id, event
+		, CONCAT(IFNULL(events.date_begin, ""), IFNULL(CONCAT("/", events.date_end), "")) AS duration
 		, identifier
 	FROM /*_PREFIX_*/events
 	WHERE /*_PREFIX_*/events.event_category_id = /*_ID categories event/event _*/
-	ORDER BY date_begin DESC', wrap_placeholder('mysql_date_format'));
+	ORDER BY identifier DESC';
+$zz['fields'][2]['sql_format'][2] = 'wrap_date';
 $zz['fields'][2]['display_field'] = 'event';
 $zz['fields'][2]['search'] = sprintf('CONCAT(/*_PREFIX_*/events.event, " (", 
 	DATE_FORMAT(/*_PREFIX_*/events.date_begin, "%s"), ")")', wrap_placeholder('mysql_date_format'));
