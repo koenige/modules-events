@@ -119,6 +119,7 @@ function mf_events_data_finalize($data, $ids) {
 	foreach ($fields as $field)
 		$last_line[$field] = NULL;
 	foreach ($data as $event_id => $line) {
+		if (!is_int($event_id)) continue;
 		if (!empty($line['location'])) {
 			foreach ($line['location'] as $contact_id => $contact) {
 				if (!$contact['country_id']) continue;

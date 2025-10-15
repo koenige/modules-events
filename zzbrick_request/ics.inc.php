@@ -85,7 +85,8 @@ function mod_events_ics($params) {
 	$v->setXprop(Vcalendar::X_WR_TIMEZONE, $tz);
 	$v->setConfig(Vcalendar::LANGUAGE, wrap_setting('lang'));
 
-	foreach ($events as $event) {
+	foreach ($events as $event_id => $event) {
+		if (!is_int($event_id)) continue;
 		$e = $v->newVevent();
 		// inherit from main_event
 		if (!empty($event['main_event_id'])) {
