@@ -34,7 +34,7 @@ function mf_events_data($ids, $langs, $settings = []) {
 				ELSE STR_TO_DATE(date_end, "%%Y-%%m-%%d")
 			END AS date_end_iso
 			, IF(date_begin >= CURDATE(), registration, NULL) AS registration
-			, CONCAT(date_begin, IFNULL(CONCAT("/", date_end), "")) AS duration
+			, CONCAT(IFNULL(date_begin, ""), IFNULL(CONCAT("/", date_end), "")) AS duration
 			, TIME_FORMAT(time_begin, "%%H.%%i") AS time_begin
 			, TIME_FORMAT(time_end, "%%H.%%i") AS time_end
 			, time_begin AS time_begin_iso
