@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/events
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2022-2023 Gustaf Mossakowski
+ * @copyright Copyright © 2022-2023, 2025 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -105,7 +105,7 @@ function page_eventmenu_running($event_id) {
  */
 function page_eventmenu_check($url, $website_id) {
 	static $check = [];
-	if (array_key_exists($event_id, $check)) return $check[$url];
+	if (array_key_exists($url, $check)) return $check[$url];
 
 	$host_base = wrap_host_base($website_id);
 	$cache_file = wrap_cache_filename('url', $host_base.'/'.$url);
