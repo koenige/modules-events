@@ -5,7 +5,7 @@
 # https://www.zugzwang.org/modules/events
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2014-2024 Gustaf Mossakowski
+# @copyright Copyright © 2014-2025 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 # 
 %%% if not_found %%%
@@ -161,5 +161,5 @@
 %%% endif %%%
 
 %%% unless setting events_timezone %%%
-<script src="%%% setting behaviour_path %%%/events/timezone.js"></script>
+%%% script events/timezone.js %%%
 %%% endif %%%
