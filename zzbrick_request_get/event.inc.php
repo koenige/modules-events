@@ -98,6 +98,7 @@ function mod_events_get_event_timetable($event_id, $lang = false) {
 	// get media, set weekday
 	$events = [];
 	foreach ($events_db as $event_id => $event) {
+		if (!is_numeric($event_id)) continue;
 		$day = $event['date_begin'];
 		$events[$day]['date_begin'] = $day;
 		$events[$day]['weekday_begin'] = $event['weekday_begin'];
