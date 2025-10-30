@@ -25,9 +25,9 @@
 %%% item category %%%
 %%% loop end %%%,
 %%% endif %%%
-<time datetime='%%% item date_begin_iso %%%%%% item time_begin_iso "T%s" %%%' itemprop="startDate">%%% item weekday_begin %%%%%% item weekday_end "–%s" %%% %%% item duration wrap_date %%%
-%%% if time_begin %%%, %%% item time_begin %%%%%% endif %%%</time>%%% if time_end %%%–<time datetime='%%% item date_end_iso %%%%%% unless date_end %%%%%% item date_begin %%%%%% endif %%%%%% item time_end_iso "T%s" %%%' itemprop="endDate">%%% item time_end %%%</time>%%% endif %%%
-%%% if time_begin | time_end %%% %%% text h %%% %%% item timezone "UTC<span class="timezone">%s</span>" %%%%%% endif %%%
+<time datetime='%%% item date_begin_iso %%%%%% item time_begin_iso "T%s" %%%' itemprop="startDate">%%% item duration period %%%
+%%% if time %%%, %%% item time period %%%%%% endif %%%</time>%%% if time_end %%%<time datetime='%%% item date_end_iso %%%%%% unless date_end %%%%%% item date_begin %%%%%% endif %%%%%% item time_end_iso "T%s" %%%' itemprop="endDate"></time>%%% endif %%%
+%%% if time %%% %%% item timezone "UTC<span class="timezone">%s</span>" %%%%%% endif %%%
 %%% if location %%%<br>
 %%% loop location %%%
 <span itemprop='location'>%%% if website %%%<a href="%%% item website %%%">%%% endif %%%%%% item contact %%%%%% item website </a> %%%%%% if show_direct_link %%%: <a href="%%% item direct_link %%%">%%% item direct_link %%%</a>%%% elseif platform %%% <span class="location_note">%%% text (Link will be announced to participants) %%%</span>%%% endif %%%</span>
@@ -91,8 +91,8 @@
 <h2>%%% text Supporting Event %%%</h2>
 <ul class="main_events">
 %%% loop events %%%
-<li><span class="date">%%% item duration wrap_date %%%</span>%%% if time_begin | time_end %%% %%% text h_prefix %%%%%% endif %%%%%% item time_begin " %s" %%%%%% item time_end "–%s" %%%
-%%% if time_begin | time_end %%% %%% text h %%%%%% endif %%%: %%% loop categories %%%%%% item category %%%%%%loopposition first|middle "," %%% %%% loop end %%%<a href="%%% path events_event identifier %%%">%%% item event %%%</a></li>
+<li><span class="date">%%% item duration period %%%</span>%%% item time period %%%: 
+ %%% loop categories %%%%%% item category %%%%%%loopposition first|middle "," %%% %%% loop end %%%<a href="%%% path events_event identifier %%%">%%% item event %%%</a></li>
 %%% loop end %%%
 </ul>
 %%% endif %%%

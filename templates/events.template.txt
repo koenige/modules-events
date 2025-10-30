@@ -5,7 +5,7 @@
 # https://www.zugzwang.org/modules/events
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2014-2017, 2020, 2022-2024 Gustaf Mossakowski
+# @copyright Copyright © 2014-2017, 2020, 2022-2025 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 # 
 %%% if no_events %%%
@@ -21,9 +21,11 @@
 <tr itemscope itemtype="http://schema.org/Event" class="%%% loopposition uneven un %%%even%%% unless published %%% unpublished%%% endif %%%%%% if change_week %%% section_week%%% endif %%%">
 <th>
 %%% item cancelled "<del>" %%%
-<time datetime='%%% item date_begin_iso %%%%%% item time_begin_iso "T%s" %%%' itemprop="startDate">%%% unless change_duration %%%<span class="identical_duration">%%% endif %%%<span class="weekday">%%% item weekday_begin %%%%%% item weekday_end "–%s" %%%</span> %%% item duration wrap_date %%%%%% unless change_duration %%%</span>%%% endif %%%
-%%% if time_begin %%%%%% unless change_duration %%%<span class="identical_duration">%%% endif %%%<br>%%% unless change_duration %%%</span>%%% endif %%%<em>%%% item time_begin %%%</em>%%% endif %%%</time>%%% if time_end %%%–<time datetime='%%% item date_end_iso %%%%%% unless date_end %%%%%% item date_begin %%%%%% endif %%%%%% item time_end_iso "T%s" %%%' itemprop="endDate"><em>%%% item time_end %%%</em></time>%%% endif %%%
-%%% if time_begin | time_end %%%<em> %%% text h %%% %%% item timezone "UTC%s" %%%</em>%%% endif %%%
+<time datetime='%%% item date_begin_iso %%%%%% item time_begin_iso "T%s" %%%' itemprop="startDate">%%% unless change_duration %%%<span class="identical_duration">%%% endif %%%
+%%% item duration period %%%
+%%% unless change_duration %%%</span>%%% endif %%%
+%%% if time %%%%%% unless change_duration %%%<span class="identical_duration">%%% endif %%%<br>%%% unless change_duration %%%</span>%%% endif %%%<em>%%% item time period %%%</em>%%% endif %%%</time>%%% if time_end %%%<time datetime='%%% item date_end_iso %%%%%% unless date_end %%%%%% item date_begin %%%%%% endif %%%%%% item time_end_iso "T%s" %%%' itemprop="endDate"></time>%%% endif %%%
+%%% if time %%%<em> %%% item timezone "UTC%s" %%%</em>%%% endif %%%
 %%% item cancelled "</del>" %%%
 </th>
 <td>

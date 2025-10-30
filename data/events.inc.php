@@ -39,6 +39,7 @@ function mf_events_data($ids, $langs, $settings = []) {
 			, TIME_FORMAT(time_end, "%%H.%%i") AS time_end
 			, time_begin AS time_begin_iso
 			, time_end AS time_end_iso
+			, CONCAT(IFNULL(CONCAT("T", time_begin), ""), IFNULL(CONCAT("/T", time_end), "")) AS time
 			, IF(takes_place = "yes", NULL, 1) AS cancelled
 			, IFNULL(event_year, YEAR(IFNULL(date_begin, date_end))) AS year
 			, MONTH(IFNULL(date_begin, date_end)) AS month
