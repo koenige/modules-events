@@ -33,14 +33,14 @@
 %%% if images %%%
 <p class="newsimg">
 %%% loop images 1 %%%
-%%% unless cancelled %%%%%% if description %%%<a href="%%% setting base %%%%%% path events_event identifier %%%">%%% elseif direct_link %%%<a href="%%% item direct_link %%%">%%% endif %%%%%% endif %%%
+%%% unless cancelled %%%%%% if description %%%<a href="%%% path events_event identifier %%%">%%% elseif direct_link %%%<a href="%%% item direct_link %%%">%%% endif %%%%%% endif %%%
 <img src="%%% setting files_path %%%/%%% item filename %%%.%%% setting events_list_image_size %%%.%%% item thumb_extension %%%?v=%%% item version %%%" alt="%%% item title wrap_html_escape %%%">
 %%% unless cancelled %%%%%% if description | direct_link  %%%</a>%%% endif %%%%%% endif %%%
 %%% loop end %%%
 </p>
 %%% endif %%%
 
-<strong itemprop="name">%%% unless cancelled %%%%%% if description %%%<a href="%%% setting base %%%%%% path events_event identifier %%%">%%% elseif direct_link %%%<a href="%%% item direct_link %%%">%%% endif %%%%%% endif %%%%%% item event %%%%%% unless cancelled %%%%%% if description | direct_link %%%</a>%%% endif %%%%%% endif %%%</strong>%%% if categories %%%, 
+<strong itemprop="name">%%% unless cancelled %%%%%% if description %%%<a href="%%% path events_event identifier %%%">%%% elseif direct_link %%%<a href="%%% item direct_link %%%">%%% endif %%%%%% endif %%%%%% item event %%%%%% unless cancelled %%%%%% if description | direct_link %%%</a>%%% endif %%%%%% endif %%%</strong>%%% if categories %%%, 
 %%% loop categories %%%
 %%% loopposition middle ", " %%%%%% loopposition last " & " %%%
 %%% item category %%%

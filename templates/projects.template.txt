@@ -5,7 +5,7 @@
 # https://www.zugzwang.org/modules/events
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2023-2024 Gustaf Mossakowski
+# @copyright Copyright © 2023-2025 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 # 
 %%% if no_projects %%%
@@ -21,7 +21,7 @@
 <td>
 %%% if images %%%
 <p class="newsimg">
-%%% loop images 1 %%%<a href="%%% setting base %%%%%% path events_project identifier %%%">
+%%% loop images 1 %%%<a href="%%% path events_project identifier %%%">
 <img src="%%% setting files_path %%%/%%% item filename %%%.%%% setting events_list_image_size %%%.%%% item thumb_extension %%%?v=%%% item version %%%" alt="%%% item title wrap_html_escape %%%">
 </a>
 %%% loop end %%%
@@ -29,7 +29,7 @@
 %%% endif %%%
 
 <div class="projecttext">
-<strong itemprop="name"><a href="%%% setting base %%%%%% path events_project identifier %%%">%%% item event %%%</a></strong> 
+<strong itemprop="name"><a href="%%% path events_project identifier %%%">%%% item event %%%</a></strong> 
 %%% if setting events_projects_abstract_first %%%
 <div itemprop="description" class="project_description">
 %%% item abstract markdown %%%
