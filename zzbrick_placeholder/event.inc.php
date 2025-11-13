@@ -59,12 +59,11 @@ function mod_events_placeholder_event($brick) {
 	// breadcrumbs
 	$zz_page['breadcrumb_placeholder'][] = [
 		'title' => $event['year'],
-		'url_path' => $event['year'],
-		'add_next' => 1 // add event placeholder as separate breadcrumb
+		'url_path' => $event['year']
 	];
 	$zz_page['breadcrumb_placeholder'][] = [
 		'title' => $event['event'],
-		'url_path' => $event['event_idf']
+		'url_path' => $event['identifier']
 	];
 	$brick['data'] = $event;
 	return $brick;
