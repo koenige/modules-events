@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/events
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2014-2024 Gustaf Mossakowski
+ * @copyright Copyright © 2014-2025 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -33,7 +33,7 @@ function mod_events_event($params) {
 		$page['status'] = 404;
 		return $page;
 	}
-	if (empty($_SESSION['logged_in']) AND !$event['published'])
+	if (!wrap_access('events_preview') AND !$event['published'])
 		wrap_quit(410, wrap_text('This event is no longer published. It may not take place.'));
 
 	require_once __DIR__.'/../zzbrick_request_get/event.inc.php';

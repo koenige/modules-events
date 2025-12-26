@@ -8,13 +8,13 @@
  * https://www.zugzwang.org/modules/events
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2023-2024 Gustaf Mossakowski
+ * @copyright Copyright © 2023-2025 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
 
 function mod_events_project($params) {
-	$published = empty($_SESSION['logged_in']) ? 'AND events.published = "yes"' : '';
+	$published = !wrap_access('events_preview') ? 'AND events.published = "yes"' : '';
 	$image_no = mod_events_project_image_no($params);
 
 	$sql = 'SELECT event_id

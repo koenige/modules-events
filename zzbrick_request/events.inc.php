@@ -80,7 +80,7 @@ function mod_events_events($params, $settings) {
 		$condition[] = implode(' OR ', $categories);
 	}
 	
-	if (empty($_SESSION['logged_in'])) {
+	if (!wrap_access('events_preview')) {
 		$condition[] = 'events.published = "yes"';
 	}
 	

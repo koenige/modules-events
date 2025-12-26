@@ -81,16 +81,12 @@ function mod_events_get_event_news($event) {
  * @return array
  */
 function mod_events_get_event_timetable($event_id, $lang = false) {
-	if (wrap_setting('local_access') OR !empty($_SESSION['logged_in']))
-		$published = '(published = "yes" OR published = "no")';
-	else
-		$published = 'published = "yes"';
-
 	$sql = 'SELECT event_id FROM events
-		WHERE %s
-		AND main_event_id = %d
+		WHERE main_event_id = %d
+		%s
 		ORDER BY sequence, date_begin, time_begin, time_end, identifier';
-	$sql = sprintf($sql, $published, $event_id);
+	$where = !wrap_access('events_preview') ? 'AND published = "yes"' : '';
+	$sql = sprintf($sql, $event_id, $where);
 	$events_db = wrap_db_fetch($sql, 'event_id');
 	if (!$events_db) return [];
 	$events_db = wrap_data('events', $events_db);
