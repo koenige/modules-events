@@ -74,7 +74,7 @@ function mf_events_data($ids, $langs, $settings = []) {
 	}
 
 	// media
-	$events = wrap_data_media($events, $ids, $langs, 'events', 'event');
+	$events = wrap_data_media($events, $ids, $langs, 'events');
 	$deleted = [];
 	// media required?
 	if (!empty($settings['category']) AND $settings['category'] === 'project' AND wrap_setting('events_project_needs_images')) {
@@ -307,7 +307,7 @@ function mf_events_contacts($events, $ids, $langs) {
 		$contacts[$lang] = wrap_translate($contacts[$lang], 'categories', 'category_id', true, $lang);
 	}
 	if ($contact_ids)
-		$contacts = wrap_data_media($contacts, $contact_ids, $langs, 'contacts', 'contact', true);
+		$contacts = wrap_data_media($contacts, $contact_ids, $langs, 'contacts');
 	foreach ($contacts as $lang => $contacts_per_lang) {
 		foreach ($contacts_per_lang as $event_contact_id => $contact) {
 			$path = $contact['path'];
