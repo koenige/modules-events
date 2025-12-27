@@ -63,7 +63,7 @@ function mf_events_in_news($type = 'all') {
 			$events[$event_id]['link'] = $event['guid'];
 	}
 	
-	$media = wrap_get_media(array_keys($events), 'events', 'event');
+	$media = wrap_media(array_keys($events), 'events');
 	foreach ($media as $event_id => $files) {
 		if (!empty($files['images'])) {
 			$events[$event_id]['images'] = $files['images'];

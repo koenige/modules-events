@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/events
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2020, 2022, 2024 Gustaf Mossakowski
+ * @copyright Copyright © 2020, 2022, 2024-2025 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -44,7 +44,7 @@ function mf_events_search($q) {
 
 function mf_events_media($events) {
 	if (!$events) return [];
-	$media = wrap_get_media(array_keys($events), 'events', 'event');
+	$media = wrap_media(array_keys($events), 'events');
 	foreach ($media as $id => $files) {
 		$events[$id] += $files;
 	}
