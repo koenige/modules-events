@@ -44,6 +44,8 @@ function page_eventmenu() {
 	foreach ($data as $eventmenu_id => &$line) {
 		if (intval($line['website_id']) === wrap_setting('website_id'))
 			unset($line['url']);
+		if (!str_starts_with($line['path'], '/'))
+			unset($line['url']);
 		// remove anchor for comparison
 		if ($pos = strpos($line['path'], '#'))
 			$line['path'] = substr($line['path'], 0, $pos);
