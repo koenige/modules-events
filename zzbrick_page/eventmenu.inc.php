@@ -25,10 +25,14 @@ function page_eventmenu() {
 			, menu, path, eventmenus.parameters
 			, IFNULL(event_year, YEAR(date_begin)) AS year
 			, eventmenus.event_id
-			, website_id
+			, events.website_id
+			, _settings.setting_value AS url
 		FROM eventmenus
 		LEFT JOIN events
 			ON eventmenus.event_id = IFNULL(events.main_event_id, events.event_id)
+		LEFT JOIN _settings
+			ON _settings.website_id = events.website_id
+			AND _settings.setting_key = "canonical_hostname"
 		WHERE events.identifier = "%d/%s"
 		ORDER BY eventmenus.sequence';
 	$sql = sprintf($sql, $params[0], wrap_db_escape($params[1]));
@@ -38,6 +42,8 @@ function page_eventmenu() {
 	$placeholder_keys = ['menu', 'path'];
 
 	foreach ($data as $eventmenu_id => &$line) {
+		if (intval($line['website_id']) === wrap_setting('website_id'))
+			unset($line['url']);
 		// remove anchor for comparison
 		if ($pos = strpos($line['path'], '#'))
 			$line['path'] = substr($line['path'], 0, $pos);
