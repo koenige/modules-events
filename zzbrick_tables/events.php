@@ -373,7 +373,7 @@ $zz['fields'][2]['hide_in_list'] = true;
 $zz['fields'][21]['field_name'] = 'created';
 $zz['fields'][21]['type'] = 'hidden';
 $zz['fields'][21]['type_detail'] = 'datetime';
-$zz['fields'][21]['default'] = date('Y-m-d H:i:s');
+$zz['fields'][21]['default'] = 'current_date';
 $zz['fields'][21]['hide_in_list'] = true;
 $zz['fields'][21]['dont_copy'] = true;
 

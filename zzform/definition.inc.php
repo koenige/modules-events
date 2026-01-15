@@ -109,7 +109,7 @@ function mf_events_events_subtable(&$zz, $path, $no) {
 		$zz['fields'][$no]['fields'][21]['field_name'] = 'created';
 		$zz['fields'][$no]['fields'][21]['type'] = 'hidden';
 		$zz['fields'][$no]['fields'][21]['type_detail'] = 'date';
-		$zz['fields'][$no]['fields'][21]['default'] = date('Y-m-d H:i:s');
+		$zz['fields'][$no]['fields'][21]['default'] = 'current_date';
 		$zz['fields'][$no]['fields'][21]['hide_in_form'] = true;
 		$zz['fields'][$no]['fields'][21]['dont_copy'] = true;
 		$zz['fields'][$no]['fields'][21]['def_val_ignore'] = true;
