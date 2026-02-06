@@ -5,7 +5,7 @@
 # https://www.zugzwang.org/modules/events
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2014-2025 Gustaf Mossakowski
+# @copyright Copyright © 2014-2026 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 # 
 %%% if not_found %%%
@@ -25,8 +25,8 @@
 %%% item category %%%
 %%% loop end %%%,
 %%% endif %%%
-<time datetime='%%% item date_begin_iso %%%%%% item time_begin_iso "T%s" %%%' itemprop="startDate">%%% item duration period %%%
-%%% if time %%%, %%% item time period %%%%%% endif %%%</time>%%% if time_end %%%<time datetime='%%% item date_end_iso %%%%%% unless date_end %%%%%% item date_begin %%%%%% endif %%%%%% item time_end_iso "T%s" %%%' itemprop="endDate"></time>%%% endif %%%
+<time datetime='%%% item date_begin_iso %%%%%% item time_begin_iso "T%s" %%%' itemprop="startDate">%%% item duration format=period %%%
+%%% if time %%%, %%% item time format=period %%%%%% endif %%%</time>%%% if time_end %%%<time datetime='%%% item date_end_iso %%%%%% unless date_end %%%%%% item date_begin %%%%%% endif %%%%%% item time_end_iso "T%s" %%%' itemprop="endDate"></time>%%% endif %%%
 %%% if time %%% %%% item timezone "UTC<span class="timezone">%s</span>" %%%%%% endif %%%
 %%% if location %%%<br>
 %%% loop location %%%
@@ -49,13 +49,13 @@
 %%% if images %%%
 <div class="image right"><figure>
 %%% loop images 1 %%%
-<a href="%%% setting files_path %%%/%%% item filename %%%%%% if filecategory_links %%%.%%% setting events_big_image_size %%%.%%% item thumb_extension %%%%%% else %%%.%%% item extension %%%%%% endif %%%?v=%%% item version %%%" class="js-img" title="%%% item title strip_tags %%% %%% item source strip_tags %%%" data-title="%%% item title wrap_html_escape %%% %%% item source wrap_html_escape "<br>%s" %%%"><img src="%%% setting files_path %%%/%%% item filename %%%.%%% setting events_image_size %%%.%%% item thumb_extension %%%?v=%%% item version %%%" srcset="%%% setting files_path %%%/%%% item filename %%%.%%% setting events_image_size %%%.%%% item thumb_extension %%%?v=%%% item version %%% 1x, %%% setting files_path %%%/%%% item filename %%%.%%% setting events_image_size_x2 %%%.%%% item thumb_extension %%%?v=%%% item version %%% 2x" alt="%%% item title wrap_html_escape %%%"></a>
+<a href="%%% setting files_path %%%/%%% item filename %%%%%% if filecategory_links %%%.%%% setting events_big_image_size %%%.%%% item thumb_extension %%%%%% else %%%.%%% item extension %%%%%% endif %%%?v=%%% item version %%%" class="js-img" title="%%% item title format=strip_tags %%% %%% item source format=strip_tags %%%" data-title="%%% item title format=html_escape %%% %%% item source format=html_escape "<br>%s" %%%"><img src="%%% setting files_path %%%/%%% item filename %%%.%%% setting events_image_size %%%.%%% item thumb_extension %%%?v=%%% item version %%%" srcset="%%% setting files_path %%%/%%% item filename %%%.%%% setting events_image_size %%%.%%% item thumb_extension %%%?v=%%% item version %%% 1x, %%% setting files_path %%%/%%% item filename %%%.%%% setting events_image_size_x2 %%%.%%% item thumb_extension %%%?v=%%% item version %%% 2x" alt="%%% item title format=html_escape %%%"></a>
 %%% if source %%% <figcaption><small>%%% item source %%%</small></figcaption>%%% endif %%%
 %%% loop end %%%
 </figure>
 </div>
 %%% endif %%%
-%%% item abstract markdown "<div class='abstract-event'>%s</div>" %%%
+%%% item abstract format=markdown "<div class='abstract-event'>%s</div>" %%%
 
 %%% loop videos 1 %%%
 <video class="topvideo" width="%%% item width_px %%%" height="%%% item height_px %%%" controls preload="metadata"%%% if thumb_extension %%% poster="%%% setting files_path %%%/%%% item filename %%%.%%% setting events_video_image_size %%%.%%% item thumb_extension %%%?v=%%% item version %%%"%%% endif %%%>
@@ -63,7 +63,7 @@
 </video>
 %%% loop end %%%
 
-%%% item description markdown %%%
+%%% item description format=markdown %%%
 %%% item timetable %%%
 
 %%% if organiser %%%
@@ -84,14 +84,14 @@
 
 %%% if registration %%%
 <h2>%%% text Registration %%%</h2>
-%%% item registration markdown %%%
+%%% item registration format=markdown %%%
 %%% endif %%%
 
 %%% if events %%%
 <h2>%%% text Supporting Event %%%</h2>
 <ul class="main_events">
 %%% loop events %%%
-<li><span class="date">%%% item duration period %%%</span>%%% item time period %%%: 
+<li><span class="date">%%% item duration format=period %%%</span>%%% item time format=period %%%: 
  %%% loop categories %%%%%% item category %%%%%%loopposition first|middle "," %%% %%% loop end %%%<a href="%%% path events_event identifier %%%">%%% item event %%%</a></li>
 %%% loop end %%%
 </ul>
@@ -124,7 +124,7 @@
 <h2>%%% text News %%%</h2>
 <ul>
 %%% loop articles %%%
-<li>%%% item date wrap_date %%%: <a href="%%% path news_article identifier %%%">%%% item title %%%</a></li>
+<li>%%% item date format=date %%%: <a href="%%% path news_article identifier %%%">%%% item title %%%</a></li>
 %%% loop end %%%
 </ul>
 %%% endif %%%
@@ -141,7 +141,7 @@
 %%% if images %%%
 <p class="newsgallery">
 %%% loop images 2- %%%
-<a href="%%% setting files_path %%%/%%% item filename %%%.%%% setting events_big_image_size %%%.%%% item thumb_extension %%%?v=%%% item version %%%" title="%%% item title wrap_html_escape %%%%%% item source wrap_html_escape " (%s)" %%%" data-title="%%% item title %%%%%% item source wrap_html_escape " (%s)" %%%" class="js-img%%% loopposition uneven " first" %%%"><img src="%%% setting files_path %%%/%%% item filename %%%.%%% setting events_image_size %%%.%%% item thumb_extension %%%?v=%%% item version %%%" alt="%%% text Image %%% %%% item title %%%"></a>
+<a href="%%% setting files_path %%%/%%% item filename %%%.%%% setting events_big_image_size %%%.%%% item thumb_extension %%%?v=%%% item version %%%" title="%%% item title format=html_escape %%%%%% item source format=html_escape " (%s)" %%%" data-title="%%% item title %%%%%% item source format=html_escape " (%s)" %%%" class="js-img%%% loopposition uneven " first" %%%"><img src="%%% setting files_path %%%/%%% item filename %%%.%%% setting events_image_size %%%.%%% item thumb_extension %%%?v=%%% item version %%%" alt="%%% text Image %%% %%% item title %%%"></a>
 %%% loop end %%%
 </p>
 %%% endif %%%

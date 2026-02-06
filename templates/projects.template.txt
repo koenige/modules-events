@@ -5,7 +5,7 @@
 # https://www.zugzwang.org/modules/events
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2023-2025 Gustaf Mossakowski
+# @copyright Copyright © 2023-2026 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 # 
 %%% if no_projects %%%
@@ -15,14 +15,14 @@
 %%% loop start %%%
 <tr itemscope itemtype="http://schema.org/Event" class="%%% loopposition uneven un %%%even">
 <th>
-<time datetime='%%% item date_begin_iso %%%%%% item time_begin_iso "T%s" %%%' itemprop="startDate">%%% item weekday_begin %%%%%% item weekday_end "–%s" %%% %%% item duration wrap_date %%%
+<time datetime='%%% item date_begin_iso %%%%%% item time_begin_iso "T%s" %%%' itemprop="startDate">%%% item weekday_begin %%%%%% item weekday_end "–%s" %%% %%% item duration format=date %%%
 </time>
 </th>
 <td>
 %%% if images %%%
 <p class="newsimg">
 %%% loop images 1 %%%<a href="%%% path events_project identifier %%%">
-<img src="%%% setting files_path %%%/%%% item filename %%%.%%% setting events_list_image_size %%%.%%% item thumb_extension %%%?v=%%% item version %%%" alt="%%% item title wrap_html_escape %%%">
+<img src="%%% setting files_path %%%/%%% item filename %%%.%%% setting events_list_image_size %%%.%%% item thumb_extension %%%?v=%%% item version %%%" alt="%%% item title format=html_escape %%%">
 </a>
 %%% loop end %%%
 </p>
@@ -32,7 +32,7 @@
 <strong itemprop="name"><a href="%%% path events_project identifier %%%">%%% item event %%%</a></strong> 
 %%% if setting events_projects_abstract_first %%%
 <div itemprop="description" class="project_description">
-%%% item abstract markdown %%%
+%%% item abstract format=markdown %%%
 </div>
 %%% endif %%%
 %%% if categories %%%
@@ -48,7 +48,7 @@
 
 %%% unless setting events_projects_abstract_first %%%
 <div itemprop="description" class="project_description">
-%%% item abstract markdown %%%
+%%% item abstract format=markdown %%%
 </div>
 %%% endif %%%
 </div>
