@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/events
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2023-2024 Gustaf Mossakowski
+ * @copyright Copyright © 2023-2024, 2026 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -78,7 +78,7 @@ function mod_events_projects($params, $settings) {
 	} else {
 		foreach ($data as $event_id => $event) {
 			if (empty($event['images'])) continue;
-			if (in_array('magnificpopup', wrap_setting('modules')))
+			if (wrap_package('magnificpopup'))
 				$page['extra']['magnific_popup'] = true;
 			break;
 		}

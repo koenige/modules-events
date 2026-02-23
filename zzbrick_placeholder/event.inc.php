@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/events
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2023-2025 Gustaf Mossakowski
+ * @copyright Copyright © 2023-2026 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -31,7 +31,7 @@ function mod_events_placeholder_event($brick) {
 			) AS running
 	    FROM events
 	    WHERE identifier = "%s"';
-	if (in_array('activities', wrap_setting('modules'))) {
+	if (wrap_package('activities')) {
 		$sql = wrap_edit_sql($sql, 'SELECT',
 			'forms.form_id, form_categories.parameters AS form_parameters'
 		);

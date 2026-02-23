@@ -30,7 +30,7 @@ function mod_events_get_event($event_id, $settings = []) {
 		$event['events'] = wrap_data('events', [$event['main_event_id'] => ['event_id' => $event['main_event_id']]], $settings);
 
 	// news?
-	if (in_array('news', wrap_setting('modules')))
+	if (wrap_package('news'))
 		$event = mod_events_get_event_news($event);
 
 	return $event;

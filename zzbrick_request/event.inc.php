@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/events
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2014-2025 Gustaf Mossakowski
+ * @copyright Copyright © 2014-2026 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -101,7 +101,7 @@ function mod_events_event($params) {
 	if (!empty($event['cancelled']))
 		$page['status'] = 410;
 
-	if (in_array('activities', wrap_setting('modules'))) {
+	if (wrap_package('activities')) {
 		// @todo check against dates, do not show form after begin etc.
 		wrap_package_activate('activities');
 		$event['form'] = mf_activities_event_form($event);
