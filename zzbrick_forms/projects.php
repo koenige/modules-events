@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/events
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2023-2025 Gustaf Mossakowski
+ * @copyright Copyright © 2023-2026 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -304,6 +304,10 @@ $zz['conditions'][2]['where'] = 'published = "no"';
 
 $zz['hooks']['before_insert'][] = 'mf_events_date_check';
 $zz['hooks']['before_update'][] = 'mf_events_date_check';
+
+$zz['hooks']['after_insert'][] = 'mf_events_url_placeholder_years';
+$zz['hooks']['after_update'][] = 'mf_events_url_placeholder_years';
+$zz['hooks']['after_delete'][] = 'mf_events_url_placeholder_years';
 
 $zz['filter'][1]['sql'] = 'SELECT DISTINCT YEAR(date_begin) AS year_idf
 		, YEAR(date_begin) AS year
