@@ -53,7 +53,7 @@
 %%% elseif place %%%
 <span itemprop='location'> %%% if reise %%%nach%%% else %%%in%%% endif %%% %%% item place %%%</span>
 %%% endif %%%
-%%% unless cancelled %%%%%% if lib icalcreator %%% <span class="ics">(<a href="%%% path events_ics identifier %%%.ics" title="%%% text Enter event in your own calendar (ICS) %%%">ICS</a>)</span>%%% endif %%%%%% endif %%%
+%%% unless cancelled %%%%%% if lib icalcreator %%% <span class="ics">(<a href="%%% path events_ics identifier %%%" title="%%% text Enter event in your own calendar (ICS) %%%">ICS</a>)</span>%%% endif %%%%%% endif %%%
 
 <div itemprop="description">
 %%% item abstract format=markdown %%%
@@ -63,6 +63,6 @@
 %%% loop end %%%
 </table>
 %%% if lib icalcreator %%%
-<p class="noprint"><a href="webcal://%%% setting hostname %%%%%% path events_ics setting site %%%.ics">%%% text "Subscribe to calendar %s" cal_title %%%</a></p>
+<p class="noprint"><a href="webcal://%%% setting hostname %%%%%% path events_ics setting site %%%">%%% text "Subscribe to calendar %s" cal_title %%%</a></p>
 %%% endif %%%
 %%% endif %%%

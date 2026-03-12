@@ -152,7 +152,7 @@
 <hr>
 %%% unless cancelled %%%
 %%% if lib icalcreator %%%
-<p><a href="%%% path events_ics identifier %%%.ics" title="%%% text Enter event in your own calendar (ICS) %%%">%%% text "Download calendar entry “%s”" event %%%</a></p>
+<p><a href="%%% path events_ics identifier %%%" title="%%% text Enter event in your own calendar (ICS) %%%">%%% text "Download calendar entry “%s”" event %%%</a></p>
 %%% endif %%%
 %%% endif %%%
 <p><a href="%%% path events_events_yearly year %%%">%%% text "To the entire calendar %s" year %%%</a></p>
