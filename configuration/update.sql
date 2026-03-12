@@ -6,7 +6,7 @@
  * https://www.zugzwang.org/modules/events
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2020-2024 Gustaf Mossakowski
+ * @copyright Copyright © 2020-2024, 2026 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -77,3 +77,12 @@
 /* 2024-03-16-2 */	ALTER TABLE `eventmenus` CHANGE `last_update` `last_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP;
 /* 2024-09-10-1 */	UPDATE webpages SET identifier = CONCAT(identifier, '.ics'), ending = 'none' WHERE content LIKE '% request ics * %' AND SUBSTRING(identifier, -1) = '*';
 /* 2024-11-06-1 */	ALTER TABLE `events` ADD `event_abbr` varchar(8) COLLATE 'utf8mb4_unicode_ci' NULL AFTER `event`;
+/* 2026-03-12-1 */	DELETE FROM _settings WHERE setting_key = 'events_event_path';
+/* 2026-03-12-2 */	DELETE FROM _settings WHERE setting_key = 'events_events_path';
+/* 2026-03-12-3 */	DELETE FROM _settings WHERE setting_key = 'events_events_yearly_path';
+/* 2026-03-12-4 */	DELETE FROM _settings WHERE setting_key = 'events_ics_path';
+/* 2026-03-12-5 */	DELETE FROM _settings WHERE setting_key = 'events_internal_event_path';
+/* 2026-03-12-6 */	DELETE FROM _settings WHERE setting_key = 'events_internal_path';
+/* 2026-03-12-7 */	DELETE FROM _settings WHERE setting_key = 'events_project_path';
+/* 2026-03-12-8 */	DELETE FROM _settings WHERE setting_key = 'events_projects_path';
+/* 2026-03-12-9 */	DELETE FROM _settings WHERE setting_key = 'events_projects_internal_path';
