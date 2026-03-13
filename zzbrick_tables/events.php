@@ -219,7 +219,7 @@ $zz['fields'][26]['show_hierarchy'] = 'main_category_id';
 $zz['fields'][26]['show_hierarchy_subtree'] = wrap_category_id('event');
 $zz['fields'][26]['hide_in_list'] = true;
 $zz['fields'][26]['hide_in_form'] = true;
-$zz['fields'][26]['add_details'] = sprintf('categories?filter[maincategory]=%d', wrap_category_id('event'));
+$zz['fields'][26]['add_details'] = wrap_path('default_categorytree', 'event');
 $zz['fields'][26]['exclude_from_search'] = true;
 // activate only for timetable
 $zz['fields'][26]['type'] = 'hidden';

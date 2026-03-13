@@ -132,7 +132,7 @@ $zz['fields'][26]['show_hierarchy'] = 'main_category_id';
 $zz['fields'][26]['show_hierarchy_subtree'] = wrap_category_id('event');
 $zz['fields'][26]['hide_in_list'] = true;
 $zz['fields'][26]['hide_in_form'] = true;
-$zz['fields'][26]['add_details'] = sprintf('categories?filter[maincategory]=%d', wrap_category_id('event'));
+$zz['fields'][26]['add_details'] = wrap_path('default_categorytree', 'event');
 $zz['fields'][26]['type'] = 'hidden';
 $zz['fields'][26]['type_detail'] = 'select';
 $zz['fields'][26]['value'] = wrap_category_id('event/project');
