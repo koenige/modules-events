@@ -1,9 +1,9 @@
 # events module
-# Deprecated code patterns
+# Deprecated code patterns and breaking changes
 #
-# This file lists deprecated code patterns that should be replaced
-# with newer alternatives. The deprecation checker will scan the
-# codebase and notify developers about occurrences that need updating.
+# This file lists deprecated code patterns (replace with newer alternatives)
+# and breaking changes (migration notes). The checker scans the codebase
+# for deprecations; breaking changes are shown as informational only.
 #
 # Part of »Zugzwang Project«
 # https://www.zugzwang.org/modules/events
@@ -19,3 +19,12 @@
 2026-03-14-1	code	events_path	use route `events_events` instead (note: might have trailing slash)
 2026-03-14-2	code_regex	%%% path events .	use route `events_events` instead (note: might have trailing slash)
 2026-03-14-3	code	wrap_path('events')	use route `events_events` instead (note: might have trailing slash)
+2026-03-14-4	code	events_event_path	removed, paths from routes; use wrap_path()
+2026-03-14-5	code	events_events_path	removed, paths from routes; use wrap_path()
+2026-03-14-6	code	events_events_yearly_path	removed, paths from routes; use wrap_path()
+2026-03-14-7	code	events_ics_path	removed, paths from routes; use wrap_path()
+2026-03-14-8	code	events_internal_event_path	removed, paths from routes; use wrap_path()
+2026-03-14-9	code	events_internal_path	removed, paths from routes; use wrap_path()
+2026-03-14-10	code	events_project_path	removed, paths from routes; use wrap_path()
+2026-03-14-11	code	events_projects_path	removed, paths from routes; use wrap_path()
+2026-03-14-12	code	events_projects_internal_path	removed, paths from routes; use wrap_path()
