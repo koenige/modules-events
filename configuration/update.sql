@@ -86,3 +86,4 @@
 /* 2026-03-12-7 */	DELETE FROM _settings WHERE setting_key = 'events_project_path';
 /* 2026-03-12-8 */	DELETE FROM _settings WHERE setting_key = 'events_projects_path';
 /* 2026-03-12-9 */	DELETE FROM _settings WHERE setting_key = 'events_projects_internal_path';
+/* 2026-03-16-1 */	DELETE FROM _settings WHERE setting_key = 'events_path';
