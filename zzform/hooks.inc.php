@@ -52,7 +52,6 @@ function mf_events_url_placeholder_years($ops) {
 
 	$sql = 'SELECT DISTINCT YEAR(IFNULL(date_begin, date_end)) AS year
 		FROM /*_PREFIX_*/events
-		WHERE IFNULL(date_begin, date_end) IS NOT NULL
 		ORDER BY year';
 	$years = wrap_db_fetch($sql, '_dummy_', 'single value');
 	if (!$years) return;
