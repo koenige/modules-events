@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/events
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2022-2025 Gustaf Mossakowski
+ * @copyright Copyright © 2022-2026 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -21,21 +21,17 @@
  */
 function mf_events_in_news($type = 'all') {
 	$sql = 'SELECT event_id
-			, DATE_FORMAT(created, "%%Y-%%m-%%d") AS date
-			, DATE_FORMAT(created, "%%H:%%i") AS time
+			, DATE_FORMAT(created, "%Y-%m-%d") AS date
+			, DATE_FORMAT(created, "%H:%i") AS time
 			, identifier, abstract, event AS title
 			, abstract AS text
 			, CONCAT(date_begin, IFNULL(CONCAT("/", date_end), "")) AS duration
-			, DATE_FORMAT(events.last_update, "%%a, %%d %%b %%Y %%H:%%i:%%s") AS pubDate
-			, CONCAT("%s") AS guid
+			, DATE_FORMAT(events.last_update, "%a, %d %b %Y %H:%i:%s") AS pubDate
 			, 1 AS published
 		FROM events
 		WHERE IF(ISNULL(date_end), date_begin >= CURDATE(), date_end >= CURDATE())
 		AND published = "yes"
 		AND events.event_category_id = /*_ID categories event/event _*/';
-	$sql = sprintf($sql
-		, wrap_path('events_event', '", identifier, "')
-	);
 
 	switch ($type) {
 	case 'all':
@@ -52,6 +48,8 @@ function mf_events_in_news($type = 'all') {
 	}
 	$events = wrap_db_fetch($sql, 'event_id');
 	if (!$events) return [];
+	foreach ($events as $event_id => $event)
+		$events[$event_id]['guid'] = wrap_path('events_event', $event['identifier']);
 
 	$events = wrap_translate($events, 'events');
 	wrap_include('data/events', 'events');
