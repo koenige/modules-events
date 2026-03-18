@@ -16,9 +16,9 @@
 # exclude_pattern: files matching this pattern will be excluded from results (multiple patterns separated by semicolon)
 #
 2025-07-24-1	code	ISNULL(main_event_id)	if used to check if this is an event (not a timetable entry etc.), check for `event_category_id = /*_ID categories event/event _*/` instead
-2026-03-14-1	code	events_path	use route `events_events` instead (note: might have trailing slash, check if `events_event` route exists, add `events_events_years` route if necessary)
-2026-03-14-2	code_regex	%%% path events .	use route `events_events` instead (note: might have trailing slash, check if `events_event` route exists, add `events_events_years` route if necessary)
-2026-03-14-3	code	wrap_path('events')	use route `events_events` instead (note: might have trailing slash, check if `events_event` route exists, add `events_events_years` route if necessary)
+2026-03-14-1	code	events_path	use route `events_events` instead (note: might have trailing slash, check if `events_event` route exists, add `events_events_yearly` route if necessary)
+2026-03-14-2	code_regex	%%% path events .	use route `events_events` instead (note: might have trailing slash, check if `events_event` route exists, add `events_events_yearly` route if necessary)
+2026-03-14-3	code	wrap_path('events')	use route `events_events` instead (note: might have trailing slash, check if `events_event` route exists, add `events_events_yearly` route if necessary)
 2026-03-14-4	code	events_event_path	removed, paths from routes; use wrap_path()
 2026-03-14-5	code	events_events_path	removed, paths from routes; use wrap_path()
 2026-03-14-6	code	events_events_yearly_path	removed, paths from routes; use wrap_path()
