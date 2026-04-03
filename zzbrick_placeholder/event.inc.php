@@ -54,7 +54,7 @@ function mod_events_placeholder_event($brick) {
 	$zz_page['access'][] = $event['event_rights'];
 	if ($event['main_event_rights'])
 		$zz_page['access'][] = $event['main_event_rights'];
-	wrap_access_page($zz_page['db']['parameters'] ?? '', $zz_page['access']);
+	wrap_access_page(wrap_page_field('parameters'), $zz_page['access']);
 
 	// breadcrumbs
 	$zz_page['breadcrumb_placeholder'][] = [
