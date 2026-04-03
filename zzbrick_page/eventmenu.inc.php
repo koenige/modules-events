@@ -8,15 +8,14 @@
  * https://www.zugzwang.org/modules/events
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2022-2023, 2025 Gustaf Mossakowski
+ * @copyright Copyright © 2022-2023, 2025-2026 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
 
 function page_eventmenu() {
-	global $zz_page;
-	if (empty($zz_page['db'])) return '';
-	$params = explode('/', $zz_page['db']['parameter']);
+	if (!wrap_brick('parameter')) return '';
+	$params = explode('/', wrap_brick('parameter'));
 	if (count($params) < 2) return '';
 
 	// is it an event with eventmenus?
