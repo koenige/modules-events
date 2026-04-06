@@ -14,8 +14,6 @@
 
 
 function mod_events_placeholder_event($brick) {
-	global $zz_page;
-
 	$sql = 'SELECT event_id, event, identifier
 			, IFNULL(event_year, YEAR(IFNULL(date_begin, date_end))) AS year
 			, SUBSTRING_INDEX(identifier, "/", -1) AS event_idf
@@ -51,20 +49,20 @@ function mod_events_placeholder_event($brick) {
 	if ($event['parameters'])
 		wrap_match_module_parameters('events', $event['parameters']);
 
-	$zz_page['access'][] = $event['event_rights'];
+	wrap_page_meta('access', $event['event_rights']);
 	if ($event['main_event_rights'])
-		$zz_page['access'][] = $event['main_event_rights'];
-	wrap_access_page(wrap_page_field('parameters'), $zz_page['access']);
+		wrap_page_meta('access', $event['main_event_rights']);
+	wrap_access_page();
 
 	// breadcrumbs
-	$zz_page['breadcrumb_placeholder'][] = [
+	wrap_page_meta('breadcrumb_placeholder', [
 		'title' => $event['year'],
 		'url_path' => $event['year']
-	];
-	$zz_page['breadcrumb_placeholder'][] = [
+	]);
+	wrap_page_meta('breadcrumb_placeholder', [
 		'title' => $event['event'],
 		'url_path' => $event['identifier']
-	];
+	]);
 	$brick['data'] = $event;
 	return $brick;
 }
