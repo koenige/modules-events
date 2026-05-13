@@ -1,0 +1,45 @@
+# events module
+# copy timetable items of one event to another
+# 
+# Part of »Zugzwang Project«
+# https://www.zugzwang.org/modules/events
+#
+# @author Gustaf Mossakowski <gustaf@koenige.org>
+# @copyright Copyright © 2015-2016, 2020, 2024-2026 Gustaf Mossakowski
+# @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
+#
+<h1>%%% text Copy timetable %%%
+<br><a href="../">%%% item event %%% %%% item duration format=date %%%</a>%%% if place %%% <em>%%% text "in %s" place %%%</em>%%% endif %%%</h1>
+
+<p>%%% text Here you can copy the timetable from another event. The dates of the individual events are shifted relative to the main event if it differs. %%%</p>
+
+%%% if source %%%
+<p><strong>%%% text The following events can be copied: %%%</strong></p>
+<ul>
+%%% loop destination %%%
+<li><strong>%%% item date_begin format=date %%%</strong>
+ %%% item time_begin %%%%%% item time_end "–%s" %%%
+ %%% item event %%%</li>
+%%% loop end %%%
+</ul>
+<form method="POST" action="">
+<input type="hidden" name="write" value="true">
+<input type="submit" value="%%% text Apply events %%%">
+</form>
+
+%%% else %%%
+%%% if days_not_equal %%%
+<p>%%% text The selected event has a different duration. The timetable cannot be copied. %%%</p>
+%%% elseif source_identifier %%%
+<p>%%% text Sorry, there is no event with this identifier in the database. %%%</p>
+%%% endif %%%
+
+<form method="GET" action="">
+
+<p>%%% text Please enter the identifier (year/event, for example 2010/dem-u18) of an existing event: %%%</p>
+<input type="text" name="event" value="%%% item source_identifier format=html_escape %%%">
+<input type="submit">
+
+</form>
+
+%%% endif %%%

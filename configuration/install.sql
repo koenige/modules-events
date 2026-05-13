@@ -6,7 +6,7 @@
  * https://www.zugzwang.org/modules/events
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2020-2024 Gustaf Mossakowski
+ * @copyright Copyright © 2020-2024, 2026 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -51,7 +51,7 @@ INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`
 INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Event', NULL, NULL, 'event', NULL, NULL, NOW());
 INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Event', NULL, (SELECT category_id FROM categories c WHERE path = 'event'), 'event/event', NULL, NULL, NOW());
 INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Deadline', NULL, (SELECT category_id FROM categories c WHERE path = 'event'), 'event/deadline', NULL, NULL, NOW());
-INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Program item', NULL, (SELECT category_id FROM categories c WHERE path = 'event'), 'event/program-item', '&alias=event/item', NULL, NOW());
+INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Program item', NULL, (SELECT category_id FROM categories c WHERE path = 'event'), 'event/program-item', '&alias=event/item&events_timetable_copy=1', NULL, NOW());
 INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Project', NULL, (SELECT category_id FROM categories c WHERE path = 'event'), 'event/project', '&alias=event/project', NULL, NOW());
 INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Events', NULL, NULL, 'events', NULL, NULL, NOW());
 INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Place', NULL, (SELECT category_id FROM categories c WHERE path = 'contact'), 'contact/place', NULL, NULL, NOW());

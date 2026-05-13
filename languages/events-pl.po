@@ -5,7 +5,7 @@
 # https://www.zugzwang.org/modules/events
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2020-2021, 2024 Gustaf Mossakowski
+# @copyright Copyright © 2020-2021, 2024-2026 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
 msgid ""
@@ -21,10 +21,32 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 3.6\n"
+"X-Generator: Poedit 3.9\n"
 
 #: layout/events.css
 msgid "PREVIEW"
+msgstr "PODGLĄD"
+
+#: templates/event-deadlines.template.txt
+msgid "Deadlines, like other dates, run from one date to another date."
+msgstr ""
+
+#: templates/event-deadlines.template.txt
+msgid "The start date can be left blank, then the deadline starts immediately."
+msgstr ""
+
+#: templates/event-deadlines.template.txt
+msgid ""
+"If a registration deadline starts on a specific date, no one can register "
+"before the deadline begins."
+msgstr ""
+
+#: templates/eventinternal.template.txt
+msgid "Event tools"
+msgstr ""
+
+#: templates/eventinternal.template.txt
+msgid "Event on the public website"
 msgstr ""
 
 #: templates/project.template.txt
@@ -37,6 +59,14 @@ msgstr ""
 
 #: templates/projects.template.txt
 msgid "We have no projects in this category."
+msgstr ""
+
+#: zzbrick_forms/deadlines.php
+msgid "Deadlines"
+msgstr ""
+
+#: zzbrick_forms/deadlines.php
+msgid "No categories defined for deadlines (with parameter `%s`)"
 msgstr ""
 
 #: zzbrick_forms/projects.php
@@ -53,6 +83,10 @@ msgstr ""
 
 #: zzbrick_forms/projects.php
 msgid "Main Project"
+msgstr ""
+
+#: zzbrick_forms/timetable.php
+msgid "Timetable"
 msgstr ""
 
 #: zzbrick_request/ics.inc.php zzbrick_tables/events.php
@@ -228,6 +262,14 @@ msgid ""
 "program item."
 msgstr ""
 
+#: zzbrick_tables/events.php
+msgid "Abbr."
+msgstr ""
+
+#: zzbrick_tables/events.php
+msgid "Abbreviation"
+msgstr ""
+
 #: zzbrick_tables/eventtexts.php
 msgid "Event Texts"
 msgstr ""
@@ -344,9 +386,78 @@ msgstr "następnie"
 msgid "No events were found matching your search."
 msgstr ""
 
+#: templates/timetable.template.txt
+msgid "Schedule (subject to change)"
+msgstr "Harmonogram (może ulec zmianie)"
+
+#: templates/timetable.template.txt
+msgid "Schedule"
+msgstr "Harmonogram"
+
+#: templates/timetable-programme.template.txt
+msgid "Events in the supporting program"
+msgstr "Wydarzenia w programie wspierającym"
+
+#: templates/timetable-programme.template.txt
+msgid "cancelled!"
+msgstr "anulowane!"
+
+#: templates/timetablecopy.template.txt
+msgid "Copy timetable"
+msgstr "Kopiowanie harmonogramu"
+
+#: templates/timetablecopy.template.txt
+msgid ""
+"Here you can copy the timetable from another event. The dates of the "
+"individual events are shifted relative to the main event if it differs."
+msgstr ""
+"Tutaj możesz skopiować harmonogram z innego wydarzenia. Daty pojedynczych "
+"terminów są przesuwane względem wydarzenia głównego, jeśli się różni."
+
+#: templates/timetablecopy.template.txt
+msgid "The following events can be copied:"
+msgstr "Można skopiować następujące wydarzenia:"
+
+#: templates/timetablecopy.template.txt
+msgid "Apply events"
+msgstr "Zastosuj wydarzenia"
+
+#: templates/timetablecopy.template.txt
+msgid ""
+"The selected event has a different duration. The timetable cannot be copied."
+msgstr "Wybrane wydarzenie ma inną długość. Harmonogramu nie można skopiować."
+
+#: templates/timetablecopy.template.txt
+msgid "Sorry, there is no event with this identifier in the database."
+msgstr "Przepraszamy, nie ma wydarzenia o tym identyfikatorze w bazie danych."
+
+#: templates/timetablecopy.template.txt
+msgid ""
+"Please enter the identifier (year/event, for example 2010/dem-u18) of an "
+"existing event:"
+msgstr ""
+"Podaj identyfikator (rok/wydarzenie, np. 2010/dem-u18) istniejącego "
+"wydarzenia:"
+
+#: templates/timetablecopy.template.txt
+msgid "in %s"
+msgstr "w %s"
+
 #: events/_functions.inc.php
 msgid "An event can only end after the start."
 msgstr "Wydarzenie może zakończyć się dopiero po rozpoczęciu."
+
+#: zzbrick_make/timetablecopy.inc.php
+msgid "Copy timetable: %s %s"
+msgstr "Kopiuj harmonogram: %s %s"
+
+#: zzbrick_make/timetablecopy.inc.php
+msgid "Copy"
+msgstr "Kopiuj"
+
+#: zzbrick_request/event.inc.php
+msgid "This event is no longer published. It may not take place."
+msgstr ""
 
 #: zzbrick_request/event.inc.php zzbrick_request/events.inc.php
 msgid "Sun"
@@ -376,18 +487,6 @@ msgstr "Pt"
 msgid "Sat"
 msgstr "Sob"
 
-#: templates/timetable.template.txt
-msgid "Schedule (subject to change)"
-msgstr "Harmonogram (może ulec zmianie)"
-
-#: templates/timetable.template.txt
-msgid "Schedule"
-msgstr "Harmonogram"
-
-#: templates/timetable-programme.template.txt
-msgid "Events in the supporting program"
-msgstr "Wydarzenia w programie wspierającym"
-
-#: templates/timetable-programme.template.txt
-msgid "cancelled!"
-msgstr "anulowane!"
+#: zzbrick_request/eventinternal.inc.php
+msgid "Internal"
+msgstr ""
