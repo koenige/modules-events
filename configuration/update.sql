@@ -89,3 +89,4 @@
 /* 2026-03-16-1 */	DELETE FROM _settings WHERE setting_key = 'events_path';
 /* 2026-05-12-1 */	UPDATE categories SET parameters = REPLACE(parameters, '&name_tag_size=', '&events_name_tag_size=') WHERE parameters LIKE '%&name_tag_size=%';
 /* 2026-05-13-1 */	UPDATE categories SET parameters = CONCAT(IFNULL(parameters, ''), '&events_timetable_copy=1') WHERE category_id = /*_ID categories event/item _*/ AND (parameters IS NULL OR parameters NOT LIKE '&events_timetable_copy=%');
+/* 2026-05-17-1 */	ALTER TABLE `eventmenus` ADD `published` enum('yes','no') COLLATE 'latin1_general_ci' NOT NULL DEFAULT 'yes' AFTER `parameters`;

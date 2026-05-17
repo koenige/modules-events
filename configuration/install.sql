@@ -156,6 +156,7 @@ CREATE TABLE `eventmenus` (
   `path` varchar(63) COLLATE utf8mb4_unicode_ci NOT NULL,
   `sequence` tinyint unsigned NOT NULL,
   `parameters` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `published` enum('yes','no') COLLATE latin1_general_ci NOT NULL DEFAULT 'yes',
   `last_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`eventmenu_id`),
   UNIQUE KEY `event_id_path` (`event_id`,`path`)

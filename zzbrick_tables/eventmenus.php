@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/events
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2022-2023, 2025 Gustaf Mossakowski
+ * @copyright Copyright © 2022-2023, 2025-2026 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -45,6 +45,11 @@ $zz['fields'][4]['field_name'] = 'path';
 
 $zz['fields'][6]['field_name'] = 'parameters';
 $zz['fields'][6]['type'] = 'parameter';
+
+$zz['fields'][7]['field_name'] = 'published';
+$zz['fields'][7]['type'] = 'select';
+$zz['fields'][7]['enum'] = ['yes', 'no'];
+$zz['fields'][7]['default'] = 'yes';
 
 $zz['fields'][99]['field_name'] = 'last_update';
 $zz['fields'][99]['type'] = 'timestamp';

@@ -33,6 +33,7 @@ function page_eventmenu() {
 			ON _settings.website_id = events.website_id
 			AND _settings.setting_key = "canonical_hostname"
 		WHERE events.identifier = "%d/%s"
+			AND eventmenus.published = "yes"
 		ORDER BY eventmenus.sequence';
 	$sql = sprintf($sql, $params[0], wrap_db_escape($params[1]));
 	$data = wrap_db_fetch($sql, 'eventmenu_id');
