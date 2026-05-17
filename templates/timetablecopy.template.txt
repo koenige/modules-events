@@ -8,6 +8,7 @@
 # @copyright Copyright © 2015-2016, 2020, 2024-2026 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
+<div id="zzform">
 <h1>%%% text Copy timetable %%%
 <br><a href="../">%%% item event %%% %%% item duration format=date %%%</a>%%% if place %%% <em>%%% text "in %s" place %%%</em>%%% endif %%%</h1>
 
@@ -29,17 +30,33 @@
 
 %%% else %%%
 %%% if days_not_equal %%%
-<p>%%% text The selected event has a different duration. The timetable cannot be copied. %%%</p>
+<p class="error">%%% text The selected event has a different duration. The timetable cannot be copied. %%%</p>
 %%% elseif source_identifier %%%
-<p>%%% text Sorry, there is no event with this identifier in the database. %%%</p>
+<p class="error">%%% text Sorry, there is no event with this identifier in the database. %%%</p>
 %%% endif %%%
 
 <form method="GET" action="">
 
 <p>%%% text Please enter the identifier (year/event, for example 2010/dem-u18) of an existing event: %%%</p>
-<input type="text" name="event" value="%%% item source_identifier format=html_escape %%%">
+<input type="text" name="event" id="timetablecopy-event" autocomplete="off" value="%%% item source_identifier format=html_escape %%%">
 <input type="submit">
 
 </form>
 
+%%% script vxjs/src/core.js %%%
+%%% script vxjs/src/widget.js %%%
+%%% script vxjs/src/xhr.js %%%
+%%% script vxjs/src/widgets/autosuggest.js %%%
+<script>
+	vxJS.event.addDomReadyListener(function () {
+		var uri = window.location.href.split("#")[0];
+		var query = uri.indexOf("?");
+		if (query !== -1) uri = uri.substring(0, query);
+		vxJS.widget.autoSuggest(document.getElementById("timetablecopy-event"),
+			{ command: "events-timetablecopy", uri: uri },
+			{ maxEntries: 20, searchMode: true, minLength: 2 }
+		);
+	});
+</script>
 %%% endif %%%
+</div>

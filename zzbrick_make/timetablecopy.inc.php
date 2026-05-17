@@ -28,12 +28,13 @@ function mod_events_make_timetablecopy($params, $settings, $event) {
 	$page['breadcrumbs'][]['title'] = wrap_text('Copy');
 
 	if (!empty($_GET['event'])) {
-		$event['source_identifier'] = $_GET['event'];
+		$event['source_identifier'] = trim($_GET['event']);
 		$event = mod_events_make_timetablecopy_read($event);
 	}
 	if (!empty($_POST['write']))
 		$event = mod_events_make_timetablecopy_action($event);
 
+	$page['extra']['css'] = ['zzform/zzform'];
 	$page['text'] = wrap_template('timetablecopy', $event);
 	return $page;
 }
