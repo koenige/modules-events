@@ -413,3 +413,5 @@ $zz['subtitle']['event_id'] = [
 ];
 
 $zz['export'][] = 'CSV Excel';
+
+$zz['setting']['zzform_search'] = 'both';
