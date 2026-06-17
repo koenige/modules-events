@@ -19,7 +19,7 @@
 %%% endif %%%
 <table class="timetable">
 %%% loop start %%%
-<tr><th colspan="2"><h3>%%% item weekday_begin %%% %%% item date_begin format=date %%%</h3></th></tr>
+<tr><th colspan="2"><h3>%%% item date_begin format=weekday %%% %%% item date_begin format=date %%%</h3></th></tr>
 %%% loop hours %%%
 <tr><th class="time">
 %%% if following %%%

@@ -15,7 +15,7 @@
 %%% loop start %%%
 <tr itemscope itemtype="http://schema.org/Event" class="%%% loopposition uneven un %%%even">
 <th>
-<time datetime='%%% item date_begin_iso %%%%%% item time_begin_iso "T%s" %%%' itemprop="startDate">%%% item weekday_begin %%%%%% item weekday_end "–%s" %%% %%% item duration format=date %%%
+<time datetime='%%% item date_begin_iso %%%%%% item time_begin_iso "T%s" %%%' itemprop="startDate">%%% item date_begin format=weekday %%%%%% item date_end format=weekday "–%s" %%% %%% item duration format=date %%%
 </time>
 </th>
 <td>

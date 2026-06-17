@@ -65,7 +65,6 @@ function mf_events_data($ids, $langs, $settings = []) {
 	foreach ($langs as $lang) {
 		$events[$lang] = wrap_translate($eventdata, 'events', '', true, $lang);
 		$events[$lang] = wrap_translate($events[$lang], 'categories', 'event_id', true, $lang);
-		$events[$lang] = wrap_weekdays($events[$lang], ['date_begin', 'date_end'], $lang);
 		foreach (array_keys($events[$lang]) as $event_id) {
 			$events[$lang][$event_id][$lang] = true;
 		}

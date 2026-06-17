@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/events
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2020-2021, 2023-2025 Gustaf Mossakowski
+ * @copyright Copyright © 2020-2021, 2023-2026 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -91,13 +91,11 @@ function mod_events_get_event_timetable($event_id, $lang = false) {
 	if (!$events_db) return [];
 	$events_db = wrap_data('events', $events_db);
 
-	// get media, set weekday
 	$events = [];
 	foreach ($events_db as $event_id => $event) {
 		if (!is_numeric($event_id)) continue;
 		$day = $event['date_begin'];
 		$events[$day]['date_begin'] = $day;
-		$events[$day]['weekday_begin'] = $event['weekday_begin'];
 		$events[$day]['hours'][$event_id] = $event;
 	}
 
