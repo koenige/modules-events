@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/events
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2020-2025 Gustaf Mossakowski
+ * @copyright Copyright © 2020-2026 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -45,8 +45,6 @@ function mf_events_data($ids, $langs, $settings = []) {
 			, MONTH(IFNULL(date_begin, date_end)) AS month
 			, DATE_FORMAT(IFNULL(date_begin, date_end), "%%Y-%%m-00") AS month_iso
 			, WEEK(IFNULL(date_begin, date_end), 1) AS week
-			, DAYOFWEEK(date_begin) AS weekday_begin
-			, DAYOFWEEK(date_end) AS weekday_end
 			, IF(events.published = "yes", 1, NULL) AS published
 			, timezone
 			, main_event_id
@@ -67,7 +65,7 @@ function mf_events_data($ids, $langs, $settings = []) {
 	foreach ($langs as $lang) {
 		$events[$lang] = wrap_translate($eventdata, 'events', '', true, $lang);
 		$events[$lang] = wrap_translate($events[$lang], 'categories', 'event_id', true, $lang);
-		$events[$lang] = wrap_weekdays($events[$lang], ['weekday_begin', 'weekday_end'], $lang);
+		$events[$lang] = wrap_weekdays($events[$lang], ['date_begin', 'date_end'], $lang);
 		foreach (array_keys($events[$lang]) as $event_id) {
 			$events[$lang][$event_id][$lang] = true;
 		}
