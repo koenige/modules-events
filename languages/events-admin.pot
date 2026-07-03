@@ -1,196 +1,225 @@
 # events module
-# Translations template
+# Translations, admin
 #
 # Part of »Zugzwang Project«
 # https://www.zugzwang.org/modules/events
 #
-# @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2020-2026 Gustaf Mossakowski
-# @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
-#
 msgid ""
 msgstr ""
 "Project-Id-Version: Zugzwang Project -- events module\n"
-"POT-Creation-Date: \n"
+"POT-Creation-Date: 2026-05-13 09:33+0000\n"
 "PO-Revision-Date: \n"
+"Language-Team: \n"
 "Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: configuration/access.cfg
-msgid "public event or year/category overview of events"
+#: configuration/access.cfg:19
+msgid "Allow to edit an event"
 msgstr ""
 
-#: configuration/access.cfg
-msgid "allow to edit an event"
+#: configuration/access.cfg:23
+msgid "Set a year different from the date for an event"
 msgstr ""
 
-#: configuration/access.cfg
-msgid "set a year different from the date for an event"
+#: configuration/access.cfg:27
+msgid "Allow to add text blocks to an event"
 msgstr ""
 
-#: configuration/access.cfg
-msgid "calendar overview"
+#: configuration/access.cfg:31
+msgid "Change parameters per event"
 msgstr ""
 
-#: configuration/access.cfg
-msgid "annual overview of events"
+#: configuration/access.cfg:35
+msgid "Show preview of unpublished event"
 msgstr ""
 
-#: configuration/access.cfg
-msgid "allow to add text blocks to an event"
+#: configuration/access.cfg:39
+msgid "Allow to change identifier of a project"
 msgstr ""
 
-#: configuration/access.cfg
-msgid "ics calendar download on website"
+#: configuration/access.cfg:43
+msgid "Allow to copy a timetable"
 msgstr ""
 
-#: configuration/access.cfg
-msgid "access to internal event"
+#: configuration/package.cfg:15
+msgid "Events, calendars, registrations, and public schedules"
 msgstr ""
 
-#: configuration/access.cfg
-msgid "change parameters per event"
+#: configuration/routes.cfg:12
+msgid "Public event or year/category overview of events"
 msgstr ""
 
-#: configuration/access.cfg
-msgid "single project"
+#: configuration/routes.cfg:18
+msgid "Calendar overview"
 msgstr ""
 
-#: configuration/access.cfg
-msgid "allow to copy a timetable"
+#: configuration/routes.cfg:23
+msgid "Annual overview of events"
 msgstr ""
 
-#: configuration/settings.cfg
-msgid "use as link for the event"
+#: configuration/routes.cfg:28
+msgid "ICS calendar download on website"
 msgstr ""
 
-#: configuration/settings.cfg
-msgid "size of image linked from standard image in event"
+#: configuration/routes.cfg:34
+msgid "Events on internal website"
 msgstr ""
 
-#: configuration/settings.cfg
-msgid "use field events_categories.property to set values for categories"
+#: configuration/routes.cfg:39
+msgid "Internal page of an event"
 msgstr ""
 
-#: configuration/settings.cfg
-msgid "path to public event or year/category overview of events"
+#: configuration/routes.cfg:44
+msgid "Project page"
 msgstr ""
 
-#: configuration/settings.cfg
-msgid "allow to set a different event year than when the event takes place"
+#: configuration/routes.cfg:49
+msgid "Overview of projects"
 msgstr ""
 
-#: configuration/settings.cfg
-msgid "path to calendar overview"
+#: configuration/routes.cfg:54
+msgid "Internal list of projects"
 msgstr ""
 
-#: configuration/settings.cfg
-msgid "path to annual overview of events"
+#: configuration/settings.cfg:21
+msgid "Use as link for the event"
 msgstr ""
 
-#: configuration/settings.cfg
-msgid "path to ics calendar download on website"
+#: configuration/settings.cfg:26
+msgid "Size of image linked from standard image in event"
 msgstr ""
 
-#: configuration/settings.cfg
-msgid "name of the calendar for ICS export"
+#: configuration/settings.cfg:31
+msgid "Use field events_categories.property to set values for categories"
 msgstr ""
 
-#: configuration/settings.cfg
-msgid "description of the calendar for ICS export"
+#: configuration/settings.cfg:36
+msgid "Mark event categories that are used as deadlines"
 msgstr ""
 
-#: configuration/settings.cfg
-msgid "standard size of image displayed in event"
+#: configuration/settings.cfg:41
+msgid "Show a block with data on the education system of the organization."
 msgstr ""
 
-#: configuration/settings.cfg
-msgid "retina 2x size of image displayed in event"
+#: configuration/settings.cfg:47
+msgid "Allow to set abbreviation for events"
 msgstr ""
 
-#: configuration/settings.cfg
-msgid "path to internal page of an event"
+#: configuration/settings.cfg:51
+msgid "Allow to set a different event year than when the event takes place"
 msgstr ""
 
-#: configuration/settings.cfg
-msgid "path to events on internal website"
+#: configuration/settings.cfg:55
+msgid "Only show link to this page if check for it was succesful"
 msgstr ""
 
-#: configuration/settings.cfg
-msgid "show a leaflet map next to the event"
+#: configuration/settings.cfg:61
+msgid "Only show link to this page while event is running"
 msgstr ""
 
-#: configuration/settings.cfg
-msgid "size of image in events list"
+#: configuration/settings.cfg:67
+msgid "Name of the calendar for ICS export"
 msgstr ""
 
-#: configuration/settings.cfg
-msgid "maximum no. of media files per event"
+#: configuration/settings.cfg:72
+msgid "Description of the calendar for ICS export"
 msgstr ""
 
-#: configuration/settings.cfg
-msgid "size in px of image for OpenGraph (Facebook, Twitter)"
+#: configuration/settings.cfg:77
+msgid "Standard size of image displayed in event"
 msgstr ""
 
-#: configuration/settings.cfg
-msgid "marks a role category so that event is treated as own event in calendar"
+#: configuration/settings.cfg:82
+msgid "Retina 2x size of image displayed in event"
 msgstr ""
 
-#: configuration/settings.cfg
-msgid "path to event calendar on website"
+#: configuration/settings.cfg:87
+msgid "Show a leaflet map next to the event"
 msgstr ""
 
-#: configuration/settings.cfg
-msgid "are project images put on several sub pages?"
+#: configuration/settings.cfg:91
+msgid "Size of image in events list"
 msgstr ""
 
-#: configuration/settings.cfg
-msgid "only show a project if it has at least one image associated"
+#: configuration/settings.cfg:96
+msgid "Maximum no. of media files per event"
 msgstr ""
 
-#: configuration/settings.cfg
-msgid "path to project"
+#: configuration/settings.cfg:101
+msgid "Size in px of image for OpenGraph (Facebook, Twitter)"
 msgstr ""
 
-#: configuration/settings.cfg
-msgid "path to projects overview"
+#: configuration/settings.cfg:106
+msgid "Marks a role category so that event is treated as own event in calendar"
 msgstr ""
 
-#: configuration/settings.cfg
-msgid "show description in projects list directly after project"
+#: configuration/settings.cfg:111
+msgid "Participation will be determined by the order of registration"
 msgstr ""
 
-#: configuration/settings.cfg
-msgid "size of images displayed in timetable"
+#: configuration/settings.cfg:117
+msgid "Are project images put on several sub pages?"
 msgstr ""
 
-#: configuration/settings.cfg
-msgid "allow to show an event as a news item"
+#: configuration/settings.cfg:121
+msgid "Only show a project if it has at least one image associated"
 msgstr ""
 
-#: configuration/settings.cfg
-msgid "use series_category_id to determine series of an event, not events_categories (@deprecated)"
+#: configuration/settings.cfg:126
+msgid "Show description in projects list directly after project"
 msgstr ""
 
-#: configuration/settings.cfg
-msgid "placeholder to place timetable at given position on page"
+#: configuration/settings.cfg:130
+msgid "Allow to add links to projects"
 msgstr ""
 
-#: configuration/settings.cfg
-msgid "timezone if all events in the calendar are in the same timezone, start with backslash"
+#: configuration/settings.cfg:134
+msgid "Size of images displayed in timetable"
 msgstr ""
 
-#: configuration/settings.cfg
-msgid "default timezone, start with backslash"
+#: configuration/settings.cfg:138
+msgid "Allow to show an event as a news item"
 msgstr ""
 
-#: configuration/settings.cfg
-msgid "standard size of video and poster image in an event"
+#: configuration/settings.cfg:142
+msgid "Use series_category_id to determine series of an event, not events_categories (@deprecated)"
 msgstr ""
 
-#: configuration/settings.cfg
-msgid "size of name tag, e. g. 9x5.5"
+#: configuration/settings.cfg:146
+msgid "Placeholder to place timetable at given position on page"
+msgstr ""
+
+#: configuration/settings.cfg:150
+msgid "Number of years into the future to include in the URL placeholder"
+msgstr ""
+
+#: configuration/settings.cfg:155
+msgid "Allow events of this event category to be copied"
+msgstr ""
+
+#: configuration/settings.cfg:160
+msgid "List of fields in events table that need to be copied, too"
+msgstr ""
+
+#: configuration/settings.cfg:165
+msgid "Timezone if all events in the calendar are in the same timezone, start with backslash"
+msgstr ""
+
+#: configuration/settings.cfg:170
+msgid "Default timezone, start with backslash"
+msgstr ""
+
+#: configuration/settings.cfg:175
+msgid "Standard size of video and poster image in an event"
+msgstr ""
+
+#: configuration/settings.cfg:180
+msgid "Size of name tag PDF layout, e.g. 9x5.5 or 10.5x7"
+msgstr ""
+
+#: configuration/settings.cfg:185
+msgid "List of years that appear in URL"
 msgstr ""
