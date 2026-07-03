@@ -72,7 +72,7 @@ $zz['fields'][5]['title'] = 'End';
 $zz['fields'][5]['field_name'] = 'date_end';
 $zz['fields'][5]['type'] = 'date';
 $zz['fields'][5]['validate']['>='] = ['date_begin'];
-$zz['fields'][5]['validate_msg']['>='] = wrap_text('A project can only end after the start.');
+$zz['fields'][5]['validate_msg']['>='] = 'A project can only end after the start.';
 
 // events 70 … 79
 $zz['fields'][70] = [];
