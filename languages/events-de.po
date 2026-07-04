@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Zugzwang Project -- events module\n"
-"POT-Creation-Date: \n"
+"POT-Creation-Date: 2026-07-03 22:11+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Gustaf Mossakowski <gustaf@koenige.org>\n"
 "Language-Team: \n"
@@ -22,20 +22,101 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.9\n"
 
-#: layout/events.css
+#: layout/events.css:31
 msgid "PREVIEW"
 msgstr "VORSCHAU"
 
-#: templates/event-deadlines.template.txt
+#: templates/contact-events.template.txt:12
+#: templates/search-events.template.txt:10 zzbrick_tables/events.php
+msgid "Events"
+msgstr "Veranstaltungen"
+
+#: templates/contact-events.template.txt:22 zzbrick_forms/projects.php
+msgid "Projects"
+msgstr "Projekte"
+
+#: templates/event.template.txt:12
+msgid "Event not found"
+msgstr "Veranstaltung nicht gefunden"
+
+#: templates/event.template.txt:14
+msgid "Unfortunately we could not find an event under this URL."
+msgstr "Unter dieser Adresse konnten wir leider keine Veranstaltung finden."
+
+#: templates/event.template.txt:15
+msgid "Please take a look at our calendar."
+msgstr "Bitte werfen Sie einen Blick in unseren Kalender."
+
+#: templates/event.template.txt:33 templates/project.template.txt:30
+msgid "(Link will be announced to participants)"
+msgstr "(Link wird den Teilnehmerinnen und Teilnehmern mitgeteilt)"
+
+#: templates/event.template.txt:41
+msgid "This event was cancelled."
+msgstr "Diese Veranstaltung fällt aus."
+
+#: templates/event.template.txt:70
+msgid "Organiser:"
+msgstr "Veranstalter:"
+
+#: templates/event.template.txt:82 templates/project.template.txt:53
+msgid "Further information about <strong>%s</strong>"
+msgstr "Weitere Informationen zu <strong>%s</strong>"
+
+#: templates/event.template.txt:86 zzbrick_tables/events.php
+msgid "Registration"
+msgstr "Anmeldung"
+
+#: templates/event.template.txt:91
+msgid "Supporting Event"
+msgstr "Rahmenveranstaltung"
+
+#: templates/event.template.txt:101 templates/project.template.txt:57
+msgid "Further Information"
+msgstr "Weitere Informationen"
+
+#: templates/event.template.txt:114 templates/project.template.txt:63
+msgid "Hashtag"
+msgstr "Hashtag"
+
+#: templates/event.template.txt:124 templates/project.template.txt:73
+msgid "News"
+msgstr "Nachrichten"
+
+#: templates/event.template.txt:133 templates/project.template.txt:82
+msgid "Books"
+msgstr "Bücher"
+
+#: templates/event.template.txt:136 templates/project.template.txt:85
+msgid "Book presentation"
+msgstr "Buchvorstellung"
+
+#: templates/event.template.txt:144 templates/project.template.txt:93
+msgid "Image"
+msgstr "Bild"
+
+#: templates/event.template.txt:155
+msgid "Download calendar entry “%s”"
+msgstr "Kalendereintrag „%s“ herunterladen"
+
+#: templates/event.template.txt:155 templates/events.template.txt:56
+msgid "Enter event in your own calendar (ICS)"
+msgstr "Termin in eigenen Kalender eintragen (ICS)"
+
+#: templates/event.template.txt:158
+msgid "To the entire calendar %s"
+msgstr "Zum gesamten Terminkalender %s"
+
+#: templates/event-deadlines.template.txt:11
 msgid "Deadlines, like other dates, run from one date to another date."
 msgstr "Fristen laufen, wie andere Termine auch, von einem Datum zum anderen."
 
-#: templates/event-deadlines.template.txt
+#: templates/event-deadlines.template.txt:12
 msgid "The start date can be left blank, then the deadline starts immediately."
 msgstr ""
 "Das Startdatum kann leer gelassen werden, dann beginnt die Frist sofort."
 
-#: templates/event-deadlines.template.txt
+#: templates/event-deadlines.template.txt:13
 msgid ""
 "If a registration deadline starts on a specific date, no one can register "
 "before the deadline begins."
@@ -43,73 +124,204 @@ msgstr ""
 "Beginnt eine Anmeldefrist an einem bestimmten Datum, kann sich niemand vor "
 "Beginn der Frist anmelden."
 
-#: templates/eventinternal.template.txt
+#: templates/eventinternal.template.txt:11
 msgid "Event tools"
 msgstr "Veranstaltungswerkzeuge"
 
-#: templates/eventinternal.template.txt
+#: templates/eventinternal.template.txt:20
 msgid "Event on the public website"
 msgstr "Veranstaltung auf der öffentlichen Website"
 
-#: templates/project.template.txt
+#: templates/events.template.txt:12
+msgid "We have no events from this year."
+msgstr "Wir haben keine Veranstaltungen aus diesem Jahr."
+
+#: templates/events.template.txt:33
+msgid "Cancelled:"
+msgstr "Fällt aus:"
+
+#: templates/events.template.txt:52 templates/projects.template.txt:46
+#: zzbrick_tables/events.php:160
+msgid "in"
+msgstr "in"
+
+#: templates/events.template.txt:66
+msgid "Subscribe to calendar %s"
+msgstr "Terminkalender %s abonnieren"
+
+#: templates/project.template.txt:12
 msgid "Project not found"
 msgstr "Projekt nicht gefunden"
 
-#: templates/project.template.txt
+#: templates/project.template.txt:14
 msgid "Unfortunately we could not find any project under this URL."
 msgstr "Leider konnten wir unter dieser URL kein Projekt finden."
 
-#: templates/projects.template.txt
+#: templates/projects.template.txt:12
 msgid "We have no projects in this category."
 msgstr "Wir haben keine Projekte in dieser Kategorie."
+
+#: templates/search-events.template.txt:20
+msgid "No events were found matching your search."
+msgstr "Es wurden keine Veranstaltungen gefunden, die Ihrer Suche entsprechen."
+
+#: templates/timetable.template.txt:12
+msgid "Events in the supporting program"
+msgstr "Veranstaltungen im Rahmenprogramm"
+
+#: templates/timetable.template.txt:15
+msgid "Schedule"
+msgstr "Zeitplan"
+
+#: templates/timetable.template.txt:17
+msgid "Schedule (subject to change)"
+msgstr "Zeitplan (Änderungen vorbehalten)"
+
+#: templates/timetable.template.txt:26
+msgid "following"
+msgstr "anschließend"
+
+#: templates/timetable.template.txt:53
+msgid "cancelled!"
+msgstr "fällt aus!"
+
+#: templates/timetablecopy.template.txt:12
+msgid "Copy timetable"
+msgstr "Kopie des Zeitplans"
+
+#: templates/timetablecopy.template.txt:13
+msgid "in %s"
+msgstr "in %s"
+
+#: templates/timetablecopy.template.txt:15
+msgid ""
+"Here you can copy the timetable from another event. The dates of the "
+"individual events are shifted relative to the main event if it differs."
+msgstr ""
+"Hier können Sie den Zeitplan von einer anderen Veranstaltung kopieren. Dabei "
+"werden die Daten der einzelnen Termine relativ zum Haupttermin geändert, "
+"falls dieser abweicht."
+
+#: templates/timetablecopy.template.txt:18
+msgid "The following events can be copied:"
+msgstr "Folgende Termine können kopiert werden:"
+
+#: templates/timetablecopy.template.txt:28
+msgid "Apply events"
+msgstr "Termine übernehmen"
+
+#: templates/timetablecopy.template.txt:33
+msgid ""
+"The selected event has a different duration. The timetable cannot be copied."
+msgstr ""
+"Der gewählte Termin weicht in der Dauer ab. Daher kann der Zeitplan nicht "
+"kopiert werden."
+
+#: templates/timetablecopy.template.txt:35
+msgid "Sorry, there is no event with this identifier in the database."
+msgstr "Sorry, unter dieser Kennung gibt es keinen Termin in der Datenbank."
+
+#: templates/timetablecopy.template.txt:40
+msgid ""
+"Please enter the identifier (year/event, for example 2010/dem-u18) of an "
+"existing event:"
+msgstr ""
+"Bitte geben Sie die Kennung (Jahr/Termin, bspw. 2010/dem-u18) eines "
+"vorhandenen Termins ein:"
 
 #: zzbrick_forms/deadlines.php
 msgid "Deadlines"
 msgstr "Fristen"
 
-#: zzbrick_forms/deadlines.php
+#: zzbrick_forms/deadlines.php:23
 msgid "No categories defined for deadlines (with parameter `%s`)"
 msgstr "Keine Kategorien für Fristen definiert (mit Parameter `%s`)"
 
 #: zzbrick_forms/projects.php
-msgid "Projects"
-msgstr "Projekte"
+msgid "A project can only end after the start."
+msgstr "Ein Projekt kann erst nach dem Start enden."
 
 #: zzbrick_forms/projects.php
-msgid "Project"
-msgstr "Projekt"
+msgid "Main Project"
+msgstr "Hauptprojekt"
 
 #: zzbrick_forms/projects.php
 msgid "Period"
 msgstr "Zeitraum"
 
 #: zzbrick_forms/projects.php
-msgid "Main Project"
-msgstr "Hauptprojekt"
+msgid "Project"
+msgstr "Projekt"
+
+#: zzbrick_forms/projects.php:35 zzbrick_tables/events.php:90
+msgid "(cancelled)"
+msgstr "(fällt aus)"
+
+#: zzbrick_forms/projects.php:316 zzbrick_tables/events.php:417
+msgid "Year"
+msgstr "Jahr"
+
+#: zzbrick_forms/projects.php:326 zzbrick_tables/eventdetails.php:93
+#: zzbrick_tables/events.php:427
+msgid "Category"
+msgstr "Kategorie"
+
+#: zzbrick_forms/projects.php:338 zzbrick_request/ics.inc.php:108
+#: zzbrick_tables/events.php:204 zzbrick_tables/events.php:439
+msgid "Organiser"
+msgstr "Veranstalter"
+
+#: zzbrick_forms/projects.php:344 zzbrick_tables/events.php:445
+msgid "Published"
+msgstr "Veröffentlicht"
+
+#: zzbrick_forms/projects.php:348 zzbrick_tables/eventdetails.php:84
+#: zzbrick_tables/events.php:449
+msgid "yes"
+msgstr "ja"
+
+#: zzbrick_forms/projects.php:349 zzbrick_tables/eventdetails.php:85
+#: zzbrick_tables/events.php:450
+msgid "no"
+msgstr "nein"
 
 #: zzbrick_forms/timetable.php
 msgid "Timetable"
 msgstr "Zeitplan"
 
-#: zzbrick_request/ics.inc.php zzbrick_tables/events.php
-msgid "Organiser"
-msgstr "Veranstalter"
+#: zzbrick_make/timetablecopy.inc.php:25
+msgid "Copy timetable: %s %s"
+msgstr "Kopie des Zeitplans: %s %s"
 
-#: zzbrick_request/ics.inc.php
+#: zzbrick_make/timetablecopy.inc.php:28
+msgid "Copy"
+msgstr "Kopie"
+
+#: zzbrick_request/event.inc.php:37
+msgid "This event is no longer published. It may not take place."
+msgstr ""
+"Diese Veranstaltung ist nicht mehr veröffentlicht. Sie findet möglicherweise "
+"nicht statt."
+
+#: zzbrick_request/eventinternal.inc.php:21
+msgid "Internal"
+msgstr "Intern"
+
+#: zzbrick_request/ics.inc.php:133
 msgid "CANCELLED"
 msgstr "AUSGEFALLEN"
 
-#: zzbrick_request/projects.inc.php
+#: zzbrick_request/project.inc.php:107
 msgid "Image %d"
 msgstr "Bild %d"
 
 #: zzbrick_tables/eventdetails.php
-msgid "Event Details"
-msgstr "Veranstaltungsdetails"
-
-#: zzbrick_tables/eventdetails.php
 msgid "Event"
 msgstr "Veranstaltung"
+
+#: zzbrick_tables/eventdetails.php
+msgid "Event Details"
+msgstr "Veranstaltungsdetails"
 
 #: zzbrick_tables/eventdetails.php
 msgid "Identification"
@@ -118,6 +330,10 @@ msgstr "Identifikation"
 #: zzbrick_tables/eventdetails.php
 msgid "Label"
 msgstr "Beschriftung"
+
+#: zzbrick_tables/eventdetails.php:80
+msgid "Active"
+msgstr "Aktiv"
 
 #: zzbrick_tables/eventmenus.php
 msgid "Event Menus"
@@ -132,8 +348,68 @@ msgid "Path"
 msgstr "Pfad"
 
 #: zzbrick_tables/events.php
-msgid "Events"
-msgstr "Veranstaltungen"
+msgid "Abbr."
+msgstr "Abk."
+
+#: zzbrick_tables/events.php
+msgid "Abbreviation"
+msgstr "Abkürzung"
+
+#: zzbrick_tables/events.php
+msgid "Abstract"
+msgstr "Kurzfassung"
+
+#: zzbrick_tables/events.php
+msgid "An event can only end after the start."
+msgstr "Eine Veranstaltung kann erst nach Beginn enden."
+
+#: zzbrick_tables/events.php
+msgid "Begin"
+msgstr "Beginn"
+
+#: zzbrick_tables/events.php
+msgid ""
+"Better not delete cancelled appointments, but mark them so that it is "
+"clearly visible that they’re cancelled."
+msgstr ""
+"Ausfallende Termine besser nicht löschen, sondern markieren, so daß klar "
+"ersichtlich ist, daß der Termin ausfällt."
+
+#: zzbrick_tables/events.php
+msgid "Created"
+msgstr "Erstellt"
+
+#: zzbrick_tables/events.php
+msgid "Direct Link"
+msgstr "Direktlink"
+
+#: zzbrick_tables/events.php
+msgid "End"
+msgstr "Ende"
+
+#: zzbrick_tables/events.php
+msgid "Following?"
+msgstr "Anschließend?"
+
+#: zzbrick_tables/events.php
+msgid "Format: -0100 or +0630 etc."
+msgstr "Format: -0100 oder +0630 etc."
+
+#: zzbrick_tables/events.php
+msgid "Identifier"
+msgstr "Kennung"
+
+#: zzbrick_tables/events.php
+msgid "If different from the time of the event"
+msgstr "Falls abweichend vom Zeitpunkt des Veranstaltung"
+
+#: zzbrick_tables/events.php
+msgid ""
+"If registration for the event is possible, ask about participation in this "
+"program item."
+msgstr ""
+"Sofern eine Anmeldung zur Veranstaltung möglich ist, frage die Teilnahme an "
+"diesen Programmpunkt ab."
 
 #: zzbrick_tables/events.php
 msgid ""
@@ -145,16 +421,27 @@ msgstr ""
 "lassen."
 
 #: zzbrick_tables/events.php
-msgid "Timezone"
-msgstr "Zeitzone"
+msgid "Main Event"
+msgstr "Hauptveranstaltung"
 
 #: zzbrick_tables/events.php
-msgid "Format: -0100 or +0630 etc."
-msgstr "Format: -0100 oder +0630 etc."
+msgid "News?"
+msgstr "Nachricht?"
 
 #: zzbrick_tables/events.php
-msgid "(cancelled)"
-msgstr "(fällt aus)"
+msgid "Only if the full description of the event is on another website."
+msgstr ""
+"Nur, falls die genaue Beschreibung des Termins auf einer anderen Website "
+"steht."
+
+#: zzbrick_tables/events.php
+msgid "Optional?"
+msgstr "Optional?"
+
+#: zzbrick_tables/events.php
+msgid "Registration information; will be hidden after the end of the event."
+msgstr ""
+"Informationen zur Anmeldung; werden nach Ende der Veranstaltung ausgeblendet."
 
 #: zzbrick_tables/events.php
 msgid ""
@@ -162,42 +449,6 @@ msgid ""
 msgstr ""
 "Kurze Beschreibung der Veranstaltung (erscheint im Terminkalender direkt "
 "unterhalb des Termins)"
-
-#: zzbrick_tables/events.php
-msgid "Begin"
-msgstr "Beginn"
-
-#: zzbrick_tables/events.php
-msgid "Time Begin"
-msgstr "Uhrzeit Beginn"
-
-#: zzbrick_tables/events.php
-msgid "Time"
-msgstr "Uhrzeit"
-
-#: zzbrick_tables/events.php
-msgid "End"
-msgstr "Ende"
-
-#: zzbrick_tables/events.php
-msgid "Time End"
-msgstr "Uhrzeit Ende"
-
-#: zzbrick_tables/events.php
-msgid "Takes place?"
-msgstr "Findet statt?"
-
-#: zzbrick_tables/events.php
-msgid ""
-"Better not delete cancelled appointments, but mark them so that it is "
-"clearly visible that they’re cancelled."
-msgstr ""
-"Ausfallende Termine besser nicht löschen, sondern markieren, so daß klar "
-"ersichtlich ist, daß der Termin ausfällt."
-
-#: zzbrick_tables/events.php
-msgid "News?"
-msgstr "Nachricht?"
 
 #: zzbrick_tables/events.php
 msgid "Should the event appear in the news?"
@@ -208,83 +459,37 @@ msgid "Sorting if no time was specified."
 msgstr "Sortierung falls keine Uhrzeit angegeben wurde."
 
 #: zzbrick_tables/events.php
-msgid "Direct Link"
-msgstr "Direktlink"
-
-#: zzbrick_tables/events.php
-msgid "Only if the full description of the event is on another website."
-msgstr ""
-"Nur, falls die genaue Beschreibung des Termins auf einer anderen Website "
-"steht."
-
-#: zzbrick_tables/events.php
-msgid "Main Event"
-msgstr "Hauptveranstaltung"
-
-#: zzbrick_tables/events.php
-msgid "Following?"
-msgstr "Anschließend?"
+msgid "Tag"
+msgstr "Tag"
 
 #: zzbrick_tables/events.php
 msgid "Tags"
 msgstr "Tags"
 
 #: zzbrick_tables/events.php
-msgid "Tag"
-msgstr "Tag"
+msgid "Takes place?"
+msgstr "Findet statt?"
 
 #: zzbrick_tables/events.php
-msgid "Identifier"
-msgstr "Kennung"
+msgid "Time"
+msgstr "Uhrzeit"
 
 #: zzbrick_tables/events.php
-msgid "Created"
-msgstr "Erstellt"
+msgid "Time Begin"
+msgstr "Uhrzeit Beginn"
 
 #: zzbrick_tables/events.php
-msgid "Registration information; will be hidden after the end of the event."
-msgstr ""
-"Informationen zur Anmeldung; werden nach Ende der Veranstaltung ausgeblendet."
+msgid "Time End"
+msgstr "Uhrzeit Ende"
 
 #: zzbrick_tables/events.php
-msgid "Year"
-msgstr "Jahr"
+msgid "Timezone"
+msgstr "Zeitzone"
 
-#: zzbrick_tables/events.php
-msgid "If different from the time of the event"
-msgstr "Falls abweichend vom Zeitpunkt des Veranstaltung"
-
-#: zzbrick_tables/events.php
-msgid "Abstract"
-msgstr "Kurzfassung"
-
-#: zzbrick_tables/events.php
-msgid "Optional?"
-msgstr "Optional?"
-
-#: zzbrick_tables/events.php
-msgid ""
-"If registration for the event is possible, ask about participation in this "
-"program item."
-msgstr ""
-"Sofern eine Anmeldung zur Veranstaltung möglich ist, frage die Teilnahme an "
-"diesen Programmpunkt ab."
-
-#: zzbrick_tables/events.php
-msgid "Abbr."
-msgstr "Abk."
-
-#: zzbrick_tables/events.php
-msgid "Abbreviation"
-msgstr "Abkürzung"
-
-#: zzbrick_tables/eventtexts.php
-msgid "Event Texts"
-msgstr "Veranstaltungstexte"
-
-#: zzbrick_tables/eventtexts.php
-msgid "Text"
-msgstr "Text"
+#: zzbrick_tables/events.php:49 zzbrick_tables/events.php:52
+#: zzbrick_tables/events.php:58 zzbrick_tables/events.php:60
+msgid "h"
+msgstr "Uhr"
 
 #: zzbrick_tables/events-categories.php
 msgid "Categories of Events"
@@ -298,208 +503,49 @@ msgstr "Kontakte einer Veranstaltung"
 msgid "Media of an Event"
 msgstr "Medien einer Veranstaltung"
 
-#: templates/event.template.txt
-msgid "Event not found"
-msgstr "Veranstaltung nicht gefunden"
+#: zzbrick_tables/eventtexts.php
+msgid "Event Texts"
+msgstr "Veranstaltungstexte"
 
-#: templates/event.template.txt
-msgid "Unfortunately we could not find an event under this URL."
-msgstr "Unter dieser Adresse konnten wir leider keine Veranstaltung finden."
+#: zzbrick_tables/eventtexts.php
+msgid "Text"
+msgstr "Text"
 
-#: templates/event.template.txt
-msgid "Please take a look at our calendar."
-msgstr "Bitte werfen Sie einen Blick in unseren Kalender."
+#: zzbrick_xhr/timetablecopy.inc.php:24
+msgid "Couldn‘t find the event"
+msgstr "Die Veranstaltung konnte nicht gefunden werden"
 
-#: templates/event.template.txt zzbrick_tables/events.php
-msgid "h"
-msgstr "Uhr"
+#: zzbrick_xhr/timetablecopy.inc.php:67 zzbrick_xhr/timetablecopy.inc.php:73
+msgid "No record was found."
+msgstr "Kein Eintrag gefunden."
 
-#: templates/event.template.txt
-msgid "h_prefix"
-msgstr " "
+#: zzbrick_xhr/timetablecopy.inc.php:83 zzbrick_xhr/timetablecopy.inc.php:89
+msgid "Please enter more characters."
+msgstr "Bitte geben Sie weitere Zeichen ein."
 
-#: templates/event.template.txt
-msgid "This event was cancelled."
-msgstr "Diese Veranstaltung fällt aus."
+#~ msgid "h_prefix"
+#~ msgstr " "
 
-#: templates/event.template.txt
-msgid "Further information about <strong>%s</strong>"
-msgstr "Weitere Informationen zu <strong>%s</strong>"
+#~ msgid " and "
+#~ msgstr " und "
 
-#: templates/event.template.txt zzbrick_tables/events.php
-msgid "Registration"
-msgstr "Anmeldung"
+#~ msgid "Sun"
+#~ msgstr "So"
 
-#: templates/event.template.txt
-msgid "Supporting Event"
-msgstr "Rahmenveranstaltung"
+#~ msgid "Mon"
+#~ msgstr "Mo"
 
-#: templates/event.template.txt
-msgid "News"
-msgstr "Nachrichten"
+#~ msgid "Tue"
+#~ msgstr "Di"
 
-#: templates/event.template.txt
-msgid "Books"
-msgstr "Bücher"
+#~ msgid "Wed"
+#~ msgstr "Mi"
 
-#: templates/event.template.txt
-msgid "Book presentation"
-msgstr "Buchvorstellung"
+#~ msgid "Thu"
+#~ msgstr "Do"
 
-#: templates/event.template.txt
-msgid "Image"
-msgstr "Bild"
+#~ msgid "Fri"
+#~ msgstr "Fr"
 
-#: templates/event.template.txt
-msgid "Enter event in your own calendar (ICS)"
-msgstr "Termin in eigenen Kalender eintragen (ICS)"
-
-#: templates/event.template.txt
-msgid "Download calendar entry “%s”"
-msgstr "Kalendereintrag „%s“ herunterladen"
-
-#: templates/event.template.txt
-msgid "To the entire calendar %s"
-msgstr "Zum gesamten Terminkalender %s"
-
-#: templates/event.template.txt templates/project.template.txt
-msgid "Further Information"
-msgstr "Weitere Informationen"
-
-#: templates/event.template.txt
-msgid " and "
-msgstr " und "
-
-#: templates/events.template.txt
-msgid "We have no events from this year."
-msgstr "Wir haben keine Veranstaltungen aus diesem Jahr."
-
-#: templates/events.template.txt
-msgid "Subscribe to calendar %s"
-msgstr "Terminkalender %s abonnieren"
-
-#: templates/events.template.txt
-msgid "Cancelled:"
-msgstr "Fällt aus:"
-
-#: templates/events.template.txt
-msgid "(Link will be announced to participants)"
-msgstr "(Link wird den Teilnehmerinnen und Teilnehmern mitgeteilt)"
-
-#: templates/events.template.txt
-msgid "following"
-msgstr "anschließend"
-
-#: templates/search-events.template.txt
-msgid "No events were found matching your search."
-msgstr "Es wurden keine Veranstaltungen gefunden, die Ihrer Suche entsprechen."
-
-#: templates/timetable.template.txt
-msgid "Schedule (subject to change)"
-msgstr "Zeitplan (Änderungen vorbehalten)"
-
-#: templates/timetable.template.txt
-msgid "Schedule"
-msgstr "Zeitplan"
-
-#: templates/timetable-programme.template.txt
-msgid "Events in the supporting program"
-msgstr "Veranstaltungen im Rahmenprogramm"
-
-#: templates/timetable-programme.template.txt
-msgid "cancelled!"
-msgstr "fällt aus!"
-
-#: templates/timetablecopy.template.txt
-msgid "Copy timetable"
-msgstr "Kopie des Zeitplans"
-
-#: templates/timetablecopy.template.txt
-msgid ""
-"Here you can copy the timetable from another event. The dates of the "
-"individual events are shifted relative to the main event if it differs."
-msgstr ""
-"Hier können Sie den Zeitplan von einer anderen Veranstaltung kopieren. "
-"Dabei werden die Daten der einzelnen Termine relativ zum Haupttermin "
-"geändert, falls dieser abweicht."
-
-#: templates/timetablecopy.template.txt
-msgid "The following events can be copied:"
-msgstr "Folgende Termine können kopiert werden:"
-
-#: templates/timetablecopy.template.txt
-msgid "Apply events"
-msgstr "Termine übernehmen"
-
-#: templates/timetablecopy.template.txt
-msgid ""
-"The selected event has a different duration. The timetable cannot be copied."
-msgstr ""
-"Der gewählte Termin weicht in der Dauer ab. Daher kann der Zeitplan nicht "
-"kopiert werden."
-
-#: templates/timetablecopy.template.txt
-msgid "Sorry, there is no event with this identifier in the database."
-msgstr "Sorry, unter dieser Kennung gibt es keinen Termin in der Datenbank!"
-
-#: templates/timetablecopy.template.txt
-msgid ""
-"Please enter the identifier (year/event, for example 2010/dem-u18) of an "
-"existing event:"
-msgstr ""
-"Bitte geben Sie die Kennung (Jahr/Termin, bspw. 2010/dem-u18) eines "
-"vorhandenen Termins ein:"
-
-#: templates/timetablecopy.template.txt
-msgid "in %s"
-msgstr "in %s"
-
-#: events/_functions.inc.php
-msgid "An event can only end after the start."
-msgstr "Eine Veranstaltung kann erst nach Beginn enden."
-
-#: zzbrick_make/timetablecopy.inc.php
-msgid "Copy timetable: %s %s"
-msgstr "Kopie des Zeitplans: %s %s"
-
-#: zzbrick_make/timetablecopy.inc.php
-msgid "Copy"
-msgstr "Kopie"
-
-#: zzbrick_request/event.inc.php
-msgid "This event is no longer published. It may not take place."
-msgstr ""
-"Diese Veranstaltung ist nicht mehr veröffentlicht. Sie findet möglicherweise "
-"nicht statt."
-
-#: zzbrick_request/event.inc.php zzbrick_request/events.inc.php
-msgid "Sun"
-msgstr "So"
-
-#: zzbrick_request/event.inc.php zzbrick_request/events.inc.php
-msgid "Mon"
-msgstr "Mo"
-
-#: zzbrick_request/event.inc.php zzbrick_request/events.inc.php
-msgid "Tue"
-msgstr "Di"
-
-#: zzbrick_request/event.inc.php zzbrick_request/events.inc.php
-msgid "Wed"
-msgstr "Mi"
-
-#: zzbrick_request/event.inc.php zzbrick_request/events.inc.php
-msgid "Thu"
-msgstr "Do"
-
-#: zzbrick_request/event.inc.php zzbrick_request/events.inc.php
-msgid "Fri"
-msgstr "Fr"
-
-#: zzbrick_request/event.inc.php zzbrick_request/events.inc.php
-msgid "Sat"
-msgstr "Sa"
-
-#: zzbrick_request/eventinternal.inc.php
-msgid "Internal"
-msgstr "Intern"
+#~ msgid "Sat"
+#~ msgstr "Sa"

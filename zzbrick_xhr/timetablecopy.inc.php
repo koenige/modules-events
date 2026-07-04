@@ -21,7 +21,7 @@ function mod_events_xhr_timetablecopy($request, $parameter) {
 	$sql = sprintf($sql, wrap_db_escape($parameter));
 	$event = wrap_db_fetch($sql);
 	if (!$event)
-		return brick_xhr_error(400, 'Could not resolve event.');
+		return brick_xhr_error(400, 'Couldn‘t find the event');
 
 	wrap_db_charset('utf8');
 
