@@ -48,6 +48,12 @@ function mf_events_url_placeholder_years($ops) {
 	}
 	if (!$events_changed) return;
 
+	if (wrap_package('news')) {
+		wrap_include('news', 'functions');
+		mf_news_url_placeholder_years_write();
+		return;
+	}
+
 	$offset = wrap_setting('events_url_placeholder_year_future_offset');
 
 	$sql = 'SELECT DISTINCT YEAR(IFNULL(date_begin, date_end)) AS year
