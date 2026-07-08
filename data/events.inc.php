@@ -271,7 +271,7 @@ function mf_events_contacts($events, $ids, $langs) {
 			, country, countries.country_id, contacts.description
 			, (SELECT identification FROM contactdetails cd
 				WHERE cd.contact_id = contacts.contact_id
-				AND cd.provider_category_id = /*_ID categories provider/website _*/
+				AND cd.channel_category_id = /*_ID categories provider/website _*/
 				LIMIT 1
 			) AS website
 			, SUBSTRING_INDEX(contact_categories.path, "/", -1) AS contact_path
