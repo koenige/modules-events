@@ -28,3 +28,4 @@
 2026-03-14-10	code	events_project_path	removed, paths from routes; use wrap_path()
 2026-03-14-11	code	events_projects_path	removed, paths from routes; use wrap_path()
 2026-03-14-12	code	events_projects_internal_path	removed, paths from routes; use wrap_path()
+2026-07-09-1	code	events_url_placeholder_year_future_offset	removed, use `url_placeholder_year_future_offset`

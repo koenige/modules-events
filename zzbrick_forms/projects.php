@@ -305,9 +305,9 @@ $zz['conditions'][2]['where'] = 'published = "no"';
 $zz['hooks']['before_insert'][] = 'mf_events_date_check';
 $zz['hooks']['before_update'][] = 'mf_events_date_check';
 
-$zz['hooks']['after_insert'][] = 'mf_events_url_placeholder_years';
-$zz['hooks']['after_update'][] = 'mf_events_url_placeholder_years';
-$zz['hooks']['after_delete'][] = 'mf_events_url_placeholder_years';
+$zz['hooks']['after_insert'][] = 'mf_zzwrap_url_placeholder_years';
+$zz['hooks']['after_update'][] = 'mf_zzwrap_url_placeholder_years';
+$zz['hooks']['after_delete'][] = 'mf_zzwrap_url_placeholder_years';
 
 $zz['filter'][1]['sql'] = 'SELECT DISTINCT YEAR(date_begin) AS year_idf
 		, YEAR(date_begin) AS year
