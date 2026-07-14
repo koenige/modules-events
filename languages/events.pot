@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Zugzwang Project -- events module\n"
-"POT-Creation-Date: 2026-07-03 22:11+0000\n"
+"POT-Creation-Date: 2026-07-14 15:46+0000\n"
 "PO-Revision-Date: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -22,12 +22,12 @@ msgstr ""
 
 #: templates/contact-events.template.txt:12
 #: templates/search-events.template.txt:10
-#: zzbrick_tables/events.php
+#: zzbrick_tables/events.php:16
 msgid "Events"
 msgstr ""
 
 #: templates/contact-events.template.txt:22
-#: zzbrick_forms/projects.php
+#: zzbrick_forms/projects.php:16
 msgid "Projects"
 msgstr ""
 
@@ -62,7 +62,7 @@ msgid "Further information about <strong>%s</strong>"
 msgstr ""
 
 #: templates/event.template.txt:86
-#: zzbrick_tables/events.php
+#: zzbrick_tables/events.php:324
 msgid "Registration"
 msgstr ""
 
@@ -77,6 +77,7 @@ msgstr ""
 
 #: templates/event.template.txt:114
 #: templates/project.template.txt:63
+#: zzbrick_tables/events.php:311
 msgid "Hashtag"
 msgstr ""
 
@@ -219,27 +220,47 @@ msgstr ""
 msgid "Please enter the identifier (year/event, for example 2010/dem-u18) of an existing event:"
 msgstr ""
 
-#: zzbrick_forms/deadlines.php
-msgid "Deadlines"
-msgstr ""
-
 #: zzbrick_forms/deadlines.php:23
 msgid "No categories defined for deadlines (with parameter `%s`)"
 msgstr ""
 
-#: zzbrick_forms/projects.php
-msgid "A project can only end after the start."
+#: zzbrick_forms/deadlines.php:28
+msgid "Deadlines"
 msgstr ""
 
-#: zzbrick_forms/projects.php
-msgid "Main Project"
+#: zzbrick_forms/event.php:20
+#: zzbrick_tables/eventdetails.php:24
+#: zzbrick_tables/eventmenus.php:27
+#: zzbrick_tables/events.php:85
+#: zzbrick_tables/events-categories.php:23
+#: zzbrick_tables/events-contacts.php:23
+#: zzbrick_tables/events-media.php:23
+#: zzbrick_tables/eventtexts.php:23
+msgid "Event"
 msgstr ""
 
-#: zzbrick_forms/projects.php
-msgid "Period"
+#: zzbrick_forms/projects.php:19
+#: zzbrick_tables/eventdetails.php:20
+#: zzbrick_tables/eventmenus.php:19
+#: zzbrick_tables/events.php:19
+#: zzbrick_tables/events-categories.php:19
+#: zzbrick_tables/events-contacts.php:19
+#: zzbrick_tables/events-media.php:19
+#: zzbrick_tables/eventtexts.php:19
+msgid "ID"
 msgstr ""
 
-#: zzbrick_forms/projects.php
+#: zzbrick_forms/projects.php:24
+#: zzbrick_tables/events.php:103
+msgid "Abbr."
+msgstr ""
+
+#: zzbrick_forms/projects.php:25
+#: zzbrick_tables/events.php:104
+msgid "Abbreviation"
+msgstr ""
+
+#: zzbrick_forms/projects.php:29
 msgid "Project"
 msgstr ""
 
@@ -248,42 +269,187 @@ msgstr ""
 msgid "(cancelled)"
 msgstr ""
 
+#: zzbrick_forms/projects.php:51
+#: zzbrick_tables/events.php:112
+msgid "Abstract"
+msgstr ""
+
+#: zzbrick_forms/projects.php:60
+#: zzbrick_tables/events.php:24
+msgid "Begin"
+msgstr ""
+
+#: zzbrick_forms/projects.php:61
+#: zzbrick_forms/projects.php:62
+msgid "Period"
+msgstr ""
+
+#: zzbrick_forms/projects.php:71
+#: zzbrick_tables/events.php:37
+msgid "End"
+msgstr ""
+
+#: zzbrick_forms/projects.php:75
+msgid "A project can only end after the start."
+msgstr ""
+
+#: zzbrick_forms/projects.php:123
+#: zzbrick_forms/projects.php:326
+#: zzbrick_tables/eventdetails.php:93
+#: zzbrick_tables/events.php:121
+#: zzbrick_tables/events.php:208
+#: zzbrick_tables/events.php:427
+#: zzbrick_tables/events-categories.php:43
+#: zzbrick_tables/eventtexts.php:37
+msgid "Category"
+msgstr ""
+
+#: zzbrick_forms/projects.php:171
+#: zzbrick_tables/events.php:290
+msgid "Media"
+msgstr ""
+
+#: zzbrick_forms/projects.php:183
+#: zzbrick_tables/events.php:302
+msgid "Links"
+msgstr ""
+
+#: zzbrick_forms/projects.php:193
+#: zzbrick_tables/events.php:315
+msgid "Description"
+msgstr ""
+
+#: zzbrick_forms/projects.php:204
+#: zzbrick_tables/events.php:243
+msgid "Web"
+msgstr ""
+
+#: zzbrick_forms/projects.php:205
+#: zzbrick_forms/projects.php:344
+#: zzbrick_tables/eventmenus.php:49
+#: zzbrick_tables/events.php:244
+#: zzbrick_tables/events.php:445
+#: zzbrick_tables/eventtexts.php:55
+msgid "Published"
+msgstr ""
+
+#: zzbrick_forms/projects.php:207
+#: zzbrick_forms/projects.php:218
+#: zzbrick_forms/projects.php:261
+#: zzbrick_forms/projects.php:349
+#: zzbrick_tables/eventdetails.php:57
+#: zzbrick_tables/eventdetails.php:85
+#: zzbrick_tables/eventmenus.php:51
+#: zzbrick_tables/events.php:238
+#: zzbrick_tables/events.php:246
+#: zzbrick_tables/events.php:257
+#: zzbrick_tables/events.php:265
+#: zzbrick_tables/events.php:273
+#: zzbrick_tables/events.php:450
+#: zzbrick_tables/eventtexts.php:57
+msgid "no"
+msgstr ""
+
+#: zzbrick_forms/projects.php:207
+#: zzbrick_forms/projects.php:218
+#: zzbrick_forms/projects.php:261
+#: zzbrick_forms/projects.php:348
+#: zzbrick_tables/eventdetails.php:57
+#: zzbrick_tables/eventdetails.php:84
+#: zzbrick_tables/eventmenus.php:51
+#: zzbrick_tables/events.php:238
+#: zzbrick_tables/events.php:246
+#: zzbrick_tables/events.php:257
+#: zzbrick_tables/events.php:265
+#: zzbrick_tables/events.php:273
+#: zzbrick_tables/events.php:449
+#: zzbrick_tables/eventtexts.php:57
+msgid "yes"
+msgstr ""
+
+# Title in table, shortcut for Show in news?
+#: zzbrick_forms/projects.php:213
+#: zzbrick_tables/events.php:252
+msgid "N?"
+msgstr ""
+
+# Title in table, shortcut for Show in news?
+#: zzbrick_forms/projects.php:214
+#: zzbrick_tables/events.php:253
+msgid "News?"
+msgstr ""
+
+#: zzbrick_forms/projects.php:215
+#: zzbrick_tables/events.php:254
+msgid "Should the event appear in the news?"
+msgstr ""
+
+#: zzbrick_forms/projects.php:223
+#: zzbrick_tables/eventmenus.php:23
+#: zzbrick_tables/events.php:279
+msgid "Seq."
+msgstr ""
+
+#: zzbrick_forms/projects.php:224
+#: zzbrick_tables/eventmenus.php:24
+#: zzbrick_tables/events.php:280
+msgid "Sequence"
+msgstr ""
+
+#: zzbrick_forms/projects.php:231
+#: zzbrick_tables/events.php:287
+msgid "Sorting if no time was specified."
+msgstr ""
+
+#: zzbrick_forms/projects.php:234
+msgid "Main Project"
+msgstr ""
+
+#: zzbrick_forms/projects.php:245
+#: zzbrick_tables/events.php:360
+msgid "Identifier"
+msgstr ""
+
+#: zzbrick_forms/projects.php:258
+msgid "Change identifier?"
+msgstr ""
+
+#: zzbrick_forms/projects.php:269
+#: zzbrick_tables/events.php:373
+msgid "Created"
+msgstr ""
+
+#: zzbrick_forms/projects.php:278
+#: zzbrick_tables/eventdetails.php:61
+#: zzbrick_tables/eventmenus.php:54
+#: zzbrick_tables/events.php:382
+#: zzbrick_tables/events-categories.php:67
+#: zzbrick_tables/events-contacts.php:68
+#: zzbrick_tables/events-media.php:79
+#: zzbrick_tables/eventtexts.php:61
+msgid "Last update"
+msgstr ""
+
 #: zzbrick_forms/projects.php:316
+#: zzbrick_tables/events.php:76
 #: zzbrick_tables/events.php:417
 msgid "Year"
 msgstr ""
 
-#: zzbrick_forms/projects.php:326
-#: zzbrick_tables/eventdetails.php:93
-#: zzbrick_tables/events.php:427
-msgid "Category"
-msgstr ""
-
 #: zzbrick_forms/projects.php:338
 #: zzbrick_request/ics.inc.php:108
+#: zzbrick_tables/events.php:181
 #: zzbrick_tables/events.php:204
 #: zzbrick_tables/events.php:439
 msgid "Organiser"
 msgstr ""
 
-#: zzbrick_forms/projects.php:344
-#: zzbrick_tables/events.php:445
-msgid "Published"
+#: zzbrick_forms/projects.php:354
+#: zzbrick_tables/events.php:461
+msgid "Website"
 msgstr ""
 
-#: zzbrick_forms/projects.php:348
-#: zzbrick_tables/eventdetails.php:84
-#: zzbrick_tables/events.php:449
-msgid "yes"
-msgstr ""
-
-#: zzbrick_forms/projects.php:349
-#: zzbrick_tables/eventdetails.php:85
-#: zzbrick_tables/events.php:450
-msgid "no"
-msgstr ""
-
-#: zzbrick_forms/timetable.php
+#: zzbrick_forms/timetable.php:20
 msgid "Timetable"
 msgstr ""
 
@@ -311,156 +477,71 @@ msgstr ""
 msgid "Image %d"
 msgstr ""
 
-#: zzbrick_tables/eventdetails.php
-msgid "Event"
-msgstr ""
-
-#: zzbrick_tables/eventdetails.php
+#: zzbrick_tables/eventdetails.php:17
 msgid "Event Details"
 msgstr ""
 
-#: zzbrick_tables/eventdetails.php
+#: zzbrick_tables/eventdetails.php:35
 msgid "Identification"
 msgstr ""
 
-#: zzbrick_tables/eventdetails.php
+#: zzbrick_tables/eventdetails.php:38
+msgid "URL"
+msgstr ""
+
+#: zzbrick_tables/eventdetails.php:41
 msgid "Label"
 msgstr ""
 
+#: zzbrick_tables/eventdetails.php:46
+msgid "Type"
+msgstr ""
+
+#: zzbrick_tables/eventdetails.php:55
 #: zzbrick_tables/eventdetails.php:80
 msgid "Active"
 msgstr ""
 
-#: zzbrick_tables/eventmenus.php
+#: zzbrick_tables/eventmenus.php:16
 msgid "Event Menus"
 msgstr ""
 
-#: zzbrick_tables/eventmenus.php
+#: zzbrick_tables/eventmenus.php:42
 msgid "Menu"
 msgstr ""
 
-#: zzbrick_tables/eventmenus.php
+#: zzbrick_tables/eventmenus.php:44
 msgid "Path"
 msgstr ""
 
-#: zzbrick_tables/events.php
-msgid "Abbr."
-msgstr ""
-
-#: zzbrick_tables/events.php
-msgid "Abbreviation"
-msgstr ""
-
-#: zzbrick_tables/events.php
-msgid "Abstract"
-msgstr ""
-
-#: zzbrick_tables/events.php
-msgid "An event can only end after the start."
-msgstr ""
-
-#: zzbrick_tables/events.php
-msgid "Begin"
-msgstr ""
-
-#: zzbrick_tables/events.php
-msgid "Better not delete cancelled appointments, but mark them so that it is clearly visible that they’re cancelled."
-msgstr ""
-
-#: zzbrick_tables/events.php
-msgid "Created"
-msgstr ""
-
-#: zzbrick_tables/events.php
-msgid "Direct Link"
-msgstr ""
-
-#: zzbrick_tables/events.php
-msgid "End"
-msgstr ""
-
-#: zzbrick_tables/events.php
-msgid "Following?"
-msgstr ""
-
-#: zzbrick_tables/events.php
-msgid "Format: -0100 or +0630 etc."
-msgstr ""
-
-#: zzbrick_tables/events.php
-msgid "Identifier"
-msgstr ""
-
-#: zzbrick_tables/events.php
-msgid "If different from the time of the event"
+#: zzbrick_tables/eventmenus.php:46
+#: zzbrick_tables/events.php:353
+msgid "Parameters"
 msgstr ""
 
 #: zzbrick_tables/events.php
 msgid "If registration for the event is possible, ask about participation in this program item."
 msgstr ""
 
-#: zzbrick_tables/events.php
+#: zzbrick_tables/events.php:25
+#: zzbrick_tables/events.php:26
+msgid "Date"
+msgstr ""
+
+#: zzbrick_tables/events.php:30
 msgid "If the exact date has not yet been set, the day and or month can be omitted here – then only the month is displayed! Leave the end empty if necessary."
 msgstr ""
 
-#: zzbrick_tables/events.php
-msgid "Main Event"
+#: zzbrick_tables/events.php:42
+msgid "An event can only end after the start."
 msgstr ""
 
-#: zzbrick_tables/events.php
-msgid "News?"
-msgstr ""
-
-#: zzbrick_tables/events.php
-msgid "Only if the full description of the event is on another website."
-msgstr ""
-
-#: zzbrick_tables/events.php
-msgid "Optional?"
-msgstr ""
-
-#: zzbrick_tables/events.php
-msgid "Registration information; will be hidden after the end of the event."
-msgstr ""
-
-#: zzbrick_tables/events.php
-msgid "Short description of the event (is displayed in the calendar under the date)"
-msgstr ""
-
-#: zzbrick_tables/events.php
-msgid "Should the event appear in the news?"
-msgstr ""
-
-#: zzbrick_tables/events.php
-msgid "Sorting if no time was specified."
-msgstr ""
-
-#: zzbrick_tables/events.php
-msgid "Tag"
-msgstr ""
-
-#: zzbrick_tables/events.php
-msgid "Tags"
-msgstr ""
-
-#: zzbrick_tables/events.php
-msgid "Takes place?"
-msgstr ""
-
-#: zzbrick_tables/events.php
-msgid "Time"
-msgstr ""
-
-#: zzbrick_tables/events.php
+#: zzbrick_tables/events.php:44
 msgid "Time Begin"
 msgstr ""
 
-#: zzbrick_tables/events.php
-msgid "Time End"
-msgstr ""
-
-#: zzbrick_tables/events.php
-msgid "Timezone"
+#: zzbrick_tables/events.php:45
+msgid "Time"
 msgstr ""
 
 #: zzbrick_tables/events.php:49
@@ -470,23 +551,110 @@ msgstr ""
 msgid "h"
 msgstr ""
 
-#: zzbrick_tables/events-categories.php
+#: zzbrick_tables/events.php:54
+msgid "Time End"
+msgstr ""
+
+#: zzbrick_tables/events.php:62
+msgid "TZ"
+msgstr ""
+
+#: zzbrick_tables/events.php:63
+msgid "Timezone"
+msgstr ""
+
+#: zzbrick_tables/events.php:64
+msgid "Format: -0100 or +0630 etc."
+msgstr ""
+
+#: zzbrick_tables/events.php:78
+msgid "If different from the time of the event"
+msgstr ""
+
+#: zzbrick_tables/events.php:116
+msgid "Short description of the event (is displayed in the calendar under the date)"
+msgstr ""
+
+#: zzbrick_tables/events.php:138
+msgid "Place"
+msgstr ""
+
+#: zzbrick_tables/events.php:235
+msgid "Takes place?"
+msgstr ""
+
+#: zzbrick_tables/events.php:241
+msgid "Better not delete cancelled appointments, but mark them so that it is clearly visible that they’re cancelled."
+msgstr ""
+
+#: zzbrick_tables/events.php:262
+msgid "Following?"
+msgstr ""
+
+#: zzbrick_tables/events.php:270
+msgid "Optional?"
+msgstr ""
+
+#: zzbrick_tables/events.php:277
+msgid "If it is possible to register for the event, mark the program item as an option."
+msgstr ""
+
+#: zzbrick_tables/events.php:327
+msgid "Registration information; will be hidden after the end of the event."
+msgstr ""
+
+#: zzbrick_tables/events.php:340
+msgid "Main Event"
+msgstr ""
+
+#: zzbrick_tables/events-categories.php:16
 msgid "Categories of Events"
 msgstr ""
 
-#: zzbrick_tables/events-contacts.php
+#: zzbrick_tables/events-categories.php:36
+#: zzbrick_tables/events-contacts.php:36
+#: zzbrick_tables/events-media.php:36
+msgid "No."
+msgstr ""
+
+#: zzbrick_tables/events-categories.php:53
+msgid "Type category"
+msgstr ""
+
+#: zzbrick_tables/events-categories.php:63
+msgid "Property"
+msgstr ""
+
+#: zzbrick_tables/events-contacts.php:16
 msgid "Contacts of an Event"
 msgstr ""
 
-#: zzbrick_tables/events-media.php
+#: zzbrick_tables/events-contacts.php:43
+msgid "Contact"
+msgstr ""
+
+#: zzbrick_tables/events-contacts.php:50
+#: zzbrick_tables/events-contacts.php:62
+msgid "Role"
+msgstr ""
+
+#: zzbrick_tables/events-media.php:16
 msgid "Media of an Event"
 msgstr ""
 
-#: zzbrick_tables/eventtexts.php
+#: zzbrick_tables/events-media.php:42
+msgid "Preview"
+msgstr ""
+
+#: zzbrick_tables/events-media.php:63
+msgid "Medium"
+msgstr ""
+
+#: zzbrick_tables/eventtexts.php:16
 msgid "Event Texts"
 msgstr ""
 
-#: zzbrick_tables/eventtexts.php
+#: zzbrick_tables/eventtexts.php:47
 msgid "Text"
 msgstr ""
 
