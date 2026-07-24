@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Zugzwang Project -- events module\n"
-"POT-Creation-Date: 2026-07-10 10:25+0000\n"
+"POT-Creation-Date: 2026-07-24 15:33+0000\n"
 "PO-Revision-Date: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -42,6 +42,10 @@ msgstr ""
 
 #: configuration/access.cfg:43
 msgid "Allow to copy a timetable"
+msgstr ""
+
+#: configuration/package.cfg:13
+msgid "events module"
 msgstr ""
 
 #: configuration/package.cfg:15

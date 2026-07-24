@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Zugzwang Project -- events module\n"
-"POT-Creation-Date: 2026-07-14 15:46+0000\n"
+"POT-Creation-Date: 2026-07-24 15:33+0000\n"
 "PO-Revision-Date: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -453,6 +453,11 @@ msgstr ""
 msgid "Timetable"
 msgstr ""
 
+#: zzbrick_forms/timetable.php:52
+#: zzbrick_tables/events.php:45
+msgid "Time"
+msgstr ""
+
 #: zzbrick_make/timetablecopy.inc.php:25
 msgid "Copy timetable: %s %s"
 msgstr ""
@@ -538,10 +543,6 @@ msgstr ""
 
 #: zzbrick_tables/events.php:44
 msgid "Time Begin"
-msgstr ""
-
-#: zzbrick_tables/events.php:45
-msgid "Time"
 msgstr ""
 
 #: zzbrick_tables/events.php:49
