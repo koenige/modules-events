@@ -50,6 +50,7 @@ $zz['fields'][3]['search'] = '/*_PREFIX_*/categories.category';
 $zz['fields'][3]['show_hierarchy'] = 'main_category_id';
 $zz['fields'][3]['show_hierarchy_subtree'] = wrap_category_id('events');
 
+$zz['fields'][5]['title'] = 'Type';
 $zz['fields'][5]['field_name'] = 'type_category_id';
 $zz['fields'][5]['type'] = 'hidden';
 $zz['fields'][5]['type_detail'] = 'select';

@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Zugzwang Project -- events module (informal)\n"
-"POT-Creation-Date: 2026-07-14 15:46+0000\n"
+"POT-Creation-Date: 2026-07-27 13:57+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Gustaf Mossakowski <gustaf@koenige.org>\n"
 "Language-Team: \n"
@@ -122,6 +122,11 @@ msgid ""
 "before the deadline begins."
 msgstr ""
 
+#: templates/event-subtitle.template.txt:11
+#: templates/timetablecopy.template.txt:13
+msgid "in %s"
+msgstr ""
+
 #: templates/eventinternal.template.txt:11
 msgid "Event tools"
 msgstr ""
@@ -185,10 +190,6 @@ msgstr ""
 
 #: templates/timetablecopy.template.txt:12
 msgid "Copy timetable"
-msgstr ""
-
-#: templates/timetablecopy.template.txt:13
-msgid "in %s"
 msgstr ""
 
 #: templates/timetablecopy.template.txt:15
@@ -378,7 +379,7 @@ msgstr ""
 
 #: zzbrick_forms/projects.php:278 zzbrick_tables/eventdetails.php:61
 #: zzbrick_tables/eventmenus.php:54 zzbrick_tables/events.php:382
-#: zzbrick_tables/events-categories.php:67
+#: zzbrick_tables/events-categories.php:68
 #: zzbrick_tables/events-contacts.php:68 zzbrick_tables/events-media.php:79
 #: zzbrick_tables/eventtexts.php:61
 msgid "Last update"
@@ -401,6 +402,10 @@ msgstr ""
 
 #: zzbrick_forms/timetable.php:20
 msgid "Timetable"
+msgstr ""
+
+#: zzbrick_forms/timetable.php:52 zzbrick_tables/events.php:45
+msgid "Time"
 msgstr ""
 
 #: zzbrick_make/timetablecopy.inc.php:25
@@ -443,7 +448,7 @@ msgstr ""
 msgid "Label"
 msgstr ""
 
-#: zzbrick_tables/eventdetails.php:46
+#: zzbrick_tables/eventdetails.php:46 zzbrick_tables/events-categories.php:53
 msgid "Type"
 msgstr ""
 
@@ -489,10 +494,6 @@ msgstr ""
 
 #: zzbrick_tables/events.php:44
 msgid "Time Begin"
-msgstr ""
-
-#: zzbrick_tables/events.php:45
-msgid "Time"
 msgstr ""
 
 #: zzbrick_tables/events.php:49 zzbrick_tables/events.php:52
@@ -570,11 +571,7 @@ msgstr ""
 msgid "No."
 msgstr ""
 
-#: zzbrick_tables/events-categories.php:53
-msgid "Type category"
-msgstr ""
-
-#: zzbrick_tables/events-categories.php:63
+#: zzbrick_tables/events-categories.php:64
 msgid "Property"
 msgstr ""
 

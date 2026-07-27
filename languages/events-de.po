@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Zugzwang Project -- events module\n"
-"POT-Creation-Date: 2026-07-14 15:46+0000\n"
+"POT-Creation-Date: 2026-07-27 13:57+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Gustaf Mossakowski <gustaf@koenige.org>\n"
 "Language-Team: \n"
@@ -125,6 +125,11 @@ msgstr ""
 "Beginnt eine Anmeldefrist an einem bestimmten Datum, kann sich niemand vor "
 "Beginn der Frist anmelden."
 
+#: templates/event-subtitle.template.txt:11
+#: templates/timetablecopy.template.txt:13
+msgid "in %s"
+msgstr "in %s"
+
 #: templates/eventinternal.template.txt:11
 msgid "Event tools"
 msgstr "Veranstaltungswerkzeuge"
@@ -189,10 +194,6 @@ msgstr "fällt aus!"
 #: templates/timetablecopy.template.txt:12
 msgid "Copy timetable"
 msgstr "Kopie des Zeitplans"
-
-#: templates/timetablecopy.template.txt:13
-msgid "in %s"
-msgstr "in %s"
 
 #: templates/timetablecopy.template.txt:15
 msgid ""
@@ -383,7 +384,7 @@ msgstr "Erstellt"
 
 #: zzbrick_forms/projects.php:278 zzbrick_tables/eventdetails.php:61
 #: zzbrick_tables/eventmenus.php:54 zzbrick_tables/events.php:382
-#: zzbrick_tables/events-categories.php:67
+#: zzbrick_tables/events-categories.php:68
 #: zzbrick_tables/events-contacts.php:68 zzbrick_tables/events-media.php:79
 #: zzbrick_tables/eventtexts.php:61
 msgid "Last update"
@@ -407,6 +408,10 @@ msgstr ""
 #: zzbrick_forms/timetable.php:20
 msgid "Timetable"
 msgstr "Zeitplan"
+
+#: zzbrick_forms/timetable.php:52 zzbrick_tables/events.php:45
+msgid "Time"
+msgstr "Uhrzeit"
 
 #: zzbrick_make/timetablecopy.inc.php:25
 msgid "Copy timetable: %s %s"
@@ -450,7 +455,7 @@ msgstr ""
 msgid "Label"
 msgstr "Beschriftung"
 
-#: zzbrick_tables/eventdetails.php:46
+#: zzbrick_tables/eventdetails.php:46 zzbrick_tables/events-categories.php:53
 msgid "Type"
 msgstr ""
 
@@ -502,10 +507,6 @@ msgstr "Eine Veranstaltung kann erst nach Beginn enden."
 #: zzbrick_tables/events.php:44
 msgid "Time Begin"
 msgstr "Uhrzeit Beginn"
-
-#: zzbrick_tables/events.php:45
-msgid "Time"
-msgstr "Uhrzeit"
 
 #: zzbrick_tables/events.php:49 zzbrick_tables/events.php:52
 #: zzbrick_tables/events.php:58 zzbrick_tables/events.php:60
@@ -585,15 +586,11 @@ msgstr "Kategorien von Veranstaltungen"
 #: zzbrick_tables/events-categories.php:36
 #: zzbrick_tables/events-contacts.php:36 zzbrick_tables/events-media.php:36
 msgid "No."
-msgstr ""
+msgstr "Nr."
 
-#: zzbrick_tables/events-categories.php:53
-msgid "Type category"
-msgstr ""
-
-#: zzbrick_tables/events-categories.php:63
+#: zzbrick_tables/events-categories.php:64
 msgid "Property"
-msgstr ""
+msgstr "Eigenschaft"
 
 #: zzbrick_tables/events-contacts.php:16
 msgid "Contacts of an Event"
@@ -601,11 +598,11 @@ msgstr "Kontakte einer Veranstaltung"
 
 #: zzbrick_tables/events-contacts.php:43
 msgid "Contact"
-msgstr ""
+msgstr "Kontakt"
 
 #: zzbrick_tables/events-contacts.php:50 zzbrick_tables/events-contacts.php:62
 msgid "Role"
-msgstr ""
+msgstr "Rolle"
 
 #: zzbrick_tables/events-media.php:16
 msgid "Media of an Event"
