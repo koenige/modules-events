@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Zugzwang Project -- events module\n"
-"POT-Creation-Date: 2026-07-24 15:33+0000\n"
+"POT-Creation-Date: 2026-07-27 09:09+0000\n"
 "PO-Revision-Date: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -126,6 +126,11 @@ msgstr ""
 msgid "If a registration deadline starts on a specific date, no one can register before the deadline begins."
 msgstr ""
 
+#: templates/event-subtitle.template.txt:11
+#: templates/timetablecopy.template.txt:13
+msgid "in %s"
+msgstr ""
+
 #: templates/eventinternal.template.txt:11
 msgid "Event tools"
 msgstr ""
@@ -190,10 +195,6 @@ msgstr ""
 
 #: templates/timetablecopy.template.txt:12
 msgid "Copy timetable"
-msgstr ""
-
-#: templates/timetablecopy.template.txt:13
-msgid "in %s"
 msgstr ""
 
 #: templates/timetablecopy.template.txt:15
