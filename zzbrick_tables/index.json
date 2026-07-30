@@ -1,0 +1,31 @@
+{
+    "eventdetails": {
+        "title": "Event Details"
+    },
+    "eventmenus": {
+        "title": "Event Menus",
+        "parameter_field": "parameters",
+        "audience": [
+            "editor"
+        ]
+    },
+    "events": {
+        "title": "Events",
+        "parameter_field": "parameters",
+        "audience": [
+            "editor"
+        ]
+    },
+    "events_categories": {
+        "title": "Categories of Events"
+    },
+    "events_contacts": {
+        "title": "Contacts of an Event"
+    },
+    "events_media": {
+        "title": "Media of an Event"
+    },
+    "eventtexts": {
+        "title": "Event Texts"
+    }
+}

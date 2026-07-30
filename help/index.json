@@ -1,0 +1,67 @@
+{
+    "projects": [
+        {
+            "title": "Projects",
+            "language": "en",
+            "package": "events",
+            "filename": "help/Projects.md",
+            "identifier": "projects",
+            "type": "md",
+            "audience": [
+                "admin"
+            ]
+        }
+    ],
+    "eventmenus-parameters": [
+        {
+            "title": "Event Menus parameters",
+            "language": "en",
+            "package": "events",
+            "identifier": "eventmenus-parameters",
+            "type": "parameters",
+            "audience": [
+                "editor"
+            ],
+            "table": "eventmenus",
+            "parameter_field": "parameters"
+        },
+        {
+            "title": "Menü für Veranstaltungen-Parameter",
+            "language": "de",
+            "package": "events",
+            "identifier": "eventmenus-parameters",
+            "type": "parameters",
+            "audience": [
+                "editor"
+            ],
+            "table": "eventmenus",
+            "parameter_field": "parameters"
+        }
+    ],
+    "events-parameters": [
+        {
+            "title": "Events parameters",
+            "language": "en",
+            "package": "events",
+            "identifier": "events-parameters",
+            "type": "parameters",
+            "audience": [
+                "editor"
+            ],
+            "table": "events",
+            "parameter_field": "parameters"
+        },
+        {
+            "title": "Veranstaltungen-Parameter",
+            "language": "de",
+            "package": "events",
+            "identifier": "events-parameters",
+            "type": "parameters",
+            "audience": [
+                "editor"
+            ],
+            "table": "events",
+            "parameter_field": "parameters"
+        }
+    ]
+}
