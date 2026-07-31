@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/events
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2025 Gustaf Mossakowski
+ * @copyright Copyright © 2025-2026 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -68,7 +68,7 @@ function mf_events_events_subtable(&$zz, $path, $no) {
 		$zz['fields'][$no]['fields'][4]['field_name'] = 'date_begin';
 		$zz['fields'][$no]['fields'][4]['type'] = 'date';
 		
-		if (empty($category['parameters']['hide_date_end'])) {
+		if (empty($category['parameters']['events_hide_date_end'])) {
 			$zz['fields'][$no]['fields'][4]['append_next'] = true;
 	
 			$zz['fields'][$no]['fields'][5]['list_prefix'] = '–';

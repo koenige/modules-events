@@ -25,7 +25,7 @@ $zz['fields'][7] = []; // places
 $zz['fields'][61] = []; // organisers
 
 if (wrap_package('contacts')) {
-	$values['roles_restrict_to'] = 'events';
+	$values['roles_restrict_to'] = 'events_contacts';
 	mf_default_categories_restrict($values, 'roles');
 
 	$no = 60;

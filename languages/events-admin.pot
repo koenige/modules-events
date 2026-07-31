@@ -89,7 +89,7 @@ msgid "Internal list of projects"
 msgstr ""
 
 #: configuration/settings.cfg:21
-msgid "Include this role category as a contact subtable on the main event form. Contact types in the picker are controlled separately via events_{role}=1 on contact categories (e.g. events_organiser=1)"
+msgid "Include this role category as an events_contacts subtable on the main event form. Contact types in the picker are controlled separately via events_{role}=1 on contact categories (e.g. events_organiser=1)"
 msgstr ""
 
 #: configuration/settings.cfg:27
