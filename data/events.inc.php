@@ -238,7 +238,7 @@ function mf_events_details($events, $ids = [], $langs = []) {
 		foreach ($details_per_lang as $eventdetail_id => $detail) {
 			if ($detail['parameters']) {
 				parse_str($detail['parameters'], $detail['parameters']);
-				if (!empty($detail['parameters']['direct_link'])) {
+				if (!empty($detail['parameters']['events_direct_link'])) {
 					$events[$lang][$detail['event_id']]['direct_link'] = $detail['identification'];
 					$events[$lang][$detail['event_id']]['direct_link_label'] = $detail['label'] ?? $detail['category'];
 					continue; // do not add the direct link to details
