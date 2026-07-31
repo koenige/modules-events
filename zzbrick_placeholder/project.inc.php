@@ -30,7 +30,7 @@ function mod_events_placeholder_project($brick) {
 	$event = wrap_translate($event, 'events');
 
 //	if ($event['parameters'])
-//		wrap_match_module_parameters('events', $event['parameters']);
+//		wrap_setting_from_table('events', $event['parameters']);
 
 //	wrap_page_meta('access', $event['event_rights']);
 //	if ($event['main_event_rights'])
