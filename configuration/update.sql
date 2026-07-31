@@ -93,3 +93,5 @@
 /* 2026-07-30-1 */	UPDATE eventmenus SET parameters = REPLACE(parameters, '&check=', '&events_check=') WHERE parameters LIKE '%&check=%';
 /* 2026-07-30-2 */	UPDATE eventmenus SET parameters = REPLACE(parameters, '&running=', '&events_running=') WHERE parameters LIKE '%&running=%';
 /* 2026-07-31-1 */	UPDATE categories SET parameters = REPLACE(parameters, '&direct_link=1', '&events_direct_link=1') WHERE parameters LIKE '%&direct_link=1%';
+/* 2026-07-31-2 */	UPDATE categories SET parameters = REPLACE(parameters, '&events_accomodation=1', '&events_accommodation=1') WHERE parameters LIKE '%&events_accomodation=1%';
+/* 2026-07-31-3 */	UPDATE categories SET parameters = REPLACE(parameters, '&events=1', '') WHERE parameters LIKE '%&alias=contact/%&events=1%';
