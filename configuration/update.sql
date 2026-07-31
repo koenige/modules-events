@@ -90,3 +90,5 @@
 /* 2026-05-12-1 */	UPDATE categories SET parameters = REPLACE(parameters, '&name_tag_size=', '&events_name_tag_size=') WHERE parameters LIKE '%&name_tag_size=%';
 /* 2026-05-13-1 */	UPDATE categories SET parameters = CONCAT(IFNULL(parameters, ''), '&events_timetable_copy=1') WHERE category_id = /*_ID categories event/item _*/ AND (parameters IS NULL OR parameters NOT LIKE '&events_timetable_copy=%');
 /* 2026-05-17-1 */	ALTER TABLE `eventmenus` ADD `published` enum('yes','no') COLLATE 'latin1_general_ci' NOT NULL DEFAULT 'yes' AFTER `parameters`;
+/* 2026-07-30-1 */	UPDATE eventmenus SET parameters = REPLACE(parameters, '&check=', '&events_check=') WHERE parameters LIKE '%&check=%';
+/* 2026-07-30-2 */	UPDATE eventmenus SET parameters = REPLACE(parameters, '&running=', '&events_running=') WHERE parameters LIKE '%&running=%';

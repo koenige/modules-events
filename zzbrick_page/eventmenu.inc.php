@@ -53,13 +53,13 @@ function page_eventmenu() {
 		// check parameters
 		if ($line['parameters']) {
 			parse_str($line['parameters'], $line['parameters']);
-			if (!empty($line['parameters']['running'])) {
+			if (!empty($line['parameters']['events_running'])) {
 				if (!page_eventmenu_running($line['event_id'])) {
 					unset($data[$eventmenu_id]);
 					continue;
 				}
 			}
-			if (!empty($line['parameters']['check'])) {
+			if (!empty($line['parameters']['events_check'])) {
 				if (!page_eventmenu_check($line['path'], $line['website_id'])) {
 					unset($data[$eventmenu_id]);
 					continue;
