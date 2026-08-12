@@ -97,3 +97,4 @@
 /* 2026-07-31-3 */	UPDATE categories SET parameters = REPLACE(parameters, '&events=1', '') WHERE parameters LIKE '%&alias=contact/%&events=1%';
 /* 2026-07-31-4 */	UPDATE categories SET parameters = REPLACE(parameters, '&events=1', '&events_contacts=1') WHERE parameters LIKE '%&events=1%';
 /* 2026-07-31-5 */	UPDATE categories SET parameters = REPLACE(parameters, '&hide_date_end=1', '&events_hide_date_end=1') WHERE parameters LIKE '%&hide_date_end=1%';
+/* 2026-08-12-1 */	INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Projects', NULL, NULL, 'projects', '&alias=projects', NULL, NOW());
