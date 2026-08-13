@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Zugzwang Project -- events module\n"
-"POT-Creation-Date: 2026-07-27 13:57+0000\n"
+"POT-Creation-Date: 2026-08-12 19:58+0000\n"
 "PO-Revision-Date: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -318,6 +318,12 @@ msgstr ""
 #: zzbrick_forms/projects.php:193
 #: zzbrick_tables/events.php:315
 msgid "Description"
+msgstr ""
+
+#: zzbrick_forms/projects.php:194
+#: zzbrick_tables/events.php:316
+#: zzbrick_tables/events.php:325
+msgid "(optional)<br>"
 msgstr ""
 
 #: zzbrick_forms/projects.php:204
