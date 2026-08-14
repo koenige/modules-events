@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/events
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2023-2025 Gustaf Mossakowski
+ * @copyright Copyright © 2023-2026 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -25,7 +25,7 @@ $zz['fields'][7] = []; // places
 $zz['fields'][61] = []; // organisers
 
 if (wrap_package('contacts')) {
-	$values['roles_restrict_to'] = 'events_contacts';
+	$values['context']['roles'] = 'events_contacts';
 	mf_default_categories_restrict($values, 'roles');
 
 	$no = 60;

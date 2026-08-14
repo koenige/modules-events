@@ -107,7 +107,7 @@ $zz['fields'][38] = [];
 $zz['fields'][39] = [];
 
 if (wrap_package('contacts')) {
-	$values['roles_restrict_to'] = 'projects';
+	$values['context']['roles'] = 'events_projects';
 	mf_default_categories_restrict($values, 'roles');
 
 	$no = 30;
