@@ -46,7 +46,7 @@ function mf_events_events_subtable(&$zz, $path, $no) {
 			LEFT JOIN categories
 				ON events.event_category_id = categories.category_id
 			WHERE category_id = %d', $category['category_id']);
-		if (!empty($category['parameters']['zzform_def']['hide_in_list']))
+		if (!empty($category['parameters']['zzform']['hide_in_list']))
 			$zz['fields'][$no]['hide_in_list'] = true;
 		
 		$zz['fields'][$no]['fields'][1]['title'] = 'ID';
