@@ -29,4 +29,4 @@
 2026-03-14-11	code	events_projects_path	removed, paths from routes; use wrap_path()
 2026-03-14-12	code	events_projects_internal_path	removed, paths from routes; use wrap_path()
 2026-07-09-1	code	events_url_placeholder_year_future_offset	removed, use `url_placeholder_year_future_offset`
-2026-08-14-1	code	&projects=1	use use_for[events_projects]=1 in category parameters
+2026-08-14-1	code	&projects=1	use context[events_projects]=1 in category parameters
