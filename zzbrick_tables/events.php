@@ -360,14 +360,14 @@ if (wrap_access('events_parameters')) {
 $zz['fields'][2]['field_name'] = 'identifier';
 $zz['fields'][2]['type'] = 'identifier';
 $zz['fields'][2]['fields'] = [
-	'event_year', 'date_begin{0,4}', 'date_end{0,4}', 'event', 'identifier',
-	'event_category_id[parameters]'
+	'event_year', 'date_begin{0,4}', 'date_end{0,4}', 'event', 'identifier'
 ];
 $zz['fields'][2]['identifier']['ignore_this_if']['date_begin{0,4}'] = 'event_year';
 $zz['fields'][2]['identifier']['ignore_this_if']['date_end{0,4}'] = 'date_begin{0,4}';
 $zz['fields'][2]['identifier']['concat'] = ['/'];
 $zz['fields'][2]['identifier']['exists'] = '-';
-$zz['fields'][2]['identifier']['parameters'] = 'event_category_id[parameters]';
+$zz['fields'][2]['read_parameters'] = 'event_category_id';
+$zz['fields'][2]['merge_parameters'] = ['identifier', 'fields'];
 $zz['fields'][2]['hide_in_list'] = true;
 
 $zz['fields'][21]['field_name'] = 'created';
