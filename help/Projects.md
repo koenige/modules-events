@@ -47,8 +47,8 @@ higher value means that n categories can be selected.
 * `min_records_required: 1` - It is required to chose at least one
 category in this field.
 
-* `own_type_category: 1` – Write this field category to the
-`type_category_id` field in the database.
+* `form_type_self: 1` – Use this category row as `type_category_id` when
+`form_type_category` is not set.
 
 * `sequence: 0` – Do not show a `sequence` field.
 
