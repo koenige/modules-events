@@ -46,8 +46,12 @@ function mod_events_placeholder_event($brick) {
 		return $brick;
 	$event = wrap_translate($event, 'events');
 
-	if ($event['parameters'])
+	$event['event_parameters'] = [];
+	if ($event['parameters']) {
+		parse_str($event['parameters'], $parameters);
+		$event['event_parameters'] = array_merge($event['event_parameters'], $parameters);
 		wrap_setting_from_table('events', $event['parameters']);
+	}
 
 	wrap_page_meta('access', $event['event_rights']);
 	if ($event['main_event_rights'])
