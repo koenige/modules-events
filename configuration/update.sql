@@ -103,3 +103,4 @@
 /* 2026-08-14-2 */	UPDATE categories SET parameters = REPLACE(parameters, '&projects=1', '&use_for[events_projects]=1') WHERE parameters LIKE '%&projects=1%';
 /* 2026-08-14-3 */	UPDATE categories SET parameters = REPLACE(parameters, 'if[events][', 'if[events_contacts][') WHERE parameters LIKE '%if[events][%';
 /* 2026-08-14-4 */	UPDATE categories SET parameters = REPLACE(parameters, 'if[projects][', 'if[events_projects][') WHERE parameters LIKE '%if[projects][%';
+/* 2026-08-20-1 */	UPDATE categories SET parameters = REPLACE(parameters, '&module=', '&events_texts_module=') WHERE parameters LIKE '%&module=%' AND (path LIKE 'event-texts/%' OR parameters LIKE '%&alias=event-texts/%');

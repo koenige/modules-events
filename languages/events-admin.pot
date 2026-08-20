@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Zugzwang Project -- events module\n"
-"POT-Creation-Date: 2026-08-20 11:50+0000\n"
+"POT-Creation-Date: 2026-08-20 15:28+0000\n"
 "PO-Revision-Date: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -261,21 +261,25 @@ msgid "Placeholder to place timetable at given position on page"
 msgstr ""
 
 #: configuration/settings.cfg:253
+msgid "Zugzwang module that owns or provides this event-text category (e.g. tournaments, downloads)"
+msgstr ""
+
+#: configuration/settings.cfg:260
 msgid "Timezone if all events in the calendar are in the same timezone; offset from UTC, format ±HHMM (e.g. +0100)"
 msgstr ""
 
-#: configuration/settings.cfg:258
+#: configuration/settings.cfg:265
 msgid "Default timezone; offset from UTC, format ±HHMM (e.g. +0100)"
 msgstr ""
 
-#: configuration/settings.cfg:263
+#: configuration/settings.cfg:270
 msgid "Standard size of video and poster image in an event"
 msgstr ""
 
-#: configuration/settings.cfg:268
+#: configuration/settings.cfg:275
 msgid "Hide the end date field on the child-event subtable of the main event form"
 msgstr ""
 
-#: configuration/settings.cfg:274
+#: configuration/settings.cfg:281
 msgid "Form context: project contact roles subtable"
 msgstr ""
