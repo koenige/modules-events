@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/events
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2023-2025 Gustaf Mossakowski
+ * @copyright Copyright © 2023-2026 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -73,9 +73,9 @@ function mf_events_event_organisations($event_id, $params = []) {
 	';
 	$sql = sprintf($sql, $event_id);
 	$organisations = wrap_db_fetch($sql, 'contact_id');
-	$details = mf_contacts_contactdetails(array_keys($organisations));
+	$details = mf_contacts_contactdetails(array_keys($organisations), ['published' => 1]);
 	if (!empty($params['addresses']))
-		$addresses = mf_contacts_addresses(array_keys($organisations));
+		$addresses = mf_contacts_addresses(array_keys($organisations), ['published' => 1]);
 	$data = [];
 	foreach ($organisations as $contact_id => $org) {
 		$org[$org['type']] = 1;
