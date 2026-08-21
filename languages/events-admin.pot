@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Zugzwang Project -- events module\n"
-"POT-Creation-Date: 2026-08-20 15:28+0000\n"
+"POT-Creation-Date: 2026-08-21 22:20+0000\n"
 "PO-Revision-Date: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -137,149 +137,157 @@ msgid "Allow to set a different event year than when the event takes place"
 msgstr ""
 
 #: configuration/settings.cfg:92
-msgid "Mark as a mandatory fee for an event registration"
+msgid "Booking category for staff-only manual booking lines (admin add menu)"
 msgstr ""
 
 #: configuration/settings.cfg:97
-msgid "Show fees in registration form"
+msgid "Mark as a mandatory fee for an event registration"
 msgstr ""
 
 #: configuration/settings.cfg:102
-msgid "Inherit fees from main event"
+msgid "Show fees in registration form"
 msgstr ""
 
 #: configuration/settings.cfg:107
+msgid "Inherit fees from main event"
+msgstr ""
+
+#: configuration/settings.cfg:112
 msgid "Mark as an optional fee add-on for an event registration"
 msgstr ""
 
-#: configuration/settings.cfg:113
+#: configuration/settings.cfg:118
+msgid "Cost or booking category applies to participant-facing fees"
+msgstr ""
+
+#: configuration/settings.cfg:123
 msgid "Allow to select contacts from this category as hosts of an event"
 msgstr ""
 
-#: configuration/settings.cfg:119
+#: configuration/settings.cfg:129
 msgid "Name of the calendar for ICS export"
 msgstr ""
 
-#: configuration/settings.cfg:124
+#: configuration/settings.cfg:134
 msgid "Description of the calendar for ICS export"
 msgstr ""
 
-#: configuration/settings.cfg:129
+#: configuration/settings.cfg:139
 msgid "Standard size of image displayed in event"
 msgstr ""
 
-#: configuration/settings.cfg:134
+#: configuration/settings.cfg:144
 msgid "Retina 2x size of image displayed in event"
 msgstr ""
 
-#: configuration/settings.cfg:139
+#: configuration/settings.cfg:149
 msgid "Show a leaflet map next to the event"
 msgstr ""
 
-#: configuration/settings.cfg:143
+#: configuration/settings.cfg:153
 msgid "Size of image in events list"
 msgstr ""
 
-#: configuration/settings.cfg:148
+#: configuration/settings.cfg:158
 msgid "Allow to select contacts from this category as location for an event"
 msgstr ""
 
-#: configuration/settings.cfg:154
+#: configuration/settings.cfg:164
 msgid "Maximum no. of media files per event"
 msgstr ""
 
-#: configuration/settings.cfg:159
+#: configuration/settings.cfg:169
 msgid "Size of name tag PDF layout, e.g. 9x5.5 or 10.5x7"
 msgstr ""
 
-#: configuration/settings.cfg:168
+#: configuration/settings.cfg:178
 msgid "Show this registration field on the participant name tag in given line"
 msgstr ""
 
-#: configuration/settings.cfg:172
+#: configuration/settings.cfg:182
 msgid "Size in px of image for OpenGraph (Facebook, Twitter)"
 msgstr ""
 
-#: configuration/settings.cfg:177
+#: configuration/settings.cfg:187
 msgid "Allow to select contacts from this category as organiser of an event"
 msgstr ""
 
-#: configuration/settings.cfg:183
+#: configuration/settings.cfg:193
 msgid "Treat events linked via this role category as own events in the calendar"
 msgstr ""
 
-#: configuration/settings.cfg:189
+#: configuration/settings.cfg:199
 msgid "Determine participation by registration order (first registered first)"
 msgstr ""
 
-#: configuration/settings.cfg:196
+#: configuration/settings.cfg:206
 msgid "Split project images across several subpages"
 msgstr ""
 
-#: configuration/settings.cfg:200
+#: configuration/settings.cfg:210
 msgid "Only show a project if it has at least one image associated"
 msgstr ""
 
-#: configuration/settings.cfg:207
+#: configuration/settings.cfg:217
 msgid "Show description in projects list directly after project"
 msgstr ""
 
-#: configuration/settings.cfg:211
+#: configuration/settings.cfg:221
 msgid "Allow to add links to projects"
 msgstr ""
 
-#: configuration/settings.cfg:215
+#: configuration/settings.cfg:225
 msgid "Show this event menu link only while the event is running (within its begin/end dates)"
 msgstr ""
 
-#: configuration/settings.cfg:220
+#: configuration/settings.cfg:230
 msgid "Size of images displayed in timetable"
 msgstr ""
 
-#: configuration/settings.cfg:224
+#: configuration/settings.cfg:234
 msgid "Allow to show an event as a news item"
 msgstr ""
 
-#: configuration/settings.cfg:228
+#: configuration/settings.cfg:238
 msgid "Use series_category_id to determine series of an event, not events_categories (@deprecated)"
 msgstr ""
 
-#: configuration/settings.cfg:232
+#: configuration/settings.cfg:242
 msgid "Allow to select contacts from this category as sponsors of an event"
 msgstr ""
 
-#: configuration/settings.cfg:238
+#: configuration/settings.cfg:248
 msgid "Allow events of this event category to be copied"
 msgstr ""
 
-#: configuration/settings.cfg:244
+#: configuration/settings.cfg:254
 msgid "List of fields in events table that need to be copied, too"
 msgstr ""
 
-#: configuration/settings.cfg:249
+#: configuration/settings.cfg:259
 msgid "Placeholder to place timetable at given position on page"
 msgstr ""
 
-#: configuration/settings.cfg:253
+#: configuration/settings.cfg:263
 msgid "Zugzwang module that owns or provides this event-text category (e.g. tournaments, downloads)"
 msgstr ""
 
-#: configuration/settings.cfg:260
+#: configuration/settings.cfg:270
 msgid "Timezone if all events in the calendar are in the same timezone; offset from UTC, format ±HHMM (e.g. +0100)"
 msgstr ""
 
-#: configuration/settings.cfg:265
+#: configuration/settings.cfg:275
 msgid "Default timezone; offset from UTC, format ±HHMM (e.g. +0100)"
 msgstr ""
 
-#: configuration/settings.cfg:270
+#: configuration/settings.cfg:280
 msgid "Standard size of video and poster image in an event"
 msgstr ""
 
-#: configuration/settings.cfg:275
+#: configuration/settings.cfg:285
 msgid "Hide the end date field on the child-event subtable of the main event form"
 msgstr ""
 
-#: configuration/settings.cfg:281
+#: configuration/settings.cfg:291
 msgid "Form context: project contact roles subtable"
 msgstr ""
