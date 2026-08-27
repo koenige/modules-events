@@ -300,7 +300,7 @@ $zz['conditions'][1]['scope'] = 'record';
 $zz['conditions'][1]['where'] = 'takes_place = "no"';
 
 $zz['conditions'][2]['scope'] = 'record';
-$zz['conditions'][2]['where'] = 'published = "no"';
+$zz['conditions'][2]['where'] = 'events.published = "no"';
 
 $zz['hooks']['before_insert'][] = 'mf_events_date_check';
 $zz['hooks']['before_update'][] = 'mf_events_date_check';
