@@ -32,3 +32,8 @@ if (wrap_package('contacts')) {
 	foreach ($values['roles'] as $role)
 		mf_contacts_contacts_subtable($zz, 'events', $role, $no++);
 }
+
+$zz['filter'][1]['sql'] = wrap_edit_sql($zz['filter'][1]['sql'],
+	'WHERE', 'event_category_id = /*_ID categories event/event _*/'
+);
+unset($zz['filter'][2]);
