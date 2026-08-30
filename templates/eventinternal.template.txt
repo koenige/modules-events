@@ -8,7 +8,7 @@
 # @copyright Copyright © 2024 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 # 
-<h2>%%% text Event tools %%%</h2>
+<h2 class="events-event-tools">%%% text Event tools %%%</h2>
 
 <nav>
 <ul class="subpages">
@@ -16,6 +16,6 @@
 </ul>
 </nav>
 
-%%% if published %%%
-<p><a href="%%% path events_event identifier %%%">%%% text Event on the public website %%%</a></p>
+%%% if published & path events_event %%%
+<p class="events-event-public"><a href="%%% path events_event identifier %%%">%%% text Event on the public website %%%</a></p>
 %%% endif %%%

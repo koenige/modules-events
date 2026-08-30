@@ -151,11 +151,13 @@
 <div class="noprint">
 <hr>
 %%% unless cancelled %%%
-%%% if lib icalcreator %%%
+%%% if lib icalcreator & path events_ics %%%
 <p><a href="%%% path events_ics identifier %%%" title="%%% text Enter event in your own calendar (ICS) %%%">%%% text "Download calendar entry “%s”" event %%%</a></p>
 %%% endif %%%
 %%% endif %%%
+%%% if path events_events_yearly %%%
 <p><a href="%%% path events_events_yearly year %%%">%%% text "To the entire calendar %s" year %%%</a></p>
+%%% endif %%%
 </div>
 </div>
 %%% endif %%%
