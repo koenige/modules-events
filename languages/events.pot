@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Zugzwang Project -- events module\n"
-"POT-Creation-Date: 2026-08-12 19:58+0000\n"
+"POT-Creation-Date: 2026-08-30 22:04+0000\n"
 "PO-Revision-Date: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -110,7 +110,7 @@ msgstr ""
 msgid "Enter event in your own calendar (ICS)"
 msgstr ""
 
-#: templates/event.template.txt:158
+#: templates/event.template.txt:159
 msgid "To the entire calendar %s"
 msgstr ""
 
@@ -460,7 +460,7 @@ msgstr ""
 msgid "Timetable"
 msgstr ""
 
-#: zzbrick_forms/timetable.php:52
+#: zzbrick_forms/timetable.php:66
 #: zzbrick_tables/events.php:45
 msgid "Time"
 msgstr ""

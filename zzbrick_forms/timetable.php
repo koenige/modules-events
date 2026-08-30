@@ -21,7 +21,21 @@ $zz['title'] = 'Timetable';
 $zz['where']['main_event_id'] = $brick['data']['event_id'];
 $zz['list']['group'] = 'date_begin';
 
+$keep = [];
+if (wrap_package('contacts')) {
+	$values['context']['roles'] = 'events_timetable';
+	mf_default_categories_restrict($values, 'roles');
+
+	$no = 59;
+	foreach ($values['roles'] as $role) {
+		$keep[] = $no;
+		mf_contacts_contacts_subtable($zz, 'events', $role, $no++);
+	}
+}
+
 foreach ($zz['fields'] as $no => $field) {
+	if (in_array($no, $keep)) continue;
+
 	$identifier = zzform_field_identifier($field);
 	switch ($identifier) {
 	case 'event_id':
@@ -59,7 +73,7 @@ foreach ($zz['fields'] as $no => $field) {
 		unset($zz['fields'][$no]['link']);
 		break;
 	
-	case 'places':
+	case 'place': // @deprecated
 		$zz['fields'][$no]['list_append_next'] = false;
 		break;
 
@@ -77,8 +91,6 @@ foreach ($zz['fields'] as $no => $field) {
 
 	case 'sequence':
 		$zz['fields'][$no]['hide_in_form'] = false;
-		$zz['fields'][$no]['hide_in_list'] = false;
-		$zz['fields'][$no]['type'] = 'sequence';
 		break;
 
 	case 'events_media':
