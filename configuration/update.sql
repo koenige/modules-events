@@ -98,7 +98,7 @@
 /* 2026-07-31-4 */	UPDATE categories SET parameters = REPLACE(parameters, '&events=1', '&events_contacts=1') WHERE parameters LIKE '%&events=1%';
 /* 2026-07-31-5 */	UPDATE categories SET parameters = REPLACE(parameters, '&hide_date_end=1', '&events_hide_date_end=1') WHERE parameters LIKE '%&hide_date_end=1%';
 /* 2026-08-12-1 */	INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Projects', NULL, NULL, 'projects', '&alias=projects', NULL, NOW());
-/* 2026-08-12-2 */	UPDATE categories SET parameters = REPLACE(parameters, '&hide_in_list=', '&zzform_def[hide_in_list]=') WHERE parameters LIKE '%&hide_in_list=%' AND main_category_id = /*_ID event _*/;
+/* 2026-08-12-2 */	UPDATE categories SET parameters = REPLACE(parameters, '&hide_in_list=', '&zzform_def[hide_in_list]=') WHERE parameters LIKE '%&hide_in_list=%' AND main_category_id = /*_ID categories event _*/;
 /* 2026-08-14-1 */	UPDATE categories SET parameters = REPLACE(parameters, '&events_contacts=1', '&use_for[events_contacts]=1') WHERE parameters LIKE '%&events_contacts=1%';
 /* 2026-08-14-2 */	UPDATE categories SET parameters = REPLACE(parameters, '&projects=1', '&use_for[events_projects]=1') WHERE parameters LIKE '%&projects=1%';
 /* 2026-08-14-3 */	UPDATE categories SET parameters = REPLACE(parameters, 'if[events][', 'if[events_contacts][') WHERE parameters LIKE '%if[events][%';
