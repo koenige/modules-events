@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/events
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2009, 2014-2021, 2023, 2025 Gustaf Mossakowski
+ * @copyright Copyright © 2009, 2014-2021, 2023, 2025-2026 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -188,20 +188,8 @@ function mod_events_ics($params) {
 			);
 		}
 		$e->setDescription(trim(strip_tags(markdown($event['description']))));
-		if (!empty($event['location'])) {
-			$locations = [];
-			foreach ($event['location'] as $location) {
-				$locations[] = $location['contact']
-					.(!empty($location['address']) ? "\n".$location['address'] : '')
-					.(($location['place'] AND $location['place'] !== $location['contact'])
-						? "\n".(!empty($location['postcode']) ? $location['postcode']." " : '').$location['place']
-						: ''
-					)
-					.(!empty($location['country']) ? "\n".$location['country'] : '');
-			}
-			$e->setLocation(implode(', ', $locations));
-		}
-		
+		mod_events_ics_apply_location($e, $event);
+
 		$e->setUid($event['uid'].'@'.wrap_setting('site'));
 		$timestamp = gmdate('Ymd His', strtotime($event['timestamp']));
 		$e->setDtstamp(str_replace(' ', 'T', $timestamp).'Z');
@@ -212,4 +200,87 @@ function mod_events_ics($params) {
 	$page['text'] = $v->createCalendar();
 	$page['content_type'] = 'ics';
 	return $page;
+}
+
+/**
+ * set LOCATION, URL, and GEO on a Vevent from event location data
+ *
+ * @param object $vevent iCalcreator Vevent
+ * @param array $event
+ */
+function mod_events_ics_apply_location($vevent, $event) {
+	if (empty($event['location'])) return;
+
+	$locations = [];
+	$url = null;
+	$latitude = null;
+	$longitude = null;
+
+	foreach ($event['location'] as $location) {
+		$text = mod_events_ics_location_text($location);
+		if ($text) {
+			$locations[] = $text;
+		}
+		if (!$url) {
+			if (!empty($location['direct_link'])) {
+				$url = $location['direct_link'];
+			} elseif (!empty($location['website'])) {
+				$url = $location['website'];
+			}
+		}
+		if ($latitude === null) {
+			if (empty($location['latitude'])) continue;
+			if (empty($location['longitude'])) continue;
+			$latitude = $location['latitude'];
+			$longitude = $location['longitude'];
+		}
+	}
+
+	if ($locations) {
+		$vevent->setLocation(implode("\n\n", $locations));
+	}
+	if ($url) {
+		$vevent->setUrl($url);
+	}
+	if ($latitude !== null) {
+		$vevent->setGeo($latitude, $longitude);
+	}
+}
+
+/**
+ * format one event location for ICS LOCATION property
+ *
+ * @param array $location
+ * @return string
+ */
+function mod_events_ics_location_text($location) {
+	$has_place = !empty($location['place'])
+		AND $location['place'] !== ($location['contact'] ?? '');
+	$physical = !empty($location['address']) OR $has_place;
+
+	if ($physical) {
+		$parts = [];
+		if (!empty($location['place']) AND $location['place'] !== $location['contact']) {
+			$parts[] = $location['place'];
+		}
+		if (!empty($location['contact'])) {
+			$parts[] = $location['contact'];
+		}
+		if (!empty($location['address'])) {
+			$parts[] = $location['address'];
+		}
+		if (!empty($location['country']) AND empty($location['own_country'])) {
+			$parts[] = '('.$location['country'].')';
+		}
+		return implode(', ', $parts);
+	}
+
+	$text = $location['contact'] ?? '';
+	if (!empty($location['direct_link'])) {
+		return $text.': '.$location['direct_link'];
+	}
+	if (!empty($location['platform'])) {
+		return $text.' ('.wrap_text('(Link will be announced to participants)').')';
+	}
+	return $text;
 }
