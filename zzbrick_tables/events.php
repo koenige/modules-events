@@ -58,6 +58,9 @@ $zz['fields'][55]['prefix'] = ' – ';
 $zz['fields'][55]['suffix'] = ' '.wrap_text('h');
 $zz['fields'][55]['list_prefix'] = ' – ';
 $zz['fields'][55]['list_suffix'] = ' '.wrap_text('h');
+$zz['fields'][55]['validate']['>'] = ['time_begin'];
+$zz['fields'][55]['validate_unless']['>'] = ['date_end'];
+$zz['fields'][55]['validate_msg']['>'] = 'An event can only end after the start.';
 
 $zz['fields'][56]['title_tab'] = 'TZ';
 $zz['fields'][56]['field_name'] = 'timezone';
