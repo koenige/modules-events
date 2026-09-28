@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Zugzwang Project -- events module\n"
-"POT-Creation-Date: 2026-09-12 13:47+0000\n"
+"POT-Creation-Date: 2026-09-28 14:09+0000\n"
 "PO-Revision-Date: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -45,6 +45,7 @@ msgstr ""
 
 #: templates/event.template.txt:33
 #: templates/project.template.txt:30
+#: zzbrick_request/ics.inc.php:283
 msgid "(Link will be announced to participants)"
 msgstr ""
 
