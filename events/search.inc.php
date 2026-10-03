@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/events
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2020, 2022, 2024-2025 Gustaf Mossakowski
+ * @copyright Copyright © 2020, 2022, 2024-2026 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -33,7 +33,7 @@ function mf_events_search($q) {
 			AND events_categories.type_category_id = /*_ID categories events _*/
 		LEFT JOIN categories USING (category_id)
 		WHERE %s
-		AND published = "yes"
+		AND events.published = "yes"
 		AND (ISNULL(categories.parameters) OR categories.parameters NOT LIKE "%%search=0%%")
 		ORDER BY IFNULL(date_begin, date_end) DESC, time_begin DESC, event';
 	$sql = sprintf($sql, implode(' AND ', $where));
