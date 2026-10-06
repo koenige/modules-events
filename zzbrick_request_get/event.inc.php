@@ -56,12 +56,12 @@ function mod_events_get_event_news($event) {
 		LEFT JOIN articles_events USING (article_id)
 		LEFT JOIN articles_categories USING (article_id)
 		LEFT JOIN categories USING (category_id)
-		WHERE published = "yes"
+		WHERE articles.published = "yes"
 		AND event_id = %d
-		AND date <= CURDATE()
-		AND (ISNULL(date_to) OR date_to >= CURDATE())
+		AND articles.date <= CURDATE()
+		AND (ISNULL(articles.date_to) OR articles.date_to >= CURDATE())
 		GROUP BY article_id
-		ORDER BY date DESC, title';
+		ORDER BY articles.date DESC, title';
 	$sql = sprintf($sql, $event['event_id']);
 	$event['articles'] = wrap_db_fetch($sql, 'article_id');
 	foreach ($event['articles'] as $index => $article) {
