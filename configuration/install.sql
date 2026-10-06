@@ -122,6 +122,8 @@ INSERT INTO webpages (`title`, `content`, `identifier`, `ending`, `sequence`, `m
 INSERT INTO webpages (`title`, `content`, `identifier`, `ending`, `sequence`, `mother_page_id`, `live`, `last_update`) VALUES ('Events', '%%% request events %%%', '/events', '/', 20, (SELECT page_id FROM webpages wp WHERE identifier = '/'), 'yes', NOW());
 INSERT INTO webpages (`title`, `content`, `identifier`, `ending`, `sequence`, `mother_page_id`, `live`, `last_update`) VALUES ('Events', '%%% request events * %%%', '/events*', '/', 1, (SELECT page_id FROM webpages wp WHERE identifier = '/events'), 'yes', NOW());
 
+INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Default events overview', NULL, /*_ID categories tags _*/, 'tags/default-events-overview', '&alias=tags/default-events-overview', NULL, NOW());
+
 
 -- eventdetails --
 CREATE TABLE `eventdetails` (

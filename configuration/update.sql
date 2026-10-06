@@ -104,3 +104,4 @@
 /* 2026-08-14-3 */	UPDATE categories SET parameters = REPLACE(parameters, 'if[events][', 'if[events_contacts][') WHERE parameters LIKE '%if[events][%';
 /* 2026-08-14-4 */	UPDATE categories SET parameters = REPLACE(parameters, 'if[projects][', 'if[events_projects][') WHERE parameters LIKE '%if[projects][%';
 /* 2026-08-20-1 */	UPDATE categories SET parameters = REPLACE(parameters, '&module=', '&events_texts_module=') WHERE parameters LIKE '%&module=%' AND (path LIKE 'event-texts/%' OR parameters LIKE '%&alias=event-texts/%');
+/* 2026-10-06-1 */	INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Default events overview', NULL, /*_ID categories tags _*/, 'tags/default-events-overview', '&alias=tags/default-events-overview', NULL, NOW());
