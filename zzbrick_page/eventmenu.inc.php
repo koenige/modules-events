@@ -97,7 +97,8 @@ function page_eventmenu_running($event_id) {
 		FROM events
 		WHERE (event_id = %d OR main_event_id = %d)
 		AND event_category_id = /*_ID categories event/event _*/
- 		AND NOW() BETWEEN IFNULL(date_begin, date_begin) AND IFNULL(date_end, date_begin)';
+		AND (date_begin <= CURDATE() OR date_begin IS NULL)
+		AND IFNULL(date_end, date_begin) >= CURDATE()';
 	$sql = sprintf($sql, $event_id, $event_id);
 	$events = wrap_db_fetch($sql, 'event_id', 'single value');
 	$running[$event_id] = count($events) ? true : false;
