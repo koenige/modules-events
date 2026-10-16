@@ -27,6 +27,7 @@
 <input type="hidden" name="write" value="true">
 <input type="submit" value="%%% text Apply events %%%">
 </form>
+%%% script default/form-submit-once.js %%%
 
 %%% else %%%
 %%% if days_not_equal %%%
@@ -36,11 +37,9 @@
 %%% endif %%%
 
 <form method="GET" action="">
-
 <p>%%% text Please enter the identifier (year/event, for example 2010/dem-u18) of an existing event: %%%</p>
 <input type="text" name="event" id="timetablecopy-event" autocomplete="off" value="%%% item source_identifier format=html_escape %%%">
 <input type="submit">
-
 </form>
 
 %%% script vxjs/src/core.js %%%
