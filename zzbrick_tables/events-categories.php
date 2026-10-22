@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/events
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2014, 2018, 2020-2025 Gustaf Mossakowski
+ * @copyright Copyright © 2014, 2018, 2020-2026 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -42,9 +42,10 @@ $zz['fields'][4]['exclude_from_search'] = true;
 
 $zz['fields'][3]['field_name'] = 'category_id';
 $zz['fields'][3]['type'] = 'select';
-$zz['fields'][3]['sql'] = 'SELECT category_id, category, main_category_id
+$zz['fields'][3]['sql'] = 'SELECT category_id, category, main_category_id, parameters
 	FROM /*_PREFIX_*/categories
 	ORDER BY sequence, category';
+$zz['fields'][3]['sql_ignore'][] = 'parameters';
 $zz['fields'][3]['display_field'] = 'category';
 $zz['fields'][3]['search'] = '/*_PREFIX_*/categories.category';
 $zz['fields'][3]['show_hierarchy'] = 'main_category_id';
@@ -63,6 +64,10 @@ $zz['fields'][5]['for_action_ignore'] = true;
 if (wrap_setting('events_category_properties')) {
 	$zz['fields'][6]['field_name'] = 'property';
 	$zz['fields'][6]['typo_cleanup'] = true;
+	$zz['fields'][6]['read_parameters'] = 'category_id';
+	$zz['fields'][6]['merge_parameters'] = [
+		'type', 'placeholder', 'unit', 'explanation', 'size'
+	];
 }
 
 $zz['fields'][99]['field_name'] = 'last_update';

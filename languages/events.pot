@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Zugzwang Project -- events module\n"
-"POT-Creation-Date: 2026-10-16 12:13+0000\n"
+"POT-Creation-Date: 2026-10-22 20:58+0000\n"
 "PO-Revision-Date: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -431,7 +431,7 @@ msgstr ""
 #: zzbrick_tables/eventdetails.php:61
 #: zzbrick_tables/eventmenus.php:54
 #: zzbrick_tables/events.php:385
-#: zzbrick_tables/events-categories.php:68
+#: zzbrick_tables/events-categories.php:73
 #: zzbrick_tables/events-contacts.php:68
 #: zzbrick_tables/events-media.php:79
 #: zzbrick_tables/eventtexts.php:61
@@ -507,7 +507,7 @@ msgid "Label"
 msgstr ""
 
 #: zzbrick_tables/eventdetails.php:46
-#: zzbrick_tables/events-categories.php:53
+#: zzbrick_tables/events-categories.php:54
 msgid "Type"
 msgstr ""
 
@@ -628,7 +628,7 @@ msgstr ""
 msgid "No."
 msgstr ""
 
-#: zzbrick_tables/events-categories.php:64
+#: zzbrick_tables/events-categories.php:65
 msgid "Property"
 msgstr ""
 
