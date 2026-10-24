@@ -79,7 +79,7 @@
 %%% endif %%%
 
 %%% if direct_link %%%
-<p><a href="%%% item direct_link %%%">%%% text "Further information about <strong>%s</strong>" event %%%</strong></a></p>
+<p><a href="%%% item direct_link %%%">%%% text "Further information about <strong>%s</strong>" event %%%</a></p>
 %%% endif %%%
 
 %%% if registration %%%
