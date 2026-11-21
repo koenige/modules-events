@@ -38,7 +38,7 @@ $zz['fields'][6]['if'][2]['list_suffix'] = '</del>';
 $zz['fields'][6]['size'] = 48;
 $zz['fields'][6]['class'] = 'block480a';
 $zz['fields'][6]['link'] = [
-	'area' => 'events_project',
+	'route' => 'events_project',
 	'fields' => ['identifier']
 ];
 $zz['fields'][6]['link_record'] = true;

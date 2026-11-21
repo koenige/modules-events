@@ -97,7 +97,7 @@ $zz['fields'][6]['size'] = 48;
 $zz['fields'][6]['class'] = 'block480a';
 $zz['fields'][6]['list_append_next'] = true;
 $zz['fields'][6]['link'] = [
-	'area' => 'events_event',
+	'route' => 'events_event',
 	'fields' => 'identifier'
 ];
 $zz['fields'][6]['typo_cleanup'] = true;
@@ -154,7 +154,7 @@ if (wrap_package('contacts')) {
 			ON contacts.contact_category_id = categories.category_id
 		WHERE categories.parameters LIKE "%&events_location=1%"
 		ORDER BY contact';
-	$zz['fields'][7]['fields'][3]['add_details'] = ['area' => 'contacts_places'];
+	$zz['fields'][7]['fields'][3]['add_details'] = ['route' => 'contacts_places'];
 	$zz['fields'][7]['fields'][4]['type'] = 'hidden';
 	$zz['fields'][7]['fields'][4]['value'] = wrap_category_id('roles/location');
 	$zz['fields'][7]['fields'][4]['hide_in_form'] = true;
